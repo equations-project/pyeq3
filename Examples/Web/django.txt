@@ -1,2 +1,2 @@
 django web example has been moved to
-https://github.com/zunzun/zunzunsite3/
+https://bitbucket.org/zunzuncode/zunzunsite3/

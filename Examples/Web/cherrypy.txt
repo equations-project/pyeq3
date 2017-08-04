@@ -1,2 +1,2 @@
 CherryPy web example has been moved to
- https://github.com/zunzun/CherryPyFit
+ https://bitbucket.org/zunzuncode/CherryPyFit

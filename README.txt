@@ -10,12 +10,12 @@ On other operating systems, try the Canopy Express Free version:
 https://store.enthought.com/
 
 This repository is for Python 3, if you are using Python 2 please
-use https://github.com/zunzun/pyeq2 instead.
+use https://bitbucket.org/zunzuncode/pyeq2 instead.
 
 See the Examples directory to get started.  All of the examples should
 run by typing "python3 examplename.py" at a command prompt.  If your
 copy of pyeq3 does not include the Examples directory, you can find
-the examples at https://github.com/zunzun/pyeq3/tree/master/Examples
+the examples at https://bitbucket.org/zunzuncode/pyeq3/Examples
 
 
 Prior to the invention of electronic calculation, only manual methods

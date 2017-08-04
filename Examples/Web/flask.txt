@@ -1,2 +1,2 @@
 Flask web example has been moved to
- https://github.com/zunzun/FlaskFit
+ https://bitbucket.org/zunzuncode/FlaskFit
