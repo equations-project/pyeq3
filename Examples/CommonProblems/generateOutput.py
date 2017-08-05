@@ -13,10 +13,10 @@ matplotlib.use('Agg') # must be used prior to the next statement
 import matplotlib.pyplot as plt
 
 
-largeAnimationGraphWidth = 800
-largeAnimationGraphHeight = 600
-smallAnimationGraphWidth = 200
-smallAnimationGraphHeight = 150
+largeAnimationGraphWidth = 900
+largeAnimationGraphHeight = 700
+smallAnimationGraphWidth = 320
+smallAnimationGraphHeight = 240
 
 # ensure that 360 is evenly divisible by both of these modulus numbers
 largeAnimationModulus = 2
@@ -24,7 +24,8 @@ smallAnimationModulus = largeAnimationModulus * 5 # multiple of the large modulu
 
 largeAnimationDelayBetweenFrames = 10
 # make the visual speed of smaller animation equal to the large animation
-smallAnimationDelayBetweenFrames = ((smallAnimationModulus // largeAnimationModulus) *  largeAnimationDelayBetweenFrames) // 2
+smallAnimationDelayBetweenFrames = int(((smallAnimationModulus / largeAnimationModulus) *  largeAnimationDelayBetweenFrames) / 2)
+
 
 # the code edits and re-fits this data
 # manually set here, then assign as needed
@@ -152,7 +153,7 @@ errors in recording experimental data.'''
         equation.dataCache.allDataCacheDictionary['Weights'] = []
         
         if not i % largeAnimationModulus:
-            print(i, end=' ');sys.stdout.flush()
+            print(i,);sys.stdout.flush()
             offset = numpy.sin(numpy.radians(i)) * 14.0 # sine wave multiplier per animation frame
             equation.dataCache.allDataCacheDictionary['DependentData'][-1] =  rawData[0][0][-1] + offset
             DependentDataArray = equation.dataCache.allDataCacheDictionary['DependentData']
@@ -174,21 +175,18 @@ errors in recording experimental data.'''
     print()
     # convert all PNG files to GIF for gifsicle to use
     commandString = 'mogrify -format gif *png'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
     
     # make small GIF animation
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(smallAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*small.gif > ' + specificBaseName + '_small.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = p = os.popen(commandString);p.close()
 
     # make large GIF animation        
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(largeAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*large.gif > ' + specificBaseName + '_large.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # remove unused files, saving the ones in this list
     stillImageFileNameList = [specificBaseName + '_ci194_large.png',
@@ -237,7 +235,7 @@ errors in recording experimental data.'''
         equation.dataCache.allDataCacheDictionary['Weights'] = []
         
         if not i % largeAnimationModulus:
-            print(i, end=' ');sys.stdout.flush()
+            print(i,);sys.stdout.flush()
             offset = numpy.sin(numpy.radians(i)) * 14.0 # sine wave multiplier per animation frame
             equation.dataCache.allDataCacheDictionary['DependentData'][6] =  rawData[0][0][6] + offset
             DependentDataArray = equation.dataCache.allDataCacheDictionary['DependentData']
@@ -259,21 +257,18 @@ errors in recording experimental data.'''
     print()
     # convert all PNG files to GIF for gifsicle to use
     commandString = 'mogrify -format gif *png'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
     
     # make small GIF animation
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(smallAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*small.gif > ' + specificBaseName + '_small.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # make large GIF animation        
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(largeAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*large.gif > ' + specificBaseName + '_large.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # remove unused files, saving the ones in this list
     stillImageFileNameList = [specificBaseName + '_ci200_large.png',
@@ -325,7 +320,7 @@ by increasing the total number of data points.'''
         equation.dataCache.allDataCacheDictionary['Weights'] = []
         
         if not i % largeAnimationModulus:
-            print(i, end=' ');sys.stdout.flush()
+            print(i,);sys.stdout.flush()
             offsetArray = numpy.sin(numpy.radians(i)) * noiseArray # sine wave multiplier per animation frame
             equation.dataCache.allDataCacheDictionary['DependentData'] =  rawData[0][0] + offsetArray
             DependentDataArray = equation.dataCache.allDataCacheDictionary['DependentData']
@@ -347,21 +342,18 @@ by increasing the total number of data points.'''
     print()
     # convert all PNG files to GIF for gifsicle to use
     commandString = 'mogrify -format gif *png'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
     
     # make small GIF animation
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(smallAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*small.gif > ' + specificBaseName + '_small.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
  
     # make large GIF animation        
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(largeAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*large.gif > ' + specificBaseName + '_large.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # remove unused files, saving the ones in this list
     stillImageFileNameList = [specificBaseName + '_ci000_large.png',
@@ -415,7 +407,7 @@ when making multiple data collection runs.'''
         equation.dataCache.allDataCacheDictionary['Weights'] = []
         
         if not i % largeAnimationModulus:
-            print(i, end=' ');sys.stdout.flush()
+            print(i,);sys.stdout.flush()
             equation.dataCache.allDataCacheDictionary['DependentData'] = numpy.append(ydata + numpy.sin(numpy.radians(i)) * 4.9, ydata - numpy.sin(numpy.radians(i)) * 4.9)
             DependentDataArray = equation.dataCache.allDataCacheDictionary['DependentData']
             equation.dataCache.allDataCacheDictionary['Weights'] =  []
@@ -436,21 +428,18 @@ when making multiple data collection runs.'''
     print()
     # convert all PNG files to GIF for gifsicle to use
     commandString = 'mogrify -format gif *png'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
     
     # make small GIF animation
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(smallAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*small.gif > ' + specificBaseName + '_small.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # make large GIF animation        
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(largeAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*large.gif > ' + specificBaseName + '_large.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # remove unused files, saving the ones in this list
     stillImageFileNameList = [specificBaseName + '_ci000_large.png',
@@ -501,7 +490,7 @@ temperature change during a lunch break.'''
         equation.dataCache.allDataCacheDictionary['Weights'] = []
         
         if not i % largeAnimationModulus:
-            print(i, end=' ');sys.stdout.flush()
+            print(i,);sys.stdout.flush()
             offsetArray = numpy.sin(numpy.radians(i)) * fixedArray # sine wave multiplier per animation frame
             equation.dataCache.allDataCacheDictionary['DependentData'] =  rawData[0][0] + offsetArray
             DependentDataArray = equation.dataCache.allDataCacheDictionary['DependentData']
@@ -523,21 +512,18 @@ temperature change during a lunch break.'''
     print()
     # convert all PNG files to GIF for gifsicle to use
     commandString = 'mogrify -format gif *png'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # make small GIF animation
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(smallAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*small.gif > ' + specificBaseName + '_small.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # make large GIF animation        
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(largeAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*large.gif > ' + specificBaseName + '_large.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # remove unused files, saving the ones in this list
     stillImageFileNameList = [specificBaseName + '_ci000_large.png',
@@ -589,7 +575,7 @@ data in the region that is poorly defined.'''
         
         numpy.random.seed(3)
         if not i % largeAnimationModulus:
-            print(i, end=' ');sys.stdout.flush()
+            print(i,);sys.stdout.flush()
             
             equation = pyeq3.Models_2D.Polynomial.Quadratic('SSQABS')
             xdata = xbase  * (0.45 * numpy.sin(numpy.radians(i)) + 0.5)
@@ -616,21 +602,18 @@ data in the region that is poorly defined.'''
     print()
     # convert all PNG files to GIF for gifsicle to use
     commandString = 'mogrify -format gif *png'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
     
     # make small GIF animation
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(smallAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*small.gif > ' + specificBaseName + '_small.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # make large GIF animation        
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(largeAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*large.gif > ' + specificBaseName + '_large.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # remove unused files, saving the ones in this list
     stillImageFileNameList = [specificBaseName + '_ci022_large.png',
@@ -684,7 +667,7 @@ random data that has no relationship of any kind.'''
             extraZerosString = '00'
         
         if not i % largeAnimationModulus:
-            print(i, end=' ');sys.stdout.flush()
+            print(i,);sys.stdout.flush()
             index = i
             if i > 180:
                 index = 180 - (i%180)
@@ -713,21 +696,18 @@ random data that has no relationship of any kind.'''
     print()
     # convert all PNG files to GIF for gifsicle to use
     commandString = 'mogrify -format gif *png'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
     
     # make small GIF animation
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(smallAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*small.gif > ' + specificBaseName + '_small.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # make large GIF animation        
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(largeAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*large.gif > ' + specificBaseName + '_large.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # remove unused files, saving the ones in this list
     stillImageFileNameList = [specificBaseName + '_ci000_large.png',
@@ -782,7 +762,7 @@ equation with an offset will reveal the bias.'''
         equation.dataCache.allDataCacheDictionary['Weights'] = []
         
         if not i % largeAnimationModulus:
-            print(i, end=' ');sys.stdout.flush()
+            print(i,);sys.stdout.flush()
             offset = numpy.fabs(i-180) / 90.0
             equation.dataCache.allDataCacheDictionary['IndependentData'] =  numpy.array([fixedArray, numpy.ones(len(fixedArray))])
             IndependentDataArray = equation.dataCache.allDataCacheDictionary['IndependentData']
@@ -806,21 +786,18 @@ equation with an offset will reveal the bias.'''
     print()
     # convert all PNG files to GIF for gifsicle to use
     commandString = 'mogrify -format gif *png'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
     
     # make small GIF animation
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(smallAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*small.gif > ' + specificBaseName + '_small.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # make large GIF animation        
     commandString = 'gifsicle --loop --colors 256 --delay ' + str(largeAnimationDelayBetweenFrames) + " " + specificBaseName + '_ci*large.gif > ' + specificBaseName + '_large.gif'
-    print("Calling " + commandString)
-    p = os.popen(commandString)
-    p.close()
+    print("Calling", commandString)
+    p = os.popen(commandString);p.close()
 
     # remove unused files, saving the ones in this list
     stillImageFileNameList = [specificBaseName + '_ci180_large.png',
