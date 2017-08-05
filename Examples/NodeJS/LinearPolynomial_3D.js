@@ -38,7 +38,7 @@ var textData = "" +
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
-// see https://Bitbucket.com/extrabacon/python-shell
+// see https://github.com/extrabacon/python-shell
 var PythonShell = require('python-shell');
 
 var options = {
