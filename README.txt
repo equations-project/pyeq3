@@ -15,7 +15,7 @@ use https://bitbucket.org/zunzuncode/pyeq2 instead.
 See the Examples directory to get started.  All of the examples should
 run by typing "python3 examplename.py" at a command prompt.  If your
 copy of pyeq3 does not include the Examples directory, you can find
-the examples at https://bitbucket.org/zunzuncode/pyeq3/Examples
+the examples at https://bitbucket.org/zunzuncode/pyeq3/
 
 
 Prior to the invention of electronic calculation, only manual methods
