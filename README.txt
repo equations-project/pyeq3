@@ -1,3 +1,10 @@
+A large collection of equations for Python 3 curve fitting and
+surface fitting that can output source code in several computing
+languages, and run a genetic algorithm for initial parameter
+estimation. Comes with cluster, parallel, IPython, GUI, NodeJS, and
+web-based graphical examples. Includes orthogonal distance and
+relative error regressions. 
+
 You will need to install python and scipy to run this software.
 see http://commonproblems.readthedocs.io/en/latest/
 
