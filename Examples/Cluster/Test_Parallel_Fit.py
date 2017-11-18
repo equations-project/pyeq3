@@ -1,11 +1,5 @@
 import os, sys, dispy
 
-# ensure pyeq3 can be imported
-if -1 != sys.path[0].find('pyeq3-master'):raise Exception('Please rename git checkout directory from "pyeq3-master" to "pyeq3"')
-importDir =  os.path.join(os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..'), '..')
-if importDir not in sys.path:
-    sys.path.append(importDir)
-    
 import pyeq3
 
 

@@ -1,7 +1,6 @@
 import os, sys, math
 
 # ensure pyeq3 can be imported
-if -1 != sys.path[0].find('pyeq3-master'):raise Exception('Please rename git checkout directory from "pyeq3-master" to "pyeq3"')
 if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
     sys.path.append(os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
 import pyeq3
