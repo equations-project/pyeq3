@@ -6,7 +6,7 @@ see http://commonproblems.readthedocs.io/en/latest/
 
 First, install pyeq3 with the command
 
-sudo pip install pyeq3
+pip install pyeq3
 
 and then run the nodejs-to-pyeq3 interface generator with
 

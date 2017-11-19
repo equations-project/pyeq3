@@ -24,7 +24,7 @@ sudo apt-get install imagemagick python3-matplotlib gifsicle
 
 and then install pyeq3 with the command
 
-sudo pip install pyeq3
+pip install pyeq3
 
 
 
