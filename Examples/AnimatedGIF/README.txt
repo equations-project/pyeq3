@@ -10,6 +10,10 @@ On Debian or Ubuntu Linux, you can use this command:
 
 sudo apt-get install imagemagick python3-matplotlib gifsicle
 
+and then install pyeq3 with the commqnd:
+
+sudo pip install pyeq3
+
 
 
 Step 2: Run the AnimatedGIF example
