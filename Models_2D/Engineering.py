@@ -903,7 +903,7 @@ class GraemePatersonElectricMotor(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         b2 = inCoeffs[5]
 
         try:
-            temp = A*np.exp(-b*x_in)*np.cos(omega*x_in + phi) + A2*np.exp(-b2*x_in)
+            temp = A*numpy.exp(-b*x_in)*numpy.cos(omega*x_in + phi) + A2*numpy.exp(-b2*x_in)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
