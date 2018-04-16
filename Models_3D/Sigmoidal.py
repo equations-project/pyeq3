@@ -136,7 +136,7 @@ class AndreaPrunottoSigmoidB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 class FraserSmithSigmoid(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     
     _baseName = "Fraser Smith Sigmoid"
-    _HTML = 'z = 1.0 / ((1.0 + exp(a - bx)) * (1.0 + e(c - dy)))'
+    _HTML = 'z = 1.0 / ((1.0 + exp(a - bx)) * (1.0 + exp(c - dy)))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c', 'd']
     _canLinearSolverBeUsedForSSQABS = False
@@ -189,7 +189,7 @@ class FraserSmithSigmoid(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 class FraserSmithSigmoid_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     
     _baseName = "Fraser Smith Sigmoid Scaled"
-    _HTML = 'z = Scale / ((1.0 + exp(a - bx)) * (1.0 + e(c - dy)))'
+    _HTML = 'z = Scale / ((1.0 + exp(a - bx)) * (1.0 + exp(c - dy)))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c', 'd', 'Scale']
     _canLinearSolverBeUsedForSSQABS = False
