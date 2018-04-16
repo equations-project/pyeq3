@@ -860,3 +860,55 @@ class KlimpelFlotationA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def SpecificCodeCPP(self):
         s = "\ttemp = a *(1.0 - (1.0 - exp(-b*x_in)) / (b*x_in) );\n"
         return s
+
+
+class GraemePatersonElectricMotor(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    
+    _baseName = "Graeme Paterson Electric Motor"
+    _HTML = 'y =  A*exp(-b*t)*cos(omega*t + phi) + A2*exp(-b2*t)'
+    _leftSideHTML = 'y'
+    _coefficientDesignators = ['A', 'b', 'omega', 'phi', 'A2', 'b2']
+    _canLinearSolverBeUsedForSSQABS = False
+    
+    webReferenceURL = ''
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+    autoGenerateOffsetForm = True
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+    
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
+        
+        A = inCoeffs[0]
+        b = inCoeffs[1]
+        omega = inCoeffs[2]
+        phi = inCoeffs[3]
+        A2 = inCoeffs[4]
+        b2 = inCoeffs[5]
+
+        try:
+            temp = A*np.exp(-b*x_in)*np.cos(omega*x_in + phi) + A2*np.exp(-b2*x_in)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+        except:
+            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = A*exp(-b*x_in)*cos(omega*x_in + phi) + A2*exp(-b2*x_in);\n"
+        return s
