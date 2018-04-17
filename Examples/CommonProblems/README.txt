@@ -20,7 +20,7 @@ Step 1: Install matplotlib, imagemagick and gifsicle
 
 On Debian or Ubuntu Linux, you can use this command:
 
-sudo apt-get install imagemagick python3-matplotlib gifsicle
+sudo apt-get install imagemagick python3-matplotlib gifsicle python3-pil
 
 and then install pyeq3 with the command
 
