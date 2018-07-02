@@ -21,6 +21,57 @@ numpy.seterr(all= 'ignore')
 import pyeq3.Model_2D_BaseClass
 
 
+
+class JorgeRabinovichPopulationGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    
+    _baseName = "Jorge Rabinovich Population Growth"
+    _HTML = 'Y = (P1*CC) / (P1 + (CC-P1)*exp(-R*X))'
+    _leftSideHTML = 'Y'
+    _coefficientDesignators = ['P1', 'CC', 'R']
+    _canLinearSolverBeUsedForSSQABS = False
+
+    webReferenceURL = ''
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+    autoGenerateOffsetForm = True
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+    
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
+        
+        P1 = inCoeffs[0]
+        CC = inCoeffs[1]
+        R  = inCoeffs[2]
+
+        try:
+            temp = (P1*CC) / (P1 + (CC-P1)*numpy.exp(-R*x_in)) # only need to calculate this value once
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+        except:
+            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = (P1*CC) / (P1 + (CC-P1)*exp(-R*x_in));\n"
+        return s
+
+
+
 class AphidPopulationGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Aphid Population Growth"
