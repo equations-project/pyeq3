@@ -535,7 +535,7 @@ class JJacquelinGeneralisedLogistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
 
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = L / (1.0 + (b * exp(-k*t)) + (c * exp(h*t)))';\n"
+        s = "\ttemp = L / (1.0 + (b * exp(-k*t)) + (c * exp(h*t)));\n"
         return s
 
 
