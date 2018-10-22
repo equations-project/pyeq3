@@ -488,6 +488,58 @@ class FourParameterLogistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 
+class JJacquelinGeneralisedLogistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    
+    _baseName = "JJacquelin Generalised Logistic"
+    _HTML = 'y = L / (1.0 + (b * exp(-k*t)) + (c * exp(h*t)))'
+    _leftSideHTML = 'y'
+    _coefficientDesignators = ['L', 'b', 'k', 'c', 'h']
+    _canLinearSolverBeUsedForSSQABS = False
+    
+    webReferenceURL = 'https://stats.stackexchange.com/questions/373039/how-to-combine-properties-of-different-functions-into-a-new-function/373079'
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+    autoGenerateOffsetForm = True
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+    
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
+        
+        L = inCoeffs[0]
+        b = inCoeffs[1]
+        k = inCoeffs[2]
+        c = inCoeffs[3]
+        h = inCoeffs[4]
+
+        try:
+            temp = L / (1.0 + (b * numpy.exp(-k*x_in)) + (c * numpy.exp(h*x_in)))
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+        except:
+            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = L / (1.0 + (b * exp(-k*t)) + (c * exp(h*t)))';\n"
+        return s
+
+
+
 class GeneralisedLogistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Generalised Logistic"
