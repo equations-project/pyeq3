@@ -512,6 +512,12 @@ class JJacquelinGeneralisedLogistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
     independentData2CannotContainNegativeFlag = False
     
 
+    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName)
+        self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
+        self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
+
+
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
