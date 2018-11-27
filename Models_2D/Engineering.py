@@ -862,6 +862,7 @@ class KlimpelFlotationA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         return s
 
 
+
 class GraemePatersonElectricMotor(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Graeme Paterson Electric Motor"
@@ -911,4 +912,54 @@ class GraemePatersonElectricMotor(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     def SpecificCodeCPP(self):
         s = "\ttemp = A*exp(-b*x_in)*cos(omega*x_in + phi) + A2*exp(-b2*x_in);\n"
+        return s
+
+
+
+class ModifiedArpsWellProduction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    
+    _baseName = "Modified Arps Well Production"
+    _HTML = 'y = (qi_x/((1.0-b_x)*Di_x)) * (1.0-((1.0+b_x*Di_x*x)**(1.0-1.0/b_x)))'
+    _leftSideHTML = 'y'
+    _coefficientDesignators = ['qi_x', 'b_x', 'Di_x']
+    _canLinearSolverBeUsedForSSQABS = False
+    
+    webReferenceURL = ''
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+    autoGenerateOffsetForm = True
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+    
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
+        
+        qi_x = inCoeffs[0]
+        b_x = inCoeffs[1]
+        Di_x = inCoeffs[2]
+
+        try:
+            temp = (qi_x/((1.0-b_x)*Di_x)) * (1.0 - numpy.power((1.0+b_x*Di_x*x_in), (1.0-1.0/b_x)))
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+        except:
+            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = (qi_x/((1.0-b_x)*Di_x)) * (1.0 - pow((1.0+b_x*Di_x*x_in), (1.0-1.0/b_x)));\n"
         return s
