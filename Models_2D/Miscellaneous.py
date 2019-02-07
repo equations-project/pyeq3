@@ -892,7 +892,7 @@ class ArrheniusRateConstantLawStretched(pyeq3.Model_2D_BaseClass.Model_2D_BaseCl
 class Bleasdale_Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Bleasdale-Nelder"
-    _HTML = 'y = (a + bx)<sup>-1/c</sup>'
+    _HTML = 'y = (a + bx)<sup>-c</sup>'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
@@ -927,65 +927,14 @@ class Bleasdale_Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         c = inCoeffs[2]
 
         try:
-            temp = numpy.power(a + b * x_in, -1.0 / c)
+            temp = numpy.power(a + b * x_in, -c)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = pow(a + b * x_in, -1.0 / c);\n"
-        return s
-
-
-
-class Bleasdale_Nelder_Power(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-    
-    _baseName = "Bleasdale-Nelder Power"
-    _HTML = 'y = (a + bx<sup>c</sup>)<sup>-1/d</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c', 'd']
-    _canLinearSolverBeUsedForSSQABS = False
-    
-    webReferenceURL = ''
-
-    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
-
-    independentData1CannotContainZeroFlag = False
-    independentData1CannotContainPositiveFlag = False
-    independentData1CannotContainNegativeFlag = True
-    independentData2CannotContainZeroFlag = False
-    independentData2CannotContainPositiveFlag = False
-    independentData2CannotContainNegativeFlag = False
-    
-
-    def GetDataCacheFunctions(self):
-        functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
-
-
-    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        
-        a = inCoeffs[0]
-        b = inCoeffs[1]
-        c = inCoeffs[2]
-        d = inCoeffs[3]
-
-        try:
-            temp = numpy.power(a + b * numpy.power(x_in, c), -1.0 / d)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
-        except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
-
-    def SpecificCodeCPP(self):
-        s = "\ttemp = pow(a + b * pow(x_in, c), -1.0 / d);\n"
+        s = "\ttemp = pow(a + b * x_in, -1.0 * c);\n"
         return s
 
 
