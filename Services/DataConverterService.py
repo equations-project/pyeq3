@@ -64,7 +64,7 @@ class DataConverterService(object):
                     a = float(tokenlist[0])
                 except:
                     continue
-                if a > 1.0E300 or a < -1.0E300:
+                if a > 1.0E300 or a < -1.0E300 or numpy.isnan(a):
                     continue
                 if a < 0.0:
                     inModel.dataCache.independentData1ContainsNegativeFlag = True
@@ -90,9 +90,9 @@ class DataConverterService(object):
                     
                 except:
                     continue
-                if a > 1.0E300 or a < -1.0E300:
+                if a > 1.0E300 or a < -1.0E300 or numpy.isnan(a):
                     continue
-                if b > 1.0E300 or b < -1.0E300:
+                if b > 1.0E300 or b < -1.0E300 or numpy.isnan(b):
                     continue
                 if b == 0.0:
                     inModel.dataCache.DependentDataContainsZeroFlag = True
@@ -119,11 +119,11 @@ class DataConverterService(object):
                         d = 1.0
                 except:
                     continue
-                if a > 1.0E300 or a < -1.0E300:
+                if a > 1.0E300 or a < -1.0E300 or numpy.isnan(a):
                     continue
-                if b > 1.0E300 or b < -1.0E300:
+                if b > 1.0E300 or b < -1.0E300 or numpy.isnan(b):
                     continue
-                if c > 1.0E300 or c < -1.0E300:
+                if c > 1.0E300 or c < -1.0E300 or numpy.isnan(c):
                     continue
                 if c == 0.0:
                     inModel.dataCache.DependentDataContainsZeroFlag = True
