@@ -62,14 +62,14 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         if 0 == (len(self.rationalNumeratorFlags) + len(self.rationalDenominatorFlags)):
             self._HTML = "y = user-selectable rational"
         else:
-            self._HTML = "</B><B>y = (" # turn off any preceding bolding
+            self._HTML = "y = ("
             count = 0
             for xindex in range(len(self.rationalEquationList)):
                 if xindex in self.rationalNumeratorFlags: # numerator
                     if xindex == 0:
                         self._HTML += self.listOfAdditionalCoefficientDesignators[count] + " "
                     else:
-                        self._HTML += self.listOfAdditionalCoefficientDesignators[count] + "(</B>&nbsp;" + self.rationalEquationList[xindex].HTML + "&nbsp;<B>) "
+                        self._HTML += self.listOfAdditionalCoefficientDesignators[count] + "(&nbsp;" + self.rationalEquationList[xindex].HTML + "&nbsp;) "
                     count += 1
                     if len(self.rationalNumeratorFlags) > count:
                         self._HTML += "+ "
@@ -80,11 +80,11 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
                     if xindex == 0:
                         self._HTML += self.listOfAdditionalCoefficientDesignators[count + len(self.rationalNumeratorFlags)] + " "
                     else:
-                        self._HTML += self.listOfAdditionalCoefficientDesignators[count + len(self.rationalNumeratorFlags)] + "(</B>&nbsp;" + self.rationalEquationList[xindex].HTML + "&nbsp;<B>) "
+                        self._HTML += self.listOfAdditionalCoefficientDesignators[count + len(self.rationalNumeratorFlags)] + "(&nbsp;" + self.rationalEquationList[xindex].HTML + "&nbsp;) "
                     count += 1
                     if len(self.rationalDenominatorFlags) > count:
                         self._HTML += "+ "
-            self._HTML += ')</B>'
+            self._HTML += ')'
             
         return self.extendedVersionHandler.AssembleDisplayHTML(self)
 
