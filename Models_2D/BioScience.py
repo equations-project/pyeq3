@@ -2024,7 +2024,7 @@ class NegativeExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class NewZealandEcologyLogistic1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "New Zealand Ecology Logistic 1"
-    _HTML = 'n = B0 + ((B1 - B0) / (1.0 + exp((B2 - D) * B3)))'
+    _HTML = 'n = B0 + ((B1 - B0) / (1.0 + exp((B2 + D) * B3)))'
     _leftSideHTML = 'n'
     _coefficientDesignators = ['B0', 'B1', 'B2', 'B3']
     _canLinearSolverBeUsedForSSQABS = False
@@ -2075,7 +2075,7 @@ class NewZealandEcologyLogistic1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class NewZealandEcologyLogistic2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "New Zealand Ecology Logistic 2"
-    _HTML = 'n = B0 + ((B1 - B0) / (1.0 + exp((B2 - D + (B4*D<sup>2</sup>)) * B3)))'
+    _HTML = 'n = B0 + ((B1 - B0) / (1.0 + exp((B2 + D + (B4*D<sup>2</sup>)) * B3)))'
     _leftSideHTML = 'n'
     _coefficientDesignators = ['B0', 'B1', 'B2', 'B3', 'B4']
     _canLinearSolverBeUsedForSSQABS = False
