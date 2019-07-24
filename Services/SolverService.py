@@ -232,11 +232,11 @@ class SolverService(object):
     def SolveUsingSpline(self, inModel):
         data = inModel.dataCache.FindOrCreateAllDataCache(inModel)
         if inModel.GetDimensionality() == 2:
-            inModel.scipySpline = scipy.interpolate.fitpack2.UnivariateSpline(data[0], inModel.dataCache.allDataCacheDictionary['DependentData'], s=inModel.smoothingFactor, k=inModel.xOrder)
+            inModel.scipySpline = scipy.interpolate.UnivariateSpline(data[0], inModel.dataCache.allDataCacheDictionary['DependentData'], s=inModel.smoothingFactor, k=inModel.xOrder)
             inModel.solvedCoefficients = inModel.scipySpline._eval_args
             return inModel.solvedCoefficients
         else:
-            inModel.scipySpline = scipy.interpolate.fitpack2.SmoothBivariateSpline(data[0], data[1], inModel.dataCache.allDataCacheDictionary['DependentData'], s=inModel.smoothingFactor, kx=inModel.xOrder, ky=inModel.yOrder)
+            inModel.scipySpline = scipy.interpolate.SmoothBivariateSpline(data[0], data[1], inModel.dataCache.allDataCacheDictionary['DependentData'], s=inModel.smoothingFactor, kx=inModel.xOrder, ky=inModel.yOrder)
             inModel.solvedCoefficients = inModel.scipySpline.tck
             return inModel.solvedCoefficients
 

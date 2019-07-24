@@ -21,7 +21,7 @@ print("Fitting target of", equation.fittingTargetDictionary[equation.fittingTarg
 print()
 
 # at present, only these four languages are supported for spline-specific code
-print(pyeq3.outputSourceCodeService().GetOutputSourceCodeCPP(equation))
-#print(pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(equation))
+#print(pyeq3.outputSourceCodeService().GetOutputSourceCodeCPP(equation))
+print(pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(equation))
 #print(pyeq3.outputSourceCodeService().GetOutputSourceCodeJAVA(equation))
 #print(pyeq3.outputSourceCodeService().GetOutputSourceCodeJAVASCRIPT(equation))

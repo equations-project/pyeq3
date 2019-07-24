@@ -105,7 +105,7 @@ class TestSolverService(unittest.TestCase):
         fittedParameters = pyeq3.solverService().SolveUsingSpline(model)
 
         # example of later using the saved spline knot points and coefficients
-        unFittedSpline = scipy.interpolate.fitpack2.SmoothBivariateSpline(model.dataCache.allDataCacheDictionary['X'], model.dataCache.allDataCacheDictionary['Y'], model.dataCache.allDataCacheDictionary['DependentData'], s=model.smoothingFactor, kx=model.xOrder, ky=model.yOrder)
+        unFittedSpline = scipy.interpolate.SmoothBivariateSpline(model.dataCache.allDataCacheDictionary['X'], model.dataCache.allDataCacheDictionary['Y'], model.dataCache.allDataCacheDictionary['DependentData'], s=model.smoothingFactor, kx=model.xOrder, ky=model.yOrder)
         unFittedSpline.tck = fittedParameters
         testEvaluation = unFittedSpline.ev(2.5, 2.5)
         
@@ -124,7 +124,7 @@ class TestSolverService(unittest.TestCase):
         fittedParameters = pyeq3.solverService().SolveUsingSpline(model)
 
         # example of later using the saved spline knot points and coefficients
-        unFittedSpline = scipy.interpolate.fitpack2.UnivariateSpline(model.dataCache.allDataCacheDictionary['X'], model.dataCache.allDataCacheDictionary['DependentData'], s=model.smoothingFactor, k=model.xOrder)
+        unFittedSpline = scipy.interpolate.UnivariateSpline(model.dataCache.allDataCacheDictionary['X'], model.dataCache.allDataCacheDictionary['DependentData'], s=model.smoothingFactor, k=model.xOrder)
         unFittedSpline._eval_args = fittedParameters
         testEvaluation = unFittedSpline(numpy.array([8.0]))
         
