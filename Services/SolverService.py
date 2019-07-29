@@ -232,7 +232,14 @@ class SolverService(object):
     def SolveUsingSpline(self, inModel):
         data = inModel.dataCache.FindOrCreateAllDataCache(inModel)
         if inModel.GetDimensionality() == 2:
-            inModel.scipySpline = scipy.interpolate.UnivariateSpline(data[0], inModel.dataCache.allDataCacheDictionary['DependentData'], s=inModel.smoothingFactor, k=inModel.xOrder)
+            # aargh! scipy univariate splines must be sorted by dependent data
+            # sort based on https://stackoverflow.com/questions/13668393/
+            list1 = data[0]
+            list2 = inModel.dataCache.allDataCacheDictionary['DependentData']
+            
+            (list1, list2) = [list(x) for x in zip(*sorted(zip(list1, list2), key=lambda pair: pair[0]))]
+            
+            inModel.scipySpline = scipy.interpolate.UnivariateSpline(list1, list2, s=inModel.smoothingFactor, k=inModel.xOrder)
             inModel.solvedCoefficients = inModel.scipySpline._eval_args
             return inModel.solvedCoefficients
         else:
