@@ -35,7 +35,7 @@ class Quintic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -97,7 +97,7 @@ class Quartic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -156,7 +156,7 @@ class Cubic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -212,7 +212,7 @@ class Linear(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -262,7 +262,7 @@ class MarcPlanteQuadratic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -312,7 +312,7 @@ class Quadratic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False

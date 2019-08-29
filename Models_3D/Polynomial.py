@@ -35,7 +35,7 @@ class FullCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -127,7 +127,7 @@ class FullQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -199,7 +199,7 @@ class Linear(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -252,7 +252,7 @@ class SimplifiedCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -329,7 +329,7 @@ class SimplifiedQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -393,7 +393,7 @@ class UserSelectablePolynomial(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGenerateOffsetForm = False
     autoGenerateReciprocalForm = False
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
+    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
