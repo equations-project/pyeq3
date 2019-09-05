@@ -1137,3 +1137,55 @@ class JonathanLitzCustomExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
     def SpecificCodeCPP(self):
         s = "\ttemp = a + b * x_in + c * exp(-d * x_in) - c * x_in * exp(-d * x_in);\n"
         return s
+
+
+
+class LakeNganokeSamplesExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    
+    _baseName = "Lake Nganoke Samples Exponential"
+    _HTML = 'y = C/(1.0 + exp((x-A)/B)) + D * exp((x-B)/E)'
+    _leftSideHTML = 'y'
+    _coefficientDesignators = ['A', 'B', 'C', 'D', 'E']
+    _canLinearSolverBeUsedForSSQABS = False
+    
+    webReferenceURL = 'https://stackoverflow.com/questions/57797820/polynomial-regression-equation'
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+    autoGenerateOffsetForm = True
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+    
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
+        
+        A = inCoeffs[0]
+        B = inCoeffs[1]
+        C = inCoeffs[2]
+        D = inCoeffs[3]
+        E = inCoeffs[4]
+
+        try:
+            temp = C/(1.0 + numpy.exp((x_in-A)/B)) + D * numpy.exp((x_in-B)/E)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+        except:
+            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = C/(1.0 + exp((x_in-A)/B)) + D * exp((x_in-B)/E);\n"
+        return s
