@@ -2652,7 +2652,7 @@ class UVEDFruitGrowthRateB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class UVEDFruitGrowthRateScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "UVED Fruit Growth Rate Scaled"
-    _HTML = 'y = ((c*t)<sup>(a-1)</sup>*(1-(c*t)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)'
+    _HTML = 'y = (c*t)<sup>(a-1)</sup>*(1-(c*t)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
@@ -2705,7 +2705,7 @@ class UVEDFruitGrowthRateScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class UVEDFruitGrowthRateScaledB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "UVED Fruit Growth Rate Scaled B"
-    _HTML = 'y = d * ((c*t)<sup>(a-1)</sup>*(1-(c*t)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)'
+    _HTML = 'y = d * (c*t)<sup>(a-1)</sup>*(1-(c*t)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b', 'c','d']
     _canLinearSolverBeUsedForSSQABS = False
@@ -2756,7 +2756,7 @@ class UVEDFruitGrowthRateScaledB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class UVEDFruitGrowthRateTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "UVED Fruit Growth Rate Transform"
-    _HTML = 'y = ((c*t+d)<sup>(a-1)</sup>*(1-(c*t+d)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)'
+    _HTML = 'y = (c*t+d)<sup>(a-1)</sup>*(1-(c*t+d)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b', 'c', 'd']
     _canLinearSolverBeUsedForSSQABS = False
@@ -2807,7 +2807,7 @@ class UVEDFruitGrowthRateTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class UVEDFruitGrowthRateTransformB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "UVED Fruit Growth Rate Transform B"
-    _HTML = 'y = f * ((c*t+d)<sup>(a-1)</sup>*(1-(c*t+d)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)'
+    _HTML = 'y = f * (c*t+d)<sup>(a-1)</sup>*(1-(c*t+d)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b', 'c', 'd','f']
     _canLinearSolverBeUsedForSSQABS = False
