@@ -391,7 +391,7 @@ class UserSelectablePolynomial(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
+    autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = False
 
