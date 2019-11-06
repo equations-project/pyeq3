@@ -44,6 +44,26 @@ class ExtendedVersionHandler_Inverse(IExtendedVersionHandler.IExtendedVersionHan
             return inModel.SpecificCodeCPP() + "\ttemp = (x_in * y_in) / temp;\n"
 
 
+    def GetAdditionalDataCacheFunctions(self, inModel, inDataCacheFunctions):
+        foundX = False
+        foundXY = False
+        for i in inDataCacheFunctions: # if these are already in the cache, we don't need to add them again
+            if i[0] == 'X' and inModel.GetDimensionality() == 2:
+                foundX = True
+            if i[0] == 'XY' and inModel.GetDimensionality() == 3:
+                foundXY = True
+                
+        if inModel.GetDimensionality() == 2:
+            if not foundX:
+                return inDataCacheFunctions + \
+                       [[pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]]
+        else:
+            if not foundXY:
+                return inDataCacheFunctions + \
+                       [[pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]]
+        return inDataCacheFunctions
+
+
     def GetAdditionalModelPredictions(self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel):
         if inModel.GetDimensionality() == 2:
             return self.ConvertInfAndNanToLargeNumber(inDataCacheDictionary['X'] / inBaseModelCalculation)
