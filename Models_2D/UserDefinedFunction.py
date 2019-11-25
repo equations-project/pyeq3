@@ -27,8 +27,7 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     userDefinedFunctionFlag = True
 
     # based on http://lybniz2.sourceforge.net/safeeval.html
-    functionDictionary = {'Arithmetic Operations':    ['power', 'mod'],
-                          'Exponents And Logarithms': ['exp', 'log', 'log10', 'log2'],
+    functionDictionary = {'Exponents And Logarithms': ['exp', 'log', 'log10', 'log2'],
                           'Trigonometric Functions':  ['sin', 'cos', 'tan', 'arcsin', 'arccos', 'arctan', 'hypot', 'arctan2', 'deg2rad', 'rad2deg'],
                           'Hyperbolic Trig Functions':['arcsinh', 'arccosh', 'arctanh', 'sinh', 'cosh', 'tanh'],
                           'Other Special Functions':  ['sinc'],
