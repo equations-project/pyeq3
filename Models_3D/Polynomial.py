@@ -439,7 +439,7 @@ class UserSelectablePolynomial(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         for i in range(self.xPolynomialOrder+1): # 0 to xPolynomialOrder
             for j in range(self.yPolynomialOrder+1): # from 0 to yPolynomialOrder
                 functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX_PowY(NameOrValueFlag=1, args=[float(i), float(j)]), [float(i), float(j)]])
-        return functionList
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
     
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):

@@ -404,7 +404,7 @@ class UserSelectablePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         functionList = []
         for i in range(self.xPolynomialOrder+1): # 0 to xPolynomialOrder
             functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[float(i)]), [float(i)]])
-        return functionList
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
     
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
@@ -489,7 +489,7 @@ class UserCustomizablePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         functionList = []
         for i in self.polynomial2DFlags:
             functionList.append([pyeq3.DataCache.DataCacheFunctions.Polynomial2D(NameOrValueFlag=1, args=i), i])
-        return functionList
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
     
     def ShouldDataBeRejected(self, unused):
