@@ -187,6 +187,21 @@ class Sine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 
+class Sine_NyquistLimited(Sine):
+    _baseName = "Sine [radians] (Nyquist Limited)"
+
+    def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
+        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+            self.dataCache.FindOrCreateAllDataCache(self)
+            x = self.dataCache.allDataCacheDictionary['DependentData']
+            xMax = max(x)
+            xMin = min(x)
+            n = len(x)
+            self.lowerCoefficientBounds[2] = (xMax - xMin) / (n/2.0)
+        Sine.Solve(self, inNonLinearSolverAlgorithmName)
+
+
+
 class SineSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _baseName = "Sine Squared [radians]"
     _HTML = 'y = amplitude * sin(pi * (x - center) / width)<sup>2</sup>'
@@ -239,6 +254,21 @@ class SineSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * (x_in - center) / width) * sin(3.14159265358979323846 * (x_in - center) / width);\n"
         return s
+
+
+
+class SineSquared_NyquistLimited(SineSquared):
+    _baseName = "Sine Squared [radians] (Nyquist Limited)"
+
+    def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
+        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+            self.dataCache.FindOrCreateAllDataCache(self)
+            x = self.dataCache.allDataCacheDictionary['DependentData']
+            xMax = max(x)
+            xMin = min(x)
+            n = len(x)
+            self.lowerCoefficientBounds[2] = (xMax - xMin) / (n/2.0)
+        SineSquared.Solve(self, inNonLinearSolverAlgorithmName)
 
 
 
@@ -297,6 +327,21 @@ class Tangent(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 
+class Tangent_NyquistLimited(Tangent):
+    _baseName = "Tangent [radians] (Nyquist Limited)"
+
+    def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
+        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+            self.dataCache.FindOrCreateAllDataCache(self)
+            x = self.dataCache.allDataCacheDictionary['DependentData']
+            xMax = max(x)
+            xMin = min(x)
+            n = len(x)
+            self.lowerCoefficientBounds[2] = (xMax - xMin) / (n/2.0)
+        Tangent.Solve(self, inNonLinearSolverAlgorithmName)
+
+
+
 class HyperbolicCosine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _baseName = "Hyperbolic Cosine [radians]"
     _HTML = 'y = amplitude * cosh(pi * (x - center) / width)'
@@ -349,6 +394,21 @@ class HyperbolicCosine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * cosh(3.14159265358979323846 * (x_in - center) / width);\n"
         return s
+
+
+
+class HyperbolicCosine_NyquistLimited(HyperbolicCosine):
+    _baseName = "Hyperbolic Cosine [radians] (Nyquist Limited)"
+
+    def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
+        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+            self.dataCache.FindOrCreateAllDataCache(self)
+            x = self.dataCache.allDataCacheDictionary['DependentData']
+            xMax = max(x)
+            xMin = min(x)
+            n = len(x)
+            self.lowerCoefficientBounds[2] = (xMax - xMin) / (n/2.0)
+        HyperbolicCosine.Solve(self, inNonLinearSolverAlgorithmName)
 
 
 
@@ -407,6 +467,21 @@ class Sinc(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 
+class Sinc_NyquistLimited(Sinc):
+    _baseName = "Cardinal Sine (sinc) [radians] (Nyquist Limited)"
+
+    def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
+        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+            self.dataCache.FindOrCreateAllDataCache(self)
+            x = self.dataCache.allDataCacheDictionary['DependentData']
+            xMax = max(x)
+            xMin = min(x)
+            n = len(x)
+            self.lowerCoefficientBounds[2] = (xMax - xMin) / (n/2.0)
+        Sinc.Solve(self, inNonLinearSolverAlgorithmName)
+
+
+
 class SincSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _baseName = "Cardinal Sine (sinc) Squared [radians]"
     _HTML = 'y = amplitude * sin(pi * (x - center) / width)<sup>2</sup> / (pi * (x - center) / width)'
@@ -459,3 +534,18 @@ class SincSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * (x_in - center) / width) * sin(3.14159265358979323846 * (x_in - center) / width) / (3.14159265358979323846 * (x_in - center) / width);\n"
         return s
+
+
+
+class SincSquared_NyquistLimited(SincSquared):
+    _baseName = "Cardinal Sine (sinc) Squared [radians] (Nyquist Limited)"
+
+    def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
+        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+            self.dataCache.FindOrCreateAllDataCache(self)
+            x = self.dataCache.allDataCacheDictionary['DependentData']
+            xMax = max(x)
+            xMin = min(x)
+            n = len(x)
+            self.lowerCoefficientBounds[2] = (xMax - xMin) / (n/2.0)
+        SincSquared.Solve(self, inNonLinearSolverAlgorithmName)
