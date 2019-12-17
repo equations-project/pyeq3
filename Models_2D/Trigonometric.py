@@ -193,7 +193,7 @@ class Sine_NyquistLimited(Sine):
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
             self.dataCache.FindOrCreateAllDataCache(self)
-            x = self.dataCache.allDataCacheDictionary['DependentData']
+            x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
             xMin = min(x)
             n = len(x)
@@ -263,7 +263,7 @@ class SineSquared_NyquistLimited(SineSquared):
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
             self.dataCache.FindOrCreateAllDataCache(self)
-            x = self.dataCache.allDataCacheDictionary['DependentData']
+            x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
             xMin = min(x)
             n = len(x)
@@ -333,7 +333,7 @@ class Tangent_NyquistLimited(Tangent):
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
             self.dataCache.FindOrCreateAllDataCache(self)
-            x = self.dataCache.allDataCacheDictionary['DependentData']
+            x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
             xMin = min(x)
             n = len(x)
@@ -403,7 +403,7 @@ class HyperbolicCosine_NyquistLimited(HyperbolicCosine):
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
             self.dataCache.FindOrCreateAllDataCache(self)
-            x = self.dataCache.allDataCacheDictionary['DependentData']
+            x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
             xMin = min(x)
             n = len(x)
@@ -473,7 +473,7 @@ class Sinc_NyquistLimited(Sinc):
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
             self.dataCache.FindOrCreateAllDataCache(self)
-            x = self.dataCache.allDataCacheDictionary['DependentData']
+            x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
             xMin = min(x)
             n = len(x)
@@ -543,7 +543,7 @@ class SincSquared_NyquistLimited(SincSquared):
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
             self.dataCache.FindOrCreateAllDataCache(self)
-            x = self.dataCache.allDataCacheDictionary['DependentData']
+            x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
             xMin = min(x)
             n = len(x)
