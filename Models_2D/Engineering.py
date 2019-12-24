@@ -32,6 +32,8 @@ class MaxwellWiechert_1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://en.wikipedia.org/wiki/Generalized_Maxwell_model'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -81,6 +83,8 @@ class MaxwellWiechert_2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://en.wikipedia.org/wiki/Generalized_Maxwell_model'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -132,6 +136,8 @@ class MaxwellWiechert_3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://en.wikipedia.org/wiki/Generalized_Maxwell_model'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -185,6 +191,8 @@ class MaxwellWiechert_4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://en.wikipedia.org/wiki/Generalized_Maxwell_model'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -240,7 +248,8 @@ class DispersionOptical(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -293,7 +302,8 @@ class DispersionOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -346,7 +356,8 @@ class Extended_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -397,6 +408,8 @@ class Ramberg_Osgood(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -449,10 +462,9 @@ class Reciprocal_Extended_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = True
     independentData1CannotContainPositiveFlag = False
@@ -500,10 +512,9 @@ class Reciprocal_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = True
     independentData1CannotContainPositiveFlag = False
@@ -552,6 +563,8 @@ class SellmeierOptical(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -605,6 +618,8 @@ class SellmeierOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -658,10 +673,8 @@ class Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = True
     independentData1CannotContainPositiveFlag = False
@@ -708,7 +721,8 @@ class VanDeemterChromatography(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -761,6 +775,8 @@ class ElectronBeamLithographyPointSpread(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -825,6 +841,8 @@ class KlimpelFlotationA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -874,6 +892,8 @@ class GraemePatersonElectricMotor(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -927,6 +947,8 @@ class ModifiedArpsWellProduction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True

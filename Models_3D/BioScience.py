@@ -32,6 +32,8 @@ class ChenClayton(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = 'http://www.cigrjournal.org/index.php/Ejounral/article/download/1039/1032'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -87,6 +89,8 @@ class ChenClayton_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = 'http://www.cigrjournal.org/index.php/Ejounral/article/download/1039/1032'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -143,6 +147,8 @@ class HighLowAffinityDoubleIsotopeDisplacement(pyeq3.Model_3D_BaseClass.Model_3D
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -197,6 +203,8 @@ class HighLowAffinityIsotopeDisplacement(pyeq3.Model_3D_BaseClass.Model_3D_BaseC
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -248,7 +256,8 @@ class LogisticGrowth(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -305,6 +314,8 @@ class MichaelisMentenDoubleIsotopeDisplacement(pyeq3.Model_3D_BaseClass.Model_3D
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -358,6 +369,8 @@ class MichaelisMentenIsotopeDisplacement(pyeq3.Model_3D_BaseClass.Model_3D_BaseC
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -409,6 +422,8 @@ class ModifiedChungPfost(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = 'http://www.cigrjournal.org/index.php/Ejounral/article/download/1039/1032'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -461,6 +476,8 @@ class ModifiedHalsey(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = 'http://www.cigrjournal.org/index.php/Ejounral/article/download/1039/1032'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -513,6 +530,8 @@ class ModifiedHalsey_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = 'http://www.cigrjournal.org/index.php/Ejounral/article/download/1039/1032'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -566,6 +585,8 @@ class ModifiedHenderson(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = 'http://www.cigrjournal.org/index.php/Ejounral/article/download/1039/1032'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -618,6 +639,8 @@ class StrohmanYoerger(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = 'http://www.cigrjournal.org/index.php/Ejounral/article/download/1039/1032'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True

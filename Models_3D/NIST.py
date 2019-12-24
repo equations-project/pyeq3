@@ -32,6 +32,8 @@ class NIST_NelsonAutolog(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/nelson.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -84,7 +86,8 @@ class NIST_Nelson(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/nelson.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True

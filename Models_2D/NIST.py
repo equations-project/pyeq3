@@ -32,6 +32,8 @@ class NIST_Bennett5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/bennett5.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -82,6 +84,8 @@ class NIST_BoxBOD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/boxbod.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -131,6 +135,8 @@ class NIST_Chwirut(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/chwirut1.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -183,6 +189,8 @@ class NIST_DanWood(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/daniel_wood.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -232,7 +240,8 @@ class NIST_ENSO(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/enso.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -303,6 +312,8 @@ class NIST_Eckerle4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/eckerle4.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -354,6 +365,8 @@ class NIST_Gauss(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/gauss1.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -413,6 +426,8 @@ class NIST_Hahn(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/hahn1.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -471,6 +486,8 @@ class NIST_Kirby(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/kirby2.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -525,6 +542,8 @@ class NIST_Lanczos(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/lanczos1.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -578,6 +597,8 @@ class NIST_MGH09(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/mgh09.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -631,6 +652,8 @@ class NIST_MGH10(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/mgh10.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -681,7 +704,8 @@ class NIST_MGH17(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/mgh17.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -733,6 +757,8 @@ class NIST_Misra1a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/misra1a.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -782,6 +808,8 @@ class NIST_Misra1b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/misra1b.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -831,6 +859,8 @@ class NIST_Misra1c(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/misra1c.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -880,6 +910,8 @@ class NIST_Misra1d(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/misra1d.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -929,6 +961,8 @@ class NIST_Rat42(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/ratkowsky2.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -979,6 +1013,8 @@ class NIST_Rat43(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/ratkowsky3.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1030,7 +1066,8 @@ class NIST_Roszman(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/roszman1.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1081,6 +1118,8 @@ class NIST_Thurber(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/thurber.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True

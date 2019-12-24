@@ -32,7 +32,8 @@ class AndreaPrunottoSigmoidA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -88,7 +89,8 @@ class AndreaPrunottoSigmoidB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -144,8 +146,9 @@ class FraserSmithSigmoid(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
 
@@ -197,8 +200,9 @@ class FraserSmithSigmoid_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
 
@@ -251,6 +255,8 @@ class Sigmoid(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True

@@ -26,6 +26,12 @@ class IModel(object):
     userSelectablePolyfunctionalFlag = False
     userSelectableRationalFlag = False
     userDefinedFunctionFlag = False
+
+    autoGenerateOffsetForm = False
+    autoGeneratePlusLineForm = False
+    autoGenerateReciprocalForm = False
+    autoGenerateInverseForms = False
+    autoGenerateGrowthAndDecayForms = False
     
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False

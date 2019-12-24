@@ -27,10 +27,8 @@ class UserSelectablePolyfunctional(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     
     def __init__(self, inFittingTarget = None, inExtendedVersionName = 'Default', inPolyfunctional3DFlags = [], inPolyfunctionalEquationList_X = [], inPolyfunctionalEquationList_Y = []):

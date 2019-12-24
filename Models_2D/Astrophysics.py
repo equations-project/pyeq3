@@ -32,9 +32,9 @@ class King_14(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://adsabs.harvard.edu/abs/1962AJ.....67..471K'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False

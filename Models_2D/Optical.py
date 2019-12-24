@@ -32,7 +32,8 @@ class Cauchy(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -84,7 +85,8 @@ class Conrady1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -136,7 +138,8 @@ class Conrady2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -188,7 +191,8 @@ class Hartmann1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -238,7 +242,8 @@ class Hartmann2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -288,7 +293,8 @@ class Hartmann3a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -338,6 +344,8 @@ class Hartmann3b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -387,7 +395,8 @@ class Hartmann4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -439,7 +448,8 @@ class Herzberger2X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -490,7 +500,8 @@ class Herzberger3X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -544,7 +555,8 @@ class Herzberger3X3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -599,7 +611,8 @@ class Herzberger4X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -656,7 +669,8 @@ class Herzberger5X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -716,7 +730,8 @@ class HerzbergerJK(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -775,7 +790,8 @@ class HoO1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -826,7 +842,8 @@ class HoO2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -877,7 +894,8 @@ class Kingslake1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -929,7 +947,8 @@ class Kingslake2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -983,7 +1002,8 @@ class Misc01(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1033,7 +1053,8 @@ class Misc02(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1084,7 +1105,8 @@ class Misc03(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1135,7 +1157,8 @@ class Misc04(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1191,7 +1214,8 @@ class Schott2X3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1247,7 +1271,8 @@ class Schott2X4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1306,7 +1331,8 @@ class Schott2X5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1368,7 +1394,8 @@ class Schott2X6(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1434,7 +1461,8 @@ class Schott3X3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1492,7 +1520,8 @@ class Schott3X4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1552,7 +1581,8 @@ class Schott3X5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1615,7 +1645,8 @@ class Schott4X4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1676,7 +1707,8 @@ class Schott5X5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1741,7 +1773,8 @@ class Sell1TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1791,7 +1824,8 @@ class Sell1T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1840,7 +1874,8 @@ class Sell2TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1892,7 +1927,8 @@ class Sell2T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1943,7 +1979,8 @@ class Sell3TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1997,7 +2034,8 @@ class Sell3T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2050,7 +2088,8 @@ class Sell4TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2106,7 +2145,8 @@ class Sell4T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2161,7 +2201,8 @@ class Sell5TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2219,7 +2260,8 @@ class Sell5T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2276,7 +2318,8 @@ class Sell6TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2336,7 +2379,8 @@ class Sell7TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2398,7 +2442,8 @@ class Sellmod1A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2452,7 +2497,8 @@ class Sellmod1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2506,7 +2552,8 @@ class Sellmod2A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2560,7 +2607,8 @@ class Sellmod2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2614,6 +2662,8 @@ class Sellmod3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2666,7 +2716,8 @@ class Sellmod4A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2720,7 +2771,8 @@ class Sellmod4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2774,7 +2826,8 @@ class Sellmod5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2827,7 +2880,8 @@ class Sellmod6(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2879,7 +2933,8 @@ class Sellmod7A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2936,7 +2991,8 @@ class Sellmod7(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2993,7 +3049,8 @@ class Sellmod8(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -3049,7 +3106,8 @@ class Sellmod9(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://home.comcast.net/~mbiegert/Blog/DispersionCoefficient/dispeqns.pdf'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True

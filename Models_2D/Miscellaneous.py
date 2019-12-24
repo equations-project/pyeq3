@@ -33,6 +33,8 @@ class PhysicistPeterPendulumTraversal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClas
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -82,7 +84,8 @@ class PhysicistPeterCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -133,6 +136,8 @@ class TimothyStrobelCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'https://www.gl.ciw.edu/bios/tstrobel'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -188,6 +193,8 @@ class FigureEight(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Eight.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -239,6 +246,8 @@ class FigureEightTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Eight.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -290,6 +299,8 @@ class NielesSemicubicalParabola(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Neiles.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -338,6 +349,8 @@ class NielesSemicubicalParabolaTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Neiles.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -388,6 +401,8 @@ class PearShapedQuartic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Pearshaped.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -440,6 +455,8 @@ class PearShapedQuarticTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Pearshaped.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -492,6 +509,8 @@ class TrisectrixOfMaclaurin(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Trisectrix.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -543,6 +562,8 @@ class TrisectrixOfMaclaurinTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Trisectrix.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -594,6 +615,8 @@ class CissoidOfDiocles(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Cissoid.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -645,6 +668,8 @@ class CissoidOfDioclesTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Cissoid.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -696,7 +721,8 @@ class KarplusNMRSpectroscopy(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://pubs.acs.org/cen/science/8151/8151karplus.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -748,7 +774,8 @@ class KarplusNMRSpectroscopyScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://pubs.acs.org/cen/science/8151/8151karplus.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -799,6 +826,8 @@ class ArrheniusRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -848,6 +877,8 @@ class ArrheniusRateConstantLawStretched(pyeq3.Model_2D_BaseClass.Model_2D_BaseCl
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -900,6 +931,8 @@ class Bleasdale_Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -950,6 +983,8 @@ class Catenary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://planetmath.org/encyclopedia/Catenary.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -998,6 +1033,8 @@ class CatenaryTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://planetmath.org/encyclopedia/Catenary.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1048,9 +1085,10 @@ class CombinedPowerAndExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -1098,7 +1136,8 @@ class DavidRodbardNIH(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://rsbweb.nih.gov/ij/docs/menus/analyze.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -1151,6 +1190,8 @@ class DoubleLangmuirProbeCharacteristic(pyeq3.Model_2D_BaseClass.Model_2D_BaseCl
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1201,6 +1242,8 @@ class DoubleRectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1252,6 +1295,8 @@ class DoubleRectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1304,9 +1349,10 @@ class Gunary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -1356,9 +1402,10 @@ class HyperbolaA_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -1405,9 +1452,10 @@ class HyperbolaB_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -1454,6 +1502,8 @@ class HyperbolicDecay(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1503,6 +1553,8 @@ class LamesCubic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://planetmath.org/encyclopedia/AsymptoteOfLamesCubic.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1551,6 +1603,8 @@ class LamesCubicTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://planetmath.org/encyclopedia/AsymptoteOfLamesCubic.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1601,6 +1655,8 @@ class Misc1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1650,6 +1706,8 @@ class ParetoA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1698,6 +1756,8 @@ class ParetoB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1747,6 +1807,8 @@ class ParetoC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1796,6 +1858,8 @@ class ParetoD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1844,9 +1908,10 @@ class Polytrope(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://planetmath.org/encyclopedia/Polytrope.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = True
@@ -1893,6 +1958,8 @@ class PolytropeTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://planetmath.org/encyclopedia/Polytrope.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1944,6 +2011,8 @@ class PursuitCurve(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1994,6 +2063,8 @@ class PursuitCurve_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2044,9 +2115,10 @@ class RectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -2093,6 +2165,8 @@ class RectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2143,9 +2217,10 @@ class Serpentine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -2193,8 +2268,9 @@ class ShiftedReciprocal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
 
@@ -2241,6 +2317,8 @@ class Square_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2291,6 +2369,8 @@ class Square_Modified_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2341,6 +2421,8 @@ class TransitionStateRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2393,6 +2475,8 @@ class WitchOfAgnesiA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2442,6 +2526,8 @@ class WitchOfAgnesiB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2491,6 +2577,8 @@ class WitchOfAgnesiC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2542,7 +2630,8 @@ class MorsePotential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://stackoverflow.com/questions/36312303/morse-potential-fit-using-python-and-curve-fit-from-scipy'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2650,7 +2739,8 @@ class NelsonSiegel(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'https://en.wikipedia.org/wiki/Fixed-income_attribution#Modeling_the_yield_curve'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -2703,7 +2793,8 @@ class NelsonSiegelSvensson(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'https://en.wikipedia.org/wiki/Fixed-income_attribution#Modeling_the_yield_curve'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True

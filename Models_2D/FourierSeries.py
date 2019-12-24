@@ -32,8 +32,8 @@ class ScaledX_1Term(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://mathworld.wolfram.com/FourierSeries.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
 
@@ -85,8 +85,8 @@ class Standard_1Term(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://mathworld.wolfram.com/FourierSeries.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
 
@@ -139,8 +139,8 @@ class Standard_2Term(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://mathworld.wolfram.com/FourierSeries.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
 
@@ -201,8 +201,8 @@ class Standard_3Term(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://mathworld.wolfram.com/FourierSeries.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
 
@@ -271,8 +271,8 @@ class Standard_4Term(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = 'http://mathworld.wolfram.com/FourierSeries.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
 

@@ -32,7 +32,8 @@ class GreatCircleDegrees(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -87,7 +88,8 @@ class GreatCircleRadians(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
     autoGenerateGrowthAndDecayForms = True
@@ -142,6 +144,8 @@ class Sine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -189,6 +193,7 @@ class Sine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 class Sine_NyquistLimited(Sine):
     _baseName = "Sine [radians] (Nyquist Limited)"
+    autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
@@ -212,6 +217,8 @@ class SineSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -259,6 +266,7 @@ class SineSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 class SineSquared_NyquistLimited(SineSquared):
     _baseName = "Sine Squared [radians] (Nyquist Limited)"
+    autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
@@ -282,6 +290,8 @@ class Tangent(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -329,6 +339,7 @@ class Tangent(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 class Tangent_NyquistLimited(Tangent):
     _baseName = "Tangent [radians] (Nyquist Limited)"
+    autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
@@ -352,6 +363,8 @@ class HyperbolicCosine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -399,6 +412,7 @@ class HyperbolicCosine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 class HyperbolicCosine_NyquistLimited(HyperbolicCosine):
     _baseName = "Hyperbolic Cosine [radians] (Nyquist Limited)"
+    autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
@@ -422,6 +436,8 @@ class Sinc(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -469,6 +485,7 @@ class Sinc(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 class Sinc_NyquistLimited(Sinc):
     _baseName = "Cardinal Sine (sinc) [radians] (Nyquist Limited)"
+    autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
@@ -492,6 +509,8 @@ class SincSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -539,6 +558,7 @@ class SincSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 class SincSquared_NyquistLimited(SincSquared):
     _baseName = "Cardinal Sine (sinc) Squared [radians] (Nyquist Limited)"
+    autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
         if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound

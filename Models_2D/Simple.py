@@ -32,9 +32,9 @@ class SimpleReciprocalA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = True
@@ -80,10 +80,8 @@ class SimpleEquation_01(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -128,9 +126,10 @@ class SimpleEquation_02(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = True
@@ -176,6 +175,8 @@ class SimpleEquation_03(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -225,9 +226,10 @@ class SimpleEquation_04(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = True
@@ -273,9 +275,10 @@ class SimpleEquation_05(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = True
@@ -321,9 +324,10 @@ class SimpleEquation_06(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = True
@@ -372,6 +376,8 @@ class SimpleEquation_07(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -428,6 +434,8 @@ class SimpleEquation_08(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -480,6 +488,8 @@ class SimpleEquation_09(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -530,6 +540,8 @@ class SimpleEquation_10(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -580,6 +592,8 @@ class SimpleEquation_13(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -632,9 +646,10 @@ class SimpleEquation_14(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -682,6 +697,8 @@ class SimpleEquation_15(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -732,6 +749,8 @@ class SimpleEquation_16(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -784,6 +803,8 @@ class SimpleEquation_17(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -836,6 +857,8 @@ class SimpleEquation_18(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -888,6 +911,8 @@ class SimpleEquation_19(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -938,6 +963,8 @@ class SimpleEquation_20(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -988,6 +1015,8 @@ class SimpleEquation_21(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1040,6 +1069,8 @@ class SimpleEquation_22(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1090,6 +1121,8 @@ class SimpleEquation_23(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1140,6 +1173,8 @@ class SimpleEquation_24(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1190,6 +1225,8 @@ class SimpleEquation_25(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1240,6 +1277,8 @@ class SimpleEquation_26(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1290,6 +1329,8 @@ class SimpleEquation_27(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1340,6 +1381,8 @@ class SimpleEquation_28(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1392,6 +1435,8 @@ class SimpleEquation_29(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1442,6 +1487,8 @@ class SimpleEquation_30(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1492,6 +1539,8 @@ class SimpleEquation_31(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1541,6 +1590,8 @@ class SimpleEquation_32(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1591,6 +1642,8 @@ class SimpleEquation_33(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1641,6 +1694,8 @@ class SimpleEquation_34(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1691,6 +1746,8 @@ class SimpleEquation_35(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1740,9 +1797,10 @@ class SimpleEquation_36(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = True
@@ -1789,9 +1847,10 @@ class SimpleEquation_37(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = True
@@ -1840,6 +1899,8 @@ class SimpleEquation_38(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1891,6 +1952,8 @@ class SimpleEquation_39(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1941,6 +2004,8 @@ class SimpleEquation_40(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1991,6 +2056,8 @@ class SimpleEquation_41(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2041,6 +2108,8 @@ class SimpleEquation_42(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True

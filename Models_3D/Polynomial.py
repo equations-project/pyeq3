@@ -32,10 +32,10 @@ class FullCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -124,10 +124,10 @@ class FullQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -196,10 +196,10 @@ class Linear(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -249,10 +249,10 @@ class SimplifiedCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -326,10 +326,10 @@ class SimplifiedQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -390,10 +390,10 @@ class UserSelectablePolynomial(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = False
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False

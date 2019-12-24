@@ -65,10 +65,8 @@ class EighthDegreeLegendrePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
     webReferenceURL = 'http://mathworld.wolfram.com/LegendrePolynomial.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -151,10 +149,8 @@ class FifthDegreeLegendrePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
     webReferenceURL = 'http://mathworld.wolfram.com/LegendrePolynomial.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -222,10 +218,8 @@ class FourthDegreeLegendrePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
     webReferenceURL = 'http://mathworld.wolfram.com/LegendrePolynomial.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -288,10 +282,8 @@ class GammaRayAngularDistributionDegreesA(pyeq3.Model_2D_BaseClass.Model_2D_Base
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -339,10 +331,8 @@ class GammaRayAngularDistributionDegreesB(pyeq3.Model_2D_BaseClass.Model_2D_Base
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -393,10 +383,8 @@ class GammaRayAngularDistributionRadiansA(pyeq3.Model_2D_BaseClass.Model_2D_Base
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -444,10 +432,8 @@ class GammaRayAngularDistributionRadiansB(pyeq3.Model_2D_BaseClass.Model_2D_Base
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -498,10 +484,8 @@ class NinthDegreeLegendrePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
     webReferenceURL = 'http://mathworld.wolfram.com/LegendrePolynomial.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -589,10 +573,8 @@ class SecondDegreeLegendrePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
     webReferenceURL = 'http://mathworld.wolfram.com/LegendrePolynomial.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -645,10 +627,8 @@ class SeventhDegreeLegendrePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClas
     webReferenceURL = 'http://mathworld.wolfram.com/LegendrePolynomial.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -726,10 +706,8 @@ class SixthDegreeLegendrePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
     webReferenceURL = 'http://mathworld.wolfram.com/LegendrePolynomial.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -802,10 +780,8 @@ class TenthDegreeLegendrePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
     webReferenceURL = 'http://mathworld.wolfram.com/LegendrePolynomial.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
@@ -898,10 +874,8 @@ class ThirdDegreeLegendrePolynomial(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
     webReferenceURL = 'http://mathworld.wolfram.com/LegendrePolynomial.html'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False

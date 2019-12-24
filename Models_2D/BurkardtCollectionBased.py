@@ -36,6 +36,8 @@ class arcsin_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -87,6 +89,8 @@ class arcsin_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
     
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -136,6 +140,8 @@ class bradford_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -186,6 +192,8 @@ class bradford_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -237,6 +245,8 @@ class bradford_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -287,9 +297,9 @@ class burr_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -338,9 +348,9 @@ class burr_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -390,6 +400,8 @@ class burr_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -441,6 +453,8 @@ class dipole_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -492,6 +506,8 @@ class exponential_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -541,6 +557,8 @@ class exponential_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -591,6 +609,8 @@ class extreme_values_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -640,6 +660,8 @@ class extreme_values_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -690,6 +712,8 @@ class extreme_values_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -739,9 +763,9 @@ class fisk_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -789,9 +813,9 @@ class fisk_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -840,9 +864,9 @@ class fisk_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -890,6 +914,8 @@ class folded_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -941,6 +967,8 @@ class frechet_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -989,6 +1017,8 @@ class frechet_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1038,6 +1068,8 @@ class frechet_pdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1086,6 +1118,8 @@ class frechet_pdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1135,9 +1169,9 @@ class genlogistic_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -1185,9 +1219,9 @@ class genlogistic_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -1236,6 +1270,8 @@ class genlogistic_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1286,6 +1322,8 @@ class gompertz_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1335,6 +1373,8 @@ class gompertz_cdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1385,6 +1425,8 @@ class gumbel_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1433,6 +1475,8 @@ class gumbel_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1481,6 +1525,8 @@ class half_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1531,6 +1577,8 @@ class inverse_gaussian_pdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1584,6 +1632,8 @@ class inverse_gaussian_pdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1638,6 +1688,8 @@ class levy_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1688,6 +1740,8 @@ class levy_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1739,6 +1793,8 @@ class log_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1792,6 +1848,8 @@ class logistic_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1842,6 +1900,8 @@ class pareto_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1891,6 +1951,8 @@ class power_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1940,6 +2002,8 @@ class rayleigh_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -1988,6 +2052,8 @@ class rayleigh_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2037,6 +2103,8 @@ class rayleigh_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2088,6 +2156,8 @@ class rayleigh_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2140,6 +2210,8 @@ class reciprocal_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2189,6 +2261,8 @@ class sech_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True
@@ -2239,9 +2313,9 @@ class weibull_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -2288,9 +2362,9 @@ class weibull_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = True
 
     independentData1CannotContainZeroFlag = False
@@ -2338,6 +2412,8 @@ class weibull_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = BurkhardtCollectionWebReference
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
     autoGenerateReciprocalForm = True
     autoGenerateInverseForms = True

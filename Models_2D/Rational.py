@@ -29,10 +29,9 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
 
     
     def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default', inRationalNumeratorFlags = [], inRationalDenominatorFlags = [], inRationalEquationList = []):

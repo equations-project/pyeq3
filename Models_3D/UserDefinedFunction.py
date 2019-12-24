@@ -41,10 +41,8 @@ class UserDefinedFunction(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-    autoGenerateOffsetForm = False
-    autoGenerateReciprocalForm = False
-    autoGenerateInverseForms = False
-    autoGenerateGrowthAndDecayForms = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
 
 
     def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default', inUserFunctionString = ''):
