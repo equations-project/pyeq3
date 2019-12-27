@@ -975,6 +975,7 @@ class Bleasdale_Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class Catenary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Catenary"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = a * cosh(x / a)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a']
@@ -1900,6 +1901,7 @@ class ParetoD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class Polytrope(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Polytrope"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = a / x<sup>b</sup>'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']
@@ -2003,6 +2005,7 @@ class PolytropeTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class PursuitCurve(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Pursuit Curve"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = ax<sup>2</sup> - log(x)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a']
@@ -2209,6 +2212,7 @@ class RectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class Serpentine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Serpentine"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = ax / (1.0 + bx<sup>2</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']
@@ -2467,6 +2471,7 @@ class TransitionStateRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
 class WitchOfAgnesiA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Witch Of Maria Agnesi A"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = 8a<sup>3</sup> / (x<sup>2</sup> + 4a<sup>2</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a']
@@ -2518,6 +2523,7 @@ class WitchOfAgnesiA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class WitchOfAgnesiB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Witch Of Maria Agnesi B"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = a<sup>3</sup> / (x<sup>2</sup> + a<sup>2</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a']

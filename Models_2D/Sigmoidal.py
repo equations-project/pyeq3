@@ -1620,6 +1620,7 @@ class Richards(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class SigmoidA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Sigmoid A"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = 1.0 / (1.0 + exp(-a(x-b)))'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']
@@ -1880,6 +1881,7 @@ class Weibull(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class WeibullCDF(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Weibull CDF"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = 1.0 - exp(-(x/b)<sup>a</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']
@@ -1987,6 +1989,7 @@ class WeibullCDF_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class WeibullPDF(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Weibull PDF"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = (a/b) * (x/b)<sup>(a-1.0)</sup> * exp(-(x/b)<sup>a</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']

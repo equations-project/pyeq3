@@ -75,6 +75,7 @@ class Base10Logarithmic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class Bradley(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Bradley"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = a * ln(-b * ln(x))'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']

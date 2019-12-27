@@ -446,6 +446,7 @@ class Hocket_Sherby(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class Hoerl(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Hoerl"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = x<sup>a</sup> * exp(x)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a']
@@ -967,6 +968,7 @@ class SteveBattisonExponentialB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class Stirling(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Stirling"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = a * (exp(bx) - 1.0) / b'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']

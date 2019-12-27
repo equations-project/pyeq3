@@ -293,6 +293,7 @@ class ArnoldCohenTwoParameterLogNormalShifted(pyeq3.Model_2D_BaseClass.Model_2D_
 class BoxLucasA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Box Lucas A"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = a * (1.0 - b<sup>x</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']
@@ -398,6 +399,7 @@ class BoxLucasAShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class BoxLucasB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Box Lucas B"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = a * (1.0 - exp(-bx))'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']
@@ -1713,6 +1715,7 @@ class LorentzianModifiedPeakG(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class LorentzianPeakA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Lorentzian Peak A"
+    autoGeneratePlusLineForm = True
     _HTML = 'y = 1.0 / (1.0 + (x-a)<sup>2</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a']
