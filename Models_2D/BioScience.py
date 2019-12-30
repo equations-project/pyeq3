@@ -180,6 +180,7 @@ class BertalanffyGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BevertonHoltA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Beverton-Holt A"
     _HTML = 'y = r / (1 + ((r-1)/K) * x)'
@@ -231,6 +232,7 @@ class BevertonHoltA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BevertonHoltB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Beverton-Holt B"
     _HTML = 'y = rx / (1 + ((r-1)/K) * x)'
@@ -941,6 +943,7 @@ class GeneralizedSubstrateDepletion(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
 
 
 class HighLowAffinity(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "High-Low Affinity"
     _HTML = 'y = abx / (1+bx)'
@@ -1048,6 +1051,7 @@ class HighLowAffinityDouble(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HighLowAffinityIsotopeDisplacement(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "High-Low Affinity Isotope Displacement ([Hot] subsumed)"
     _HTML = 'y = ab / (1+bx)'
@@ -1152,6 +1156,7 @@ class HighLowAffinityIsotopeDisplacementDouble(pyeq3.Model_2D_BaseClass.Model_2D
 
 
 class HyperbolicA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Hyperbolic A"
     _HTML = 'y = (a + x) / (b + x)'
@@ -1358,6 +1363,7 @@ class HyperbolicD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Hyperbolic E"
     _HTML = 'y = ax / (b + x)'
@@ -1568,6 +1574,7 @@ class HyperbolicH(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicI(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Hyperbolic I"
     _HTML = 'y = ab / (b + x)'
@@ -1619,6 +1626,7 @@ class HyperbolicI(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicJ(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Hyperbolic J"
     _HTML = 'y = x / (a + bx)'
@@ -1777,6 +1785,7 @@ class MembraneTransport(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class MichaelisMenten(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Michaelis-Menten"
     _HTML = 'y = ax / (b + x)'
@@ -1934,6 +1943,7 @@ class MichaelisMentenDoubleIsotopeDisplacement(pyeq3.Model_2D_BaseClass.Model_2D
 
 
 class MichaelisMentenIsotopeDisplacement(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Michaelis-Menten Isotope Displacement ([Hot] subsumed)"
     _HTML = 'y = a / (b + x)'
@@ -2038,6 +2048,7 @@ class MichaelisMentenProductAccumulation(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
 
 
 class NegativeExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Negative Exponential"
     _HTML = 'y = a * (1.0 - exp(-bx))'
@@ -2196,6 +2207,7 @@ class NewZealandEcologyLogistic2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PlantDisease_Exponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Plant Disease Exponential Model"
     _HTML = 'Incidence = y0 * exp(r * time)'
@@ -2259,6 +2271,7 @@ class PlantDisease_Exponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PlantDisease_Gompertz(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Plant Disease Gompertz Model"
     _HTML = 'Incidence = exp(ln(y0) * exp(-r * time))'
@@ -2323,6 +2336,7 @@ class PlantDisease_Gompertz(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PlantDisease_Logistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Plant Disease Logistic Model"
     _HTML = 'Incidence = 1 / (1 + (1 - y0) / (y0 * exp(-r * time)))'
@@ -2384,6 +2398,7 @@ class PlantDisease_Logistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PlantDisease_Monomolecular(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Plant Disease Monomolecular Model"
     _HTML = 'Incidence = 1 - ((1 - y0) * exp(-r * time))'
@@ -2620,6 +2635,7 @@ class PreeceAndBaines(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ScaledLog(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Scaled Log"
     _HTML = 'y = a * log(x)'
@@ -2722,6 +2738,7 @@ class ScaledLog_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ScaledPower(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Scaled Power"
     _HTML = 'y = a * x<sup>b</sup>'

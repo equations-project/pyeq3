@@ -497,6 +497,7 @@ class BoxLucasBShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BoxLucasC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Box Lucas C"
     _HTML = 'y = (a / (a-b)) * (exp(-bx) - exp(-ax))'
@@ -1359,6 +1360,7 @@ class LogisticArea(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianModifiedPeakA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Lorentzian Modified Peak A"
     _HTML = 'y = 1.0 / (1.0 + (x-a)<sup>b</sup>)'
@@ -1762,6 +1764,7 @@ class LorentzianPeakA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianPeakB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Lorentzian Peak B"
     _HTML = 'y = 1.0 / (a + (x-b)<sup>2</sup>)'
@@ -1861,6 +1864,7 @@ class LorentzianPeakC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianPeakD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Lorentzian Peak D"
     _HTML = 'y = 1.0 / (1.0 + ((x-a)/b)<sup>2</sup>)'
@@ -2528,6 +2532,7 @@ class ExtremeValue4ParameterPeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class UVEDFruitGrowthRate(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "UVED Fruit Growth Rate"
     _HTML = 'y = ((t/5)<sup>(a-1)</sup>*(1-t/5)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)'

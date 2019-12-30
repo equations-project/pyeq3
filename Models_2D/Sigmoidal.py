@@ -74,6 +74,7 @@ class Lomolino(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BET_Sigmoidal_A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "BET Sigmoidal A"
     _HTML = 'y = x / (a + bx - (a+b)x<sup>2</sup>)'
@@ -126,6 +127,7 @@ class BET_Sigmoidal_A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BET_Sigmoidal_B(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "BET Sigmoidal B"
     _HTML = 'y = abx / (1.0 + (b-2.0)x - (b-1.0)x<sup>2</sup>)'

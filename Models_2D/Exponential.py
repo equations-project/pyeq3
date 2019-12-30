@@ -22,6 +22,7 @@ import pyeq3.Model_2D_BaseClass
 
 
 class AsymptoticExponentialA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Asymptotic Exponential A"
     _HTML = 'y = 1.0 - a<sup>x</sup>'
@@ -130,6 +131,7 @@ class AsymptoticExponentialA_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseCla
 
 
 class AsymptoticExponentialB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Asymptotic Exponential B"
     _HTML = 'y = a * (1.0 - exp(bx))'
@@ -341,6 +343,7 @@ class DoubleExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Exponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Exponential"
     _HTML = 'y = a * exp(bx)'
@@ -549,6 +552,7 @@ class Hoerl_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class InvExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Inverted Exponential"
     _HTML = 'y = a * exp(b/x)'
@@ -704,6 +708,7 @@ class OffsetExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ScaledExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Scaled Exponential"
     _HTML = 'y = a * exp(x)'
@@ -753,6 +758,7 @@ class ScaledExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ShiftedExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Shifted Exponential"
     _HTML = 'y = a * exp(x + b)'
@@ -804,6 +810,7 @@ class ShiftedExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Exponential"
     _HTML = 'y = a<sup>x</sup>'

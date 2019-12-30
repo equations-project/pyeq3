@@ -74,6 +74,7 @@ class NIST_Bennett5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NIST_BoxBOD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "NIST BoxBOD"
     _HTML = 'y = a * (1.0-exp(-b*x))'
@@ -179,6 +180,7 @@ class NIST_Chwirut(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NIST_DanWood(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "NIST DanWood"
     _HTML = 'y = a*x<sup>b</sup>'
@@ -747,6 +749,7 @@ class NIST_MGH17(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NIST_Misra1a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "NIST Misra1a"
     _HTML = 'y = a * (1.0 - exp(-b*x))'
@@ -798,6 +801,7 @@ class NIST_Misra1a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NIST_Misra1b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "NIST Misra1b"
     _HTML = 'y = a * (1.0 - (1.0+b*x/2.0)<sup>-2.0</sup>)'
@@ -849,6 +853,7 @@ class NIST_Misra1b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NIST_Misra1c(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "NIST Misra1c"
     _HTML = 'y = a * (1.0 - (1.0 + 2.0*b*x)<sup>-0.5</sup>)'
@@ -900,6 +905,7 @@ class NIST_Misra1c(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NIST_Misra1d(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "NIST Misra1d"
     _HTML = 'y = a * b * x * (1.0 + b*x)<sup>-1.0</sup>'

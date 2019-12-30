@@ -22,6 +22,7 @@ import pyeq3.Model_2D_BaseClass
 
 
 class MaxwellWiechert_1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Maxwell - Wiechert 1"
     _HTML = 'y = a1*exp(-X/Tau1)'
@@ -831,6 +832,7 @@ class ElectronBeamLithographyPointSpread(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
 
 
 class KlimpelFlotationA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Klimpel Kinetics Flotation A"
     _HTML = 'y = a * (1 - (1 - exp(-b*x)) / (b*x))'

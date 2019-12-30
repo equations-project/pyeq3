@@ -79,6 +79,7 @@ class arcsin_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class arcsin_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Arcsin PDF Based"
     _HTML = 'y = a / sqrt( b<sup>2</sup> - x<sup>2</sup>)'
@@ -443,6 +444,7 @@ class burr_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class dipole_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Dipole CDF Based"
     _HTML = 'y = a * arctan(x) + b/x'
@@ -496,6 +498,7 @@ class dipole_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class exponential_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Exponential PDF Based"
     _HTML = 'y = (1.0/b) * exp((a-x)/b)'
@@ -599,6 +602,7 @@ class exponential_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class extreme_values_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Extreme Values CDF Based A"
     _HTML = 'y = exp(-exp(-((x-a)/b)))'
@@ -702,6 +706,7 @@ class extreme_values_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class extreme_values_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Extreme Values PDF Based"
     _HTML = 'y = (1.0/b) * exp(((a-x)/b)-exp((a-x)/b))'
@@ -957,6 +962,7 @@ class folded_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class frechet_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Frechet CDF Based A"
     _HTML = 'y = exp(-1.0 / x<sup>a</sup>)'
@@ -1007,6 +1013,7 @@ class frechet_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class frechet_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Frechet CDF Based B"
     _HTML = 'y = b * exp(-1.0 / x<sup>a</sup>)'
@@ -1058,6 +1065,7 @@ class frechet_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class frechet_pdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Frechet PDF Based A"
     _HTML = 'y = exp(- 1.0 / x<sup>a</sup>) / x<sup>( a + 1.0)</sup>'
@@ -1108,6 +1116,7 @@ class frechet_pdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class frechet_pdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Frechet PDF Based B"
     _HTML = 'y = b * exp(- 1.0 / x<sup>a</sup>) / x<sup>( a + 1.0)</sup>'
@@ -1312,6 +1321,7 @@ class genlogistic_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     
 class gompertz_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Gompertz CDF Based"
     _HTML = 'y = 1.0 - exp(-b * (a<sup>x</sup>-1.0) / ln(a))'
@@ -1415,6 +1425,7 @@ class gompertz_cdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class gumbel_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Gumbel CDF Based"
     _HTML = 'y = a * exp(-exp(-x))'
@@ -1465,6 +1476,7 @@ class gumbel_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     
 class gumbel_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Gumbel PDF Based"
     _HTML = 'y = a * exp(-x-exp(-x))'
@@ -1678,6 +1690,7 @@ class inverse_gaussian_pdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class levy_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Levy PDF Based"
     _HTML = 'y = b<sup>0.5</sup> * exp(-b/(2.0*(x-a)))/sqrt((x-a)<sup>3</sup>)'
@@ -1783,6 +1796,7 @@ class levy_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class log_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
 
     _baseName = "Log Normal PDF Based"
     _HTML = 'y = exp(-0.5*((ln(x)-a)/b)<sup>2</sup>) / (b*x)'
@@ -1838,6 +1852,7 @@ class log_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class logistic_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Logistic PDF Based"
     _HTML = 'y = exp((a-x)/b) / (b*(1.0+exp((a-x)/b))<sup>2</sup>)'
@@ -1890,6 +1905,7 @@ class logistic_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class pareto_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Pareto PDF Based"
     _HTML = 'y = b * a<sup>b</sup> / x<sup>(b+1.0)</sup>'
@@ -1941,6 +1957,7 @@ class pareto_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class power_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Power PDF Based"
     _HTML = 'y = (a/b) * (x/b)<sup>(a-1.0)</sup>'
@@ -1992,6 +2009,7 @@ class power_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class rayleigh_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Rayleigh CDF Based A"
     _HTML = 'y = 1.0 - exp(-x<sup>2</sup>/(2.0*a<sup>2</sup>))'
@@ -2042,6 +2060,7 @@ class rayleigh_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class rayleigh_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Rayleigh CDF Based B"
     _HTML = 'y = b * exp(-x<sup>2</sup>/(2.0*a<sup>2</sup>))'
@@ -2093,6 +2112,7 @@ class rayleigh_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class rayleigh_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Rayleigh PDF Based"
     _HTML = 'y = (x/a<sup>2</sup>) * exp(-x<sup>2</sup>/(2.0*a<sup>2</sup>))'
@@ -2146,6 +2166,7 @@ class rayleigh_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class rayleigh_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Rayleigh PDF Based Scaled"
     _HTML = 'y = Scale * (x/a<sup>2</sup>) * exp(-x<sup>2</sup>/(2.0*a<sup>2</sup>))'
@@ -2200,6 +2221,7 @@ class rayleigh_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class reciprocal_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Reciprocal CDF Based"
     _HTML = 'y = ln(a/x) / ln(a/b)'

@@ -22,6 +22,7 @@ import pyeq3.Model_2D_BaseClass
 
 
 class SimpleReciprocalA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Reciprocal"
     _HTML = 'y = a / x'
@@ -116,6 +117,7 @@ class SimpleEquation_01(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_02(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 02"
     _HTML = 'y = a/pow(x,-2.0)'
@@ -165,6 +167,7 @@ class SimpleEquation_02(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_03(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 03"
     _HTML = 'y = a*pow(ln(x),b)'
@@ -216,6 +219,7 @@ class SimpleEquation_03(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_04(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 04"
     _HTML = 'y = a*pow(x,3.0)'
@@ -265,6 +269,7 @@ class SimpleEquation_04(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_05(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 05"
     _HTML = 'y = a*pow(x,4.0)'
@@ -314,6 +319,7 @@ class SimpleEquation_05(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_06(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 06"
     _HTML = 'y = x/(a+b*pow(x,2.0))'
@@ -1529,6 +1535,7 @@ class SimpleEquation_30(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_31(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 31"
     _HTML = 'y = a*ln(x+b)'
@@ -1736,6 +1743,7 @@ class SimpleEquation_34(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_35(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 35"
     _HTML = 'y = a*exp(b*x)/x'
@@ -1787,6 +1795,7 @@ class SimpleEquation_35(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_36(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 36"
     _HTML = 'y = a*exp(b/x)/x'
@@ -1837,6 +1846,7 @@ class SimpleEquation_36(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_37(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 37"
     _HTML = 'y = a*pow(x,b)*ln(x)'
@@ -1889,6 +1899,7 @@ class SimpleEquation_37(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimpleEquation_38(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Equation 38"
     _HTML = 'y = a*pow(x,b)/ln(x)'

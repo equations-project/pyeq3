@@ -22,6 +22,7 @@ import pyeq3.Model_2D_BaseClass
 
 
 class Geometric_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Geometric Modified"
     _HTML = 'y = a * x<sup>(b/x)</sup>'
@@ -73,6 +74,7 @@ class Geometric_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PowerA_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Power A Modified"
     _HTML = 'y = a * b<sup>x</sup>'
@@ -179,6 +181,7 @@ class PowerA_Modified_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PowerB_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Power B Modified"
     _HTML = 'y = a<sup>ln(x)</sup>'
@@ -277,6 +280,7 @@ class PowerB_Modified_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PowerC_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Power C Modified"
     _HTML = 'y = (a + x)<sup>b</sup>'
@@ -426,6 +430,7 @@ class PowerLawExponentialCutoff(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PowerRoot(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Root"
     _HTML = 'y = a<sup>(1.0/x)</sup>'
@@ -474,6 +479,7 @@ class PowerRoot(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SimplePower(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Simple Power"
     _HTML = 'y = x<sup>a</sup>'
@@ -522,6 +528,7 @@ class SimplePower(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class StandardGeometric(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Standard Geometric"
     _HTML = 'y = a * x<sup>bx</sup>'
@@ -571,6 +578,7 @@ class StandardGeometric(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class StandardPower(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Standard Power"
     _HTML = 'y = a * x<sup>b</sup>'

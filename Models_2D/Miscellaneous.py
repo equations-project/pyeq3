@@ -23,6 +23,7 @@ import pyeq3.Model_2D_BaseClass
 
 
 class PhysicistPeterPendulumTraversal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Physicist Peter's Pendulum Traversal"
     _HTML = 'y = a*(x + b)<sup>1/2</sup>'
@@ -183,6 +184,7 @@ class TimothyStrobelCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class FigureEight(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Figure Eight Curve"
     _HTML = 'y = a(x<sup>2</sup> - (x<sup>4</sup>/b<sup>2</sup>))<sup>0.5</sup>'
@@ -289,6 +291,7 @@ class FigureEightTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NielesSemicubicalParabola(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Niele's Semi-cubical Parabola"
     _HTML = 'y = (ax<sup>2</sup>)<sup>1.0/3.0</sup>'
@@ -499,6 +502,7 @@ class PearShapedQuarticTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class TrisectrixOfMaclaurin(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Trisectrix Of Maclaurin"
     _HTML = 'y = a(x<sup>2</sup>(3b-x) / (b+x))<sup>0.5</sup>'
@@ -605,6 +609,7 @@ class TrisectrixOfMaclaurinTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
 
 
 class CissoidOfDiocles(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Cissoid Of Diocles"
     _HTML = 'y = a(x<sup>3</sup> / (2b-x))<sup>0.5</sup>'
@@ -816,6 +821,7 @@ class KarplusNMRSpectroscopyScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ArrheniusRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Arrhenius Rate Constant Law"
     _HTML = 'y = a * exp(-b/x)'
@@ -1393,6 +1399,7 @@ class Gunary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolaA_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Hyperbola A Modified"
     _HTML = 'y = ax/(1+bx)'
@@ -1443,6 +1450,7 @@ class HyperbolaA_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolaB_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Hyperbola B Modified"
     _HTML = 'y = x/(a+bx)'
@@ -1493,6 +1501,7 @@ class HyperbolaB_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicDecay(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Hyperbolic Decay"
     _HTML = 'y = ab/(b+x)'
@@ -1544,6 +1553,7 @@ class HyperbolicDecay(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LamesCubic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Lame's Cubic"
     _HTML = 'y = (a<sup>3</sup> - x<sup>3</sup>)<sup>1/3</sup>'
@@ -1646,6 +1656,7 @@ class LamesCubicTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Misc1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Miscellaneous 1"
     _HTML = 'y = 1.0 + a(1.0 - exp(bx))'
@@ -1697,6 +1708,7 @@ class Misc1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ParetoA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Pareto A"
     _HTML = 'y = 1 - x<sup>-a</sup>'
@@ -1747,6 +1759,7 @@ class ParetoA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ParetoB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Pareto B"
     _HTML = 'y = a(1 - x<sup>-b</sup>)'
@@ -1798,6 +1811,7 @@ class ParetoB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ParetoC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Pareto C"
     _HTML = 'y = 1.0 - (1.0 / (1 + ax)<sup>b</sup>'
@@ -1849,6 +1863,7 @@ class ParetoC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ParetoD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Pareto D"
     _HTML = 'y = 1.0 - (1.0 / x<sup>a</sup>)'
@@ -2108,6 +2123,7 @@ class PursuitCurve_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class RectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Rectangular Hyperbola A"
     _HTML = 'y = ax/(b+x)'
@@ -2262,6 +2278,7 @@ class Serpentine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ShiftedReciprocal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Shifted Reciprocal"
     _HTML = 'y = 1.0 / (a - x)'
@@ -2311,6 +2328,7 @@ class ShiftedReciprocal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Square_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "Square Modified"
     _HTML = 'y = x<sup>2</sup> - ax'

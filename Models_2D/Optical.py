@@ -334,6 +334,7 @@ class Hartmann3a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Hartmann3b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    autoGeneratePlusLineForm = True # auto-added by script
     
     _baseName = "HARTMANN3b"
     _HTML = 'n = A/(x - B)<sup>1.2</sup>'
