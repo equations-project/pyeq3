@@ -22,6 +22,7 @@ import pyeq3.Model_3D_BaseClass
 
 
 class RexKelfkens(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Rex Kelfkens' Custom Equation"
     _HTML = 'z =  exp(A+B*ln(x)+C*ln(y))'
@@ -186,6 +187,7 @@ class GaryCler_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class GaussianCurvatureOfParaboloid(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Gaussian Curvature Of Paraboloid"
     _HTML = 'z = 4a<sup>2</sup> / (1 + 4a<sup>2</sup> * (x<sup>2</sup> + y<sup>2</sup>))<sup>2</sup>'
@@ -234,6 +236,7 @@ class GaussianCurvatureOfParaboloid(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass)
 
 
 class GaussianCurvatureOfParaboloid_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Gaussian Curvature Of Paraboloid Scaled"
     _HTML = 'z = Scale * 4a<sup>2</sup> / (1 + 4a<sup>2</sup> * (x<sup>2</sup> + y<sup>2</sup>))<sup>2</sup>'
@@ -283,6 +286,7 @@ class GaussianCurvatureOfParaboloid_scaled(pyeq3.Model_3D_BaseClass.Model_3D_Bas
 
 
 class GaussianCurvatureOfRichmondsMinimalSurface(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Gaussian Curvature Of Richmond's Minimal Surface"
     _HTML = 'z = -1.0 * a * (x<sup>2</sup> + y<sup>2</sup>)<sup>3</sup> / (b + (x<sup>2</sup> + y<sup>2</sup>)<sup>2</sup>)<sup>4</sup>'
@@ -332,6 +336,7 @@ class GaussianCurvatureOfRichmondsMinimalSurface(pyeq3.Model_3D_BaseClass.Model_
 
 
 class GaussianCurvatureOfWhitneysUmbrellaA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Gaussian Curvature Of Whitney's Umbrella A"
     _HTML = 'z = -1.0 * a * y<sup>2</sup> / (x<sup>2</sup> + a * (y<sup>2</sup> + y<sup>4</sup>))<sup>2</sup>'
@@ -384,6 +389,7 @@ class GaussianCurvatureOfWhitneysUmbrellaA(pyeq3.Model_3D_BaseClass.Model_3D_Bas
 
 
 class GaussianCurvatureOfWhitneysUmbrellaB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Gaussian Curvature Of Whitney's Umbrella B"
     _HTML = 'z = -1.0 * a * x<sup>2</sup> / (y<sup>2</sup> + a * (x<sup>2</sup> + x<sup>4</sup>))<sup>2</sup>'
@@ -436,6 +442,7 @@ class GaussianCurvatureOfWhitneysUmbrellaB(pyeq3.Model_3D_BaseClass.Model_3D_Bas
 
 
 class LipingZheng(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Liping Zheng's core loss coefficients"
     _HTML = 'z = ax<sup>2</sup>y + bx<sup>2</sup>y<sup>2</sup> + cx<sup>1.5</sup>y<sup>1.5</sup>'
@@ -490,6 +497,7 @@ class LipingZheng(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class MeanCurvatureOfParaboloid(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Mean Curvature Of Paraboloid"
     _HTML = 'z = 2 * (a + 2a<sup>3</sup> * (x<sup>2</sup> + y<sup>2</sup>)) / (1 + 4a<sup>2</sup> * (x<sup>2</sup> + y<sup>2</sup>))<sup>1.5</sup>'
@@ -538,6 +546,7 @@ class MeanCurvatureOfParaboloid(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class MeanCurvatureOfParaboloid_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Mean Curvature Of Paraboloid Scaled"
     _HTML = 'z = Scale * (a + 2a<sup>3</sup> * (x<sup>2</sup> + y<sup>2</sup>)) / (1 + 4a<sup>2</sup> * (x<sup>2</sup> + y<sup>2</sup>))<sup>1.5</sup>'
@@ -587,6 +596,7 @@ class MeanCurvatureOfParaboloid_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseCla
 
 
 class MeanCurvatureOfWhitneysUmbrellaA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Mean Curvature Of Whitney's Umbrella A"
     _HTML = 'z = -1.0 * x * (a + b * y<sup>2</sup>) / (x<sup>2</sup> + a * (y<sup>2</sup> + y<sup>4</sup>))<sup>1.5</sup>'
@@ -642,6 +652,7 @@ class MeanCurvatureOfWhitneysUmbrellaA(pyeq3.Model_3D_BaseClass.Model_3D_BaseCla
 
 
 class MeanCurvatureOfWhitneysUmbrellaB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Mean Curvature Of Whitney's Umbrella B"
     _HTML = 'z = -1.0 * y * (a + b * x<sup>2</sup>) / (y<sup>2</sup> + a * (x<sup>2</sup> + x<sup>4</sup>))<sup>1.5</sup>'
@@ -697,6 +708,7 @@ class MeanCurvatureOfWhitneysUmbrellaB(pyeq3.Model_3D_BaseClass.Model_3D_BaseCla
 
 
 class MennSurfaceA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Menn's Surface A"
     _HTML = 'z = ax<sup>4</sup> + bx<sup>2</sup>y - cy<sup>2</sup>'
@@ -753,6 +765,7 @@ class MennSurfaceA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class MennSurfaceB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Menn's Surface B"
     _HTML = 'z = ay<sup>4</sup> + by<sup>2</sup>x - cx<sup>2</sup>'
@@ -809,6 +822,7 @@ class MennSurfaceB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class MonkeySaddleA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Monkey Saddle A"
     _HTML = 'z = ax<sup>3</sup> - bxy<sup>2</sup>'
@@ -862,6 +876,7 @@ class MonkeySaddleA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class MonkeySaddleB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Monkey Saddle B"
     _HTML = 'z = ay<sup>3</sup> - byx<sup>2</sup>'
@@ -1025,6 +1040,7 @@ class MonkeySaddle_TransformB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class Paraboloid(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Paraboloid"
     _HTML = 'z = a * (x<sup>2</sup> + y<sup>2</sup>)'
@@ -1127,6 +1143,7 @@ class Paraboloid_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PaschensBreakdownFieldStrengthLaw(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Paschen's Law for Breakdown Field Strength"
     _HTML = 'Ebreakdown = pressure * (a / (ln(pressure * distance) + b))'
@@ -1178,6 +1195,7 @@ class PaschensBreakdownFieldStrengthLaw(pyeq3.Model_3D_BaseClass.Model_3D_BaseCl
 
 
 class PaschensBreakdownVoltageLaw(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Paschen's Law for Breakdown Voltage"
     _HTML = 'Vbreakdown = a(pressure * distance) / (ln(pressure * distance) + b)'

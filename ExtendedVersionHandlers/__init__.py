@@ -11,6 +11,7 @@
 from . import ExtendedVersionHandler_Default
 from . import ExtendedVersionHandler_Offset
 from . import ExtendedVersionHandler_PlusLine
+from . import ExtendedVersionHandler_PlusPlane
 from . import ExtendedVersionHandler_Reciprocal
 from . import ExtendedVersionHandler_ReciprocalWithOffset
 from . import ExtendedVersionHandler_Inverse

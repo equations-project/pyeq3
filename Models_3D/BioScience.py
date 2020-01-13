@@ -193,6 +193,7 @@ class HighLowAffinityDoubleIsotopeDisplacement(pyeq3.Model_3D_BaseClass.Model_3D
 
 
 class HighLowAffinityIsotopeDisplacement(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "High-Low Affinity Isotope Displacement (y = [Hot])"
     _HTML = 'z = aby / (1+b(x+y))'
@@ -359,6 +360,7 @@ class MichaelisMentenDoubleIsotopeDisplacement(pyeq3.Model_3D_BaseClass.Model_3D
 
 
 class MichaelisMentenIsotopeDisplacement(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Michaelis-Menten Isotope Displacement (y = [Hot])"
     _HTML = 'z = ay / (b + x + y)'
@@ -412,6 +414,7 @@ class MichaelisMentenIsotopeDisplacement(pyeq3.Model_3D_BaseClass.Model_3D_BaseC
 
 
 class ModifiedChungPfost(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Modified Chung-Pfost"
     _HTML = 'r.h.(T,M) = exp(-(C1/(T+C2)) * exp(-C3*M))'
@@ -466,6 +469,7 @@ class ModifiedChungPfost(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class ModifiedHalsey(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Modified Halsey"
     _HTML = 'r.h.(T,M) = exp(-exp(C1 + C2*T) * M<sup>-C3</sup>)'
@@ -575,6 +579,7 @@ class ModifiedHalsey_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class ModifiedHenderson(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Modified Henderson"
     _HTML = 'r.h.(T,M) = 1 - exp(-C1 * (T + C2) * M<sup>C3</sup>)'

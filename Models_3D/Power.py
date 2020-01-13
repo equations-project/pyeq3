@@ -22,6 +22,7 @@ import pyeq3.Model_3D_BaseClass
 
 
 class PowerA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Power A"
     _HTML = 'z = a * (x<sup>b</sup> + y<sup>c</sup>)'
@@ -468,6 +469,7 @@ class PowerD_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PowerE(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Power E"
     _HTML = 'z = a * x<sup>b</sup> * y<sup>c</sup>'

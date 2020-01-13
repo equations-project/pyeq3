@@ -22,6 +22,7 @@ import pyeq3.Model_3D_BaseClass
 
 
 class SagForAsphere0(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Sag For Asphere 0"
     _HTML = 's<sup>2</sup> = x<sup>2</sup> + y<sup>2</sup><br>'
@@ -76,6 +77,7 @@ class SagForAsphere0(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SagForAsphere0_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Sag For Asphere 0 Scaled"
     _HTML = 's<sup>2</sup> = x<sup>2</sup> + y<sup>2</sup><br>'
@@ -191,6 +193,7 @@ class SagForAsphere0_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SagForAsphere1(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Sag For Asphere 1"
     _HTML = 's<sup>2</sup> = x<sup>2</sup> + y<sup>2</sup><br>'

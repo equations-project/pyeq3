@@ -29,6 +29,7 @@ class IModel(object):
 
     autoGenerateOffsetForm = False
     autoGeneratePlusLineForm = False
+    autoGeneratePlusPlaneForm = False
     autoGenerateReciprocalForm = False
     autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = False

@@ -22,6 +22,7 @@ import pyeq3.Model_3D_BaseClass
 
 
 class CompetitiveInhibitionA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Competitive Inhibition A"
     _HTML = 'z = ax / (b(1 + y/c) + x)'
@@ -74,6 +75,7 @@ class CompetitiveInhibitionA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class CompetitiveInhibitionB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Competitive Inhibition B"
     _HTML = 'z = ay / (b(1 + x/c) + y)'
@@ -126,6 +128,7 @@ class CompetitiveInhibitionB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class CompetitiveInhibitionC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Competitive Inhibition C"
     _HTML = 'z = axy / (b(1 + x/c) + y)'
@@ -180,6 +183,7 @@ class CompetitiveInhibitionC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class InhibitionByCompetingSubstrateA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Inhibition By Competing Substrate A"
     _HTML = 'z = (ax/b) / (1 + x/b + y/c)'
@@ -232,6 +236,7 @@ class InhibitionByCompetingSubstrateA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClas
 
 
 class InhibitionByCompetingSubstrateB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Inhibition By Competing Substrate B"
     _HTML = 'z = (ay/b) / (1 + y/b + x/c)'
@@ -284,6 +289,7 @@ class InhibitionByCompetingSubstrateB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClas
 
 
 class InhibitionByCompetingSubstrateC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Inhibition By Competing Substrate C"
     _HTML = 'z = (axy/b) / (1 + y/b + x/c)'
@@ -497,6 +503,7 @@ class MixedInhibitionB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class NoncompetitiveInhibitionA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Noncompetitive Inhibition A"
     _HTML = 'z = ax / ((b + x)(1 + y/c))'
@@ -549,6 +556,7 @@ class NoncompetitiveInhibitionA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class NoncompetitiveInhibitionB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Noncompetitive Inhibition B"
     _HTML = 'z = ay / ((b + y)(1 + x/c))'
@@ -601,6 +609,7 @@ class NoncompetitiveInhibitionB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PingPongBiBiA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Ping Pong Bi Bi A"
     _HTML = 'z = ax / (bx + cy + xy)'
@@ -655,6 +664,7 @@ class PingPongBiBiA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PingPongBiBiB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Ping Pong Bi Bi B"
     _HTML = 'z = ay / (by + cx + xy)'
@@ -709,6 +719,7 @@ class PingPongBiBiB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PingPongBiBiC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Ping Pong Bi Bi C"
     _HTML = 'z = axy / (by + cx + xy)'
@@ -763,6 +774,7 @@ class PingPongBiBiC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class UncompetitiveInhibitionA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Uncompetitive Inhibition A"
     _HTML = 'z = ax / (b + x(1 + y/c))'
@@ -815,6 +827,7 @@ class UncompetitiveInhibitionA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class UncompetitiveInhibitionB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Uncompetitive Inhibition B"
     _HTML = 'z = ay / (b + y(1 + x/c))'

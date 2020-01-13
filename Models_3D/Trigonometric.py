@@ -144,6 +144,7 @@ class SineX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SineXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Sine XY [radians]"
     _HTML = 'z = amplitude * sin(pi * (xy - center) / width)'
@@ -321,6 +322,7 @@ class TangentX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class TangentXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Tangent XY [radians]"
     _HTML = 'z = amplitude * tan(pi * (xy - center) / width)'
@@ -498,6 +500,7 @@ class CoshX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class CoshXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Cosh XY [radians]"
     _HTML = 'z = amplitude * cosh(pi * (xy - center) / width)'

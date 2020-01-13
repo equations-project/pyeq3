@@ -22,6 +22,7 @@ import pyeq3.Model_3D_BaseClass
 
 
 class SimpleEquation_01(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 01"
     _HTML = 'z = a*pow(x,b)*pow(y,c)'
@@ -74,6 +75,7 @@ class SimpleEquation_01(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_02(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 02"
     _HTML = 'z = x/(a+b*y)'
@@ -125,6 +127,7 @@ class SimpleEquation_02(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_03(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 03"
     _HTML = 'z = y/(a+b*x)'
@@ -176,6 +179,7 @@ class SimpleEquation_03(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_04(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 04"
     _HTML = 'z = a*pow(x,b*y)'
@@ -227,6 +231,7 @@ class SimpleEquation_04(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_05(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 05"
     _HTML = 'z = a*pow(y,b*x)'
@@ -278,6 +283,7 @@ class SimpleEquation_05(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_06(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 06"
     _HTML = 'z = a*pow(x,b/y)'
@@ -329,6 +335,7 @@ class SimpleEquation_06(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_07(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 07"
     _HTML = 'z = a*pow(y,b/x)'
@@ -380,6 +387,7 @@ class SimpleEquation_07(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_08(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 08"
     _HTML = 'z = a*x+b*pow(y,2.0)'
@@ -431,6 +439,7 @@ class SimpleEquation_08(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_09(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 09"
     _HTML = 'z = a*y+b*pow(x,2.0)'
@@ -482,6 +491,7 @@ class SimpleEquation_09(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_10(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 10"
     _HTML = 'z = x/(a+b*pow(y,2.0))'
@@ -533,6 +543,7 @@ class SimpleEquation_10(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_11(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 11"
     _HTML = 'z = y/(a+b*pow(x,2.0))'
@@ -584,6 +595,7 @@ class SimpleEquation_11(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_12(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 12"
     _HTML = 'z = a*pow(b,x)*pow(y,c)'
@@ -636,6 +648,7 @@ class SimpleEquation_12(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_13(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 13"
     _HTML = 'z = a*pow(b,y)*pow(x,c)'
@@ -688,6 +701,7 @@ class SimpleEquation_13(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_14(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 14"
     _HTML = 'z = a*pow(x*y,b)'
@@ -740,6 +754,7 @@ class SimpleEquation_14(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_15(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 15"
     _HTML = 'z = a*pow(x/y,b)'
@@ -792,6 +807,7 @@ class SimpleEquation_15(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_16(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 16"
     _HTML = 'z = a*(pow(b,1.0/x))*pow(y,c)'
@@ -844,6 +860,7 @@ class SimpleEquation_16(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_17(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 17"
     _HTML = 'z = a*pow(b,1.0/y)*pow(x,c)'
@@ -896,6 +913,7 @@ class SimpleEquation_17(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_18(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 18"
     _HTML = 'z = a*pow(x/b,c)*exp(y/b)'
@@ -950,6 +968,7 @@ class SimpleEquation_18(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_19(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 19"
     _HTML = 'z = a*pow(y/b,c)*exp(x/b)'
@@ -1004,6 +1023,7 @@ class SimpleEquation_19(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_20(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 20"
     _HTML = 'z = a*pow(x,b+c*y)'
@@ -1056,6 +1076,7 @@ class SimpleEquation_20(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_21(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 21"
     _HTML = 'z = a*pow(y,b+c*x)'
@@ -1108,6 +1129,7 @@ class SimpleEquation_21(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_22(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 22"
     _HTML = 'z = a*pow(x,b+c/y)'
@@ -1160,6 +1182,7 @@ class SimpleEquation_22(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_23(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 23"
     _HTML = 'z = a*pow(y,b+c/x)'
@@ -1212,6 +1235,7 @@ class SimpleEquation_23(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_24(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 24"
     _HTML = 'z = a*pow(x,b+c*ln(y))'
@@ -1264,6 +1288,7 @@ class SimpleEquation_24(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_25(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 25"
     _HTML = 'z = a*pow(y,b+c*ln(x))'
@@ -1316,6 +1341,7 @@ class SimpleEquation_25(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_26(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 26"
     _HTML = 'z = a*pow(y,b+c/ln(x))'
@@ -1368,6 +1394,7 @@ class SimpleEquation_26(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_27(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 27"
     _HTML = 'z = a*pow(x,b+c/ln(y))'
@@ -1420,6 +1447,7 @@ class SimpleEquation_27(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_28(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 28"
     _HTML = 'z = a*exp(b*x+c*pow(y,2.0))'
@@ -1472,6 +1500,7 @@ class SimpleEquation_28(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_29(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 29"
     _HTML = 'z = a*exp(b*y+c*pow(x,2.0))'
@@ -1524,6 +1553,7 @@ class SimpleEquation_29(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_30(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 30"
     _HTML = 'z = a*exp(b/x+c*y)'
@@ -1576,6 +1606,7 @@ class SimpleEquation_30(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_31(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 31"
     _HTML = 'z = a*exp(b/y+c*x)'
@@ -1628,6 +1659,7 @@ class SimpleEquation_31(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_32(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 32"
     _HTML = 'z = (a+x)/(b+c*y)'
@@ -1680,6 +1712,7 @@ class SimpleEquation_32(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_33(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 33"
     _HTML = 'z = (a+y)/(b+c*x)'
@@ -1732,6 +1765,7 @@ class SimpleEquation_33(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_34(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 34"
     _HTML = 'z = (a+x)/(b+c*pow(y,2.0))'
@@ -1784,6 +1818,7 @@ class SimpleEquation_34(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_35(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 35"
     _HTML = 'z = (a+y)/(b+c*pow(x,2.0))'
@@ -1836,6 +1871,7 @@ class SimpleEquation_35(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_36(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 36"
     _HTML = 'z = a*(exp(b*x)-exp(c*y))'
@@ -1888,6 +1924,7 @@ class SimpleEquation_36(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_37(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 37"
     _HTML = 'z = a*pow(x,b*pow(y,c))'
@@ -1940,6 +1977,7 @@ class SimpleEquation_37(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_38(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 38"
     _HTML = 'z = a*pow(y,b*pow(x,c))'
@@ -1992,6 +2030,7 @@ class SimpleEquation_38(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_39(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 39"
     _HTML = 'z = x/(a+b*y+c*pow(y,0.5))'
@@ -2046,6 +2085,7 @@ class SimpleEquation_39(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_40(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 40"
     _HTML = 'z = y/(a+b*x+c*pow(x,0.5))'
@@ -2100,6 +2140,7 @@ class SimpleEquation_40(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_41(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 41"
     _HTML = 'z = exp(a+b/x+c*ln(y))'
@@ -2152,6 +2193,7 @@ class SimpleEquation_41(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_42(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 42"
     _HTML = 'z = exp(a+b/y+c*ln(x))'
@@ -2204,6 +2246,7 @@ class SimpleEquation_42(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_43(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 43"
     _HTML = 'z = a*pow(x,b)*ln(y+c)'
@@ -2256,6 +2299,7 @@ class SimpleEquation_43(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimpleEquation_44(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Simple Equation 44"
     _HTML = 'z = a*pow(y,b)*ln(x+c)'

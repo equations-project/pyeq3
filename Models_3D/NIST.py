@@ -22,6 +22,7 @@ import pyeq3.Model_3D_BaseClass
 
 
 class NIST_NelsonAutolog(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "NIST Nelson Autolog"
     _HTML = 'z = exp(b1 - b2 * x * exp(-b3*y))'

@@ -22,6 +22,7 @@ import pyeq3.Model_3D_BaseClass
 
 
 class RomanSurfaceMinus(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Roman Surface (minus)"
     _HTML = 'z = (k(y<sup>2</sup>-x<sup>2</sup>) - (x<sup>2</sup>-y<sup>2</sup>)sqrt(k<sup>2</sup>-x<sup>2</sup>-y<sup>2</sup>)) / (2(x<sup>2</sup>+y<sup>2</sup>))'
@@ -74,6 +75,7 @@ class RomanSurfaceMinus(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RomanSurfaceMinus_OffsetXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Roman Surface (minus) Offset XY"
     _HTML = 'z = (k((y+b)<sup>2</sup>-(x+a)<sup>2</sup>) - ((x+a)<sup>2</sup>-(y+b)<sup>2</sup>)sqrt(k<sup>2</sup>-(x+a)<sup>2</sup>-(y+b)<sup>2</sup>)) / (2((x+a)<sup>2</sup>+(y+b)<sup>2</sup>))'
@@ -188,6 +190,7 @@ class RomanSurfaceMinus_ScaledAndOffsetXY(pyeq3.Model_3D_BaseClass.Model_3D_Base
 
 
 class RomanSurfacePlus(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Roman Surface (plus)"
     _HTML = 'z = (k(y<sup>2</sup>-x<sup>2</sup>) + (x<sup>2</sup>-y<sup>2</sup>)sqrt(k<sup>2</sup>-x<sup>2</sup>-y<sup>2</sup>)) / (2(x<sup>2</sup>+y<sup>2</sup>))'
@@ -240,6 +243,7 @@ class RomanSurfacePlus(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RomanSurfacePlus_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Roman Surface (plus) Scaled"
     _HTML = 'z = Scale * (k(y<sup>2</sup>-x<sup>2</sup>) + (x<sup>2</sup>-y<sup>2</sup>)sqrt(k<sup>2</sup>-x<sup>2</sup>-y<sup>2</sup>)) / (2(x<sup>2</sup>+y<sup>2</sup>))'
@@ -293,6 +297,7 @@ class RomanSurfacePlus_scaled(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RomanSurfacePlus_OffsetXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+    autoGeneratePlusPlaneForm = True # auto-added by script
     
     _baseName = "Roman Surface (plus) Offset XY"
     _HTML = 'z = (k((y+b)<sup>2</sup>-(x+a)<sup>2</sup>) + ((x+a)<sup>2</sup>-(y+b)<sup>2</sup>)sqrt(k<sup>2</sup>-(x+a)<sup>2</sup>-(y+b)<sup>2</sup>)) / (2((x+a)<sup>2</sup>+(y+b)<sup>2</sup>))'
