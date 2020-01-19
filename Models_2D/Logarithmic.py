@@ -498,6 +498,59 @@ class LinearLogarithmicScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 
+class LinearLogarithmicShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    
+    _baseName = "Linear Logarithmic Shifted"
+    _HTML = 'y = a + b*ln(c+x)'
+    _leftSideHTML = 'y'
+    _coefficientDesignators = ['a', 'b', 'c']
+    _canLinearSolverBeUsedForSSQABS = False
+    
+    webReferenceURL = ''
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+
+    independentData1CannotContainBothPositiveAndNegativeFlag = False
+    
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
+        
+        a = inCoeffs[0]
+        b = inCoeffs[1]
+        c = inCoeffs[2]
+
+        try:
+            temp = a + b*numpy.log(c + x_in)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+        except:
+            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = a + b*log(c + x_in);\n"
+        return s
+
+
+
 class LinearLogarithmicTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     
     _baseName = "Linear Logarithmic Transform"
