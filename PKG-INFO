@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: pyeq3
+Version: 12.5.1
+Summary: Large curve fitting and surface fitting library with hundreds of named equations
+Home-page: https://bitbucket.org/zunzuncode/pyeq3
+Author: James Phillips
+Author-email: zunzun@zunzun.com
+License: BSD
+Description: A large collection of Python3 equations that perform curve fitting on 2D and 3D data, output source code in several computing languages, and run a genetic algorithm for initial parameter estimation. Comes with cluster, parallel, IPython, GUI, NodeJS, and web-based graphical examples. Includes orthogonal distance and relative error regressions.
+        
+        Discussion group is at https://groups.google.com/forum/#!forum/zunzun_dot_com
+        
+        Full source code with examples: https://bitbucket.org/zunzuncode/pyeq3
+        
+Keywords: curve fitting and surface fitting
+Platform: UNKNOWN
+Classifier: Development Status :: 6 - Mature
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3

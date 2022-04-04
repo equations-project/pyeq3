@@ -1,0 +1,4 @@
+pyeq3.egg-info/
+/build/*
+*.tmp
+*.pyc
