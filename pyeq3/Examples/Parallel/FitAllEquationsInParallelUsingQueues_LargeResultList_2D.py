@@ -1,5 +1,5 @@
 import os, sys, inspect, copy, multiprocessing, queue
-
+import numpy as np
 import pyeq3
 
 
@@ -36,7 +36,7 @@ def SetParametersAndFit(inEquation, inPrintStatus): # utility function
 
     inEquation.dataCache = globalDataCache
     if inEquation.dataCache.allDataCacheDictionary == {}:
-        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(globalRawData, inEquation, False)
+        pyeq3.dataConvertorService().ProcessNumpyArray(globalRawData, inEquation, False)
         
     inEquation.dataCache.CalculateNumberOfReducedDataPoints(inEquation)
     if inEquation.numberOfReducedDataPoints in globalReducedDataCache:
@@ -227,19 +227,18 @@ global globalReducedDataCache
 globalReducedDataCache = {}
 
 global globalRawData
-globalRawData = '''
-5.357    0.376
-5.457    0.489
-5.797    0.874
-5.936    1.049
-6.161    1.327
-6.697    2.054
-6.731    2.077
-6.775    2.138
-8.442    4.744
-9.769    7.068
-9.861    7.104
-'''
+globalRawData = np.array([[5.357, 0.376],
+                          [5.457, 0.489],
+                          [5.797, 0.874],
+                          [5.936, 1.049],
+                          [6.161, 1.327],
+                          [6.697, 2.054],
+                          [6.731, 2.077],
+                          [6.775, 2.138],
+                          [8.442, 4.744],
+                          [9.769, 7.068],
+                          [9.861, 7.104]])
+
 
 # Standard lowest sum-of-squared errors in this example, see IModel.fittingTargetDictionary
 fittingTargetText = 'SSQABS'
@@ -271,7 +270,7 @@ if numberOfSerialTasksSubmitted > 0:
     for i in range(numberOfSerialTasksSubmitted):
         allResults.append(fittingResultsQueue.get())
 
-print(str(numberOfSerialTasksSubmitted), 'total linear fits performed in series')
+print(f'{numberOfSerialTasksSubmitted} total linear fits performed in series')
 
 ##############################################
 # Serial region ends
@@ -290,6 +289,7 @@ if __name__ ==  '__main__':
     
     # how many CPU cores are on this computer?
     number_of_cpu_cores = multiprocessing.cpu_count()
+    print(f'Processing with {number_of_cpu_cores} CPU cores')
     
     # submit nonlinear fitting tasks to the queue for parallel processing
     numberOfParallelTasksSubmitted = SubmitTasksToQueue(fittingTasksQueue, fittingTargetText, smoothnessControl, False)
@@ -308,7 +308,7 @@ if __name__ ==  '__main__':
             for i in range(numberOfParallelTasksSubmitted):
                 allResults.append(fittingResultsQueue.get())
                 if i%10 == 0 and i > 0:
-                    print(i, 'non-linear fits performed in parallel')
+                    print(f'{i}/{numberOfParallelTasksSubmitted} non-linear fits performed in parallel')
                 
         # terminate all worker processes
         finally:
@@ -318,7 +318,7 @@ if __name__ ==  '__main__':
                 except:
                     pass
     
-    print(str(numberOfParallelTasksSubmitted), 'total non-linear fits performed in parallel')
+    print(f'{numberOfParallelTasksSubmitted} total non-linear fits performed in parallel')
     
     ##############################################
     # Parallel region ends
@@ -326,7 +326,7 @@ if __name__ ==  '__main__':
     
     
     
-    print('Completed fitting', str(numberOfSerialTasksSubmitted + numberOfParallelTasksSubmitted), 'equations.')
+    print(f'Completed fitting {numberOfSerialTasksSubmitted + numberOfParallelTasksSubmitted} equations.')
     
     # find the best result of all the parallel runs
     bestResult = []
@@ -365,7 +365,7 @@ if __name__ ==  '__main__':
         equation = eval(moduleName + "." + className + "('" + fittingTargetText + "', '" + extendedVersionHandlerName + "')")
     
     
-    pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(globalRawData, equation, False)
+    pyeq3.dataConvertorService().ProcessNumpyArray(globalRawData, equation, False)
     equation.fittingTarget = fittingTargetText
     equation.solvedCoefficients = solvedCoefficients
     equation.dataCache.FindOrCreateAllDataCache(equation)
