@@ -15,10 +15,12 @@ if ver < 3:
 
 from . import DataCache
 from . import Services
+from . import Utilities
 from . import ExtendedVersionHandlers
 from . import IModel
 from . import Models_2D
 from . import Models_3D
+from . import Graphics
 
 dataConvertorService = Services.DataConverterService.DataConverterService
 solverService = Services.SolverService.SolverService

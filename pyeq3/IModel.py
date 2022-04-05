@@ -617,3 +617,18 @@ class IModel(object):
                 else:
                     returnList.append(item)
         return returnList
+
+    def CalculateModelPredictionsFromNewData(self, independent_data):
+        ModelCache = pyeq3.dataCache()
+
+        if len(independent_data.shape) == 1:
+            d = numpy.array([independent_data,
+                             numpy.ones_like(independent_data)])
+        else:
+            d = independent_data
+
+        ModelCache.allDataCacheDictionary['IndependentData'] = d
+        ModelCache.FindOrCreateAllDataCache(self)
+
+        return self.CalculateModelPredictions(self.solvedCoefficients, ModelCache.allDataCacheDictionary)
+

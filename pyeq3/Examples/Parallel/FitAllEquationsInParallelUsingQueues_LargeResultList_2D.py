@@ -1,233 +1,12 @@
-import os, sys, inspect, copy, multiprocessing, queue
+import os, multiprocessing
 import numpy as np
 import pyeq3
+from pyeq3.Utilities.Multifit import fit_all_equations_in_parallel
+
+if __name__ ==  '__main__':
 
 
-
-def ResultListSortFunction(a, b): # utility function
-    if a[3] < b[3]:
-        return -1
-    if a[3] > b[3]:
-        return 1
-    return 0
-
-def UniqueCombinations(items, n): # utility function
-    if n==0:
-        yield []
-    else:
-        for i in range(len(items)):
-            for cc in UniqueCombinations(items[i+1:],n-1):
-                yield [items[i]]+cc
-
-def UniqueCombinations2(items2, n2): # utility function
-    if n2==0:
-        yield []
-    else:
-        for i2 in range(len(items2)):
-            for cc2 in UniqueCombinations2(items2[i2+1:],n2-1):
-                yield [items2[i2]]+cc2
-
-
-
-def SetParametersAndFit(inEquation, inPrintStatus): # utility function
-    global globalDataCache
-    global globalReducedDataCache
-    global globalRawData
-
-    inEquation.dataCache = globalDataCache
-    if inEquation.dataCache.allDataCacheDictionary == {}:
-        pyeq3.dataConvertorService().ProcessNumpyArray(globalRawData, inEquation, False)
-        
-    inEquation.dataCache.CalculateNumberOfReducedDataPoints(inEquation)
-    if inEquation.numberOfReducedDataPoints in globalReducedDataCache:
-        inEquation.dataCache.reducedDataCacheDictionary = globalReducedDataCache[inEquation.numberOfReducedDataPoints]
-    else:
-        inEquation.dataCache.reducedDataCacheDictionary = {}
- 
-    try:
-        # check for number of coefficients > number of data points to be fitted
-        if len(inEquation.GetCoefficientDesignators()) > len(inEquation.dataCache.allDataCacheDictionary['DependentData']):
-            return None
-
-        # check for functions requiring non-zero nor non-negative data such as 1/x, etc.
-        if inEquation.ShouldDataBeRejected(inEquation):
-            return None
-
-        if inPrintStatus:
-            print('Process ID', str(os.getpid()), 'Fitting', inEquation.__module__, "'" + inEquation.GetDisplayName() + "'")
-        
-        inEquation.Solve()
-
-        if inEquation.numberOfReducedDataPoints not in globalReducedDataCache:
-            globalReducedDataCache[inEquation.numberOfReducedDataPoints] = inEquation.dataCache.reducedDataCacheDictionary
-        
-        target = inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)
-        if target > 1.0E290: # error too large
-            return None
-    except:
-        print("Exception in " + inEquation.__class__.__name__ + '\n' + str(sys.exc_info()[0]) + '\n' + str(sys.exc_info()[1]) + '\n')
-        return None
-
-    t0 = copy.deepcopy(inEquation.__module__)
-    t1 = copy.deepcopy(inEquation.__class__.__name__)
-    t2 = copy.deepcopy(inEquation.extendedVersionHandler.__class__.__name__.split('_')[1])
-    t3 = copy.deepcopy(target)
-    t4 = copy.deepcopy(inEquation.solvedCoefficients)
-    t5 = copy.deepcopy(inEquation.polyfunctional2DFlags)
-    t6 = copy.deepcopy(inEquation.xPolynomialOrder)
-    t7 = copy.deepcopy(inEquation.rationalNumeratorFlags)
-    t8 = copy.deepcopy(inEquation.rationalDenominatorFlags)
-
-    return [t0,t1,t2,t3,t4,t5,t6,t7,t8]
-
-
-
-def SubmitTasksToQueue(inTaskQueue, fittingTargetText, smoothnessControl, inLinearTrueOrNonLinearFalseFlag):
-    totalNumberOfTasksSubmitted = 0
-    
-    ##########################
-    # add named equations here
-    for submodule in inspect.getmembers(pyeq3.Models_2D):
-        if inspect.ismodule(submodule[1]):
-            for equationClass in inspect.getmembers(submodule[1]):
-                if inspect.isclass(equationClass[1]):
-                    
-                    # special classes
-                    if equationClass[1].splineFlag or \
-                       equationClass[1].userSelectablePolynomialFlag or \
-                       equationClass[1].userCustomizablePolynomialFlag or \
-                       equationClass[1].userSelectablePolyfunctionalFlag or \
-                       equationClass[1].userSelectableRationalFlag or \
-                       equationClass[1].userDefinedFunctionFlag:
-                        continue
-                    
-                    for extendedVersion in ['Default', 'Offset']:
-                        
-                        if (extendedVersion == 'Offset') and (equationClass[1].autoGenerateOffsetForm == False):
-                            continue                        
-                        
-                        equationInstance = equationClass[1](fittingTargetText, extendedVersion)
-    
-                        if len(equationInstance.GetCoefficientDesignators()) > smoothnessControl:
-                            continue
-                        
-                        if inLinearTrueOrNonLinearFalseFlag == True and (equationInstance.CanLinearSolverBeUsedForSSQABS() == False or fittingTargetText != 'SSQABS'):
-                            continue
-                        
-                        if inLinearTrueOrNonLinearFalseFlag == False and equationInstance.CanLinearSolverBeUsedForSSQABS() == True and fittingTargetText == 'SSQABS':
-                            continue
-
-                        inTaskQueue.put((SetParametersAndFit,(equationInstance, False)))
-                        totalNumberOfTasksSubmitted += 1
-    
-    
-    ##########################
-    # fit polyfunctionals here
-    maxPolyfunctionalCoefficients = smoothnessControl # arbitrary choice of maximum total coefficients for this example
-    polyfunctionalEquationList = pyeq3.PolyFunctions.GenerateListForPolyfunctionals_2D()
-    functionIndexList = list(range(len(polyfunctionalEquationList))) # make a list of function indices to permute
-    
-    for coeffCount in range(1, maxPolyfunctionalCoefficients+1):
-        functionCombinations = UniqueCombinations(functionIndexList, coeffCount)
-        for functionCombination in functionCombinations:
-            
-            if len(functionCombination) > smoothnessControl:
-                continue
-    
-            equationInstance = pyeq3.Models_2D.Polyfunctional.UserSelectablePolyfunctional(fittingTargetText, 'Default', functionCombination, polyfunctionalEquationList)
-
-            if inLinearTrueOrNonLinearFalseFlag == True and (equationInstance.CanLinearSolverBeUsedForSSQABS() == False or fittingTargetText != 'SSQABS'):
-                continue
-            
-            if inLinearTrueOrNonLinearFalseFlag == False and equationInstance.CanLinearSolverBeUsedForSSQABS() == True and fittingTargetText == 'SSQABS':
-                continue
-
-            inTaskQueue.put((SetParametersAndFit,(equationInstance, False)))
-            totalNumberOfTasksSubmitted += 1
-
-    
-    ######################
-    # fit user-selectable polynomials here
-    maxPolynomialOrderX = smoothnessControl # arbitrary choice of maximum total coefficients for this example
-    
-    for polynomialOrderX in range(maxPolynomialOrderX+1):
-
-        if (polynomialOrderX + 1) > smoothnessControl:
-            continue
-                
-        equationInstance = pyeq3.Models_2D.Polynomial.UserSelectablePolynomial(fittingTargetText, 'Default', polynomialOrderX)    
-        
-        if inLinearTrueOrNonLinearFalseFlag == True and (equationInstance.CanLinearSolverBeUsedForSSQABS() == False or fittingTargetText != 'SSQABS'):
-            continue
-        
-        if inLinearTrueOrNonLinearFalseFlag == False and equationInstance.CanLinearSolverBeUsedForSSQABS() == True and fittingTargetText == 'SSQABS':
-            continue
-
-        inTaskQueue.put((SetParametersAndFit,(equationInstance, False)))
-        totalNumberOfTasksSubmitted += 1
-    
-    
-    ######################
-    # fit user-selectable rationals here
-    maxCoeffs = smoothnessControl # arbitrary choice of maximum total coefficients for this example
-    functionList = pyeq3.PolyFunctions.GenerateListForRationals_2D()
-    functionIndexList = list(range(len(functionList))) # make a list of function indices
-    
-    for numeratorCoeffCount in range(1, maxCoeffs):
-        numeratorComboList = UniqueCombinations(functionIndexList, numeratorCoeffCount)
-        for numeratorCombo in numeratorComboList:
-            for denominatorCoeffCount in range(1, maxCoeffs):
-                denominatorComboList = UniqueCombinations2(functionIndexList, denominatorCoeffCount)
-                for denominatorCombo in denominatorComboList:
-                    
-                    for extendedVersion in ['Default', 'Offset']:
-                    
-                        extraCoeffs = 0
-                        if extendedVersion == 'Offset':
-                            extraCoeffs = 1
-                            
-                        if (len(numeratorCombo) + len(denominatorCombo) + extraCoeffs) > smoothnessControl:
-                            continue
-                                                
-                        equationInstance = pyeq3.Models_2D.Rational.UserSelectableRational(fittingTargetText, extendedVersion, numeratorCombo, denominatorCombo, functionList)
-                        
-                        if inLinearTrueOrNonLinearFalseFlag == True and (equationInstance.CanLinearSolverBeUsedForSSQABS() == False or fittingTargetText != 'SSQABS'):
-                            continue
-                        
-                        if inLinearTrueOrNonLinearFalseFlag == False and equationInstance.CanLinearSolverBeUsedForSSQABS() == True and fittingTargetText == 'SSQABS':
-                            continue
-
-                        inTaskQueue.put((SetParametersAndFit,(equationInstance, False)))
-                        totalNumberOfTasksSubmitted += 1
-    
-    return totalNumberOfTasksSubmitted
-
-
-def parallelWorker(inputQueue, outputQueue):
-    for func, args in iter(inputQueue.get, 'STOP'): # iter() has different behaviors depending on number of parameters
-        outputQueue.put(func(*args))
-        
-
-def serialWorker(inputQueue, outputQueue):
-    for func, args in iter(inputQueue.get, 'STOP'): # iter() has different behaviors depending on number of parameters
-        outputQueue.put(func(*args))
-        inputQueue.task_done()
-        if inputQueue.unfinished_tasks == 0:
-            break
-
-
-
-
-os.nice(10) ####################### I use this during development
-
-global globalDataCache 
-globalDataCache = pyeq3.dataCache()
-
-global globalReducedDataCache
-globalReducedDataCache = {}
-
-global globalRawData
-globalRawData = np.array([[5.357, 0.376],
+    inRawData = np.array([[5.357, 0.376],
                           [5.457, 0.489],
                           [5.797, 0.874],
                           [5.936, 1.049],
@@ -239,95 +18,21 @@ globalRawData = np.array([[5.357, 0.376],
                           [9.769, 7.068],
                           [9.861, 7.104]])
 
+    # Standard lowest sum-of-squared errors in this example, see IModel.fittingTargetDictionary
+    fittingTargetText = 'SSQABS'
 
-# Standard lowest sum-of-squared errors in this example, see IModel.fittingTargetDictionary
-fittingTargetText = 'SSQABS'
-    
+    # this value is used to make the example run faster
+    smoothnessControl = 3
 
-#####################################################
-# this value is used to make the example run faster #
-#####################################################
-smoothnessControl = 3
+    # The dimensions of the data, not including optional weighting ([x1, y] or [x1, x2, y])
+    inDimension = 2
 
+    os.nice(10) ####################### I use this during development
 
-##################################################
-# this list will hold the results of all fitting #
-##################################################
-allResults = []
+    number_of_cpus = multiprocessing.cpu_count()
+    allResults = fit_all_equations_in_parallel(inRawData, inDimension, fittingTargetText, smoothnessControl, number_of_cpus)
 
 
-
-##############################################
-# Serial region begins
-##############################################
-
-# linear fits are very fast - run these in the existing process which saves on interprocess communication overhead
-fittingTasksQueue = queue.Queue(0)
-fittingResultsQueue = queue.Queue(0)
-numberOfSerialTasksSubmitted = SubmitTasksToQueue(fittingTasksQueue, fittingTargetText, smoothnessControl, True)
-if numberOfSerialTasksSubmitted > 0:
-    serialWorker(fittingTasksQueue, fittingResultsQueue)
-    for i in range(numberOfSerialTasksSubmitted):
-        allResults.append(fittingResultsQueue.get())
-
-print(f'{numberOfSerialTasksSubmitted} total linear fits performed in series')
-
-##############################################
-# Serial region ends
-##############################################
-
-
-# http://stackoverflow.com/questions/18204782/runtimeerror-on-windows-trying-python-multiprocessing
-if __name__ ==  '__main__':
-
-    ##############################################
-    # Parallel region begins
-    ##############################################
-    
-    fittingTasksQueue = multiprocessing.Queue()
-    fittingResultsQueue = multiprocessing.Queue()
-    
-    # how many CPU cores are on this computer?
-    number_of_cpu_cores = multiprocessing.cpu_count()
-    print(f'Processing with {number_of_cpu_cores} CPU cores')
-    
-    # submit nonlinear fitting tasks to the queue for parallel processing
-    numberOfParallelTasksSubmitted = SubmitTasksToQueue(fittingTasksQueue, fittingTargetText, smoothnessControl, False)
-    
-    if numberOfParallelTasksSubmitted > 0:
-        processList = []
-        
-        # run worker processes
-        try:
-            for i in range(number_of_cpu_cores):
-                p = multiprocessing.Process(target=parallelWorker, args=(fittingTasksQueue, fittingResultsQueue))
-                p.start()
-                processList.append(p)
-        
-            # gather all results from the process pool
-            for i in range(numberOfParallelTasksSubmitted):
-                allResults.append(fittingResultsQueue.get())
-                if i%10 == 0 and i > 0:
-                    print(f'{i}/{numberOfParallelTasksSubmitted} non-linear fits performed in parallel')
-                
-        # terminate all worker processes
-        finally:
-            for p in processList:
-                try: # use try/except block for termination
-                    p.terminate()
-                except:
-                    pass
-    
-    print(f'{numberOfParallelTasksSubmitted} total non-linear fits performed in parallel')
-    
-    ##############################################
-    # Parallel region ends
-    ##############################################
-    
-    
-    
-    print(f'Completed fitting {numberOfSerialTasksSubmitted + numberOfParallelTasksSubmitted} equations.')
-    
     # find the best result of all the parallel runs
     bestResult = []
     for result in allResults:
@@ -341,7 +46,7 @@ if __name__ ==  '__main__':
     print('it requires further evaluation to determine if it is the best')
     print('for your needs.  For example, it may interpolate badly.')
     print()
-    print('"Smoothness Control" allowed a maximum of ' + str(smoothnessControl) + ' parameters')
+    print(f'"Smoothness Control" allowed a maximum of {smoothnessControl} parameters')
     
     moduleName = bestResult[0]
     className = bestResult[1]
@@ -365,7 +70,7 @@ if __name__ ==  '__main__':
         equation = eval(moduleName + "." + className + "('" + fittingTargetText + "', '" + extendedVersionHandlerName + "')")
     
     
-    pyeq3.dataConvertorService().ProcessNumpyArray(globalRawData, equation, False)
+    pyeq3.dataConvertorService().ProcessNumpyArray(inRawData, equation, False)
     equation.fittingTarget = fittingTargetText
     equation.solvedCoefficients = solvedCoefficients
     equation.dataCache.FindOrCreateAllDataCache(equation)
@@ -373,9 +78,8 @@ if __name__ ==  '__main__':
     
     
     print()
-    print('\"Best fit\" was', moduleName + "." + className)
-    
-    print('Fitting target value', equation.fittingTarget + ":", equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+    print(f'\"Best fit\" was {moduleName}.{className}')
+    print(f'Fitting target value {equation.fittingTarget}: {equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}')
     
     if polyfunctional2DFlags:
         print()
