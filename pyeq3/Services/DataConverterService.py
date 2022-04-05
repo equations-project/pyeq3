@@ -16,17 +16,7 @@ numpy.seterr(all= 'ignore')
 
 class DataConverterService(object):
 
-
-    # data is in columns
-    def ConvertAndSortColumnarASCII(self, inRawData, inModel, inUseWeightsFlag):
-        # you should first process commas before calling this method,
-        # as it uses the default token delimiters in string split()
-        #
-        # For example, convert $1,234.56 to 1234.56 or 1,23 to 1.23
-        # Different number systems have commas in different places
-        # and the Python built-in float() method uses decimal notation
-        # or scientific notation only
-
+    def CacheCharacteristics(self, inModel):
         # cache some data set characteristics for later use,
         # these are for the data domains of individual equations
         inModel.dataCache.independentData1ContainsZeroFlag = False
@@ -38,6 +28,18 @@ class DataConverterService(object):
 
         # used in calculation of relative error to prevent divide-by-zero exceptions
         inModel.dataCache.DependentDataContainsZeroFlag = False
+
+    # data is in columns
+    def ConvertAndSortColumnarASCII(self, inRawData, inModel, inUseWeightsFlag):
+        # you should first process commas before calling this method,
+        # as it uses the default token delimiters in string split()
+        #
+        # For example, convert $1,234.56 to 1234.56 or 1,23 to 1.23
+        # Different number systems have commas in different places
+        # and the Python built-in float() method uses decimal notation
+        # or scientific notation only
+
+        self.CacheCharacteristics(inModel)
 
         if inUseWeightsFlag:
             minimumNumberOfTokens = inModel.GetDimensionality() + 1
@@ -169,8 +171,62 @@ class DataConverterService(object):
             inModel.dataCache.allDataCacheDictionary['Weights'] = []
 
 
-    def ConvertNumpyArrays(self, inRawData, inModel):
-        pass
+    def ProcessNumpyArray(self, inArray, inModel, inUseWeightsFlag):
+        """
+        Processes numpy array of input data and updates the model object with
+        that processed data.
+
+        Arguments
+        ---------
+        inArray : 2D numpy array
+            Input data used to parameterise the model. Expected order of columns is
+            x1, [x2], [y], [w]. [w] is only given if inUseWeightsFlag
+            is set to True.
+
+        inModel : pyeq3 model object
+
+        inUseWeightsFlag : boolean
+            If set to True, the last column of the array should contain
+            weights of each of the data points.
+        """
+        self.CacheCharacteristics(inModel)
+
+        if inUseWeightsFlag:
+            assert inModel.GetDimensionality() + 1 == len(inArray[0])
+            y = inArray[:,-2]
+            indices = numpy.argsort(y)
+            inModel.dataCache.allDataCacheDictionary['Weights'] = inArray[indices, -1]
+        else:
+            assert inModel.GetDimensionality() == len(inArray[0])
+            y = inArray[:,-1]
+            indices = numpy.argsort(y)
+            inModel.dataCache.allDataCacheDictionary['Weights'] = []
+
+        if inModel.GetDimensionality() == 1:
+            y = numpy.ones_like(inArray[0])
+
+
+        if inModel.GetDimensionality() < 3:
+            inModel.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array([inArray[indices, 0],
+                                                                                       numpy.ones_like(inArray[:, 0])])
+        else:
+            inModel.dataCache.allDataCacheDictionary['IndependentData'] = inArray[indices, :2].T
+
+            if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][1] < 0.):
+                inModel.dataCache.independentData2ContainsNegativeFlag = True
+            if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][1] > 0.):
+                inModel.dataCache.independentData2ContainsPositiveFlag = True
+            if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][1] == 0.):
+                inModel.dataCache.independentData2ContainsZeroFlag = True
+
+        if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][0] < 0.):
+            inModel.dataCache.independentData1ContainsNegativeFlag = True
+        if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][0] > 0.):
+            inModel.dataCache.independentData1ContainsPositiveFlag = True
+        if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][0] == 0.):
+            inModel.dataCache.independentData1ContainsZeroFlag = True
+
+        inModel.dataCache.allDataCacheDictionary['DependentData'] = y[indices]
 
 
     def ConvertPythonSequences(self, inRawData, inModel):
