@@ -8,11 +8,9 @@
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-cppOutputSourceCodeUpperComment = '''// To the best of my knowledge this code is correct.
-// If you find any errors or problems please contact
-// me directly using zunzun@zunzun.com.
-//
-//      James
+cppOutputSourceCodeUpperComment = '''// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/bobmyhill/pyeq3
 
 '''
 
@@ -144,7 +142,7 @@ class OutputSourceCodeService(object):
         return newString
 
 
-    def GetOutputSourceCodeCPP(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodeCPP(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             if inEquation.GetDimensionality() == 2:
                 return self.SplineCodeCPP_2D(inEquation)
@@ -153,6 +151,7 @@ class OutputSourceCodeService(object):
     
         s = cppOutputSourceCodeUpperComment
         s += '\n#include <math.h>\n\n'
+        s += f'// {note}\n'
         s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         s += 'double ' + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation)
@@ -178,12 +177,13 @@ class OutputSourceCodeService(object):
         return s
 
 
-    def GetOutputSourceCodeCSHARP(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodeCSHARP(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             raise NotImplementedError('Not implemented for splines')
 
         s = self.ConvertCppToCSHARP(cppOutputSourceCodeUpperComment)
         s += '\nusing System;\n\n'
+        s += f'// {note}\n'
         s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         s += "class " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation)+ "\n{\n"
@@ -208,11 +208,12 @@ class OutputSourceCodeService(object):
         return s
 
 
-    def GetOutputSourceCodeVBA(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodeVBA(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             raise NotImplementedError('Not implemented for splines')
 
         s = self.ConvertCppToVBA(cppOutputSourceCodeUpperComment)
+        s += f'\' {note}\n'
         s += '\' Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '\' Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
@@ -236,7 +237,7 @@ class OutputSourceCodeService(object):
         return s
 
 
-    def GetOutputSourceCodePYTHON(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodePYTHON(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             if inEquation.GetDimensionality() == 2:
                 return self.SplineCodePYTHON_2D(inEquation)
@@ -245,6 +246,7 @@ class OutputSourceCodeService(object):
     
         s = self.ConvertCppToPYTHON(cppOutputSourceCodeUpperComment)
         s += '\nimport math\n\n'
+        s += f'# {note}\n'
         s += '# Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '# Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
@@ -267,7 +269,7 @@ class OutputSourceCodeService(object):
         return s
 
 
-    def GetOutputSourceCodeJAVA(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodeJAVA(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             if inEquation.GetDimensionality() == 2:
                 return self.SplineCodeJAVA_2D(inEquation)
@@ -276,6 +278,7 @@ class OutputSourceCodeService(object):
     
         s = self.ConvertCppToJAVA(cppOutputSourceCodeUpperComment)        
         s += '\nimport java.lang.Math;\n\n'
+        s += f'// {note}\n'
         s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         s += "class " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation)+ "\n{\n"
@@ -300,7 +303,7 @@ class OutputSourceCodeService(object):
         return s
 
 
-    def GetOutputSourceCodeJAVASCRIPT(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodeJAVASCRIPT(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             if inEquation.GetDimensionality() == 2:
                 return self.SplineCodeJAVASCRIPT_2D(inEquation)
@@ -309,6 +312,7 @@ class OutputSourceCodeService(object):
     
         s = self.ConvertCppToJAVA(cppOutputSourceCodeUpperComment) # reuse existing code
         s += '\n'
+        s += f'// {note}\n'
         s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
@@ -332,12 +336,13 @@ class OutputSourceCodeService(object):
         return s
 
 
-    def GetOutputSourceCodeSCILAB(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodeSCILAB(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             raise NotImplementedError('Not implemented for splines')
 
         s = self.ConvertCppToSCILAB(cppOutputSourceCodeUpperComment)
         s += '\n'
+        s += f'// {note}\n'
         s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
@@ -363,12 +368,13 @@ class OutputSourceCodeService(object):
         return s
 
 
-    def GetOutputSourceCodeMATLAB(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodeMATLAB(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             raise NotImplementedError('Not implemented for splines')
 
         s = self.ConvertCppToMATLAB(cppOutputSourceCodeUpperComment)
         s += '\n'
+        s += f'% {note}\n'
         s += '% Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '% Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
@@ -393,7 +399,7 @@ class OutputSourceCodeService(object):
         return s
 
 
-    def GetOutputSourceCodeJULIA(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodeJULIA(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             raise NotImplementedError('Not implemented for splines')
 
@@ -405,6 +411,8 @@ class OutputSourceCodeService(object):
             s += '# a function for pyeq3 automated source code generation\n'
             s += 'pow(x,y) = x ^ y\n'
             s += '\n'
+
+        s += f'# {note}\n'
         s += '# Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '# Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
@@ -426,7 +434,7 @@ class OutputSourceCodeService(object):
         return s
 
 
-    def GetOutputSourceCodeFORTRAN90(self, inEquation, inDigitsOfPrecisionString = '16'):
+    def GetOutputSourceCodeFORTRAN90(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             raise NotImplementedError('Not implemented for splines')
 
@@ -443,6 +451,8 @@ class OutputSourceCodeService(object):
             s += 'c = a**b\n'
             s += 'end function pow\n'
             s += '\n'
+
+        s += f'! {note}\n'
         s += '! Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
         s += '! Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:

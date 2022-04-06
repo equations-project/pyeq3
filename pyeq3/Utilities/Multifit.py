@@ -27,8 +27,7 @@ def UniqueCombinations2(items2, n2): # utility function
                 yield [items2[i2]]+cc2
 
 
-
-def SetParametersAndFit(inRawData, inEquation, inPrintStatus): # utility function
+def SetParametersAndFit(inRawData, inEquation, inPrintStatus):  # utility function
  
     pyeq3.dataConvertorService().ProcessNumpyArray(inRawData, inEquation, False)
 
@@ -54,9 +53,9 @@ def SetParametersAndFit(inRawData, inEquation, inPrintStatus): # utility functio
         return None
 
     if inEquation.GetDimensionality() == 2:
-        pf = copy.deepcopy(inEquation.polyfunctional2DFlags)
+        polyfunctionalnDFlags = copy.deepcopy(inEquation.polyfunctional2DFlags)
     elif inEquation.GetDimensionality() == 3:
-        pf = copy.deepcopy(inEquation.polyfunctional3DFlags)
+        polyfunctionalnDFlags = copy.deepcopy(inEquation.polyfunctional3DFlags)
 
     t = {'moduleName': copy.deepcopy(inEquation.__module__),
          'className': copy.deepcopy(inEquation.__class__.__name__),
@@ -64,10 +63,10 @@ def SetParametersAndFit(inRawData, inEquation, inPrintStatus): # utility functio
          'fittingTarget': copy.deepcopy(inEquation.fittingTarget),
          'fittingTargetValue': copy.deepcopy(target),
          'solvedCoefficients': copy.deepcopy(inEquation.solvedCoefficients),
-         'polyfunctional2DFlags': copy.deepcopy(inEquation.polyfunctional3DFlags),
+         'polyfunctionalnDFlags': copy.deepcopy(polyfunctionalnDFlags),
          'polynomialOrderX': copy.deepcopy(inEquation.xPolynomialOrder),
          'rationalNumeratorFlags': copy.deepcopy(inEquation.rationalNumeratorFlags),
-         'rationalDenominatorFlag': copy.deepcopy(inEquation.rationalDenominatorFlags)}
+         'rationalDenominatorFlags': copy.deepcopy(inEquation.rationalDenominatorFlags)}
 
     return t
 
@@ -277,15 +276,15 @@ def fit_all_equations_in_parallel(inRawData, inDimension, fittingTargetText, smo
     # Parallel region ends
     print(f'Completed fitting {numberOfSerialTasksSubmitted + numberOfParallelTasksSubmitted} equations.')
     
-    
-    return allResults
+    # Remove all null results
+    return [i for i in allResults if i]
 
 
 def instantiate_equation(result, data):
 
     # now instantiate the "best fit" equation based on the name stored in the result list
-    if result['polyfunctional2DFlags']:
-        equation = eval(f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}', {result['polyfunctional2DFlags']})")
+    if result['polyfunctionalnDFlags']:
+        equation = eval(f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}', {result['polyfunctionalnDFlags']})")
     elif result['polynomialOrderX'] != None:
         equation = eval(f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}', {result['polynomialOrderX']})")
     elif result['rationalNumeratorFlags'] and result['rationalDenominatorFlags']:
@@ -297,7 +296,9 @@ def instantiate_equation(result, data):
     equation.fittingTarget = result['fittingTarget']
     equation.solvedCoefficients = result['solvedCoefficients']
     equation.dataCache.FindOrCreateAllDataCache(equation)
+    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
     equation.CalculateModelErrors(equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
+    equation.GetCoefficientDesignators()
     equation.CalculateCoefficientAndFitStatistics()
 
     return equation
