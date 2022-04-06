@@ -9,14 +9,13 @@
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
 import pyeq3
-
 import numpy
 try:
-    import scipy.interpolate, scipy.stats
+    import scipy.interpolate
+    import scipy.stats
 except:
     pass
 numpy.seterr(all= 'ignore')
-
 
 
 class IModel(object):
