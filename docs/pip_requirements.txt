@@ -1,0 +1,7 @@
+numpy
+numpydoc
+matplotlib
+scipy
+sphinxcontrib.bibtex
+nbsphinx
+jupyter
