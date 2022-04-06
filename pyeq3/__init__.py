@@ -9,10 +9,11 @@
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
 import sys
-ver = sys.version_info[0]
-if ver < 3:
+python_version = sys.version_info[0]
+if python_version < 3:
     raise Exception('Python 3 is required to use pyeq3')
 
+from .version import version as __version__
 from . import DataCache
 from . import Services
 from . import Utilities

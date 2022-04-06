@@ -1,6 +1,10 @@
 from setuptools import setup, find_packages  # Always prefer setuptools over distutils
 from codecs import open  # To use a consistent encoding
 from os import path
+import re
+
+versionstuff = dict(
+    re.findall("(.+) = '(.+)'\n", open('pyeq3/version.py').read()))
 
 here = path.abspath(path.dirname(__file__))
 
@@ -17,15 +21,15 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/development.html#single-sourcing-the-version
-    version='12.5.1',
+    version=versionstuff['version'],
 
-    description='Large curve fitting and surface fitting library with hundreds of named equations',
+    description='Curve and surface fitting library with hundreds of named equations',
     long_description=long_description,
 
     # The project's main homepage.
     url='https://bitbucket.org/zunzuncode/pyeq3',
 
-   # Author details
+    # Author details
     author='James Phillips',
     author_email='zunzun@zunzun.com',
 
@@ -53,7 +57,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords='curve fitting and surface fitting',
+    keywords='curve, surface, fitting',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
