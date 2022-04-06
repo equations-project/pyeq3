@@ -1,30 +1,40 @@
-A large collection of equations for Python 3 curve fitting and
-surface fitting that can output source code in several computing
-languages, and run a genetic algorithm for initial parameter
-estimation. Comes with cluster, parallel, IPython, GUI, NodeJS, and
-web-based graphical examples. Includes orthogonal distance and
+# pyeq3: an equation, curve and surface fitting library
+
+<p align="center">
+<img src="docs/figures/pyeq3_logo_small.png" width="512">
+</p>
+
+## About
+
+pyeq3 contains a large collection of equations for Python 3 curve
+fitting and surface fitting that can output source code in several
+computing languages, and run a genetic algorithm for initial
+parameter estimation.
+
+pyeq3 comes with cluster, parallel, IPython, GUI, NodeJS,
+and web-based graphical examples. Includes orthogonal distance and
 relative error regressions. 
 
-You will need to install python and scipy to run this software.
-see http://commonproblems.readthedocs.io/en/latest/
-
-On Debian or Ubuntu Linux, you can use this command to get both:
-
-sudo apt-get install python3-scipy
-
-On other operating systems, try the Canopy Express Free version:
-
-https://store.enthought.com/
-
-This repository is for Python 3, if you are using Python 2 please
-use https://bitbucket.org/zunzuncode/pyeq2 instead.
-
-See the Examples directory to get started.  All of the examples should
-run by typing "python3 examplename.py" at a command prompt.  If your
-copy of pyeq3 does not include the Examples directory, you can find
-the examples at https://bitbucket.org/zunzuncode/pyeq3/
+ - Homepage: https://github.com/bobmyhill/pyeq3
+ - Documentation: http://pyeq3.readthedocs.io
+ - Source code: https://github.com/bobmyhill/pyeq3
+ - Web App: http://findcurves.com/
+ - Discussion group: https://groups.google.com/g/findcurves
 
 
+## Installation
+
+You will need to install python, numpy, scipy and matplotlib to
+run this software. On Linux or Mac systems,
+you can use this command to get both:
+    python -m pip install numpy scipy matplotlib
+
+See the examples directory to get started.
+All of the examples should run by typing "python examplename.py"
+at a command prompt. A significantly larger number of examples can be
+found in the pyeq3/Examples directory.
+
+## A brief history of curve and surface fitting
 Prior to the invention of electronic calculation, only manual methods
 were available, of course - meaning that creating mathematical models
 from experimental data was done by hand.  Even Napier's invention of
@@ -61,13 +71,11 @@ reduces total processing time.  I tested many different methods before
 choosing the one in the code, a genetic algorithm named
 "Differential Evolution".
 
+## Acknowledgements
 
-I hope you find this code useful, and to that end I have sprinkled
-explanatory comments throughout the code.  If you have any questions
-or comments, please e-mail me directly at zunzun@zunzun.com.
+ - This project was created by James R. Phillips.
+   Almost all the functionality was created by him, as are most of
+   the explanatory comments throughout the code.
 
-James R. Phillips
-2548 Vera Cruz Drive
-Birmingham, AL 35235 USA
-
-email: zunzun@zunzun.com
+ - Ross Moffett is webmaster and maintainer of
+   http://www.findcurves.com, a clone of James' original web app.

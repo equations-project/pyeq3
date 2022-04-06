@@ -22,9 +22,10 @@ It includes orthogonal distance and relative error regressions.
 pyeq3 is released under a permissive license. It relies on numpy, scipy, and matplotlib.
 
  - Homepage: https://github.com/bobmyhill/pyeq3
- - Discussion group: https://groups.google.com/g/findcurves
  - Documentation: http://pyeq3.readthedocs.io
- - Source code with examples: https://github.com/bobmyhill/pyeq3
+ - Source code: https://github.com/bobmyhill/pyeq3
+ - Web App: http://findcurves.com/
+ - Discussion group: https://groups.google.com/g/findcurves
 
 If you haven't yet installed pyeq3, you can go straight to :ref:`ref-installation` for detailed
 instructions. After that, you might want to try out some :ref:`ref-examples`.
@@ -33,11 +34,8 @@ instructions. After that, you might want to try out some :ref:`ref-examples`.
 Citing pyeq3
 ------------
 
-If you use pyeq3 in your work, we ask that you cite the following publications:
-
- - Phillips, J. and Myhill, R. (2022):
-   pyeq3 (version |version|) [Software]. Zenodo.
-   `(https://doi.org/10.5281/zenodo.5552756) <https://doi.org/10.5281/zenodo.5552756>`_
+There will soon be a Zenodo DOI with which you can cite this project.
+Please check back here before you publish.
 
 
 Contributing to pyeq3
@@ -127,10 +125,12 @@ examples directory and try running the examples:
 Acknowledgement and Support
 ---------------------------
 
-  - This project was initiated by James Phillips, and we are incredibly grateful
-    for his time and efforts.
+  - This project was created by James R. Phillips.
+    Almost all the functionality was created by him, as are most of
+    the explanatory comments throughout the code.
 
-  - We are also grateful to Ross Moffett, webmaster at http://www.findcurves.com.
+  - Ross Moffett is webmaster and maintainer of
+    http://www.findcurves.com, a clone of James' original web app.
 
 """
 

@@ -1,7 +1,3 @@
-
-...
-===
-
 pyeq3: an equation, curve and surface fitting library
 =====================================================
 
