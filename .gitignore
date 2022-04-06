@@ -1,4 +1,6 @@
 pyeq3.egg-info/
 /build/*
+/docs/_build
+/docs/*pdf
 *.tmp
 *.pyc
