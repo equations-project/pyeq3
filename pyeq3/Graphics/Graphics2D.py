@@ -12,7 +12,7 @@ def ModelScatterConfidenceGraph(equation, axes):
     axes.plot(x_data, y_data,  'D')
 
     # create data for the fitted equation plot
-    xModel = np.linspace(min(x_data), max(x_data))
+    xModel = np.linspace(min(x_data), max(x_data), 1001)
 
     tempcache = equation.dataCache # store the data cache
     equation.dataCache = pyeq3.dataCache()
