@@ -15,7 +15,7 @@ try:
     import scipy.stats
 except:
     pass
-numpy.seterr(all= 'ignore')
+numpy.seterr(all='ignore')
 
 
 class IModel(object):
@@ -32,16 +32,16 @@ class IModel(object):
     autoGenerateReciprocalForm = False
     autoGenerateInverseForms = False
     autoGenerateGrowthAndDecayForms = False
-    
+
     independentData1CannotContainZeroFlag = False
     independentData1CannotContainPositiveFlag = False
     independentData1CannotContainNegativeFlag = False
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
+
     independentData1CannotContainBothPositiveAndNegativeFlag = False
-    independentData2CannotContainBothPositiveAndNegativeFlag = False    
+    independentData2CannotContainBothPositiveAndNegativeFlag = False
 
     # "e" is removed so it is not mistaken for Euler's constant "e"
     # "l" is removed so it is not mistaken for the number "1" - some fonts make these appear the same or very similar
@@ -56,25 +56,24 @@ class IModel(object):
                                'ABSABS': 'sum of absolute value of absolute error',
                                'LNQREL': 'sum of squared log[predicted/actual]',
                                'ABSREL': 'sum of absolute value of relative error',
-                               'PEAKABS':'peak absolute value of absolute error',
-                               'PEAKREL':'peak absolute value of relative error',
+                               'PEAKABS': 'peak absolute value of absolute error',
+                               'PEAKREL': 'peak absolute value of relative error',
                                'AIC':    'Akaike Information Criterion',
-                               'BIC':    'Bayesian Information Criterion'
-                              }
-    
+                               'BIC':    'Bayesian Information Criterion'}
 
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
+    def __init__(self, inFittingTarget='SSQABS',
+                 inExtendedVersionName='Default'):
         if inExtendedVersionName == '':
             inExtendedVersionName = 'Default'
-            
+
         if inFittingTarget not in list(self.fittingTargetDictionary.keys()):
             raise Exception(str(inFittingTarget) + ' is not in the IModel class fitting target dictionary.')
         self.fittingTarget = inFittingTarget
-        
+
         inExtendedVersionName = inExtendedVersionName.replace(' ', '')
-        if inExtendedVersionName not in  pyeq3.ExtendedVersionHandlers.extendedVersionHandlerNameList:
+        if inExtendedVersionName not in pyeq3.ExtendedVersionHandlers.extendedVersionHandlerNameList:
             raise Exception(inExtendedVersionName + ' is not in the list of extended version handler names.')
-        
+
         allowedExtendedVersion = True
         if (-1 != inExtendedVersionName.find('Offset')) and (self.autoGenerateOffsetForm == False):
             allowedExtendedVersion = False
@@ -89,7 +88,7 @@ class IModel(object):
         if allowedExtendedVersion == False:
             raise Exception('This equation does not allow an extended version named  "' + inExtendedVersionName + '".')            
         self.extendedVersionHandler = eval('pyeq3.ExtendedVersionHandlers.ExtendedVersionHandler_' + inExtendedVersionName + '.ExtendedVersionHandler_' + inExtendedVersionName + '()')
-        
+
         self.dataCache = pyeq3.dataCache()
         self.upperCoefficientBounds = []
         self.lowerCoefficientBounds = []
@@ -103,7 +102,7 @@ class IModel(object):
         self.rationalNumeratorFlags = []
         self.rationalDenominatorFlags = []
         self.deEstimatedCoefficients = []
-        
+
         try:
             if self._dimensionality == 2:
                 self.exampleData = '''
@@ -154,6 +153,43 @@ class IModel(object):
         except:
             pass
 
+    def __str__(self):
+
+        dim = self.GetDimensionality()
+        if dim == 2:
+            polyfunctionalnDFlags = self.polyfunctional2DFlags
+        elif dim == 3:
+            polyfunctionalnDFlags = self.polyfunctional3DFlags
+
+        moduleName = self.__module__
+        className = self.__class__.__name__
+        extendedVersionHandlerName = self.extendedVersionHandler.__class__.__name__.split('_')[1]
+        fittingTarget = self.fittingTarget
+
+        if len(self.solvedCoefficients) > 0:
+            solvedCoefficients = self.solvedCoefficients
+            fittingTargetValue = self.CalculateAllDataFittingTarget(solvedCoefficients)
+        else:
+            solvedCoefficients = '(not assigned until solved)'
+            fittingTargetValue = '(not assigned until solved)'
+
+        polyfunctionalnDFlags = polyfunctionalnDFlags
+        polynomialOrderX = self.xPolynomialOrder
+        rationalNumeratorFlags = self.rationalNumeratorFlags
+        rationalDenominatorFlags = self.rationalDenominatorFlags
+
+        if extendedVersionHandlerName == 'Offset':
+            str = f'{moduleName}.{className} (with offset, {dim}D)\n'
+        else:
+            str = f'{moduleName}.{className} ({dim}D)\n'
+        str += f'Polyfunctional flags: {polyfunctionalnDFlags}\n'
+        str += f'Polyfunctional order: {polynomialOrderX}\n'
+        str += f'Rational numerator flags: {rationalNumeratorFlags}\n'
+        str += f'Rational denominator flags: {rationalDenominatorFlags}\n'
+        str += f'Coefficients: {self.GetCoefficientDesignators()}\n'
+        str += f'Coefficient values: {solvedCoefficients}\n'
+        str += f'Fitting target value {fittingTarget}: {fittingTargetValue}\n'
+        return str
 
     def CalculateCoefficientAndFitStatistics(self):
         self.nobs = len(self.dataCache.allDataCacheDictionary['DependentData'])  # number of observations
@@ -176,7 +212,7 @@ class IModel(object):
         self.upperCoefficientBounds = []
         self.lowerCoefficientBounds = []
         self.fixedCoefficients = []
-        
+
         try:
             self.r2 = 1.0 - self.modelAbsoluteError.var()/self.dataCache.allDataCacheDictionary['DependentData'].var()
 
