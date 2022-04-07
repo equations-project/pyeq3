@@ -4,24 +4,27 @@ from scipy import stats
 import matplotlib.pyplot as plt
 
 
-def ModelScatterConfidenceGraph(equation, axes):
-    y_data = equation.dataCache.allDataCacheDictionary['DependentData']
-    x_data = equation.dataCache.allDataCacheDictionary['IndependentData'][0]
+def ModelScatterConfidenceGraph(model, axes):
+    model.CalculateModelErrors(model.solvedCoefficients,
+                               model.dataCache.allDataCacheDictionary)
+    model.CalculateCoefficientAndFitStatistics()
+    y_data = model.dataCache.allDataCacheDictionary['DependentData']
+    x_data = model.dataCache.allDataCacheDictionary['IndependentData'][0]
 
     # first the raw data as a scatter plot
     axes.plot(x_data, y_data,  'D')
 
-    # create data for the fitted equation plot
+    # create data for the fitted model plot
     xModel = np.linspace(min(x_data), max(x_data), 1001)
 
-    tempcache = equation.dataCache  # store the data cache
-    equation.dataCache = pyeq3.dataCache()
-    equation.dataCache.allDataCacheDictionary['IndependentData'] = np.array([
-                                                                            xModel, xModel])
-    equation.dataCache.FindOrCreateAllDataCache(equation)
-    yModel = equation.CalculateModelPredictions(
-        equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
-    equation.dataCache = tempcache  # restore the original data cache
+    tempcache = model.dataCache  # store the data cache
+    model.dataCache = pyeq3.dataCache()
+    model.dataCache.allDataCacheDictionary['IndependentData'] = np.array([xModel,
+                                                                          xModel])
+    model.dataCache.FindOrCreateAllDataCache(model)
+    yModel = model.CalculateModelPredictions(
+        model.solvedCoefficients, model.dataCache.allDataCacheDictionary)
+    model.dataCache = tempcache  # restore the original data cache
 
     # now the model as a line plot
     axes.plot(xModel, yModel)
@@ -30,13 +33,13 @@ def ModelScatterConfidenceGraph(equation, axes):
     # http://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_nlin_sect026.htm
     # http://www.staff.ncl.ac.uk/tom.holderness/software/pythonlinearfit
     mean_x = np.mean(x_data)
-    n = equation.nobs
+    n = model.nobs
 
     # (1.0 - (a/2)) is used for two-sided t-test critical value, here a = 0.05
-    t_value = stats.t.ppf(0.975, equation.df_e)
+    t_value = stats.t.ppf(0.975, model.df_e)
 
-    confs = t_value * np.sqrt((equation.sumOfSquaredErrors/equation.df_e)*(1.0/n + (np.power((xModel-mean_x), 2.0) /
-                                                                                    ((np.sum(np.power(x_data, 2.0)))-n*(np.power(mean_x, 2.0))))))
+    confs = t_value * np.sqrt((model.sumOfSquaredErrors/model.df_e)*(1.0/n + (np.power((xModel-mean_x), 2.0) /
+                                                                              ((np.sum(np.power(x_data, 2.0)))-n*(np.power(mean_x, 2.0))))))
 
     # get lower and upper confidence limits based on predicted y and confidence intervals
     upper = yModel + abs(confs)
