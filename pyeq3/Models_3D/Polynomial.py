@@ -453,7 +453,7 @@ class UserSelectablePolynomial(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         return self.extendedVersionHandler.AssembleCoefficientDesignators(self)
 
     def GetDisplayHTML(self):
-        if self.xPolynomialOrder == None:
+        if self.xPolynomialOrder is None:
             self._HTML = "z = user-selectable polynomial"
         else:
             self._HTML = "z = "

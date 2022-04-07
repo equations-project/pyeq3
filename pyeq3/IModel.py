@@ -10,12 +10,13 @@
 
 import pyeq3
 import numpy
+
 try:
     import scipy.interpolate
     import scipy.stats
 except:
     pass
-numpy.seterr(all='ignore')
+numpy.seterr(all="ignore")
 
 
 class IModel(object):
@@ -48,51 +49,119 @@ class IModel(object):
     # "o" is removed so it is not mistaken for the number "0" - some fonts make these appear the same or very similar
     # VBA is case insensitive, so coefficient 'a' looks the same to VBA as coefficient 'A' - use double characters instead of capital letters
     # "x", "y", "xx", and "yy" are removed so they are not mistaken for variables named x or y
-    listOfAdditionalCoefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v',
-                                              'w', 'z', 'aa', 'bb', 'cc', 'dd', 'ff', 'gg', 'hh', 'ii', 'jj', 'kk', 'mm', 'nn', 'pp', 'qq', 'rr', 'ss', 'tt', 'uu', 'vv', 'ww', 'zz']
+    listOfAdditionalCoefficientDesignators = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "m",
+        "n",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "z",
+        "aa",
+        "bb",
+        "cc",
+        "dd",
+        "ff",
+        "gg",
+        "hh",
+        "ii",
+        "jj",
+        "kk",
+        "mm",
+        "nn",
+        "pp",
+        "qq",
+        "rr",
+        "ss",
+        "tt",
+        "uu",
+        "vv",
+        "ww",
+        "zz",
+    ]
 
-    fittingTargetDictionary = {'SSQABS': 'sum of squared absolute error',
-                               'SSQREL': 'sum of squared relative error',
-                               'ODR':    'sum of squared orthogonal distance',
-                               'ABSABS': 'sum of absolute value of absolute error',
-                               'LNQREL': 'sum of squared log[predicted/actual]',
-                               'ABSREL': 'sum of absolute value of relative error',
-                               'PEAKABS': 'peak absolute value of absolute error',
-                               'PEAKREL': 'peak absolute value of relative error',
-                               'AIC':    'Akaike Information Criterion',
-                               'BIC':    'Bayesian Information Criterion'}
+    fittingTargetDictionary = {
+        "SSQABS": "sum of squared absolute error",
+        "SSQREL": "sum of squared relative error",
+        "ODR": "sum of squared orthogonal distance",
+        "ABSABS": "sum of absolute value of absolute error",
+        "LNQREL": "sum of squared log[predicted/actual]",
+        "ABSREL": "sum of absolute value of relative error",
+        "PEAKABS": "peak absolute value of absolute error",
+        "PEAKREL": "peak absolute value of relative error",
+        "AIC": "Akaike Information Criterion",
+        "BIC": "Bayesian Information Criterion",
+    }
 
-    def __init__(self, inFittingTarget='SSQABS',
-                 inExtendedVersionName='Default'):
-        if inExtendedVersionName == '':
-            inExtendedVersionName = 'Default'
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
+        if inExtendedVersionName == "":
+            inExtendedVersionName = "Default"
 
         if inFittingTarget not in list(self.fittingTargetDictionary.keys()):
             raise Exception(
-                str(inFittingTarget) + ' is not in the IModel class fitting target dictionary.')
+                str(inFittingTarget)
+                + " is not in the IModel class fitting target dictionary."
+            )
         self.fittingTarget = inFittingTarget
 
-        inExtendedVersionName = inExtendedVersionName.replace(' ', '')
-        if inExtendedVersionName not in pyeq3.ExtendedVersionHandlers.extendedVersionHandlerNameList:
+        inExtendedVersionName = inExtendedVersionName.replace(" ", "")
+        if (
+            inExtendedVersionName
+            not in pyeq3.ExtendedVersionHandlers.extendedVersionHandlerNameList
+        ):
             raise Exception(
-                inExtendedVersionName + ' is not in the list of extended version handler names.')
+                inExtendedVersionName
+                + " is not in the list of extended version handler names."
+            )
 
         allowedExtendedVersion = True
-        if (-1 != inExtendedVersionName.find('Offset')) and (self.autoGenerateOffsetForm == False):
+        if (-1 != inExtendedVersionName.find("Offset")) and (
+            self.autoGenerateOffsetForm is False
+        ):
             allowedExtendedVersion = False
-        if (-1 != inExtendedVersionName.find('Reciprocal')) and (self.autoGenerateReciprocalForm == False):
+        if (-1 != inExtendedVersionName.find("Reciprocal")) and (
+            self.autoGenerateReciprocalForm is False
+        ):
             allowedExtendedVersion = False
-        if (-1 != inExtendedVersionName.find('Inverse')) and (self.autoGenerateInverseForms == False):
+        if (-1 != inExtendedVersionName.find("Inverse")) and (
+            self.autoGenerateInverseForms is False
+        ):
             allowedExtendedVersion = False
-        if (-1 != inExtendedVersionName.find('Growth')) and (self.autoGenerateGrowthAndDecayForms == False):
+        if (-1 != inExtendedVersionName.find("Growth")) and (
+            self.autoGenerateGrowthAndDecayForms is False
+        ):
             allowedExtendedVersion = False
-        if (-1 != inExtendedVersionName.find('Decay')) and (self.autoGenerateGrowthAndDecayForms == False):
+        if (-1 != inExtendedVersionName.find("Decay")) and (
+            self.autoGenerateGrowthAndDecayForms is False
+        ):
             allowedExtendedVersion = False
-        if allowedExtendedVersion == False:
+        if allowedExtendedVersion is False:
             raise Exception(
-                'This equation does not allow an extended version named  "' + inExtendedVersionName + '".')
-        self.extendedVersionHandler = eval('pyeq3.ExtendedVersionHandlers.ExtendedVersionHandler_' +
-                                           inExtendedVersionName + '.ExtendedVersionHandler_' + inExtendedVersionName + '()')
+                'This equation does not allow an extended version named  "'
+                + inExtendedVersionName
+                + '".'
+            )
+        self.extendedVersionHandler = eval(
+            "pyeq3.ExtendedVersionHandlers.ExtendedVersionHandler_"
+            + inExtendedVersionName
+            + ".ExtendedVersionHandler_"
+            + inExtendedVersionName
+            + "()"
+        )
 
         self.dataCache = pyeq3.dataCache()
         self.upperCoefficientBounds = []
@@ -110,7 +179,7 @@ class IModel(object):
 
         try:
             if self._dimensionality == 2:
-                self.exampleData = '''
+                self.exampleData = """
     X        Y
   5.357    0.376
   5.457    0.489
@@ -123,9 +192,9 @@ class IModel(object):
   8.442    4.744
   9.769    7.068
   9.861    7.104
-'''
+"""
             else:
-                self.exampleData = '''
+                self.exampleData = """
     X      Y       Z
   3.017  2.175   0.320
   2.822  2.624   0.629
@@ -154,7 +223,7 @@ class IModel(object):
   1.016  2.564   2.243
   0.742  2.568   2.581
   0.607  2.571   2.753
-'''
+"""
         except:
             pass
 
@@ -168,45 +237,46 @@ class IModel(object):
 
         moduleName = self.__module__
         className = self.__class__.__name__
-        extendedVersionHandlerName = self.extendedVersionHandler.__class__.__name__.split('_')[
-            1]
+        extendedVersionHandlerName = (
+            self.extendedVersionHandler.__class__.__name__.split("_")[1]
+        )
         fittingTarget = self.fittingTarget
 
         if len(self.solvedCoefficients) > 0:
             solvedCoefficients = self.solvedCoefficients
-            fittingTargetValue = self.CalculateAllDataFittingTarget(
-                solvedCoefficients)
+            fittingTargetValue = self.CalculateAllDataFittingTarget(solvedCoefficients)
         else:
-            solvedCoefficients = '(not assigned until solved)'
-            fittingTargetValue = '(not assigned until solved)'
+            solvedCoefficients = "(not assigned until solved)"
+            fittingTargetValue = "(not assigned until solved)"
 
         polyfunctionalnDFlags = polyfunctionalnDFlags
         polynomialOrderX = self.xPolynomialOrder
         rationalNumeratorFlags = self.rationalNumeratorFlags
         rationalDenominatorFlags = self.rationalDenominatorFlags
 
-        if extendedVersionHandlerName == 'Offset':
-            str = f'{moduleName}.{className} (with offset, {dim}D)\n'
+        if extendedVersionHandlerName == "Offset":
+            str = f"{moduleName}.{className} (with offset, {dim}D)\n"
         else:
-            str = f'{moduleName}.{className} ({dim}D)\n'
-        str += f'Polyfunctional flags: {polyfunctionalnDFlags}\n'
-        str += f'Polyfunctional order: {polynomialOrderX}\n'
-        str += f'Rational numerator flags: {rationalNumeratorFlags}\n'
-        str += f'Rational denominator flags: {rationalDenominatorFlags}\n'
-        str += f'Coefficients: {self.GetCoefficientDesignators()}\n'
-        str += f'Coefficient values: {solvedCoefficients}\n'
-        str += f'Fitting target value {fittingTarget}: {fittingTargetValue}\n'
+            str = f"{moduleName}.{className} ({dim}D)\n"
+        str += f"Polyfunctional flags: {polyfunctionalnDFlags}\n"
+        str += f"Polyfunctional order: {polynomialOrderX}\n"
+        str += f"Rational numerator flags: {rationalNumeratorFlags}\n"
+        str += f"Rational denominator flags: {rationalDenominatorFlags}\n"
+        str += f"Coefficients: {self.GetCoefficientDesignators()}\n"
+        str += f"Coefficient values: {solvedCoefficients}\n"
+        str += f"Fitting target value {fittingTarget}: {fittingTargetValue}\n"
         return str
 
     def CalculateCoefficientAndFitStatistics(self):
         # number of observations
-        self.nobs = len(self.dataCache.allDataCacheDictionary['DependentData'])
-        self.ncoef = len(self.solvedCoefficients)          # number of coef.
-        self.df_e = self.nobs - self.ncoef                 # degrees of freedom, error
+        self.nobs = len(self.dataCache.allDataCacheDictionary["DependentData"])
+        self.ncoef = len(self.solvedCoefficients)  # number of coef.
+        self.df_e = self.nobs - self.ncoef  # degrees of freedom, error
         # degrees of freedom, regression
         self.df_r = self.ncoef - 1
         self.sumOfSquaredErrors = numpy.sum(
-            self.modelAbsoluteError * self.modelAbsoluteError)
+            self.modelAbsoluteError * self.modelAbsoluteError
+        )
 
         # if coefficients have bounds or fixed values, these calculations
         # can fail.  The constraints are for the solver.  Calculate these
@@ -224,8 +294,11 @@ class IModel(object):
         self.fixedCoefficients = []
 
         try:
-            self.r2 = 1.0 - self.modelAbsoluteError.var() / \
-                self.dataCache.allDataCacheDictionary['DependentData'].var()
+            self.r2 = (
+                1.0
+                - self.modelAbsoluteError.var()
+                / self.dataCache.allDataCacheDictionary["DependentData"].var()
+            )
 
             # extremely poor fits can have absolute error variance greater than sample
             # variance at machine precision levels, giving tiny negative R-squared values
@@ -241,45 +314,50 @@ class IModel(object):
 
         try:
             # adjusted R-square
-            self.r2adj = 1.0 - (1.0 - self.r2) * \
-                ((self.nobs - 1.0)/(self.nobs-self.ncoef))
+            self.r2adj = 1.0 - (1.0 - self.r2) * (
+                (self.nobs - 1.0) / (self.nobs - self.ncoef)
+            )
         except:
             self.r2adj = None
 
         try:
-            self.Fstat = (self.r2/self.df_r) / \
-                ((1.0 - self.r2)/self.df_e)  # model F-statistic
+            self.Fstat = (self.r2 / self.df_r) / (
+                (1.0 - self.r2) / self.df_e
+            )  # model F-statistic
         except:
             self.Fstat = None
 
         try:
             # F-statistic p-value
-            self.Fpv = 1.0 - \
-                scipy.stats.f.cdf(self.Fstat, self.df_r, self.df_e)
+            self.Fpv = 1.0 - scipy.stats.f.cdf(self.Fstat, self.df_r, self.df_e)
         except:
             self.Fpv = None
 
         # Model log-likelihood, AIC, and BIC criterion values
         # from http://stackoverflow.com/questions/7458391/python-multiple-linear-regression-using-ols-code-with-specific-data
         try:
-            self.ll = -(self.nobs*0.5)*(1.0 + numpy.log(2.0*numpy.pi)) - (self.nobs*0.5) * \
-                numpy.log(numpy.dot(self.modelAbsoluteError,
-                          self.modelAbsoluteError)/self.nobs)
+            self.ll = -(self.nobs * 0.5) * (1.0 + numpy.log(2.0 * numpy.pi)) - (
+                self.nobs * 0.5
+            ) * numpy.log(
+                numpy.dot(self.modelAbsoluteError, self.modelAbsoluteError) / self.nobs
+            )
         except:
             self.ll = None
 
         try:
-            self.aic = -2.0*self.ll/self.nobs + (2.0*self.ncoef/self.nobs)
+            self.aic = -2.0 * self.ll / self.nobs + (2.0 * self.ncoef / self.nobs)
         except:
             self.aic = None
 
         try:
-            self.bic = -2.0*self.ll/self.nobs + \
-                (self.ncoef*numpy.log(self.nobs))/self.nobs
+            self.bic = (
+                -2.0 * self.ll / self.nobs
+                + (self.ncoef * numpy.log(self.nobs)) / self.nobs
+            )
         except:
             self.bic = None
 
-        if self.splineFlag == True:  # not appicable to splines
+        if self.splineFlag is True:  # not appicable to splines
             self.cov_beta = None
             self.sd_beta = None
             self.tstat_beta = None
@@ -292,9 +370,12 @@ class IModel(object):
             model = scipy.odr.odrpack.Model(self.WrapperForODR)
             self.dataCache.FindOrCreateAllDataCache(self)
             data = scipy.odr.odrpack.Data(
-                self.dataCache.allDataCacheDictionary['IndependentData'], self.dataCache.allDataCacheDictionary['DependentData'])
+                self.dataCache.allDataCacheDictionary["IndependentData"],
+                self.dataCache.allDataCacheDictionary["DependentData"],
+            )
             myodr = scipy.odr.odrpack.ODR(
-                data, model, beta0=self.solvedCoefficients,  maxit=0)
+                data, model, beta0=self.solvedCoefficients, maxit=0
+            )
             myodr.set_job(fit_type=2)
             parameterStatistics = myodr.run()
             self.cov_beta = parameterStatistics.cov_beta  # parameter covariance matrix
@@ -307,19 +388,27 @@ class IModel(object):
             t_df = scipy.stats.t.ppf(0.975, self.df_e)
 
             for i in range(len(self.solvedCoefficients)):
-                self.ci.append([self.solvedCoefficients[i] - t_df * parameterStatistics.sd_beta[i],
-                               self.solvedCoefficients[i] + t_df * parameterStatistics.sd_beta[i]])
+                self.ci.append(
+                    [
+                        self.solvedCoefficients[i]
+                        - t_df * parameterStatistics.sd_beta[i],
+                        self.solvedCoefficients[i]
+                        + t_df * parameterStatistics.sd_beta[i],
+                    ]
+                )
 
             try:
-                self.tstat_beta = self.solvedCoefficients / \
-                    parameterStatistics.sd_beta  # coeff t-statistics
+                self.tstat_beta = (
+                    self.solvedCoefficients / parameterStatistics.sd_beta
+                )  # coeff t-statistics
             except:
                 self.tstat_beta = None
 
             try:
                 # coef. p-values
                 self.pstat_beta = (
-                    1.0 - scipy.stats.t.cdf(numpy.abs(self.tstat_beta), self.df_e)) * 2.0
+                    1.0 - scipy.stats.t.cdf(numpy.abs(self.tstat_beta), self.df_e)
+                ) * 2.0
             except:
                 self.pstat_beta = None
 
@@ -346,14 +435,13 @@ class IModel(object):
                 # use None as a flag for coefficients that are not fixed
                 if self.fixedCoefficients[i] != None:
                     inCoeffs[i] = self.fixedCoefficients[i]
-        self.modelPredictions = self.CalculateModelPredictions(
-            inCoeffs, inDictionary)
-        self.modelAbsoluteError = self.modelPredictions - \
-            inDictionary['DependentData']
+        self.modelPredictions = self.CalculateModelPredictions(inCoeffs, inDictionary)
+        self.modelAbsoluteError = self.modelPredictions - inDictionary["DependentData"]
         try:
-            if self.dataCache.DependentDataContainsZeroFlag == False:
-                self.modelRelativeError = self.modelAbsoluteError / \
-                    inDictionary['DependentData']
+            if self.dataCache.DependentDataContainsZeroFlag is False:
+                self.modelRelativeError = (
+                    self.modelAbsoluteError / inDictionary["DependentData"]
+                )
                 self.modelPercentError = self.modelRelativeError * 100.0
         except:
             # this is effectively true if this code is reached
@@ -389,15 +477,19 @@ class IModel(object):
                     if self.fixedCoefficients[i] != None:
                         inCoeffs[i] = self.fixedCoefficients[i]
 
-            error = self.CalculateModelPredictions(
-                inCoeffs, self.dataCache.reducedDataCacheDictionary) - self.dataCache.reducedDataCacheDictionary['DependentData']
+            error = (
+                self.CalculateModelPredictions(
+                    inCoeffs, self.dataCache.reducedDataCacheDictionary
+                )
+                - self.dataCache.reducedDataCacheDictionary["DependentData"]
+            )
             ssq = numpy.sum(numpy.square(error))
         except:
-            return 1.0E300
+            return 1.0e300
         if numpy.isfinite(ssq):
             return ssq
         else:
-            return 1.0E300
+            return 1.0e300
 
     def CalculateAllDataFittingTarget(self, inCoeffs):
         # save time by checking bounds first
@@ -426,129 +518,148 @@ class IModel(object):
                     if self.fixedCoefficients[i] != None:
                         inCoeffs[i] = self.fixedCoefficients[i]
 
-            self.CalculateModelErrors(
-                inCoeffs, self.dataCache.allDataCacheDictionary)
+            self.CalculateModelErrors(inCoeffs, self.dataCache.allDataCacheDictionary)
             error = self.modelAbsoluteError
 
-            if len(self.dataCache.allDataCacheDictionary['Weights']):
-                error = error * \
-                    self.dataCache.allDataCacheDictionary['Weights']
+            if len(self.dataCache.allDataCacheDictionary["Weights"]):
+                error = error * self.dataCache.allDataCacheDictionary["Weights"]
 
             if self.fittingTarget == "SSQABS":
                 val = numpy.sum(numpy.square(error))
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
 
             if self.fittingTarget == "SSQREL":
-                error = error / \
-                    self.dataCache.allDataCacheDictionary['DependentData']
+                error = error / self.dataCache.allDataCacheDictionary["DependentData"]
                 val = numpy.sum(numpy.square(error))
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
 
             if self.fittingTarget == "ABSABS":
                 val = numpy.sum(numpy.abs(error))
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
 
             # see http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2635088
             if self.fittingTarget == "LNQREL":
 
                 Q = numpy.abs(
-                    self.modelPredictions / self.dataCache.allDataCacheDictionary['DependentData'])
+                    self.modelPredictions
+                    / self.dataCache.allDataCacheDictionary["DependentData"]
+                )
                 sumsqlogQ = numpy.sum(numpy.square(numpy.log(Q)))
                 val = sumsqlogQ
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
 
             if self.fittingTarget == "ABSREL":
 
                 val = numpy.sum(
-                    numpy.abs(error / self.dataCache.allDataCacheDictionary['DependentData']))
+                    numpy.abs(
+                        error / self.dataCache.allDataCacheDictionary["DependentData"]
+                    )
+                )
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
 
             if self.fittingTarget == "PEAKABS":
                 val = numpy.max(numpy.abs(error))
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
 
             if self.fittingTarget == "PEAKREL":
                 val = numpy.max(
-                    numpy.abs(error / self.dataCache.allDataCacheDictionary['DependentData']))
+                    numpy.abs(
+                        error / self.dataCache.allDataCacheDictionary["DependentData"]
+                    )
+                )
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
 
             # ODR does not use "error" above, which can be weighted, so weights are passed to ODR if used
-            if self.fittingTarget == "ODR":  # this is inefficient but works for every possible case
+            if (
+                self.fittingTarget == "ODR"
+            ):  # this is inefficient but works for every possible case
                 model = scipy.odr.odrpack.Model(self.WrapperForODR)
-                if len(self.dataCache.allDataCacheDictionary['Weights']):
+                if len(self.dataCache.allDataCacheDictionary["Weights"]):
                     data = scipy.odr.odrpack.Data(
-                        self.dataCache.allDataCacheDictionary['IndependentData'],  self.dataCache.allDataCacheDictionary['DependentData'], we=self.dataCache.allDataCacheDictionary['Weights'])
+                        self.dataCache.allDataCacheDictionary["IndependentData"],
+                        self.dataCache.allDataCacheDictionary["DependentData"],
+                        we=self.dataCache.allDataCacheDictionary["Weights"],
+                    )
                 else:
                     data = scipy.odr.odrpack.Data(
-                        self.dataCache.allDataCacheDictionary['IndependentData'],  self.dataCache.allDataCacheDictionary['DependentData'])
-                myodr = scipy.odr.odrpack.ODR(
-                    data, model, beta0=inCoeffs, maxit=0)
+                        self.dataCache.allDataCacheDictionary["IndependentData"],
+                        self.dataCache.allDataCacheDictionary["DependentData"],
+                    )
+                myodr = scipy.odr.odrpack.ODR(data, model, beta0=inCoeffs, maxit=0)
                 myodr.set_job(fit_type=2)
                 out = myodr.run()
                 val = out.sum_square
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
 
             # remaining targets require these
             ncoef = 1.0 * len(inCoeffs)
-            nobs = 1.0 * \
-                len(self.dataCache.allDataCacheDictionary['DependentData'])
-            ll = -(nobs*0.5)*(1.0 + numpy.log(2.0*numpy.pi)) - \
-                (nobs*0.5)*numpy.log(numpy.dot(error, error)/nobs)
+            nobs = 1.0 * len(self.dataCache.allDataCacheDictionary["DependentData"])
+            ll = -(nobs * 0.5) * (1.0 + numpy.log(2.0 * numpy.pi)) - (
+                nobs * 0.5
+            ) * numpy.log(numpy.dot(error, error) / nobs)
 
             if self.fittingTarget == "AIC":
-                val = -2.0*ll/nobs + (2.0*ncoef/nobs)
+                val = -2.0 * ll / nobs + (2.0 * ncoef / nobs)
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
 
             if self.fittingTarget == "BIC":
-                val = -2.0*ll/nobs + (ncoef*numpy.log(nobs))/nobs
+                val = -2.0 * ll / nobs + (ncoef * numpy.log(nobs)) / nobs
                 if numpy.isfinite(val):
                     return val
                 else:
-                    return 1.0E300
+                    return 1.0e300
         except:
-            return 1.0E300
+            return 1.0e300
 
-    def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
+    def Solve(self, inNonLinearSolverAlgorithmName="Levenberg-Marquardt"):
 
         solver = pyeq3.solverService()
 
         # if any of these conditions exist, a linear solver cannot be used
-        if self.fixedCoefficients != [] or self.upperCoefficientBounds != [] or self.lowerCoefficientBounds != [] or len(self.dataCache.allDataCacheDictionary['Weights']):
+        if (
+            self.fixedCoefficients != []
+            or self.upperCoefficientBounds != []
+            or self.lowerCoefficientBounds != []
+            or len(self.dataCache.allDataCacheDictionary["Weights"])
+        ):
             self._canLinearSolverBeUsedForSSQABS = False
 
         # selection of different solvers and algorithms.
         if self.splineFlag:
             return solver.SolveUsingSpline(self)
-        elif self.fittingTarget == 'SSQABS' and self.CanLinearSolverBeUsedForSSQABS() == True:
+        elif (
+            self.fittingTarget == "SSQABS"
+            and self.CanLinearSolverBeUsedForSSQABS() is True
+        ):
             return solver.SolveUsingLinear(self)
-        elif self.fittingTarget == 'ODR':
+        elif self.fittingTarget == "ODR":
             if len(self.deEstimatedCoefficients) == 0:
                 self.deEstimatedCoefficients = solver.SolveUsingDE(self)
             return solver.SolveUsingODR(self)
@@ -556,17 +667,22 @@ class IModel(object):
             if len(self.deEstimatedCoefficients) == 0:
                 self.deEstimatedCoefficients = solver.SolveUsingDE(self)
             self.estimatedCoefficients = solver.SolveUsingSelectedAlgorithm(
-                self, inAlgorithmName=inNonLinearSolverAlgorithmName)
+                self, inAlgorithmName=inNonLinearSolverAlgorithmName
+            )
             return solver.SolveUsingSimplex(self)
 
     def AreCoefficientsWithinBounds(self, inCoeffs):
         if self.upperCoefficientBounds != []:
             for index in range(len(inCoeffs)):
-                if (self.upperCoefficientBounds[index] != None) and (inCoeffs[index] > self.upperCoefficientBounds[index]):
+                if (self.upperCoefficientBounds[index] != None) and (
+                    inCoeffs[index] > self.upperCoefficientBounds[index]
+                ):
                     return False
         if self.lowerCoefficientBounds != []:
             for index in range(len(inCoeffs)):
-                if (self.lowerCoefficientBounds[index] != None) and (inCoeffs[index] < self.lowerCoefficientBounds[index]):
+                if (self.lowerCoefficientBounds[index] != None) and (
+                    inCoeffs[index] < self.lowerCoefficientBounds[index]
+                ):
                     return False
         return True
 
@@ -580,7 +696,9 @@ class IModel(object):
         return self._dimensionality
 
     def CanLinearSolverBeUsedForSSQABS(self):
-        return self.extendedVersionHandler.CanLinearSolverBeUsedForSSQABS(self._canLinearSolverBeUsedForSSQABS)
+        return self.extendedVersionHandler.CanLinearSolverBeUsedForSSQABS(
+            self._canLinearSolverBeUsedForSSQABS
+        )
 
     def WrapperForScipyCurveFit(self, data, *inCoeffs):
         # so coefficient assigment can be made
@@ -602,13 +720,20 @@ class IModel(object):
                 # use None as a flag for coefficients that are not fixed
                 if self.fixedCoefficients[i] != None:
                     inCoeffs[i] = self.fixedCoefficients[i]
-        return self.CalculateModelPredictions(inCoeffs, self.dataCache.allDataCacheDictionary)
+        return self.CalculateModelPredictions(
+            inCoeffs, self.dataCache.allDataCacheDictionary
+        )
 
     def WrapperForODR(self, inCoeffs, data):
         if not numpy.all(numpy.isfinite(data)):
-            return numpy.ones(len(self.dataCache.allDataCacheDictionary['DependentData'])) * 1.0E300
+            return (
+                numpy.ones(len(self.dataCache.allDataCacheDictionary["DependentData"]))
+                * 1.0e300
+            )
 
-        if numpy.array_equal(data, self.dataCache.allDataCacheDictionary['IndependentData']):
+        if numpy.array_equal(
+            data, self.dataCache.allDataCacheDictionary["IndependentData"]
+        ):
             if self.upperCoefficientBounds != []:
                 for i in range(len(inCoeffs)):
                     # use None as a flag for coefficients that are not fixed
@@ -627,11 +752,12 @@ class IModel(object):
                     if self.fixedCoefficients[i] != None:
                         inCoeffs[i] = self.fixedCoefficients[i]
             result = self.CalculateModelPredictions(
-                inCoeffs, self.dataCache.allDataCacheDictionary)
+                inCoeffs, self.dataCache.allDataCacheDictionary
+            )
         else:
             tempCache = self.dataCache.allDataCacheDictionary
             self.dataCache.allDataCacheDictionary = {}
-            self.dataCache.allDataCacheDictionary['IndependentData'] = data
+            self.dataCache.allDataCacheDictionary["IndependentData"] = data
             self.dataCache.FindOrCreateAllDataCache(self)
             if self.upperCoefficientBounds != []:
                 for i in range(len(inCoeffs)):
@@ -651,7 +777,8 @@ class IModel(object):
                     if self.fixedCoefficients[i] != None:
                         inCoeffs[i] = self.fixedCoefficients[i]
             result = self.CalculateModelPredictions(
-                inCoeffs, self.dataCache.allDataCacheDictionary)
+                inCoeffs, self.dataCache.allDataCacheDictionary
+            )
             self.dataCache.allDataCacheDictionary = tempCache
         return result
 
@@ -663,27 +790,46 @@ class IModel(object):
         # should data be rejected?
         true_or_false = self.extendedVersionHandler.ShouldDataBeRejected(self)
 
-        if self.dataCache.DependentDataContainsZeroFlag and self.fittingTarget[-3:] == "REL":
+        if (
+            self.dataCache.DependentDataContainsZeroFlag
+            and self.fittingTarget[-3:] == "REL"
+        ):
             true_or_false = True
 
         # if yes, why?
         # hopefully this will not be used
-        self.reasonWhyDataRejected = 'unknown condition'
+        self.reasonWhyDataRejected = "unknown condition"
         if true_or_false:
-            if self.dataCache.DependentDataContainsZeroFlag and self.fittingTarget[-3:] == "REL":
-                self.reasonWhyDataRejected = 'The data contains at least one dependent data value of exactly 0.0, a relative fit cannot be performed as divide-by-zero errors would occur.'
+            if (
+                self.dataCache.DependentDataContainsZeroFlag
+                and self.fittingTarget[-3:] == "REL"
+            ):
+                self.reasonWhyDataRejected = "The data contains at least one dependent data value of exactly 0.0, a relative fit cannot be performed as divide-by-zero errors would occur."
 
-            if self.independentData1CannotContainZeroFlag and self.dataCache.independentData1ContainsZeroFlag:
-                self.reasonWhyDataRejected = 'This equation requires non-zero values for the first independent variable (X). At least one of the values was exactly equal to zero. Examples that would fail would be ln(x) and 1/x.'
+            if (
+                self.independentData1CannotContainZeroFlag
+                and self.dataCache.independentData1ContainsZeroFlag
+            ):
+                self.reasonWhyDataRejected = "This equation requires non-zero values for the first independent variable (X). At least one of the values was exactly equal to zero. Examples that would fail would be ln(x) and 1/x."
 
-            if self.independentData1CannotContainNegativeFlag and self.dataCache.independentData1ContainsNegativeFlag:
-                self.reasonWhyDataRejected = 'This equation requires non-negative values for the first independent variable (X). At least one of the values was negative. One example that would fail is ln(x).'
+            if (
+                self.independentData1CannotContainNegativeFlag
+                and self.dataCache.independentData1ContainsNegativeFlag
+            ):
+                self.reasonWhyDataRejected = "This equation requires non-negative values for the first independent variable (X). At least one of the values was negative. One example that would fail is ln(x)."
 
-            if self.independentData1CannotContainPositiveFlag and self.dataCache.independentData1ContainsPositiveFlag:
-                self.reasonWhyDataRejected = 'This equation requires non-positive values for the first independent variable (X). At least one of the values was positive. One xample that would fail would be ln(-x), please check the data.'
+            if (
+                self.independentData1CannotContainPositiveFlag
+                and self.dataCache.independentData1ContainsPositiveFlag
+            ):
+                self.reasonWhyDataRejected = "This equation requires non-positive values for the first independent variable (X). At least one of the values was positive. One xample that would fail would be ln(-x), please check the data."
 
-            if self.independentData1CannotContainBothPositiveAndNegativeFlag and self.dataCache.independentData1ContainsPositiveFlag and self.dataCache.independentData1ContainsNegativeFlag:
-                self.reasonWhyDataRejected = 'This equation cannot have both positive and negative values for the first independent variable (X)/'
+            if (
+                self.independentData1CannotContainBothPositiveAndNegativeFlag
+                and self.dataCache.independentData1ContainsPositiveFlag
+                and self.dataCache.independentData1ContainsNegativeFlag
+            ):
+                self.reasonWhyDataRejected = "This equation cannot have both positive and negative values for the first independent variable (X)/"
 
         return true_or_false
 
@@ -691,10 +837,9 @@ class IModel(object):
         returnList = []
         for item in inList:
             if type(item) == type([]):  # is this item another list?
-                returnList.append(
-                    self.RecursivelyConvertIntStringsToFloatStrings(item))
+                returnList.append(self.RecursivelyConvertIntStringsToFloatStrings(item))
             else:
-                if type(item) == type(str('')):  # is this item a string?
+                if type(item) == type(str("")):  # is this item a string?
                     if item.isdigit():
                         # convert the integer to its floating point representation
                         returnList.append(str(float(item)))
@@ -708,12 +853,13 @@ class IModel(object):
         ModelCache = pyeq3.dataCache()
 
         if len(independent_data.shape) == 1:
-            d = numpy.array([independent_data,
-                             numpy.ones_like(independent_data)])
+            d = numpy.array([independent_data, numpy.ones_like(independent_data)])
         else:
             d = independent_data
 
-        ModelCache.allDataCacheDictionary['IndependentData'] = d
+        ModelCache.allDataCacheDictionary["IndependentData"] = d
         ModelCache.FindOrCreateAllDataCache(self)
 
-        return self.CalculateModelPredictions(self.solvedCoefficients, ModelCache.allDataCacheDictionary)
+        return self.CalculateModelPredictions(
+            self.solvedCoefficients, ModelCache.allDataCacheDictionary
+        )

@@ -106,7 +106,7 @@ def ParallelFittingFunction(rawData, fittingTargetText, smoothnessControl, modul
 
                     for extendedVersion in ['Default', 'Offset']:
 
-                        if (extendedVersion == 'Offset') and (equationClass[1].autoGenerateOffsetForm == False):
+                        if (extendedVersion == 'Offset') and (equationClass[1].autoGenerateOffsetForm is False):
                             continue
 
                         if equationCountForModulus % modulus != modulusRemainder:

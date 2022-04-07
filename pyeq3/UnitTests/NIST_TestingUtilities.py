@@ -3,9 +3,8 @@ import sys
 import math
 
 # ensure pyeq3 can be imported
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 import pyeq3
 
 # from http://www.itl.nist.gov/div898/strd/nls/nls_info.shtml
@@ -22,15 +21,14 @@ import pyeq3
 
 
 class NistDataObject(object):
-
     def __init__(self):
         self.Start_1_Values = []
         self.Start_2_Values = []
         self.CertifiedValues = []
         self.CertifiedValuesStandardDeviation = []
-        self.RawDataIn_XY_Format = ''
-        self.RawDataIn_XYZ_Format = ''
-        self.ResidualSumOfSquaresString = ''
+        self.RawDataIn_XY_Format = ""
+        self.RawDataIn_XYZ_Format = ""
+        self.ResidualSumOfSquaresString = ""
         self.ResidualSumOfSquaresValue = None
 
 
@@ -38,14 +36,14 @@ class NistDataObject(object):
 # fit statistics use log(y) but the data file contains y and not log(y)
 def LoadDataFileFromNIST(inFileName, inTakeLogOfDependantDataFlag=False):
 
-    f = open(inFileName, 'rt')
+    f = open(inFileName, "rt")
     fileLines = f.readlines()
     f.close()
 
     nistDataObject = NistDataObject()
 
     # starting values
-    splitted = fileLines[4].replace(')', '').split()
+    splitted = fileLines[4].replace(")", "").split()
     beginLine = int(splitted[3])
     endLine = int(splitted[5])
 
@@ -54,17 +52,16 @@ def LoadDataFileFromNIST(inFileName, inTakeLogOfDependantDataFlag=False):
         nistDataObject.Start_1_Values.append(float(splitted[2]))
         nistDataObject.Start_2_Values.append(float(splitted[3]))
         nistDataObject.CertifiedValues.append(float(splitted[4]))
-        nistDataObject.CertifiedValuesStandardDeviation.append(
-            float(splitted[5]))
+        nistDataObject.CertifiedValuesStandardDeviation.append(float(splitted[5]))
 
     # SSQ
-    nistDataObject.ResidualSumOfSquaresString = fileLines[endLine + 1].split(
-    )[-1:][0]
+    nistDataObject.ResidualSumOfSquaresString = fileLines[endLine + 1].split()[-1:][0]
     nistDataObject.ResidualSumOfSquaresValue = float(
-        nistDataObject.ResidualSumOfSquaresString)
+        nistDataObject.ResidualSumOfSquaresString
+    )
 
     # data in x y (z) format (reverse of NIST data file)
-    splitted = fileLines[6].replace(')', '').split()
+    splitted = fileLines[6].replace(")", "").split()
     beginLine = int(splitted[2])
     endLine = int(splitted[4])
 
@@ -72,20 +69,22 @@ def LoadDataFileFromNIST(inFileName, inTakeLogOfDependantDataFlag=False):
         splitted = fileLines[lineIndex].split()
 
         depString = splitted[0]
-        if inTakeLogOfDependantDataFlag == True:
+        if inTakeLogOfDependantDataFlag is True:
             depString = str(math.log(float(depString)))
 
         if len(splitted) == 2:
-            nistDataObject.RawDataIn_XY_Format += splitted[1] + \
-                ' ' + depString + '\n'
+            nistDataObject.RawDataIn_XY_Format += splitted[1] + " " + depString + "\n"
         else:
-            nistDataObject.RawDataIn_XYZ_Format += splitted[1] + \
-                ' ' + splitted[2] + ' ' + depString + '\n'
+            nistDataObject.RawDataIn_XYZ_Format += (
+                splitted[1] + " " + splitted[2] + " " + depString + "\n"
+            )
 
     return nistDataObject
 
 
-def CalculateAndPrintResults(equation, nistDataObject, inStartValues, inStartValuesString, inPrintFlag):
+def CalculateAndPrintResults(
+    equation, nistDataObject, inStartValues, inStartValuesString, inPrintFlag
+):
 
     if nistDataObject.RawDataIn_XY_Format != "":  # 2D data
         rawData = nistDataObject.RawDataIn_XY_Format
@@ -107,37 +106,56 @@ def CalculateAndPrintResults(equation, nistDataObject, inStartValues, inStartVal
     # gives the same result as NIST, then compare actual values if that fails
     # as it is possible though very, very unlikely that pyeq3 fits better than NIST.
     ssqString = "%-.11E" % (ssq)
-    if (ssqString[:10] + ssqString[-4:]) == (nistDataObject.ResidualSumOfSquaresString[:10] + nistDataObject.ResidualSumOfSquaresString[-4:]):
-        compareString = '- equal to NIST'
+    if (ssqString[:10] + ssqString[-4:]) == (
+        nistDataObject.ResidualSumOfSquaresString[:10]
+        + nistDataObject.ResidualSumOfSquaresString[-4:]
+    ):
+        compareString = "- equal to NIST"
         betterThanOrEqualToNIST = True
     else:
         deltaSSQ = nistDataObject.ResidualSumOfSquaresValue - ssq
         if deltaSSQ > 0.0:  # NIST gives values to 10 decimal places
-            compareString = '- better than NIST'
+            compareString = "- better than NIST"
             betterThanOrEqualToNIST = True
         elif deltaSSQ < 0.0:
-            compareString = '- worse than NIST'
+            compareString = "- worse than NIST"
             betterThanOrEqualToNIST = False
         else:
-            compareString = '- equal to NIST'
+            compareString = "- equal to NIST"
             betterThanOrEqualToNIST = True
 
     if inPrintFlag:
-        print(equation.GetDisplayName(), str(equation.GetDimensionality()
-                                             ) + "D", '- using "' + inStartValuesString + '" values')
-        print(equation.fittingTargetDictionary[equation.fittingTarget], '=',)
-        print(ssqString + ', should be',)
+        print(
+            equation.GetDisplayName(),
+            str(equation.GetDimensionality()) + "D",
+            '- using "' + inStartValuesString + '" values',
+        )
+        print(
+            equation.fittingTargetDictionary[equation.fittingTarget],
+            "=",
+        )
+        print(
+            ssqString + ", should be",
+        )
         print(nistDataObject.ResidualSumOfSquaresValue, compareString)
 
         print("Parameters:")
         for i in range(len(equation.solvedCoefficients)):
-            spacer = ' '
+            spacer = " "
             if equation.solvedCoefficients[i] < 0.0:
-                spacer = ''
-            print("    %s = %s%-.10E" % (equation.GetCoefficientDesignators()
-                  [i], spacer, equation.solvedCoefficients[i]),)
-            print('(NIST Cert. %s%-.10E, NIST est. %s%-.5E' % (spacer,
-                  nistDataObject.CertifiedValues[i], spacer, inStartValues[i]))
+                spacer = ""
+            print(
+                "    %s = %s%-.10E"
+                % (
+                    equation.GetCoefficientDesignators()[i],
+                    spacer,
+                    equation.solvedCoefficients[i],
+                ),
+            )
+            print(
+                "(NIST Cert. %s%-.10E, NIST est. %s%-.5E"
+                % (spacer, nistDataObject.CertifiedValues[i], spacer, inStartValues[i])
+            )
 
         print()
 

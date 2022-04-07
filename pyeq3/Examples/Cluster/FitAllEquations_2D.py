@@ -84,7 +84,7 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
 
                 for extendedVersionString in ['Default', 'Offset']:
 
-                    if (extendedVersionString == 'Offset') and (equationClass[1].autoGenerateOffsetForm == False):
+                    if (extendedVersionString == 'Offset') and (equationClass[1].autoGenerateOffsetForm is False):
                         continue
 
                     equationInstance = equationClass[1](

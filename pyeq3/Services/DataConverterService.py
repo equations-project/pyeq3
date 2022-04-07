@@ -11,11 +11,11 @@
 import io  # cStringIO is not safe for Unicode comments, use StringIO instead
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class DataConverterService(object):
-
     def CacheCharacteristics(self, inModel):
         # cache some data set characteristics for later use,
         # these are for the data domains of individual equations
@@ -66,7 +66,7 @@ class DataConverterService(object):
                     a = float(tokenlist[0])
                 except:
                     continue
-                if a > 1.0E300 or a < -1.0E300 or numpy.isnan(a) or numpy.isinf(a):
+                if a > 1.0e300 or a < -1.0e300 or numpy.isnan(a) or numpy.isinf(a):
                     continue
                 if a < 0.0:
                     inModel.dataCache.independentData1ContainsNegativeFlag = True
@@ -92,9 +92,9 @@ class DataConverterService(object):
 
                 except:
                     continue
-                if a > 1.0E300 or a < -1.0E300 or numpy.isnan(a) or numpy.isinf(a):
+                if a > 1.0e300 or a < -1.0e300 or numpy.isnan(a) or numpy.isinf(a):
                     continue
-                if b > 1.0E300 or b < -1.0E300 or numpy.isnan(b) or numpy.isinf(b):
+                if b > 1.0e300 or b < -1.0e300 or numpy.isnan(b) or numpy.isinf(b):
                     continue
                 if b == 0.0:
                     inModel.dataCache.DependentDataContainsZeroFlag = True
@@ -121,11 +121,11 @@ class DataConverterService(object):
                         d = 1.0
                 except:
                     continue
-                if a > 1.0E300 or a < -1.0E300 or numpy.isnan(a) or numpy.isinf(a):
+                if a > 1.0e300 or a < -1.0e300 or numpy.isnan(a) or numpy.isinf(a):
                     continue
-                if b > 1.0E300 or b < -1.0E300 or numpy.isnan(b) or numpy.isinf(b):
+                if b > 1.0e300 or b < -1.0e300 or numpy.isnan(b) or numpy.isinf(b):
                     continue
-                if c > 1.0E300 or c < -1.0E300 or numpy.isnan(c) or numpy.isinf(c):
+                if c > 1.0e300 or c < -1.0e300 or numpy.isnan(c) or numpy.isinf(c):
                     continue
                 if c == 0.0:
                     inModel.dataCache.DependentDataContainsZeroFlag = True
@@ -147,35 +147,41 @@ class DataConverterService(object):
                 dataLists[2].append(b)
                 dataLists[3].append(c)
 
-        if inModel.ShouldDataBeRejected(inModel) == True:
+        if inModel.ShouldDataBeRejected(inModel) is True:
             raise Exception(inModel.reasonWhyDataRejected)
 
         if inModel.GetDimensionality() == 1:
             dataLists[0].sort()
-            inModel.dataCache.allDataCacheDictionary['IndependentData'] = [
-                numpy.array(dataLists[0]), dataLists[1]]
+            inModel.dataCache.allDataCacheDictionary["IndependentData"] = [
+                numpy.array(dataLists[0]),
+                dataLists[1],
+            ]
             return
 
         # for sorting all data by values of dependent variable
         arrayLists = numpy.array(dataLists)
         indices = numpy.argsort(arrayLists[3])
 
-        inModel.dataCache.allDataCacheDictionary['DependentData'] = numpy.array(
-            arrayLists[3][indices])
+        inModel.dataCache.allDataCacheDictionary["DependentData"] = numpy.array(
+            arrayLists[3][indices]
+        )
 
         if inModel.GetDimensionality() == 2:
             # the second  _unused_  list is for a bug in scipy.odr, which is used to calculate standard errors on parameters
-            inModel.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array(
-                [arrayLists[2][indices], numpy.ones(len(arrayLists[0]))])
+            inModel.dataCache.allDataCacheDictionary["IndependentData"] = numpy.array(
+                [arrayLists[2][indices], numpy.ones(len(arrayLists[0]))]
+            )
         if inModel.GetDimensionality() == 3:
-            inModel.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array(
-                [arrayLists[1][indices], arrayLists[2][indices]])
+            inModel.dataCache.allDataCacheDictionary["IndependentData"] = numpy.array(
+                [arrayLists[1][indices], arrayLists[2][indices]]
+            )
 
         if inUseWeightsFlag:
-            inModel.dataCache.allDataCacheDictionary['Weights'] = numpy.array(
-                arrayLists[0][indices])
+            inModel.dataCache.allDataCacheDictionary["Weights"] = numpy.array(
+                arrayLists[0][indices]
+            )
         else:
-            inModel.dataCache.allDataCacheDictionary['Weights'] = []
+            inModel.dataCache.allDataCacheDictionary["Weights"] = []
 
     def ProcessNumpyArray(self, inArray, inModel, inUseWeightsFlag):
         """
@@ -201,37 +207,46 @@ class DataConverterService(object):
             assert inModel.GetDimensionality() + 1 == len(inArray[0])
             y = inArray[:, -2]
             indices = numpy.argsort(y)
-            inModel.dataCache.allDataCacheDictionary['Weights'] = inArray[indices, -1]
+            inModel.dataCache.allDataCacheDictionary["Weights"] = inArray[indices, -1]
         else:
             assert inModel.GetDimensionality() == len(inArray[0])
             y = inArray[:, -1]
             indices = numpy.argsort(y)
-            inModel.dataCache.allDataCacheDictionary['Weights'] = []
+            inModel.dataCache.allDataCacheDictionary["Weights"] = []
 
         if inModel.GetDimensionality() == 1:
             y = numpy.ones_like(inArray[0])
 
         if inModel.GetDimensionality() < 3:
-            inModel.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array([inArray[indices, 0],
-                                                                                       numpy.ones_like(inArray[:, 0])])
+            inModel.dataCache.allDataCacheDictionary["IndependentData"] = numpy.array(
+                [inArray[indices, 0], numpy.ones_like(inArray[:, 0])]
+            )
         else:
-            inModel.dataCache.allDataCacheDictionary['IndependentData'] = inArray[indices, :2].T
+            inModel.dataCache.allDataCacheDictionary["IndependentData"] = inArray[
+                indices, :2
+            ].T
 
-            if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][1] < 0.):
+            if any(
+                inModel.dataCache.allDataCacheDictionary["IndependentData"][1] < 0.0
+            ):
                 inModel.dataCache.independentData2ContainsNegativeFlag = True
-            if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][1] > 0.):
+            if any(
+                inModel.dataCache.allDataCacheDictionary["IndependentData"][1] > 0.0
+            ):
                 inModel.dataCache.independentData2ContainsPositiveFlag = True
-            if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][1] == 0.):
+            if any(
+                inModel.dataCache.allDataCacheDictionary["IndependentData"][1] == 0.0
+            ):
                 inModel.dataCache.independentData2ContainsZeroFlag = True
 
-        if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][0] < 0.):
+        if any(inModel.dataCache.allDataCacheDictionary["IndependentData"][0] < 0.0):
             inModel.dataCache.independentData1ContainsNegativeFlag = True
-        if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][0] > 0.):
+        if any(inModel.dataCache.allDataCacheDictionary["IndependentData"][0] > 0.0):
             inModel.dataCache.independentData1ContainsPositiveFlag = True
-        if any(inModel.dataCache.allDataCacheDictionary['IndependentData'][0] == 0.):
+        if any(inModel.dataCache.allDataCacheDictionary["IndependentData"][0] == 0.0):
             inModel.dataCache.independentData1ContainsZeroFlag = True
 
-        inModel.dataCache.allDataCacheDictionary['DependentData'] = y[indices]
+        inModel.dataCache.allDataCacheDictionary["DependentData"] = y[indices]
 
     def ConvertPythonSequences(self, inRawData, inModel):
         pass

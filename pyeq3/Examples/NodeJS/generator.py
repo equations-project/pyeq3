@@ -30,7 +30,7 @@ for modelsTypeName in ['Models_2D', 'Models_3D']:
 
                     for extendedVersionString in ['Default', 'Offset']:
 
-                        if (extendedVersionString == 'Offset') and (equationClass[1].autoGenerateOffsetForm == False):
+                        if (extendedVersionString == 'Offset') and (equationClass[1].autoGenerateOffsetForm is False):
                             continue
 
                         equationInstance = equationClass[1](

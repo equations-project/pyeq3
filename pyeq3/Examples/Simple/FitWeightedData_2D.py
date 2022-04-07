@@ -71,42 +71,42 @@ if equation.upperCoefficientBounds or equation.lowerCoefficientBounds:
 print('Degress of freedom error',  equation.df_e)
 print('Degress of freedom regression',  equation.df_r)
 
-if equation.rmse == None:
+if equation.rmse is None:
     print('Root Mean Squared Error (RMSE): n/a')
 else:
     print('Root Mean Squared Error (RMSE):',  equation.rmse)
 
-if equation.r2 == None:
+if equation.r2 is None:
     print('R-squared: n/a')
 else:
     print('R-squared:',  equation.r2)
 
-if equation.r2adj == None:
+if equation.r2adj is None:
     print('R-squared adjusted: n/a')
 else:
     print('R-squared adjusted:',  equation.r2adj)
 
-if equation.Fstat == None:
+if equation.Fstat is None:
     print('Model F-statistic: n/a')
 else:
     print('Model F-statistic:',  equation.Fstat)
 
-if equation.Fpv == None:
+if equation.Fpv is None:
     print('Model F-statistic p-value: n/a')
 else:
     print('Model F-statistic p-value:',  equation.Fpv)
 
-if equation.ll == None:
+if equation.ll is None:
     print('Model log-likelihood: n/a')
 else:
     print('Model log-likelihood:',  equation.ll)
 
-if equation.aic == None:
+if equation.aic is None:
     print('Model AIC: n/a')
 else:
     print('Model AIC:',  equation.aic)
 
-if equation.bic == None:
+if equation.bic is None:
     print('Model BIC: n/a')
 else:
     print('Model BIC:',  equation.bic)
