@@ -1,4 +1,7 @@
-import os, sys, json
+import pyeq3
+import os
+import sys
+import json
 
 # we want *exceptions* but not *warnings* from the optimizers
 # to be propagated back to javascript.  Ignore only optimizer warnings
@@ -7,10 +10,7 @@ from scipy.optimize import OptimizeWarning
 warnings.simplefilter("ignore", OptimizeWarning)
 
 
-import pyeq3
-
-
-pythonFileName = sys.argv[0] # unused
+pythonFileName = sys.argv[0]  # unused
 equationInfoFromNodeJS = json.loads(sys.argv[1])
 textDataFromNodeJS = json.loads(sys.argv[2])
 fittingTargetFromNodeJS = json.loads(sys.argv[3])
@@ -29,7 +29,8 @@ eqStringToEvaluate += '"' + extendedVersionString + '")'
 
 equation = eval(eqStringToEvaluate)
 
-pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(textDataFromNodeJS, equation, False)
+pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+    textDataFromNodeJS, equation, False)
 
 equation.Solve()
 

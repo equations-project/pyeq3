@@ -1,4 +1,6 @@
-import os, sys, inspect
+import os
+import sys
+import inspect
 
 import pyeq3
 
@@ -10,9 +12,11 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
                 # the 3D version demonstrates exclusion by equation attribute
                 for extendedVersionName in pyeq3.ExtendedVersionHandlers.extendedVersionHandlerNameList:
                     try:
-                        equation = equationClass[1]('SSQABS', extendedVersionName)
+                        equation = equationClass[1](
+                            'SSQABS', extendedVersionName)
                     except:
                         continue
-                    print('2D ' + submodule[0] + ' --- ' + equation.GetDisplayName())
-                    
+                    print('2D ' + submodule[0] +
+                          ' --- ' + equation.GetDisplayName())
+
 print('Done.')

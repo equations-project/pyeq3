@@ -1,20 +1,23 @@
-import os, sys, dispy
+import os
+import sys
+import dispy
 
 import pyeq3
 
 
-
 # this is the function to be run on the cluster
 def fitEquationUsingDispyCluster(inEquationString, inFittingTargetString, inExtendedVersionString, inTextData):
-	
+
     # individual cluster nodes must be able to import pyeq3
     import pyeq3
 
-    equation = eval(inEquationString +'("' + inFittingTargetString + '", "' + inExtendedVersionString + '")')
+    equation = eval(inEquationString + '("' + inFittingTargetString +
+                    '", "' + inExtendedVersionString + '")')
     pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(inTextData, equation, False)
     equation.Solve()
-    fittedTarget = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
-   
+    fittedTarget = equation.CalculateAllDataFittingTarget(
+        equation.solvedCoefficients)
+
     # this result list allows easy sorting of multiple results later
     return [fittedTarget, inEquationString, equation.solvedCoefficients]
 
@@ -41,7 +44,7 @@ print('Waiting on job completion  and collecting results')
 results = job()
 
 print()
-if job.exception: # can also use job.status
+if job.exception:  # can also use job.status
     print('Remote Exception in job!')
     print()
     print(str(job.exception))

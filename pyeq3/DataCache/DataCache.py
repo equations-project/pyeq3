@@ -8,22 +8,22 @@
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import sys, os
+import sys
+import os
 if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+    sys.path.append(os.path.join(
+        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
 import pyeq3
 
 import numpy
-numpy.seterr(all= 'ignore')
-
+numpy.seterr(all='ignore')
 
 
 class DataCache(object):
-    
+
     def __init__(self):
         self.reducedDataCacheDictionary = {}
         self.allDataCacheDictionary = {}
-        
 
     def GenerateReducedRawData(self, inModel):
         # find the array indices for the max and min values of each data dimension in the full data set
@@ -68,26 +68,33 @@ class DataCache(object):
         # if we have have not selected all data points, draw more data point indices
         if len(self.allDataCacheDictionary['DependentData']) > len(indexList):
             for i in range(inModel.numberOfReducedDataPoints):
-                index = i * len(self.allDataCacheDictionary['DependentData']) // inModel.numberOfReducedDataPoints
+                index = i * \
+                    len(self.allDataCacheDictionary['DependentData']
+                        ) // inModel.numberOfReducedDataPoints
                 if index not in indexList:
                     indexList.append(index)
         indexList.sort()
-                    
+
         # now that we have all the locations (indices) of the data points in the reduced
         # data set, draw those points from the full data set and make our reduced data cache
-        independentData = [[],[]]
+        independentData = [[], []]
         dependentData = []
         for i in indexList:
-            independentData[0].append(self.allDataCacheDictionary['IndependentData'][0][i])
+            independentData[0].append(
+                self.allDataCacheDictionary['IndependentData'][0][i])
             if inModel.GetDimensionality() == 3:
-                independentData[1].append(self.allDataCacheDictionary['IndependentData'][1][i])
-            dependentData.append(self.allDataCacheDictionary['DependentData'][i])
+                independentData[1].append(
+                    self.allDataCacheDictionary['IndependentData'][1][i])
+            dependentData.append(
+                self.allDataCacheDictionary['DependentData'][i])
         if inModel.GetDimensionality() == 2:
-            self.reducedDataCacheDictionary['IndependentData'] = numpy.array([independentData[0], numpy.ones_like(independentData[0])])
+            self.reducedDataCacheDictionary['IndependentData'] = numpy.array(
+                [independentData[0], numpy.ones_like(independentData[0])])
         else:
-            self.reducedDataCacheDictionary['IndependentData'] = numpy.array(independentData)
-        self.reducedDataCacheDictionary['DependentData'] = numpy.array(dependentData)
-
+            self.reducedDataCacheDictionary['IndependentData'] = numpy.array(
+                independentData)
+        self.reducedDataCacheDictionary['DependentData'] = numpy.array(
+            dependentData)
 
     def FindOrCreateCache_CommonCode(self, inCacheDictionary, inModel):
         returnCacheDataList = []
@@ -95,7 +102,8 @@ class DataCache(object):
             # if this item is not in the inCacheDictionary, create it and add it to the inCacheDictionary
             if dataCacheFunction[0] not in inCacheDictionary:
                 # strip any numbers from the end of the string
-                s = dataCacheFunction[0] # name, including any ending name info
+                # name, including any ending name info
+                s = dataCacheFunction[0]
                 found = 1
                 while found:
                     found = 0
@@ -103,32 +111,36 @@ class DataCache(object):
                     if lastchar.isdigit() or lastchar == '_' or lastchar == '.' or lastchar == '-' or lastchar == '[' or lastchar == ']' or lastchar == ',' or lastchar == ' ':
                         found = 1
                         s = s[:-1]
-                numpy.seterr(all= 'raise') # DataCache functions trap numpy exceptions
-                cacheItem = getattr(pyeq3.DataCache.DataCacheFunctions, s)(inCacheDictionary['IndependentData'], dataCacheFunction[1], inModel)
-                numpy.seterr(all= 'ignore')
+                # DataCache functions trap numpy exceptions
+                numpy.seterr(all='raise')
+                cacheItem = getattr(pyeq3.DataCache.DataCacheFunctions, s)(
+                    inCacheDictionary['IndependentData'], dataCacheFunction[1], inModel)
+                numpy.seterr(all='ignore')
                 if not numpy.all(numpy.isfinite(cacheItem)):
-                    raise Exception('Error creating data cache for cache function ' + s + '(): could not calculate value. This is usually caused by taking the the exponent of a large number.')
+                    raise Exception('Error creating data cache for cache function ' + s +
+                                    '(): could not calculate value. This is usually caused by taking the the exponent of a large number.')
                 inCacheDictionary[dataCacheFunction[0]] = cacheItem
             returnCacheDataList.append(inCacheDictionary[dataCacheFunction[0]])
         return numpy.array(returnCacheDataList)
 
-            
     def CalculateNumberOfReducedDataPoints(self, inModel):
-        inModel.numberOfReducedDataPoints = len(inModel.GetCoefficientDesignators()) * 3 * inModel.GetDimensionality()
+        inModel.numberOfReducedDataPoints = len(
+            inModel.GetCoefficientDesignators()) * 3 * inModel.GetDimensionality()
         # if the number of reduced data points is greater than
         # the number of all data points, use the "all data" cache
         if inModel.numberOfReducedDataPoints > len(self.allDataCacheDictionary['DependentData']):
-            inModel.numberOfReducedDataPoints = len(self.allDataCacheDictionary['DependentData'])
-            
+            inModel.numberOfReducedDataPoints = len(
+                self.allDataCacheDictionary['DependentData'])
+
         # if the number of data points in the all data set is not ~1.5 times greater than the
         # number of data points in the reduced data set, just use the all data set directly
         if (1.5 * inModel.numberOfReducedDataPoints) >= len(self.allDataCacheDictionary['DependentData']):
-            inModel.numberOfReducedDataPoints = len(self.allDataCacheDictionary['DependentData'])
-        
-        
+            inModel.numberOfReducedDataPoints = len(
+                self.allDataCacheDictionary['DependentData'])
+
     def FindOrCreateReducedDataCache(self, inModel):
         self.CalculateNumberOfReducedDataPoints(inModel)
-        
+
         # if the number of all data points and the number of reduced data points are equal, caches are equal
         if len(self.allDataCacheDictionary['DependentData']) == inModel.numberOfReducedDataPoints:
             self.reducedDataCacheDictionary = self.allDataCacheDictionary
@@ -138,7 +150,6 @@ class DataCache(object):
             self.GenerateReducedRawData(inModel)
 
         return self.FindOrCreateCache_CommonCode(self.reducedDataCacheDictionary, inModel)
-
 
     def FindOrCreateAllDataCache(self, inModel):
         return self.FindOrCreateCache_CommonCode(self.allDataCacheDictionary, inModel)

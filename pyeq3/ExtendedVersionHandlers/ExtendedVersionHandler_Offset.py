@@ -13,44 +13,39 @@ from . import IExtendedVersionHandler
 
 
 class ExtendedVersionHandler_Offset(IExtendedVersionHandler.IExtendedVersionHandler):
-    
+
     def AssembleDisplayHTML(self, inModel):
         return inModel._HTML + " + Offset"
-
 
     def AssembleDisplayName(self, inModel):
         return inModel._baseName + " With Offset"
 
-
     def AssembleSourceCodeName(self, inModel):
         return inModel.__module__.split('.')[-1] + '_' + inModel.__class__.__name__ + "_Offset"
-
 
     def AssembleCoefficientDesignators(self, inModel):
         return inModel._coefficientDesignators + ['Offset']
 
-
     # overridden from abstract parent class
+
     def AppendAdditionalCoefficientBounds(self, inModel):
         if inModel.upperCoefficientBounds != []:
             inModel.upperCoefficientBounds.append(None)
         if inModel.lowerCoefficientBounds != []:
             inModel.lowerCoefficientBounds.append(None)
 
-
     def AssembleOutputSourceCodeCPP(self, inModel):
         return inModel.SpecificCodeCPP() + "\ttemp += Offset;\n"
 
-
     # overridden from abstract parent class
+
     def GetAdditionalDataCacheFunctions(self, inModel, inDataCacheFunctions):
         return inDataCacheFunctions
 
-
     def GetAdditionalModelPredictions(self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel):
         return self.ConvertInfAndNanToLargeNumber(inBaseModelCalculation + inCoeffs[len(inCoeffs)-1])
-    
-    
+
     # overridden from abstract parent class
+
     def CanLinearSolverBeUsedForSSQABS(self, inModelFlag):
         return False

@@ -1,7 +1,9 @@
-import os, sys, inspect, dispy
+import os
+import sys
+import inspect
+import dispy
 
 import pyeq3
-
 
 
 # Standard lowest sum-of-squared errors in this example, see IModel.fittingTargetDictionary
@@ -29,16 +31,15 @@ textData = '''
 '''
 
 
-
 # this is the function to be run on the cluster
 def SetParametersAndFit(equationString, inFittingTargetString, inExtendedVersionString, inTextData):
-    
+
     # individual cluster nodes must be able to import pyeq3
     import pyeq3
 
     equation = eval('equationString +'("' + inFittingTargetString + '", "' + inExtendedVersionString + '")')
     pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(inTextData, equation, False)
- 
+
     try:
         # check for number of coefficients > number of data points to be fitted
         if len(equation.GetCoefficientDesignators()) > len(equation.dataCache.allDataCacheDictionary['DependentData']):
@@ -50,14 +51,14 @@ def SetParametersAndFit(equationString, inFittingTargetString, inExtendedVersion
 
         equation.Solve()
 
-        fittedTarget = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
-        if fittedTarget > 1.0E290: # error too large
+        fittedTarget = equation.CalculateAllDataFittingTarget(
+            equation.solvedCoefficients)
+        if fittedTarget > 1.0E290:  # error too large
             return None
     except:
         return None
 
     return [fittedTarget, equation.GetDisplayName(), equation.solvedCoefficients, equationString, inExtendedVersionString]
-
 
 
 print()
@@ -71,7 +72,7 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
     if inspect.ismodule(submodule[1]):
         for equationClass in inspect.getmembers(submodule[1]):
             if inspect.isclass(equationClass[1]):
-                
+
                 # ignore these special classes for simplicity
                 if equationClass[1].splineFlag or \
                    equationClass[1].userSelectablePolynomialFlag or \
@@ -80,29 +81,31 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
                    equationClass[1].userSelectableRationalFlag or \
                    equationClass[1].userDefinedFunctionFlag:
                     continue
-                
+
                 for extendedVersionString in ['Default', 'Offset']:
-                    
+
                     if (extendedVersionString == 'Offset') and (equationClass[1].autoGenerateOffsetForm == False):
                         continue
-                    
-                    equationInstance = equationClass[1](fittingTargetString, extendedVersionString)
+
+                    equationInstance = equationClass[1](
+                        fittingTargetString, extendedVersionString)
 
                     if len(equationInstance.GetCoefficientDesignators()) > smoothnessControl:
                         continue
-                    
-                    equationString = equationInstance.__module__ + "." + equationInstance.__class__.__name__
-                    
-                    job = cluster.submit(equationString, fittingTargetString, extendedVersionString, textData)
-                    jobs.append(job)
 
+                    equationString = equationInstance.__module__ + \
+                        "." + equationInstance.__class__.__name__
+
+                    job = cluster.submit(
+                        equationString, fittingTargetString, extendedVersionString, textData)
+                    jobs.append(job)
 
 
 print('Waiting on jobs to complete  and collecting results')
 allResultList = []
 for job in jobs:
     results = job()
-    if job.exception: # can also use job.status
+    if job.exception:  # can also use job.status
         print('Remote Exception in one of the jobs\n', str(job.exception))
     else:
         if results:
@@ -126,5 +129,6 @@ extendedVersionString = topResult[4]
 
 equation = eval('equationString +'("' + fittingTargetString + '", "' + extendedVersionString + '")')
 
-print('Lowest fitting target result was ' + fittingTargetString + " of " + str(fittedTargetValue))
+print('Lowest fitting target result was ' +
+      fittingTargetString + " of " + str(fittedTargetValue))
 print('for the equation "' + equationDisplayName + '"')

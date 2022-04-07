@@ -8,19 +8,19 @@
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import sys, os
+import parser
+import io
+import sys
+import os
 if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
-    
+    sys.path.append(os.path.join(
+        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
 import pyeq3
-
-import numpy # implicitly required by compiling the userFunctionCodeObject in the method EvaluateCachedData() below
-numpy.seterr(all= 'ignore')
-
-import io, parser
-
 import pyeq3.Model_2D_BaseClass
 
+import numpy  # implicitly required by compiling the userFunctionCodeObject in the method EvaluateCachedData() below
+numpy.seterr(all='ignore')
 
 
 class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
@@ -29,12 +29,12 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     # based on http://lybniz2.sourceforge.net/safeeval.html
     functionDictionary = {'Exponents And Logarithms': ['exp', 'log', 'log10', 'log2'],
                           'Trigonometric Functions':  ['sin', 'cos', 'tan', 'arcsin', 'arccos', 'arctan', 'hypot', 'arctan2', 'deg2rad', 'rad2deg'],
-                          'Hyperbolic Trig Functions':['arcsinh', 'arccosh', 'arctanh', 'sinh', 'cosh', 'tanh'],
+                          'Hyperbolic Trig Functions': ['arcsinh', 'arccosh', 'arctanh', 'sinh', 'cosh', 'tanh'],
                           'Other Special Functions':  ['sinc'],
                           'Miscellaneous':            ['sqrt', 'square', 'fabs', 'sign']
-                         }
-                   
-    constantsDictionary = {'Constants':['pi', 'e']}
+                          }
+
+    constantsDictionary = {'Constants': ['pi', 'e']}
     _baseName = "User Defined Function"
 
     webReferenceURL = ''
@@ -43,22 +43,20 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     # all extended version autoGenerate flags are False by default in IModel.py
 
-
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default', inUserFunctionString = ''):
+    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default', inUserFunctionString=''):
         if inUserFunctionString:
             self.ParseAndCompileUserFunctionString(inUserFunctionString)
-        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName) # call superclass        
-
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
+            self, inFittingTarget, inExtendedVersionName)  # call superclass
 
     def GetDisplayHTML(self):
         return 'y = User Defined Function'
 
-
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
         return functionList
-
 
     def GetTokensFromTupleParsingHelper(self, tup, inList=None):
         if inList is None:
@@ -68,7 +66,7 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             if tupleLength > 1 and type(tup[0]) is not tuple:
                 if tup[0] == 1:
                     inList.append(tup[1])
-            if tupleLength == 2: # so a caret character can be trapped later
+            if tupleLength == 2:  # so a caret character can be trapped later
                 if tup[0] == 32:
                     if tup[1] == '^':
                         inList.append('^')
@@ -76,9 +74,8 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
                 inList = self.GetTokensFromTupleParsingHelper(i, inList)
         return inList
 
-
     def ParseAndCompileUserFunctionString(self, inString):
-       
+
         # shift user functions into numpy namespace at run time, do not import time
         numpySafeTokenList = []
         for key in list(self.functionDictionary.keys()):
@@ -89,56 +86,66 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         # no blank lines of text, StringIO() allows using file methods on text
         stringToConvert = ''
         rawData = io.StringIO(inString).readlines()
-       
+
         for line in rawData:
             stripped = line.strip()
-            if len(stripped) > 0: # no empty strings
-                if stripped[0] != '#': # no comment-only lines
+            if len(stripped) > 0:  # no empty strings
+                if stripped[0] != '#':  # no comment-only lines
                     stringToConvert += stripped + '\n'
 
         # convert brackets to parentheses
         stringToConvert = stringToConvert.replace('[', '(').replace(']', ')')
-       
+
         if stringToConvert == '':
-            raise Exception('You must enter some function text for the software to use.')
+            raise Exception(
+                'You must enter some function text for the software to use.')
 
         if -1 != stringToConvert.find('='):
-            raise Exception('Please do not use an equals sign "=" in your text.')
+            raise Exception(
+                'Please do not use an equals sign "=" in your text.')
 
         st = parser.expr(stringToConvert)
         tup = st.totuple()
         tokens = self.GetTokensFromTupleParsingHelper(tup)
 
         if '^' in tokens:
-            raise Exception('The caret symbol "^" is not recognized by the parser, please substitute double asterisks "**" for "^".')
-           
+            raise Exception(
+                'The caret symbol "^" is not recognized by the parser, please substitute double asterisks "**" for "^".')
+
         if 'ln' in tokens:
-            raise Exception("The parser uses log() for the natural log function, not ln(). Please use log() in your text.")
+            raise Exception(
+                "The parser uses log() for the natural log function, not ln(). Please use log() in your text.")
 
         if 'abs' in tokens:
-            raise Exception("The parser uses fabs() for the absolute value, not abs(). Please use fabs() in your text.")
+            raise Exception(
+                "The parser uses fabs() for the absolute value, not abs(). Please use fabs() in your text.")
 
         if 'EXP' in tokens:
-            raise Exception("The parser uses lower case exp(), not upper case EXP(). Please use lower case exp() in your text.")
+            raise Exception(
+                "The parser uses lower case exp(), not upper case EXP(). Please use lower case exp() in your text.")
 
         if 'LOG' in tokens:
-            raise Exception("The parser uses lower case log(), not upper case LOG(). Please use lower case log() in your text.")
+            raise Exception(
+                "The parser uses lower case log(), not upper case LOG(). Please use lower case log() in your text.")
 
         # test for required reserved tokens
         tokenNames = list(set(tokens) - set(numpySafeTokenList))
         if 'X' not in tokenNames:
-            raise Exception('You must use a separate upper case "X" in your function to enter a valid function of X.')
+            raise Exception(
+                'You must use a separate upper case "X" in your function to enter a valid function of X.')
 
-        self._coefficientDesignators = sorted(list(set(tokenNames) - set(['X'])))
-               
+        self._coefficientDesignators = sorted(
+            list(set(tokenNames) - set(['X'])))
+
         if len(self._coefficientDesignators) == 0:
-            raise Exception('I could not find any equation parameter or coefficient names, please check the function text')
+            raise Exception(
+                'I could not find any equation parameter or coefficient names, please check the function text')
 
         # now compile code object using safe tokens with integer conversion
         self.safe_dict = locals()
         for f in numpySafeTokenList:
             self.safe_dict[f] = eval('numpy.' + f)
-           
+
         # convert integer use such as (3/2) into floats such as (3.0/2.0)
         st = parser.expr(stringToConvert)
         stList = parser.st2list(st)
@@ -146,26 +153,23 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         st = parser.sequence2st(stList)
 
         # later evals re-use this compiled code for improved performance in EvaluateCachedData() methods
-        self.userFunctionCodeObject  = parser.compilest(st)
+        self.userFunctionCodeObject = parser.compilest(st)
 
-        
     def ShouldDataBeRejected(self, inModel):
         return False
 
-    
     def AreCoefficientsWithinBounds(self, inCoeffs):
-        return True # User Defined Functions do not have coefficient bounds
-        
+        return True  # User Defined Functions do not have coefficient bounds
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         self.safe_dict['X'] = inDataCacheDictionary['X']
         if self.GetDimensionality() == 3:
             self.safe_dict['Y'] = inDataCacheDictionary['Y']
-            
+
         # define coefficient values before calling eval
         for i in range(len(self._coefficientDesignators)):
             self.safe_dict[self._coefficientDesignators[i]] = inCoeffs[i]
-        
+
         # eval uses previously compiled code for improved performance
         # based on http://lybniz2.sourceforge.net/safeeval._HTML
         try:
@@ -173,18 +177,18 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['X'])) * 1.0E300
-    
 
-    def Solve(self, inUserFunctionString = None, inAlgorithmName="Levenberg-Marquardt"):
+    def Solve(self, inUserFunctionString=None, inAlgorithmName="Levenberg-Marquardt"):
         if inUserFunctionString:
             self.ParseAndCompileUserFunctionString(inUserFunctionString)
 
         # starting point
         if len(self.estimatedCoefficients) == 0:
             self.estimatedCoefficients = pyeq3.solverService().SolveUsingDE(self)
-            
+
         if self.fittingTarget == 'ODR':
             return pyeq3.solverService().SolveUsingODR(self)
-        
-        self.estimatedCoefficients = pyeq3.solverService().SolveUsingSelectedAlgorithm(self, inAlgorithmName=inAlgorithmName)
+
+        self.estimatedCoefficients = pyeq3.solverService().SolveUsingSelectedAlgorithm(
+            self, inAlgorithmName=inAlgorithmName)
         return pyeq3.solverService().SolveUsingSimplex(self)

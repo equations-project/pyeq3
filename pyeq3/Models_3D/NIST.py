@@ -8,28 +8,28 @@
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import sys, os
+import sys
+import os
 if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+    sys.path.append(os.path.join(
+        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
 
 import pyeq3
+import pyeq3.Model_3D_BaseClass
 
 import numpy
-numpy.seterr(all= 'ignore')
-
-
-import pyeq3.Model_3D_BaseClass
+numpy.seterr(all='ignore')
 
 
 class NIST_NelsonAutolog(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "NIST Nelson Autolog"
     _HTML = 'z = exp(b1 - b2 * x * exp(-b3*y))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['b1', 'b2', 'b3']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/nelson.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -46,19 +46,21 @@ class NIST_NelsonAutolog(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         b1 = inCoeffs[0]
         b2 = inCoeffs[1]
         b3 = inCoeffs[2]
@@ -69,21 +71,19 @@ class NIST_NelsonAutolog(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = exp(b1 - b2*x_in * exp(-b3*y_in));\n"
         return s
 
 
-
 class NIST_Nelson(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    
+
     _baseName = "NIST Nelson"
     _HTML = 'log(y) = b1 - b2 * X1 * exp(-b3*X2)'
     _leftSideHTML = 'log(y)'
     _coefficientDesignators = ['b1', 'b2', 'b3']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = 'http://www.itl.nist.gov/div898/strd/nls/data/nelson.shtml'
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -99,19 +99,21 @@ class NIST_Nelson(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         b1 = inCoeffs[0]
         b2 = inCoeffs[1]
         b3 = inCoeffs[2]
@@ -121,7 +123,6 @@ class NIST_Nelson(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = b1 - b2*x_in * exp(-b3*y_in);\n"

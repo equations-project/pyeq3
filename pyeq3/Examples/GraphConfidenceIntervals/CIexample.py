@@ -1,4 +1,6 @@
-import numpy, scipy, matplotlib
+import numpy
+import scipy
+import matplotlib
 import matplotlib.pyplot as plt
 import pyeq3
 
@@ -38,23 +40,28 @@ equation.Solve()
 ##########################################################
 # text output section for fitted parameter values
 
-print("Equation:", equation.GetDisplayName(), str(equation.GetDimensionality()) + "D")
-print("Fitting target of", equation.fittingTargetDictionary[equation.fittingTarget], '=', equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+print("Equation:", equation.GetDisplayName(),
+      str(equation.GetDimensionality()) + "D")
+print("Fitting target of", equation.fittingTargetDictionary[equation.fittingTarget],
+      '=', equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
 print("Fitted Parameters:")
 for i in range(len(equation.solvedCoefficients)):
-    print("    %s = %-.16E" % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i]))
+    print("    %s = %-.16E" % (equation.GetCoefficientDesignators()
+          [i], equation.solvedCoefficients[i]))
 print()
 
 
 ##########################################################
 # calculate absolute, relative, and percent errors from the fit
-equation.CalculateModelErrors(equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
+equation.CalculateModelErrors(
+    equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
 
 
 ##########################################################
 # this section prints information on each individual data point
 for i in range(len(equation.dataCache.allDataCacheDictionary['DependentData'])):
-    print('X:', equation.dataCache.allDataCacheDictionary['IndependentData'][0][i],)
+    print(
+        'X:', equation.dataCache.allDataCacheDictionary['IndependentData'][0][i],)
     print('Y:', equation.dataCache.allDataCacheDictionary['DependentData'][i],)
     print('Model:', equation.modelPredictions[i],)
     print('Abs. Error:', equation.modelAbsoluteError[i],)
@@ -126,23 +133,26 @@ for i in range(len(equation.solvedCoefficients)):
     if type(equation.tstat_beta) == type(None):
         tstat = 'n/a'
     else:
-        tstat = '%-.5E' %  ( equation.tstat_beta[i])
+        tstat = '%-.5E' % (equation.tstat_beta[i])
 
     if type(equation.pstat_beta) == type(None):
         pstat = 'n/a'
     else:
-        pstat = '%-.5E' %  ( equation.pstat_beta[i])
+        pstat = '%-.5E' % (equation.pstat_beta[i])
 
     if type(equation.sd_beta) != type(None):
-        print("Coefficient %s = %-.16E, std error: %-.5E" % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i], equation.sd_beta[i]))
+        print("Coefficient %s = %-.16E, std error: %-.5E" % (equation.GetCoefficientDesignators()
+              [i], equation.solvedCoefficients[i], equation.sd_beta[i]))
     else:
-        print("Coefficient %s = %-.16E, std error: n/a" % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i]))
-    print("          t-stat: %s, p-stat: %s, 95 percent confidence intervals: [%-.5E, %-.5E]" % (tstat,  pstat, equation.ci[i][0], equation.ci[i][1]))
+        print("Coefficient %s = %-.16E, std error: n/a" %
+              (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i]))
+    print("          t-stat: %s, p-stat: %s, 95 percent confidence intervals: [%-.5E, %-.5E]" % (
+        tstat,  pstat, equation.ci[i][0], equation.ci[i][1]))
 
 
 print()
 print("Coefficient Covariance Matrix:")
-for i in  equation.cov_beta:
+for i in equation.cov_beta:
     print(i)
 
 
@@ -160,12 +170,14 @@ def ModelScatterConfidenceGraph(equation, graphWidth, graphHeight):
     # create data for the fitted equation plot
     xModel = numpy.linspace(min(x_data), max(x_data))
 
-    tempcache = equation.dataCache # store the data cache
+    tempcache = equation.dataCache  # store the data cache
     equation.dataCache = pyeq3.dataCache()
-    equation.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array([xModel, xModel])
+    equation.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array([
+                                                                               xModel, xModel])
     equation.dataCache.FindOrCreateAllDataCache(equation)
-    yModel = equation.CalculateModelPredictions(equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
-    equation.dataCache = tempcache # restore the original data cache
+    yModel = equation.CalculateModelPredictions(
+        equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
+    equation.dataCache = tempcache  # restore the original data cache
 
     # now the model as a line plot
     axes.plot(xModel, yModel)
@@ -176,10 +188,11 @@ def ModelScatterConfidenceGraph(equation, graphWidth, graphHeight):
     mean_x = numpy.mean(x_data)
     n = equation.nobs
 
-    t_value = scipy.stats.t.ppf(0.975, equation.df_e) # (1.0 - (a/2)) is used for two-sided t-test critical value, here a = 0.05
+    # (1.0 - (a/2)) is used for two-sided t-test critical value, here a = 0.05
+    t_value = scipy.stats.t.ppf(0.975, equation.df_e)
 
-    confs = t_value * numpy.sqrt((equation.sumOfSquaredErrors/equation.df_e)*(1.0/n + (numpy.power((xModel-mean_x),2.0)/
-                                                                                       ((numpy.sum(numpy.power(x_data,2.0)))-n*(numpy.power(mean_x,2.0))))))
+    confs = t_value * numpy.sqrt((equation.sumOfSquaredErrors/equation.df_e)*(1.0/n + (numpy.power((xModel-mean_x), 2.0) /
+                                                                                       ((numpy.sum(numpy.power(x_data, 2.0)))-n*(numpy.power(mean_x, 2.0))))))
 
     # get lower and upper confidence limits based on predicted y and confidence intervals
     upper = yModel + abs(confs)
@@ -190,17 +203,21 @@ def ModelScatterConfidenceGraph(equation, graphWidth, graphHeight):
     booleanMask &= (yModel < axes.get_ylim()[1])
 
     # color scheme improves visibility on black background lines or points
-    axes.plot(xModel[booleanMask], lower[booleanMask], linestyle='solid', color='white')
-    axes.plot(xModel[booleanMask], upper[booleanMask], linestyle='solid', color='white')
-    axes.plot(xModel[booleanMask], lower[booleanMask], linestyle='dashed', color='blue')
-    axes.plot(xModel[booleanMask], upper[booleanMask], linestyle='dashed', color='blue')
+    axes.plot(xModel[booleanMask], lower[booleanMask],
+              linestyle='solid', color='white')
+    axes.plot(xModel[booleanMask], upper[booleanMask],
+              linestyle='solid', color='white')
+    axes.plot(xModel[booleanMask], lower[booleanMask],
+              linestyle='dashed', color='blue')
+    axes.plot(xModel[booleanMask], upper[booleanMask],
+              linestyle='dashed', color='blue')
 
-    axes.set_title('Model With 95% Confidence Intervals') # add a title
-    axes.set_xlabel('X Data') # X axis data label
-    axes.set_ylabel('Y Data') # Y axis data label
+    axes.set_title('Model With 95% Confidence Intervals')  # add a title
+    axes.set_xlabel('X Data')  # X axis data label
+    axes.set_ylabel('Y Data')  # Y axis data label
 
     plt.show()
-    plt.close('all') # clean up after using pyplot
+    plt.close('all')  # clean up after using pyplot
 
 
 graphWidth = 800

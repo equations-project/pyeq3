@@ -1,4 +1,8 @@
-import os, sys, inspect, scipy, numpy
+import os
+import sys
+import inspect
+import scipy
+import numpy
 
 import pyeq3
 
@@ -159,17 +163,21 @@ asciiTextData = '''
 7.23133792963
 '''
 
-pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(asciiTextData, simpleObject, False)
+pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+    asciiTextData, simpleObject, False)
 
 resultList = []
 solver = pyeq3.solverService()
-criteriaForUseInListSorting = 'AIC' # ['AIC', 'AICc_BA', 'nnlf'] from top of SolverService.SolveStatisticalDistribution()
+# ['AIC', 'AICc_BA', 'nnlf'] from top of SolverService.SolveStatisticalDistribution()
+criteriaForUseInListSorting = 'AIC'
 
-for distribution in inspect.getmembers(scipy.stats): # try to fit every distribution
+# try to fit every distribution
+for distribution in inspect.getmembers(scipy.stats):
     if isinstance(distribution[1], scipy.stats.rv_continuous):
         print("Fitting", distribution[0])
         try:
-            result = solver.SolveStatisticalDistribution(distribution[0], simpleObject.dataCache.allDataCacheDictionary['IndependentData'][0], criteriaForUseInListSorting)
+            result = solver.SolveStatisticalDistribution(
+                distribution[0], simpleObject.dataCache.allDataCacheDictionary['IndependentData'][0], criteriaForUseInListSorting)
         except:
             continue
         if result:

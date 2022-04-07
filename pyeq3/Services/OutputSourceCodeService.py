@@ -14,6 +14,7 @@ cppOutputSourceCodeUpperComment = '''// If there are any errors or problems with
 
 '''
 
+
 class OutputSourceCodeService(object):
 
     def ConvertCppToCSHARP(self, inString):
@@ -24,14 +25,16 @@ class OutputSourceCodeService(object):
         newString = newString.replace('exp(', 'Math.Exp(')
         newString = newString.replace('cos(', 'Math.Cos(')
 
-        newString = newString.replace('asin(', 'ASIN(') # so sin is not confused with asin
+        newString = newString.replace(
+            'asin(', 'ASIN(')  # so sin is not confused with asin
         newString = newString.replace('sin(', 'Math.Sin(')
         newString = newString.replace('ASIN(', 'Math.Asin(')
-        
-        newString = newString.replace('atan(', 'ATAN(') # so tan is not confused with atan
+
+        newString = newString.replace(
+            'atan(', 'ATAN(')  # so tan is not confused with atan
         newString = newString.replace('tan(', 'Math.Tan(')
         newString = newString.replace('ATAN(', 'Math.Atan(')
-                        
+
         newString = newString.replace('tanh(', 'Math.Tanh(')
         newString = newString.replace('cosh(', 'Math.Cosh(')
         if newString[0] == '\t':
@@ -39,28 +42,31 @@ class OutputSourceCodeService(object):
         newString = newString.replace('\n\t', '\n\t\t')
         return newString
 
-
     def ConvertCppToVBA(self, inString):
-        newString = inString.replace(';', '') # no need for semicolons
+        newString = inString.replace(';', '')  # no need for semicolons
         newString = newString.replace('double ', 'var ')
         newString = newString.replace('temp += ', 'temp = temp + ')
         newString = newString.replace('temp -= ', 'temp = temp - ')
         newString = newString.replace('abs(', 'Abs(')
-        newString = newString.replace('pow(', 'Application.WorksheetFunction.power(')
-        newString = newString.replace('log(', 'Application.WorksheetFunction.ln(')
-        newString = newString.replace('log10(', 'Application.WorksheetFunction.log(')
+        newString = newString.replace(
+            'pow(', 'Application.WorksheetFunction.power(')
+        newString = newString.replace(
+            'log(', 'Application.WorksheetFunction.ln(')
+        newString = newString.replace(
+            'log10(', 'Application.WorksheetFunction.log(')
         newString = newString.replace('exp(', 'Exp(')
         #newString = newString.replace('sin(', 'math.sin(')
         #newString = newString.replace('cos(', 'math.cos(')
         #newString = newString.replace('tan(', 'math.tan(')
-        newString = newString.replace('tanh(', 'Application.WorksheetFunction.tanh(')
-        newString = newString.replace('cosh(', 'Application.WorksheetFunction.cosh(')
-        newString = newString.replace('//', "'") # comment token
+        newString = newString.replace(
+            'tanh(', 'Application.WorksheetFunction.tanh(')
+        newString = newString.replace(
+            'cosh(', 'Application.WorksheetFunction.cosh(')
+        newString = newString.replace('//', "'")  # comment token
         return newString
 
-
     def ConvertCppToPYTHON(self, inString):
-        newString = inString.replace(';', '') # no need for semicolons
+        newString = inString.replace(';', '')  # no need for semicolons
         newString = newString.replace('double ', '')
         newString = newString.replace('abs(', 'math.fabs(')
         newString = newString.replace('pow(', 'math.pow(')
@@ -68,21 +74,22 @@ class OutputSourceCodeService(object):
         newString = newString.replace('log10(', 'math.log10(')
         newString = newString.replace('exp(', 'math.exp(')
         newString = newString.replace('cos(', 'math.cos(')
-        
-        newString = newString.replace('asin(', 'ASIN(') # so sin is not confused with asin
+
+        newString = newString.replace(
+            'asin(', 'ASIN(')  # so sin is not confused with asin
         newString = newString.replace('sin(', 'math.sin(')
         newString = newString.replace('ASIN(', 'math.asin(')
-        
-        newString = newString.replace('atan(', 'ATAN(') # so tan is not confused with atan
+
+        newString = newString.replace(
+            'atan(', 'ATAN(')  # so tan is not confused with atan
         newString = newString.replace('tan(', 'math.tan(')
         newString = newString.replace('ATAN(', 'math.atan(')
-        
+
         newString = newString.replace('tanh(', 'math.tanh(')
         newString = newString.replace('cosh(', 'math.cosh(')
-        newString = newString.replace('//', '#') # comment token
+        newString = newString.replace('//', '#')  # comment token
         newString = newString.replace('\t', '    ')
         return newString
-
 
     def ConvertCppToJAVA(self, inString):
         newString = inString.replace('abs(', 'Math.abs(')
@@ -91,15 +98,17 @@ class OutputSourceCodeService(object):
         newString = newString.replace('log10(', 'Math.log10(')
         newString = newString.replace('exp(', 'Math.exp(')
         newString = newString.replace('cos(', 'Math.cos(')
-        
-        newString = newString.replace('asin(', 'ASIN(') # so sin is not confused with asin
+
+        newString = newString.replace(
+            'asin(', 'ASIN(')  # so sin is not confused with asin
         newString = newString.replace('sin(', 'Math.sin(')
         newString = newString.replace('ASIN(', 'Math.asin(')
 
-        newString = newString.replace('atan(', 'ATAN(') # so tan is not confused with atan
+        newString = newString.replace(
+            'atan(', 'ATAN(')  # so tan is not confused with atan
         newString = newString.replace('tan(', 'Math.tan(')
         newString = newString.replace('ATAN(', 'Math.atan(')
-        
+
         newString = newString.replace('tanh(', 'Math.tanh(')
         newString = newString.replace('cosh(', 'Math.cosh(')
         if newString[0] == '\t':
@@ -107,21 +116,18 @@ class OutputSourceCodeService(object):
         newString = newString.replace('\n\t', '\n\t\t')
         return newString
 
-
     def ConvertCppToJULIA(self, inString):
-        newString = inString.replace(';', '') # no need for semicolons
+        newString = inString.replace(';', '')  # no need for semicolons
         newString = newString.replace('double ', '')
-        newString = newString.replace('//', "#") # comment token
+        newString = newString.replace('//', "#")  # comment token
         return newString
-
 
     def ConvertCppToFORTRAN90(self, inString):
-        newString = inString.replace(';', '') # no need for semicolons
+        newString = inString.replace(';', '')  # no need for semicolons
         newString = newString.replace('temp += ', 'temp = temp + ')
         newString = newString.replace('double ', 'real :: ')
-        newString = newString.replace('//', "!") # comment token
+        newString = newString.replace('//', "!")  # comment token
         return newString
-
 
     def ConvertCppToSCILAB(self, inString):
         newString = inString.replace('double ', '')
@@ -130,17 +136,15 @@ class OutputSourceCodeService(object):
         newString = newString.replace('pow(', 'power(')
         return newString
 
-
     def ConvertCppToMATLAB(self, inString):
         newString = inString.replace('pow(', 'power(')
         newString = newString.replace('double ', '')
         newString = newString.replace('temp += ', 'temp = temp + ')
         newString = newString.replace('temp -= ', 'temp = temp - ')
-        newString = newString.replace('*', '.*') # multiply
-        newString = newString.replace('//', '%') # comment token
-        newString = newString.replace('/', './') # divide
+        newString = newString.replace('*', '.*')  # multiply
+        newString = newString.replace('//', '%')  # comment token
+        newString = newString.replace('/', './')  # divide
         return newString
-
 
     def GetOutputSourceCodeCPP(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
@@ -148,13 +152,18 @@ class OutputSourceCodeService(object):
                 return self.SplineCodeCPP_2D(inEquation)
             if inEquation.GetDimensionality() == 3:
                 return self.SplineCodeCPP_3D(inEquation)
-    
+
         s = cppOutputSourceCodeUpperComment
         s += '\n#include <math.h>\n\n'
         s += f'// {note}\n'
-        s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
-        s += 'double ' + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation)
+        s += '// Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '// Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
+        s += 'double ' + \
+            inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation)
         if inEquation.GetDimensionality() == 2:
             s += '_model(double x_in)'
         else:
@@ -166,16 +175,19 @@ class OutputSourceCodeService(object):
 
 	// coefficients
 '''
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += '	double ' + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ';\n'
-        s += '\n' + inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation)
+            s += '	double ' + \
+                cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ';\n'
+        s += '\n' + \
+            inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(
+                inEquation)
         s += '''	return temp;
 }
 '''
         return s
-
 
     def GetOutputSourceCodeCSHARP(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
@@ -184,29 +196,38 @@ class OutputSourceCodeService(object):
         s = self.ConvertCppToCSHARP(cppOutputSourceCodeUpperComment)
         s += '\nusing System;\n\n'
         s += f'// {note}\n'
-        s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
-        s += "class " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation)+ "\n{\n"
+        s += '// Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '// Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
+        s += "class " + \
+            inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "\n{\n"
         if inEquation.GetDimensionality() == 2:
-            s += "\tdouble " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(double x_in)\n\t{\n"
+            s += "\tdouble " + inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "_model(double x_in)\n\t{\n"
         else:
-            s += "\tdouble " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(double x_in, double y_in)\n\t{\n"
+            s += "\tdouble " + inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "_model(double x_in, double y_in)\n\t{\n"
         s += '''\t\tdouble temp;
 \t\ttemp = 0.0;
 
 \t\t// coefficients
 '''
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += "\t\tdouble " + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ";\n"
+            s += "\t\tdouble " + \
+                cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ";\n"
         s += "\n"
-        
-        s += self.ConvertCppToCSHARP(inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
+
+        s += self.ConvertCppToCSHARP(
+            inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
 
         s += "\t\treturn temp;\n\t}\n}\n"
         return s
-
 
     def GetOutputSourceCodeVBA(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
@@ -214,28 +235,39 @@ class OutputSourceCodeService(object):
 
         s = self.ConvertCppToVBA(cppOutputSourceCodeUpperComment)
         s += f'\' {note}\n'
-        s += '\' Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '\' Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
+        s += '\' Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '\' Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
-            s += "Public Function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation)+ "_model(x_in)\n"
+            s += "Public Function " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in)\n"
         else:
-            s += "Public Function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in, y_in)\n"
+            s += "Public Function " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in, y_in)\n"
         s += '''\ttemp = 0.0
 
 \t' coefficients
 '''
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += "\tConst " + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + "\n"
+            s += "\tConst " + \
+                cd[i] + tempString % (inEquation.solvedCoefficients[i]) + "\n"
         s += "\n"
 
-        s += self.ConvertCppToVBA(inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
+        s += self.ConvertCppToVBA(
+            inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
 
-        s += "\t" + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model = temp\n"
+        s += "\t" + \
+            inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "_model = temp\n"
         s += "End Function\n"
         return s
-
 
     def GetOutputSourceCodePYTHON(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
@@ -243,31 +275,39 @@ class OutputSourceCodeService(object):
                 return self.SplineCodePYTHON_2D(inEquation)
             if inEquation.GetDimensionality() == 3:
                 return self.SplineCodePYTHON_3D(inEquation)
-    
+
         s = self.ConvertCppToPYTHON(cppOutputSourceCodeUpperComment)
         s += '\nimport math\n\n'
         s += f'# {note}\n'
-        s += '# Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '# Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
+        s += '# Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '# Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
-            s += "def " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in):\n"
+            s += "def " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in):\n"
         else:
-            s += "def " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation)+ "_model(x_in, y_in):\n"
+            s += "def " + inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "_model(x_in, y_in):\n"
         s += '''    temp = 0.0
 
     # coefficients
 '''
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += "    " + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + "\n"
+            s += "    " + \
+                cd[i] + tempString % (inEquation.solvedCoefficients[i]) + "\n"
         s += "\n"
 
-        s += self.ConvertCppToPYTHON(inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
+        s += self.ConvertCppToPYTHON(
+            inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
 
         s += "    return temp\n"
         return s
-
 
     def GetOutputSourceCodeJAVA(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
@@ -275,33 +315,42 @@ class OutputSourceCodeService(object):
                 return self.SplineCodeJAVA_2D(inEquation)
             if inEquation.GetDimensionality() == 3:
                 return self.SplineCodeJAVA_3D(inEquation)
-    
-        s = self.ConvertCppToJAVA(cppOutputSourceCodeUpperComment)        
+
+        s = self.ConvertCppToJAVA(cppOutputSourceCodeUpperComment)
         s += '\nimport java.lang.Math;\n\n'
         s += f'// {note}\n'
-        s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
-        s += "class " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation)+ "\n{\n"
+        s += '// Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '// Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
+        s += "class " + \
+            inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "\n{\n"
         if inEquation.GetDimensionality() == 2:
-            s += "\tdouble " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(double x_in)\n\t{\n"
+            s += "\tdouble " + inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "_model(double x_in)\n\t{\n"
         else:
-            s += "\tdouble " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(double x_in, double y_in)\n\t{\n"
+            s += "\tdouble " + inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "_model(double x_in, double y_in)\n\t{\n"
         s += '''\t\tdouble temp;
 \t\ttemp = 0.0;
 
 \t\t// coefficients
 '''
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += "\t\tdouble " + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ";\n"
+            s += "\t\tdouble " + \
+                cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ";\n"
         s += "\n"
-        
-        s += self.ConvertCppToJAVA(inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
+
+        s += self.ConvertCppToJAVA(
+            inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
 
         s += "\t\treturn temp;\n\t}\n}\n"
         return s
-
 
     def GetOutputSourceCodeJAVASCRIPT(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
@@ -309,32 +358,41 @@ class OutputSourceCodeService(object):
                 return self.SplineCodeJAVASCRIPT_2D(inEquation)
             if inEquation.GetDimensionality() == 3:
                 return self.SplineCodeJAVASCRIPT_3D(inEquation)
-    
-        s = self.ConvertCppToJAVA(cppOutputSourceCodeUpperComment) # reuse existing code
+
+        s = self.ConvertCppToJAVA(
+            cppOutputSourceCodeUpperComment)  # reuse existing code
         s += '\n'
         s += f'// {note}\n'
-        s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
+        s += '// Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '// Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
-            s += "function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in)\n\t{\n"
+            s += "function " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in)\n\t{\n"
         else:
-            s += "function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in, y_in)\n\t{\n"
+            s += "function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "_model(x_in, y_in)\n\t{\n"
         s += '''\tvar temp;
 \ttemp = 0.0;
 
 \t// coefficients
 '''
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += "\tvar " + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ";\n"
+            s += "\tvar " + \
+                cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ";\n"
         s += "\n"
-        
-        s += self.ConvertCppToJAVA(inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation)).replace('\t\ttemp', '\ttemp')
+
+        s += self.ConvertCppToJAVA(inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(
+            inEquation)).replace('\t\ttemp', '\ttemp')
 
         s += "\treturn temp;\n}\n"
         return s
-
 
     def GetOutputSourceCodeSCILAB(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
@@ -343,30 +401,39 @@ class OutputSourceCodeService(object):
         s = self.ConvertCppToSCILAB(cppOutputSourceCodeUpperComment)
         s += '\n'
         s += f'// {note}\n'
-        s += '// Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '// Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
+        s += '// Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '// Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
-            s += "function y = " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in)\n"
+            s += "function y = " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in)\n"
         else:
-            s += "function z = " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in, y_in)\n"
+            s += "function z = " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in, y_in)\n"
         s += "\ttemp = 0.0;\n\n"
 
         s += "\t// coefficients\n"
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += "\t" + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ";\n"
+            s += "\t" + cd[i] + \
+                tempString % (inEquation.solvedCoefficients[i]) + ";\n"
         s += "\n"
-        
-        s += self.ConvertCppToSCILAB(inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
-        
+
+        s += self.ConvertCppToSCILAB(
+            inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
+
         if inEquation.GetDimensionality() == 2:
             s += "\n\ty = temp;\n"
         else:
             s += "\n\tz = temp;\n"
         s += "endfunction\n"
         return s
-
 
     def GetOutputSourceCodeMATLAB(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
@@ -375,22 +442,32 @@ class OutputSourceCodeService(object):
         s = self.ConvertCppToMATLAB(cppOutputSourceCodeUpperComment)
         s += '\n'
         s += f'% {note}\n'
-        s += '% Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '% Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
+        s += '% Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '% Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
-            s += "function y = " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in)\n"
+            s += "function y = " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in)\n"
         else:
-            s += "function z = " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in, y_in)\n"
+            s += "function z = " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in, y_in)\n"
         s += "\ttemp = 0.0;\n\n"
 
         s += "\t% coefficients\n"
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += "\t" + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + ";\n"
+            s += "\t" + cd[i] + \
+                tempString % (inEquation.solvedCoefficients[i]) + ";\n"
         s += "\n"
 
-        s += self.ConvertCppToMATLAB(inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
+        s += self.ConvertCppToMATLAB(
+            inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation))
 
         if inEquation.GetDimensionality() == 2:
             s += "\n\ty = temp;\n"
@@ -398,14 +475,14 @@ class OutputSourceCodeService(object):
             s += "\n\tz = temp;\n"
         return s
 
-
     def GetOutputSourceCodeJULIA(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             raise NotImplementedError('Not implemented for splines')
 
         s = self.ConvertCppToJULIA(cppOutputSourceCodeUpperComment)
         s += '\n'
-        cppSourceCode = inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation)
+        cppSourceCode = inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(
+            inEquation)
         if -1 != cppSourceCode.find('pow('):
             s += '# julia has no power function, only an operator, create\n'
             s += '# a function for pyeq3 automated source code generation\n'
@@ -413,19 +490,28 @@ class OutputSourceCodeService(object):
             s += '\n'
 
         s += f'# {note}\n'
-        s += '# Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '# Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
+        s += '# Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '# Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
-            s += "function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in)\n"
+            s += "function " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in)\n"
         else:
-            s += "function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in, y_in)\n"
+            s += "function " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in, y_in)\n"
         s += "\ttemp = 0.0\n\n"
 
         s += "\t# coefficients\n"
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += "\t" + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + "\n"
+            s += "\t" + cd[i] + \
+                tempString % (inEquation.solvedCoefficients[i]) + "\n"
         s += "\n"
 
         s += self.ConvertCppToJULIA(cppSourceCode)
@@ -433,14 +519,14 @@ class OutputSourceCodeService(object):
         s += "\nend\n"
         return s
 
-
     def GetOutputSourceCodeFORTRAN90(self, inEquation, inDigitsOfPrecisionString='16', note=''):
         if inEquation.splineFlag == True:
             raise NotImplementedError('Not implemented for splines')
 
         s = self.ConvertCppToFORTRAN90(cppOutputSourceCodeUpperComment)
         s += '\n'
-        cppSourceCode = inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(inEquation)
+        cppSourceCode = inEquation.extendedVersionHandler.AssembleOutputSourceCodeCPP(
+            inEquation)
         if -1 != cppSourceCode.find('pow('):
             s += '! fortran90 has no power function, only an operator, create\n'
             s += '! a function for pyeq3 automated source code generation\n'
@@ -453,41 +539,48 @@ class OutputSourceCodeService(object):
             s += '\n'
 
         s += f'! {note}\n'
-        s += '! Fitting target: lowest ' + inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
-        s += '! Fitting target value = ' + str(inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)) + '\n\n'
+        s += '! Fitting target: lowest ' + \
+            inEquation.fittingTargetDictionary[inEquation.fittingTarget] + '\n'
+        s += '! Fitting target value = ' + \
+            str(inEquation.CalculateAllDataFittingTarget(
+                inEquation.solvedCoefficients)) + '\n\n'
         if inEquation.GetDimensionality() == 2:
-            s += "real function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in)\n"
+            s += "real function " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in)\n"
             s += 'real :: x_in ! input\n'
         else:
-            s += "real function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model(x_in, y_in)\n"
+            s += "real function " + \
+                inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                    inEquation) + "_model(x_in, y_in)\n"
             s += 'real :: x_in ! input\n'
             s += 'real :: y_in ! input\n'
         s += " real :: temp ! output\n\n"
 
         s += "! coefficients\n"
-        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(inEquation)
+        cd = inEquation.extendedVersionHandler.AssembleCoefficientDesignators(
+            inEquation)
         tempString = " = %-." + inDigitsOfPrecisionString + "E"
         for i in range(len(cd)):
-            s += "real :: " + cd[i] + tempString % (inEquation.solvedCoefficients[i]) + "\n"
+            s += "real :: " + \
+                cd[i] + tempString % (inEquation.solvedCoefficients[i]) + "\n"
         s += "\n"
         s += "temp = 0.0\n\n"
 
         s += self.ConvertCppToFORTRAN90(cppSourceCode).replace('\t', '')
 
         s += '\n'
-        s += "end function " + inEquation.extendedVersionHandler.AssembleSourceCodeName(inEquation) + "_model\n"
+        s += "end function " + \
+            inEquation.extendedVersionHandler.AssembleSourceCodeName(
+                inEquation) + "_model\n"
         return s
-
-
 
     ####################################################################################
     # spline code below this point
     ####################################################################################
 
-
-
     def SplineCodePYTHON_2D(self, inEquation):
-        s  = '''# To the best of my knowledge this code is correct.
+        s = '''# To the best of my knowledge this code is correct.
 # If you find any errors or problems please contact
 # me at zunzun@zunzun.com.
 #      James
@@ -554,9 +647,8 @@ class OutputSourceCodeService(object):
 '''
         return s
 
-
     def SplineCodeCPP_2D(self, inEquation):
-        s  = '''// To the best of my knowledge this code is correct.
+        s = '''// To the best of my knowledge this code is correct.
 // If you find any errors or problems please contact
 // me at zunzun@zunzun.com.
 //      James
@@ -566,7 +658,8 @@ class OutputSourceCodeService(object):
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbspl.f
 
 '''
-        s += "double " + inEquation.__class__.__name__ + "_evaluation(double x_in)\n"
+        s += "double " + inEquation.__class__.__name__ + \
+            "_evaluation(double x_in)\n"
         s += '{\n'
         s += '    double t [] = {'
         for i in range(len(inEquation.scipySpline._eval_args[0])):
@@ -580,7 +673,8 @@ class OutputSourceCodeService(object):
             if i < (len(inEquation.scipySpline._eval_args[1]) - 1):
                 s += ", "
         s += '};\n'
-        s += '    int n = ' + str(len(inEquation.scipySpline._eval_args[0])) + ';\n'
+        s += '    int n = ' + \
+            str(len(inEquation.scipySpline._eval_args[0])) + ';\n'
         s += '    int k = ' + str(inEquation.xOrder) + ';\n'
         s += '''
     double h [] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
@@ -643,9 +737,8 @@ class OutputSourceCodeService(object):
 '''
         return s
 
-
     def SplineCodeJAVASCRIPT_3D(self, inEquation):
-        s  = '''// To the best of my knowledge this code is correct.
+        s = '''// To the best of my knowledge this code is correct.
 // If you find any errors or problems please contact
 // me at zunzun@zunzun.com.
 //      James
@@ -655,7 +748,8 @@ class OutputSourceCodeService(object):
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbspl.f
 
 '''
-        s += "    function " + inEquation.__class__.__name__ + "_evaluation(x_in, y_in)\n"
+        s += "    function " + inEquation.__class__.__name__ + \
+            "_evaluation(x_in, y_in)\n"
         s += '    {\n'
         s += '        var tx = ['
         for i in range(len(inEquation.scipySpline.get_knots()[0])):
@@ -675,8 +769,10 @@ class OutputSourceCodeService(object):
             if i < (len(inEquation.scipySpline.get_coeffs()) - 1):
                 s += ", "
         s += '];\n'
-        s += '        var nx = ' + str(len(inEquation.scipySpline.get_knots()[0])) + ';\n'
-        s += '        var ny = ' + str(len(inEquation.scipySpline.get_knots()[1])) + ';\n'
+        s += '        var nx = ' + \
+            str(len(inEquation.scipySpline.get_knots()[0])) + ';\n'
+        s += '        var ny = ' + \
+            str(len(inEquation.scipySpline.get_knots()[1])) + ';\n'
         s += '        var kx = ' + str(inEquation.xOrder) + ';\n'
         s += '        var ky = ' + str(inEquation.yOrder) + ';\n'
         s += '''
@@ -796,9 +892,8 @@ class OutputSourceCodeService(object):
 '''
         return s
 
-
     def SplineCodeJAVA_2D(self, inEquation):
-        s  = '''// To the best of my knowledge this code is correct.
+        s = '''// To the best of my knowledge this code is correct.
 // If you find any errors or problems please contact
 // me at zunzun@zunzun.com.
 //      James
@@ -810,7 +905,8 @@ class OutputSourceCodeService(object):
 '''
         s += "class " + inEquation.__class__.__name__ + "\n"
         s += '{\n'
-        s += "    double " + inEquation.__class__.__name__ + "_evaluation(double x_in)\n"
+        s += "    double " + inEquation.__class__.__name__ + \
+            "_evaluation(double x_in)\n"
         s += '    {\n'
         s += '        double t [] = {'
         for i in range(len(inEquation.scipySpline._eval_args[0])):
@@ -824,7 +920,8 @@ class OutputSourceCodeService(object):
             if i < (len(inEquation.scipySpline._eval_args[1]) - 1):
                 s += ", "
         s += '};\n'
-        s += '        int n = ' + str(len(inEquation.scipySpline._eval_args[0])) + ';\n'
+        s += '        int n = ' + \
+            str(len(inEquation.scipySpline._eval_args[0])) + ';\n'
         s += '        int k = ' + str(inEquation.xOrder) + ';\n'
         s += '''
         double h [] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
@@ -888,9 +985,8 @@ class OutputSourceCodeService(object):
 '''
         return s
 
-
     def SplineCodeJAVASCRIPT_2D(self, inEquation):
-        s  = '''// To the best of my knowledge this code is correct.
+        s = '''// To the best of my knowledge this code is correct.
 // If you find any errors or problems please contact
 // me at zunzun@zunzun.com.
 //      James
@@ -900,7 +996,8 @@ class OutputSourceCodeService(object):
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbspl.f
 
 '''
-        s += "    function " + inEquation.__class__.__name__ + "_evaluation(x_in)\n"
+        s += "    function " + inEquation.__class__.__name__ + \
+            "_evaluation(x_in)\n"
         s += '    {\n'
         s += '        var t = ['
         for i in range(len(inEquation.scipySpline._eval_args[0])):
@@ -914,7 +1011,8 @@ class OutputSourceCodeService(object):
             if i < (len(inEquation.scipySpline._eval_args[1]) - 1):
                 s += ", "
         s += '];\n'
-        s += '        var n = ' + str(len(inEquation.scipySpline._eval_args[0])) + ';\n'
+        s += '        var n = ' + \
+            str(len(inEquation.scipySpline._eval_args[0])) + ';\n'
         s += '        var k = ' + str(inEquation.xOrder) + ';\n'
         s += '''
         var h = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -977,9 +1075,8 @@ class OutputSourceCodeService(object):
 '''
         return s
 
-
     def SplineCodePYTHON_3D(self, inEquation):
-        s  = '''# To the best of my knowledge this code is correct.
+        s = '''# To the best of my knowledge this code is correct.
 # If you find any errors or problems please contact
 # me at zunzun@zunzun.com.
 #      James
@@ -1008,8 +1105,10 @@ class OutputSourceCodeService(object):
             if i < (len(inEquation.scipySpline.get_coeffs()) - 1):
                 s += ", "
         s += ']\n'
-        s += '    nx = ' + str(len(inEquation.scipySpline.get_knots()[0])) + '\n'
-        s += '    ny = ' + str(len(inEquation.scipySpline.get_knots()[1])) + '\n'
+        s += '    nx = ' + \
+            str(len(inEquation.scipySpline.get_knots()[0])) + '\n'
+        s += '    ny = ' + \
+            str(len(inEquation.scipySpline.get_knots()[1])) + '\n'
         s += '    kx = ' + str(inEquation.xOrder) + '\n'
         s += '    ky = ' + str(inEquation.yOrder) + '\n'
         s += '''
@@ -1091,9 +1190,8 @@ class OutputSourceCodeService(object):
 '''
         return s
 
-
     def SplineCodeCPP_3D(self, inEquation):
-        s  = '''// To the best of my knowledge this code is correct.
+        s = '''// To the best of my knowledge this code is correct.
 // If you find any errors or problems please contact
 // me at zunzun@zunzun.com.
 //      James
@@ -1103,7 +1201,8 @@ class OutputSourceCodeService(object):
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbspl.f
 
 '''
-        s += "double " + inEquation.__class__.__name__ + "_evaluation(double x_in, double y_in)\n"
+        s += "double " + inEquation.__class__.__name__ + \
+            "_evaluation(double x_in, double y_in)\n"
         s += '{\n'
         s += '    double tx [] = {'
         for i in range(len(inEquation.scipySpline.get_knots()[0])):
@@ -1123,8 +1222,10 @@ class OutputSourceCodeService(object):
             if i < (len(inEquation.scipySpline.get_coeffs()) - 1):
                 s += ", "
         s += '};\n'
-        s += '    int nx = ' + str(len(inEquation.scipySpline.get_knots()[0])) + ';\n'
-        s += '    int ny = ' + str(len(inEquation.scipySpline.get_knots()[1])) + ';\n'
+        s += '    int nx = ' + \
+            str(len(inEquation.scipySpline.get_knots()[0])) + ';\n'
+        s += '    int ny = ' + \
+            str(len(inEquation.scipySpline.get_knots()[1])) + ';\n'
         s += '    int kx = ' + str(inEquation.xOrder) + ';\n'
         s += '    int ky = ' + str(inEquation.yOrder) + ';\n'
         s += '''
@@ -1244,9 +1345,8 @@ class OutputSourceCodeService(object):
 '''
         return s
 
-
     def SplineCodeJAVA_3D(self, inEquation):
-        s  = '''// To the best of my knowledge this code is correct.
+        s = '''// To the best of my knowledge this code is correct.
 // If you find any errors or problems please contact
 // me at zunzun@zunzun.com.
 //      James
@@ -1258,7 +1358,8 @@ class OutputSourceCodeService(object):
 '''
         s += "class " + inEquation.__class__.__name__ + "\n"
         s += '{\n'
-        s += "    double " + inEquation.__class__.__name__ + "_evaluation(double x_in, double y_in)\n"
+        s += "    double " + inEquation.__class__.__name__ + \
+            "_evaluation(double x_in, double y_in)\n"
         s += '    {\n'
         s += '        double tx [] = {'
         for i in range(len(inEquation.scipySpline.get_knots()[0])):
@@ -1278,8 +1379,10 @@ class OutputSourceCodeService(object):
             if i < (len(inEquation.scipySpline.get_coeffs()) - 1):
                 s += ", "
         s += '};\n'
-        s += '        int nx = ' + str(len(inEquation.scipySpline.get_knots()[0])) + ';\n'
-        s += '        int ny = ' + str(len(inEquation.scipySpline.get_knots()[1])) + ';\n'
+        s += '        int nx = ' + \
+            str(len(inEquation.scipySpline.get_knots()[0])) + ';\n'
+        s += '        int ny = ' + \
+            str(len(inEquation.scipySpline.get_knots()[1])) + ';\n'
         s += '        int kx = ' + str(inEquation.xOrder) + ';\n'
         s += '        int ky = ' + str(inEquation.yOrder) + ';\n'
         s += '''

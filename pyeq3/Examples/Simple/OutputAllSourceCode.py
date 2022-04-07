@@ -1,11 +1,12 @@
-import os, sys, inspect
+import os
+import sys
+import inspect
 
 import pyeq3
 
 
-
 # see IModel.fittingTargetDictionary
-equation = pyeq3.Models_2D.Polynomial.Quadratic() # SSQABS by default
+equation = pyeq3.Models_2D.Polynomial.Quadratic()  # SSQABS by default
 
 data = equation.exampleData
 pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(data, equation, False)

@@ -15,7 +15,7 @@ import Test_NIST
 
 loader = unittest.TestLoader()
 
-suite =        loader.loadTestsFromModule(Test_CalculateCoefficientAndFitStatistics)
+suite = loader.loadTestsFromModule(Test_CalculateCoefficientAndFitStatistics)
 suite.addTests(loader.loadTestsFromModule(Test_DataCache))
 suite.addTests(loader.loadTestsFromModule(Test_DataConverterService))
 suite.addTests(loader.loadTestsFromModule(Test_ExtendedVersionHandlers))

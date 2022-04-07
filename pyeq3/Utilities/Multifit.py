@@ -73,7 +73,8 @@ def SetParametersAndFit(inRawData, inEquation, inPrintStatus):
 
         inEquation.Solve()
 
-        target = inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)
+        target = inEquation.CalculateAllDataFittingTarget(
+            inEquation.solvedCoefficients)
         if target > 1.0E290:  # error too large
             return None
     except:
@@ -130,7 +131,8 @@ def SubmitTasksToQueue(inTaskQueue, inRawData, inDimension, fittingTargetText,
                         if (extendedVersion == 'Offset') and (equationClass[1].autoGenerateOffsetForm is False):
                             continue
 
-                        equationInstance = equationClass[1](fittingTargetText, extendedVersion)
+                        equationInstance = equationClass[1](
+                            fittingTargetText, extendedVersion)
 
                         if len(equationInstance.GetCoefficientDesignators()) > smoothnessControl:
                             continue
@@ -141,7 +143,8 @@ def SubmitTasksToQueue(inTaskQueue, inRawData, inDimension, fittingTargetText,
                         if inLinearTrueOrNonLinearFalseFlag is False and equationInstance.CanLinearSolverBeUsedForSSQABS() is True and fittingTargetText == 'SSQABS':
                             continue
 
-                        inTaskQueue.put((SetParametersAndFit, (inRawData, equationInstance, False)))
+                        inTaskQueue.put(
+                            (SetParametersAndFit, (inRawData, equationInstance, False)))
                         totalNumberOfTasksSubmitted += 1
 
     ##########################
@@ -153,7 +156,8 @@ def SubmitTasksToQueue(inTaskQueue, inRawData, inDimension, fittingTargetText,
     else:
         polyfunctionalEquationList = pyeq3.PolyFunctions.GenerateListForPolyfunctionals_3D()
 
-    functionIndexList = list(range(len(polyfunctionalEquationList)))  # make a list of function indices to permute
+    # make a list of function indices to permute
+    functionIndexList = list(range(len(polyfunctionalEquationList)))
 
     for coeffCount in range(1, maxPolyfunctionalCoefficients+1):
         functionCombinations = UniqueCombinations(functionIndexList,
@@ -163,7 +167,8 @@ def SubmitTasksToQueue(inTaskQueue, inRawData, inDimension, fittingTargetText,
             if len(functionCombination) > smoothnessControl:
                 continue
 
-            equationInstance = models.Polyfunctional.UserSelectablePolyfunctional(fittingTargetText, 'Default', functionCombination, polyfunctionalEquationList)
+            equationInstance = models.Polyfunctional.UserSelectablePolyfunctional(
+                fittingTargetText, 'Default', functionCombination, polyfunctionalEquationList)
 
             if inLinearTrueOrNonLinearFalseFlag is True and (equationInstance.CanLinearSolverBeUsedForSSQABS() is False or fittingTargetText != 'SSQABS'):
                 continue
@@ -183,7 +188,8 @@ def SubmitTasksToQueue(inTaskQueue, inRawData, inDimension, fittingTargetText,
         if (polynomialOrderX + 1) > smoothnessControl:
             continue
 
-        equationInstance = models.Polynomial.UserSelectablePolynomial(fittingTargetText, 'Default', polynomialOrderX)
+        equationInstance = models.Polynomial.UserSelectablePolynomial(
+            fittingTargetText, 'Default', polynomialOrderX)
 
         if inLinearTrueOrNonLinearFalseFlag is True and (equationInstance.CanLinearSolverBeUsedForSSQABS() is False or fittingTargetText != 'SSQABS'):
             continue
@@ -225,7 +231,8 @@ def SubmitTasksToQueue(inTaskQueue, inRawData, inDimension, fittingTargetText,
                              extraCoeffs) > smoothnessControl):
                             continue
 
-                        equationInstance = models.Rational.UserSelectableRational(fittingTargetText, extendedVersion, numeratorCombo, denominatorCombo, functionList)
+                        equationInstance = models.Rational.UserSelectableRational(
+                            fittingTargetText, extendedVersion, numeratorCombo, denominatorCombo, functionList)
 
                         if inLinearTrueOrNonLinearFalseFlag is True and (equationInstance.CanLinearSolverBeUsedForSSQABS() is False or fittingTargetText != 'SSQABS'):
                             continue
@@ -381,20 +388,25 @@ def instantiate_equation(result, data):
     # now instantiate the "best fit" equation based on the name stored in the
     # result list
     if result['polyfunctionalnDFlags']:
-        equation = eval(f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}', {result['polyfunctionalnDFlags']})")
+        equation = eval(
+            f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}', {result['polyfunctionalnDFlags']})")
     elif result['polynomialOrderX'] != None:
-        equation = eval(f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}', {result['polynomialOrderX']})")
+        equation = eval(
+            f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}', {result['polynomialOrderX']})")
     elif result['rationalNumeratorFlags'] and result['rationalDenominatorFlags']:
-        equation = eval(f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}', {result['rationalNumeratorFlags']}, {result['rationalDenominatorFlags']})")
+        equation = eval(
+            f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}', {result['rationalNumeratorFlags']}, {result['rationalDenominatorFlags']})")
     else:
-        equation = eval(f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}')")
+        equation = eval(
+            f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}')")
 
     pyeq3.dataConvertorService().ProcessNumpyArray(data, equation, False)
     equation.fittingTarget = result['fittingTarget']
     equation.solvedCoefficients = result['solvedCoefficients']
     equation.dataCache.FindOrCreateAllDataCache(equation)
     equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
-    equation.CalculateModelErrors(equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
+    equation.CalculateModelErrors(
+        equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
     equation.GetCoefficientDesignators()
     equation.CalculateCoefficientAndFitStatistics()
 

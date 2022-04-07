@@ -9,27 +9,32 @@
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
 import pyeq3
-import abc, inspect, numpy
+import abc
+import inspect
+import numpy
 
 
 class IExtendedVersionHandler(object):
 
     @abc.abstractmethod
     def AssembleDisplayHTML(self):
-        raise NotImplementedError('The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
+        raise NotImplementedError(
+            'The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
 
     @abc.abstractmethod
     def AssembleDisplayName(self, inModel):
-        raise NotImplementedError('The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
+        raise NotImplementedError(
+            'The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
 
     @abc.abstractmethod
     def AssembleCoefficientDesignators(self):
-        raise NotImplementedError('The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
+        raise NotImplementedError(
+            'The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
 
     @abc.abstractmethod
     def AssembleOutputSourceCodeCPP(self, IModel):
-        raise NotImplementedError('The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
-
+        raise NotImplementedError(
+            'The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
 
     def ShouldDataBeRejected(self, inModel):
         if (inModel.independentData1CannotContainZeroFlag == True) and (inModel.dataCache.independentData1ContainsZeroFlag == True):
@@ -50,28 +55,27 @@ class IExtendedVersionHandler(object):
             return True
         return False
 
-
     @abc.abstractmethod
     def GetAdditionalDataCacheFunctions(self, inModel, inDataCacheFunctions):
-        raise NotImplementedError('The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
-
+        raise NotImplementedError(
+            'The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
 
     @abc.abstractmethod
     def GetAdditionalModelPredictions(self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel):
-        raise NotImplementedError('The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
-
+        raise NotImplementedError(
+            'The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
 
     @abc.abstractmethod
     def AppendAdditionalCoefficientBounds(self, inModel):
-        raise NotImplementedError('The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
-
+        raise NotImplementedError(
+            'The IExtendedVersionHandler abstract base class does not implement ' + inspect.stack()[0][3])
 
     # duplicated in Polyfunctions.py
+
     def ConvertInfAndNanToLargeNumber(self, inArray):
         inArray[numpy.isnan(inArray)] = 1.0E300
         inArray[numpy.isinf(inArray)] = 1.0E300
         return inArray
-    
 
     def CanLinearSolverBeUsedForSSQABS(self, inModelFlag):
         return False

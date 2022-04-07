@@ -8,10 +8,10 @@
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import io # cStringIO is not safe for Unicode comments, use StringIO instead
+import io  # cStringIO is not safe for Unicode comments, use StringIO instead
 
 import numpy
-numpy.seterr(all= 'ignore')
+numpy.seterr(all='ignore')
 
 
 class DataConverterService(object):
@@ -89,7 +89,7 @@ class DataConverterService(object):
                     else:
                         c = 1.0
                     d = 1.0
-                    
+
                 except:
                     continue
                 if a > 1.0E300 or a < -1.0E300 or numpy.isnan(a) or numpy.isinf(a):
@@ -104,7 +104,7 @@ class DataConverterService(object):
                     inModel.dataCache.independentData1ContainsPositiveFlag = True
                 else:
                     inModel.dataCache.independentData1ContainsZeroFlag = True
-                
+
                 dataLists[0].append(c)
                 dataLists[1].append(d)
                 dataLists[2].append(a)
@@ -146,30 +146,36 @@ class DataConverterService(object):
                 dataLists[1].append(a)
                 dataLists[2].append(b)
                 dataLists[3].append(c)
-                
+
         if inModel.ShouldDataBeRejected(inModel) == True:
             raise Exception(inModel.reasonWhyDataRejected)
-            
+
         if inModel.GetDimensionality() == 1:
             dataLists[0].sort()
-            inModel.dataCache.allDataCacheDictionary['IndependentData'] = [numpy.array(dataLists[0]), dataLists[1]]
+            inModel.dataCache.allDataCacheDictionary['IndependentData'] = [
+                numpy.array(dataLists[0]), dataLists[1]]
             return
-            
-        arrayLists = numpy.array(dataLists) # for sorting all data by values of dependent variable
+
+        # for sorting all data by values of dependent variable
+        arrayLists = numpy.array(dataLists)
         indices = numpy.argsort(arrayLists[3])
 
-        inModel.dataCache.allDataCacheDictionary['DependentData'] = numpy.array(arrayLists[3][indices])
-        
+        inModel.dataCache.allDataCacheDictionary['DependentData'] = numpy.array(
+            arrayLists[3][indices])
+
         if inModel.GetDimensionality() == 2:
-            inModel.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array([arrayLists[2][indices], numpy.ones(len(arrayLists[0]))]) # the second  _unused_  list is for a bug in scipy.odr, which is used to calculate standard errors on parameters
+            # the second  _unused_  list is for a bug in scipy.odr, which is used to calculate standard errors on parameters
+            inModel.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array(
+                [arrayLists[2][indices], numpy.ones(len(arrayLists[0]))])
         if inModel.GetDimensionality() == 3:
-            inModel.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array([arrayLists[1][indices], arrayLists[2][indices]])
-            
+            inModel.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array(
+                [arrayLists[1][indices], arrayLists[2][indices]])
+
         if inUseWeightsFlag:
-            inModel.dataCache.allDataCacheDictionary['Weights'] = numpy.array(arrayLists[0][indices])
+            inModel.dataCache.allDataCacheDictionary['Weights'] = numpy.array(
+                arrayLists[0][indices])
         else:
             inModel.dataCache.allDataCacheDictionary['Weights'] = []
-
 
     def ProcessNumpyArray(self, inArray, inModel, inUseWeightsFlag):
         """
@@ -193,18 +199,17 @@ class DataConverterService(object):
 
         if inUseWeightsFlag:
             assert inModel.GetDimensionality() + 1 == len(inArray[0])
-            y = inArray[:,-2]
+            y = inArray[:, -2]
             indices = numpy.argsort(y)
             inModel.dataCache.allDataCacheDictionary['Weights'] = inArray[indices, -1]
         else:
             assert inModel.GetDimensionality() == len(inArray[0])
-            y = inArray[:,-1]
+            y = inArray[:, -1]
             indices = numpy.argsort(y)
             inModel.dataCache.allDataCacheDictionary['Weights'] = []
 
         if inModel.GetDimensionality() == 1:
             y = numpy.ones_like(inArray[0])
-
 
         if inModel.GetDimensionality() < 3:
             inModel.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array([inArray[indices, 0],
@@ -227,7 +232,6 @@ class DataConverterService(object):
             inModel.dataCache.independentData1ContainsZeroFlag = True
 
         inModel.dataCache.allDataCacheDictionary['DependentData'] = y[indices]
-
 
     def ConvertPythonSequences(self, inRawData, inModel):
         pass

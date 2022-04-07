@@ -1,20 +1,23 @@
-import os, sys, dispy
+import os
+import sys
+import dispy
 
 import pyeq3
 
 
-
 # this is the function to be run on the cluster
 def fitEquationUsingDispyCluster(inEquationString, inFittingTargetString, inExtendedVersionString, inTextData):
-	
+
     # individual cluster nodes must be able to import pyeq3
     import pyeq3
 
-    equation = eval(inEquationString +'("' + inFittingTargetString + '", "' + inExtendedVersionString + '")')
+    equation = eval(inEquationString + '("' + inFittingTargetString +
+                    '", "' + inExtendedVersionString + '")')
     pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(inTextData, equation, False)
     equation.Solve()
-    fittedTarget = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
-   
+    fittedTarget = equation.CalculateAllDataFittingTarget(
+        equation.solvedCoefficients)
+
     # this result list allows easy sorting of multiple results later
     return [fittedTarget, inEquationString, equation.solvedCoefficients]
 
@@ -39,16 +42,18 @@ cluster = dispy.JobCluster(fitEquationUsingDispyCluster)
 print('Submitting', jobCount, 'jobs to the cluster')
 jobs = []
 for i in range(jobCount):
-    job = cluster.submit(equationString, fittingTargetString, 'Default', textData)
-    job.id = i # associate an ID to identify jobs (if needed later)
+    job = cluster.submit(
+        equationString, fittingTargetString, 'Default', textData)
+    job.id = i  # associate an ID to identify jobs (if needed later)
     jobs.append(job)
 
 print('Waiting on jobs to complete  and collecting results')
 for job in jobs:
     print()
     results = job()
-    if job.exception: # can also use job.status
-        print('Remote Exception in job number', job.id, '\n', str(job.exception))
+    if job.exception:  # can also use job.status
+        print('Remote Exception in job number',
+              job.id, '\n', str(job.exception))
     else:
         equation = eval(results[1] + '("' + fittingTargetString + '")')
         print('Success from job number', job.id)

@@ -73,8 +73,10 @@ class SolverService(object):
         inModel.dataCache.FindOrCreateAllDataCache(inModel)
         inModel.solvedCoefficients = scipy.optimize.fmin(inModel.CalculateAllDataFittingTarget,
                                                          inModel.estimatedCoefficients,
-                                                         maxiter=len(inModel.estimatedCoefficients) * self.fminIterationLimit,
-                                                         maxfun=len(inModel.estimatedCoefficients) * self.fmin_FunctionLimit,
+                                                         maxiter=len(
+                                                             inModel.estimatedCoefficients) * self.fminIterationLimit,
+                                                         maxfun=len(
+                                                             inModel.estimatedCoefficients) * self.fmin_FunctionLimit,
                                                          disp=0,
                                                          xtol=self.fmin_xtol,
                                                          ftol=self.fmin_ftol)
@@ -106,12 +108,17 @@ class SolverService(object):
         inModel.dataCache.FindOrCreateReducedDataCache(inModel)
 
         numpy.random.seed(3)  # yield repeatable results
-        largeValuesArray = numpy.random.random(oneThirdOfPopulationSizeForGA * numberOfCoefficients) * 2000.0 - 1000.0
-        smallValuesArray = numpy.random.random(oneThirdOfPopulationSizeForGA * numberOfCoefficients) * 2.0 - 1.0
-        tinyValuesArray = numpy.random.random(oneThirdOfPopulationSizeForGA * numberOfCoefficients) * .002 - .001
-        pop0 = numpy.append(largeValuesArray, numpy.append(smallValuesArray, tinyValuesArray))
+        largeValuesArray = numpy.random.random(
+            oneThirdOfPopulationSizeForGA * numberOfCoefficients) * 2000.0 - 1000.0
+        smallValuesArray = numpy.random.random(
+            oneThirdOfPopulationSizeForGA * numberOfCoefficients) * 2.0 - 1.0
+        tinyValuesArray = numpy.random.random(
+            oneThirdOfPopulationSizeForGA * numberOfCoefficients) * .002 - .001
+        pop0 = numpy.append(largeValuesArray, numpy.append(
+            smallValuesArray, tinyValuesArray))
         numpy.random.shuffle(pop0)
-        pop0 = pop0.reshape(oneThirdOfPopulationSizeForGA * 3, numberOfCoefficients)
+        pop0 = pop0.reshape(oneThirdOfPopulationSizeForGA *
+                            3, numberOfCoefficients)
 
         if inModel.estimatedCoefficients != []:
             # DE will overwrite these values, so use deepcopy
@@ -131,7 +138,8 @@ class SolverService(object):
     def SolveUsingSelectedAlgorithm(self, inModel, inAlgorithmName):
         logging.info(f'running SolveUsingSelectedAlgorithm: {inAlgorithmName}')
         if inAlgorithmName not in self.ListOfNonLinearSolverAlgorithmNames:
-            raise Exception('"' + inAlgorithmName + '" was not in the list of known non-linear solver algorithm names.  Please see the SolverService class definition.')
+            raise Exception(
+                '"' + inAlgorithmName + '" was not in the list of known non-linear solver algorithm names.  Please see the SolverService class definition.')
 
         inModel.dataCache.FindOrCreateAllDataCache(inModel)
         inModel.dataCache.FindOrCreateReducedDataCache(inModel)
@@ -142,11 +150,13 @@ class SolverService(object):
             if inAlgorithmName == 'Levenberg-Marquardt':
                 coeffs, unused = scipy.optimize.curve_fit(inModel.WrapperForScipyCurveFit, None,
                                                           inModel.dataCache.allDataCacheDictionary['DependentData'],
-                                                          numpy.ones(len(inModel.GetCoefficientDesignators())),
+                                                          numpy.ones(
+                                                              len(inModel.GetCoefficientDesignators())),
                                                           maxfev=1000000)
             else:
                 coeffs = scipy.optimize.minimize(inModel.CalculateAllDataFittingTarget,
-                                                 numpy.ones(len(inModel.GetCoefficientDesignators())),
+                                                 numpy.ones(
+                                                     len(inModel.GetCoefficientDesignators())),
                                                  method=inAlgorithmName)
             SSQ = inModel.CalculateAllDataFittingTarget(coeffs)
             results.append([SSQ, coeffs])
@@ -184,7 +194,8 @@ class SolverService(object):
             try:
                 if inAlgorithmName == 'Levenberg-Marquardt':
                     coeffs, unused = scipy.optimize.curve_fit(inModel.WrapperForScipyCurveFit, None,
-                                                              inModel.dataCache.allDataCacheDictionary['DependentData'],
+                                                              inModel.dataCache.allDataCacheDictionary[
+                                                                  'DependentData'],
                                                               inModel.estimatedCoefficients, maxfev=1000000)
                 else:
                     coeffs = scipy.optimize.minimize(inModel.CalculateAllDataFittingTarget,
@@ -222,7 +233,8 @@ class SolverService(object):
         # try with initial coefficients equal to 1
         try:
             myodr = scipy.odr.odrpack.ODR(dataObject, modelObject,
-                                          beta0=numpy.ones(len(inModel.GetCoefficientDesignators())),
+                                          beta0=numpy.ones(
+                                              len(inModel.GetCoefficientDesignators())),
                                           maxit=len(inModel.GetCoefficientDesignators()) * self.fminIterationLimit)
             # explicit ODR, faster forward-only finite differences for derivatives
             myodr.set_job(fit_type=0, deriv=0)
@@ -294,11 +306,13 @@ class SolverService(object):
             (list1, list2) = [list(x) for x in zip(*sorted(zip(list1, list2),
                                                            key=lambda pair: pair[0]))]
 
-            inModel.scipySpline = scipy.interpolate.UnivariateSpline(list1, list2, s=inModel.smoothingFactor, k=inModel.xOrder)
+            inModel.scipySpline = scipy.interpolate.UnivariateSpline(
+                list1, list2, s=inModel.smoothingFactor, k=inModel.xOrder)
             inModel.solvedCoefficients = inModel.scipySpline._eval_args
             return inModel.solvedCoefficients
         else:
-            inModel.scipySpline = scipy.interpolate.SmoothBivariateSpline(data[0], data[1], inModel.dataCache.allDataCacheDictionary['DependentData'], s=inModel.smoothingFactor, kx=inModel.xOrder, ky=inModel.yOrder)
+            inModel.scipySpline = scipy.interpolate.SmoothBivariateSpline(
+                data[0], data[1], inModel.dataCache.allDataCacheDictionary['DependentData'], s=inModel.smoothingFactor, kx=inModel.xOrder, ky=inModel.yOrder)
             inModel.solvedCoefficients = inModel.scipySpline.tck
             return inModel.solvedCoefficients
 
@@ -309,7 +323,8 @@ class SolverService(object):
                                      inCriteriaForUseInListSorting):
         criteriaList = ['AIC', 'AICc_BA', 'nnlf']
         if inCriteriaForUseInListSorting not in criteriaList:
-            raise Exception('Criteria to calculate for use in sorting was not in', str(criteriaList))
+            raise Exception(
+                'Criteria to calculate for use in sorting was not in', str(criteriaList))
         try:
             distribution = eval('scipy.stats.' + distributionName)
         except:
@@ -349,7 +364,7 @@ class SolverService(object):
             except:
                 pass
 
-        if distribution.name in ['truncnorm','betaprime','reciprocal']:
+        if distribution.name in ['truncnorm', 'betaprime', 'reciprocal']:
             try:
                 par0 = (data_mean-2.0*data_std_dev, data_mean+2.0*data_std_dev)
                 par_est = tuple(distribution.fit(data, loc=data_mean,
@@ -369,7 +384,7 @@ class SolverService(object):
                 best_nnlf = nnlf
         except:
             pass
-    
+
         try:
             par_est = tuple(distribution.fit(data, loc=0.0, scale=1.0))
             nnlf = distribution.nnlf(par_est, data)
@@ -378,7 +393,7 @@ class SolverService(object):
                 best_nnlf = nnlf
         except:
             pass
-            
+
         try:
             par_est = tuple(distribution.fit(data, loc=data_mean,
                                              scale=data_std_dev))
@@ -388,7 +403,7 @@ class SolverService(object):
                 best_nnlf = nnlf
         except:
             pass
-    
+
         try:
             par_est = tuple(distribution.fit(data, loc=data_max+eps,
                                              scale=data_std_dev))
@@ -398,7 +413,7 @@ class SolverService(object):
                 best_nnlf = nnlf
         except:
             pass
-    
+
         try:
             par_est = tuple(distribution.fit(data, loc=data_min-eps,
                                              scale=data_std_dev))
@@ -408,7 +423,7 @@ class SolverService(object):
                 best_nnlf = nnlf
         except:
             pass
-    
+
         try:
             par_est = tuple(distribution.fit(data, loc=data_max+eps,
                                              scale=data_range))
@@ -418,7 +433,7 @@ class SolverService(object):
                 best_nnlf = nnlf
         except:
             pass
-    
+
         try:
             par_est = tuple(distribution.fit(data, loc=data_min-eps,
                                              scale=data_range))
@@ -428,7 +443,7 @@ class SolverService(object):
                 best_nnlf = nnlf
         except:
             pass
-    
+
         if (best_nnlf < 1.0E300) and (best_parameters is not None):
             try:
                 k = len(best_parameters)
@@ -442,7 +457,7 @@ class SolverService(object):
                 temp['nnlf'] = best_nnlf
                 temp['AIC'] = AIC
                 temp['AICc_BA'] = AICc_BA
-                
+
                 if inCriteriaForUseInListSorting == 'nnlf':
                     return [best_nnlf, temp]
                 elif inCriteriaForUseInListSorting == 'AIC':

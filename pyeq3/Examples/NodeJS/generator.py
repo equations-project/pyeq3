@@ -1,4 +1,6 @@
-import os, sys, inspect
+import os
+import sys
+import inspect
 
 import pyeq3
 
@@ -11,11 +13,12 @@ for modelsTypeName in ['Models_2D', 'Models_3D']:
         if inspect.ismodule(submodule[1]):
 
             moduleName = submodule[0].split('.')[-1]
-            modelsFile.write('\nexports.' + moduleName + ' = module.exports.' + moduleName + ' = {};\n\n')
-            
+            modelsFile.write('\nexports.' + moduleName +
+                             ' = module.exports.' + moduleName + ' = {};\n\n')
+
             for equationClass in inspect.getmembers(submodule[1]):
                 if inspect.isclass(equationClass[1]):
-                    
+
                     # ignore these special classes
                     if equationClass[1].splineFlag or \
                        equationClass[1].userSelectablePolynomialFlag or \
@@ -24,13 +27,14 @@ for modelsTypeName in ['Models_2D', 'Models_3D']:
                        equationClass[1].userSelectableRationalFlag or \
                        equationClass[1].userDefinedFunctionFlag:
                         continue
-                                            
+
                     for extendedVersionString in ['Default', 'Offset']:
-                        
+
                         if (extendedVersionString == 'Offset') and (equationClass[1].autoGenerateOffsetForm == False):
                             continue
-                        
-                        equationInstance = equationClass[1]('SSQABS', extendedVersionString)
+
+                        equationInstance = equationClass[1](
+                            'SSQABS', extendedVersionString)
                         className = equationInstance.__class__.__name__
                         if (extendedVersionString == 'Offset'):
                             className += '_WithOffset'

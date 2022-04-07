@@ -1,35 +1,38 @@
-import os, sys, inspect, copy
+import os
+import sys
+import inspect
+import copy
 
 import pyeq3
 
 
-
-def ResultListSortFunction(a, b): # utility function
+def ResultListSortFunction(a, b):  # utility function
     if a[3] < b[3]:
         return -1
     if a[3] > b[3]:
         return 1
     return 0
 
-def UniqueCombinations(items, n): # utility function
-    if n==0:
+
+def UniqueCombinations(items, n):  # utility function
+    if n == 0:
         yield []
     else:
         for i in range(len(items)):
-            for cc in UniqueCombinations(items[i+1:],n-1):
+            for cc in UniqueCombinations(items[i+1:], n-1):
                 yield [items[i]]+cc
 
-def UniqueCombinations2(items2, n2): # utility function
-    if n2==0:
+
+def UniqueCombinations2(items2, n2):  # utility function
+    if n2 == 0:
         yield []
     else:
         for i2 in range(len(items2)):
-            for cc2 in UniqueCombinations2(items2[i2+1:],n2-1):
+            for cc2 in UniqueCombinations2(items2[i2+1:], n2-1):
                 yield [items2[i2]]+cc2
 
 
-
-def SetParametersAndFit(inEquation, inBestResult, inPrintStatus): # utility function
+def SetParametersAndFit(inEquation, inBestResult, inPrintStatus):  # utility function
     try:
         # check for number of coefficients > number of data points to be fitted
         if len(inEquation.GetCoefficientDesignators()) > len(inEquation.dataCache.allDataCacheDictionary['DependentData']):
@@ -40,32 +43,34 @@ def SetParametersAndFit(inEquation, inBestResult, inPrintStatus): # utility func
             return
 
         if inPrintStatus:
-            print('Fitting', inEquation.__module__, "'" + inEquation.GetDisplayName() + "'")
-        
+            print('Fitting', inEquation.__module__,
+                  "'" + inEquation.GetDisplayName() + "'")
+
         inEquation.Solve()
-        
-        target = inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)
-        if target > 1.0E290: # error too large
+
+        target = inEquation.CalculateAllDataFittingTarget(
+            inEquation.solvedCoefficients)
+        if target > 1.0E290:  # error too large
             return
     except:
-        print("Exception in " + inEquation.__class__.__name__ + '\n' + str(sys.exc_info()[0]) + '\n' + str(sys.exc_info()[1]) + '\n')
+        print("Exception in " + inEquation.__class__.__name__ + '\n' +
+              str(sys.exc_info()[0]) + '\n' + str(sys.exc_info()[1]) + '\n')
         return None
 
     if (not inBestResult) or (target < inBestResult[3]):
         t0 = copy.deepcopy(inEquation.__module__)
         t1 = copy.deepcopy(inEquation.__class__.__name__)
-        t2 = copy.deepcopy(inEquation.extendedVersionHandler.__class__.__name__.split('_')[1])
+        t2 = copy.deepcopy(
+            inEquation.extendedVersionHandler.__class__.__name__.split('_')[1])
         t3 = copy.deepcopy(target)
         t4 = copy.deepcopy(inEquation.solvedCoefficients)
         t5 = copy.deepcopy(inEquation.polyfunctional2DFlags)
         t6 = copy.deepcopy(inEquation.xPolynomialOrder)
         t7 = copy.deepcopy(inEquation.rationalNumeratorFlags)
         t8 = copy.deepcopy(inEquation.rationalDenominatorFlags)
-    
-        return [t0,t1,t2,t3,t4,t5,t6,t7,t8]
+
+        return [t0, t1, t2, t3, t4, t5, t6, t7, t8]
     return None
-
-
 
 
 rawData = '''
@@ -99,7 +104,6 @@ reducedDataCache = {}
 smoothnessControl = 3
 
 
-
 ##########################
 # fit named equations here
 for submodule in inspect.getmembers(pyeq3.Models_2D):
@@ -107,7 +111,7 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
         for equationClass in inspect.getmembers(submodule[1]):
             if inspect.isclass(equationClass[1]):
 
-                # special classes 
+                # special classes
                 if equationClass[1].splineFlag or \
                    equationClass[1].userSelectablePolynomialFlag or \
                    equationClass[1].userCustomizablePolynomialFlag or \
@@ -115,37 +119,39 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
                    equationClass[1].userSelectableRationalFlag or \
                    equationClass[1].userDefinedFunctionFlag:
                     continue
-                
+
                 for extendedVersion in ['Default', 'Offset']:
-                    
+
                     if (extendedVersion == 'Offset') and (equationClass[1].autoGenerateOffsetForm == False):
                         continue
-                    
-                    
-                    equationInstance = equationClass[1](fittingTargetText, extendedVersion)
+
+                    equationInstance = equationClass[1](
+                        fittingTargetText, extendedVersion)
 
                     if len(equationInstance.GetCoefficientDesignators()) > smoothnessControl:
                         continue
 
-                    
-                    equationInstance.dataCache = externalCache # re-use the external cache
-                    
+                    equationInstance.dataCache = externalCache  # re-use the external cache
+
                     if equationInstance.dataCache.allDataCacheDictionary == {}:
-                        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(rawData, equationInstance, False)
-                        
-                    equationInstance.dataCache.CalculateNumberOfReducedDataPoints(equationInstance)
+                        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+                            rawData, equationInstance, False)
+
+                    equationInstance.dataCache.CalculateNumberOfReducedDataPoints(
+                        equationInstance)
                     if equationInstance.numberOfReducedDataPoints in reducedDataCache:
-                        equationInstance.dataCache.reducedDataCacheDictionary = reducedDataCache[equationInstance.numberOfReducedDataPoints]
+                        equationInstance.dataCache.reducedDataCacheDictionary = reducedDataCache[
+                            equationInstance.numberOfReducedDataPoints]
                     else:
                         equationInstance.dataCache.reducedDataCacheDictionary = {}
 
-                    result = SetParametersAndFit(equationInstance, bestResult, True)
+                    result = SetParametersAndFit(
+                        equationInstance, bestResult, True)
                     if result:
                         bestResult = result
-                    
+
                     if equationInstance.numberOfReducedDataPoints not in reducedDataCache:
                         reducedDataCache[equationInstance.numberOfReducedDataPoints] = equationInstance.dataCache.reducedDataCacheDictionary
-
 
 
 ##########################
@@ -153,27 +159,33 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
 print()
 print('Fitting polyfunctionals:')
 equationCount = 0
-maxPolyfunctionalCoefficients = 4 # this value was chosen to make this example more convenient
+# this value was chosen to make this example more convenient
+maxPolyfunctionalCoefficients = 4
 polyfunctionalEquationList = pyeq3.PolyFunctions.GenerateListForPolyfunctionals_2D()
-functionIndexList = list(range(len(polyfunctionalEquationList))) # make a list of function indices to permute
+# make a list of function indices to permute
+functionIndexList = list(range(len(polyfunctionalEquationList)))
 
 for coeffCount in range(1, maxPolyfunctionalCoefficients+1):
     functionCombinations = UniqueCombinations(functionIndexList, coeffCount)
     for functionCombination in functionCombinations:
-        
+
         if len(functionCombination) > smoothnessControl:
             continue
-            
-        equationInstance = pyeq3.Models_2D.Polyfunctional.UserSelectablePolyfunctional(fittingTargetText, 'Default', functionCombination, polyfunctionalEquationList)
 
-        equationInstance.dataCache = externalCache # re-use the external cache
-        
+        equationInstance = pyeq3.Models_2D.Polyfunctional.UserSelectablePolyfunctional(
+            fittingTargetText, 'Default', functionCombination, polyfunctionalEquationList)
+
+        equationInstance.dataCache = externalCache  # re-use the external cache
+
         if equationInstance.dataCache.allDataCacheDictionary == {}:
-            pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(rawData, equationInstance, False)
-            
-        equationInstance.dataCache.CalculateNumberOfReducedDataPoints(equationInstance)
+            pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+                rawData, equationInstance, False)
+
+        equationInstance.dataCache.CalculateNumberOfReducedDataPoints(
+            equationInstance)
         if equationInstance.numberOfReducedDataPoints in reducedDataCache:
-            equationInstance.dataCache.reducedDataCacheDictionary = reducedDataCache[equationInstance.numberOfReducedDataPoints]
+            equationInstance.dataCache.reducedDataCacheDictionary = reducedDataCache[
+                equationInstance.numberOfReducedDataPoints]
         else:
             equationInstance.dataCache.reducedDataCacheDictionary = {}
 
@@ -183,34 +195,37 @@ for coeffCount in range(1, maxPolyfunctionalCoefficients+1):
 
         if equationInstance.numberOfReducedDataPoints not in reducedDataCache:
             reducedDataCache[equationInstance.numberOfReducedDataPoints] = equationInstance.dataCache.reducedDataCacheDictionary
-        
+
         equationCount += 1
         if (equationCount % 250) == 0:
             print('    ', equationCount, '...')
-
 
 
 ######################
 # fit user-selectable polynomials here
 print()
 print('Fitting user-selectable polynomials:')
-maxPolynomialOrderX = 5 # this value was chosen to make this example more convenient
+maxPolynomialOrderX = 5  # this value was chosen to make this example more convenient
 
 for polynomialOrderX in range(maxPolynomialOrderX+1):
-    
+
     if (polynomialOrderX + 1) > smoothnessControl:
         continue
 
-    equationInstance = pyeq3.Models_2D.Polynomial.UserSelectablePolynomial(fittingTargetText, 'Default', polynomialOrderX)
-            
-    equationInstance.dataCache = externalCache # re-use the external cache
+    equationInstance = pyeq3.Models_2D.Polynomial.UserSelectablePolynomial(
+        fittingTargetText, 'Default', polynomialOrderX)
+
+    equationInstance.dataCache = externalCache  # re-use the external cache
 
     if equationInstance.dataCache.allDataCacheDictionary == {}:
-        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(rawData, equationInstance, False)
-        
-    equationInstance.dataCache.CalculateNumberOfReducedDataPoints(equationInstance)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            rawData, equationInstance, False)
+
+    equationInstance.dataCache.CalculateNumberOfReducedDataPoints(
+        equationInstance)
     if equationInstance.numberOfReducedDataPoints in reducedDataCache:
-        equationInstance.dataCache.reducedDataCacheDictionary = reducedDataCache[equationInstance.numberOfReducedDataPoints]
+        equationInstance.dataCache.reducedDataCacheDictionary = reducedDataCache[
+            equationInstance.numberOfReducedDataPoints]
     else:
         equationInstance.dataCache.reducedDataCacheDictionary = {}
 
@@ -222,60 +237,68 @@ for polynomialOrderX in range(maxPolynomialOrderX+1):
         reducedDataCache[equationInstance.numberOfReducedDataPoints] = equationInstance.dataCache.reducedDataCacheDictionary
 
 
-
 ######################
 # fit user-selectable rationals here
 print()
 print('Fitting user-selectable rationals:')
 equationCount = 0
-maxCoeffs = smoothnessControl # arbitrary choice of maximum total coefficients for this example
+# arbitrary choice of maximum total coefficients for this example
+maxCoeffs = smoothnessControl
 functionList = pyeq3.PolyFunctions.GenerateListForRationals_2D()
-functionIndexList = list(range(len(functionList))) # make a list of function indices
+# make a list of function indices
+functionIndexList = list(range(len(functionList)))
 
 for numeratorCoeffCount in range(1, maxCoeffs):
-    numeratorComboList = UniqueCombinations(functionIndexList, numeratorCoeffCount)
+    numeratorComboList = UniqueCombinations(
+        functionIndexList, numeratorCoeffCount)
     for numeratorCombo in numeratorComboList:
         for denominatorCoeffCount in range(1, maxCoeffs):
-            denominatorComboList = UniqueCombinations2(functionIndexList, denominatorCoeffCount)
+            denominatorComboList = UniqueCombinations2(
+                functionIndexList, denominatorCoeffCount)
             for denominatorCombo in denominatorComboList:
-                
+
                 for extendedVersion in ['Default', 'Offset']:
-                    
+
                     extraCoeffs = 0
                     if extendedVersion == 'Offset':
                         extraCoeffs = 1
-                        
+
                     if (len(numeratorCombo) + len(denominatorCombo) + extraCoeffs) > smoothnessControl:
                         continue
-                    
-                    equationInstance = pyeq3.Models_2D.Rational.UserSelectableRational(fittingTargetText, extendedVersion, numeratorCombo, denominatorCombo, functionList)
-                                    
-                    equationInstance.dataCache = externalCache # re-use the external cache
-                    
+
+                    equationInstance = pyeq3.Models_2D.Rational.UserSelectableRational(
+                        fittingTargetText, extendedVersion, numeratorCombo, denominatorCombo, functionList)
+
+                    equationInstance.dataCache = externalCache  # re-use the external cache
+
                     if equationInstance.dataCache.allDataCacheDictionary == {}:
-                        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(rawData, equationInstance, False)
-                        
-                    equationInstance.dataCache.CalculateNumberOfReducedDataPoints(equationInstance)
+                        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+                            rawData, equationInstance, False)
+
+                    equationInstance.dataCache.CalculateNumberOfReducedDataPoints(
+                        equationInstance)
                     if equationInstance.numberOfReducedDataPoints in reducedDataCache:
-                        equationInstance.dataCache.reducedDataCacheDictionary = reducedDataCache[equationInstance.numberOfReducedDataPoints]
+                        equationInstance.dataCache.reducedDataCacheDictionary = reducedDataCache[
+                            equationInstance.numberOfReducedDataPoints]
                     else:
                         equationInstance.dataCache.reducedDataCacheDictionary = {}
-    
-                    result = SetParametersAndFit(equationInstance, bestResult, False)
+
+                    result = SetParametersAndFit(
+                        equationInstance, bestResult, False)
                     if result:
                         bestResult = result
-                    
+
                     if equationInstance.numberOfReducedDataPoints not in reducedDataCache:
                         reducedDataCache[equationInstance.numberOfReducedDataPoints] = equationInstance.dataCache.reducedDataCacheDictionary
-    
+
                     equationCount += 1
                     if (equationCount % 5) == 0:
-                        print('    ', equationCount, 'rationals, current flags:', equationInstance.rationalNumeratorFlags, equationInstance.rationalDenominatorFlags,)
+                        print('    ', equationCount, 'rationals, current flags:',
+                              equationInstance.rationalNumeratorFlags, equationInstance.rationalDenominatorFlags,)
                         if extendedVersion == 'Offset':
                             print('with offset')
                         else:
                             print()
-
 
 
 print()
@@ -284,7 +307,8 @@ print('While \"Best Fit\" may be the lowest fitting target value,')
 print('it requires further evaluation to determine if it is the best')
 print('for your needs.  For example, it may interpolate badly.')
 print()
-print('"Smoothness Control" allowed a maximum of ' + str(smoothnessControl) + ' parameters')
+print('"Smoothness Control" allowed a maximum of ' +
+      str(smoothnessControl) + ' parameters')
 
 moduleName = bestResult[0]
 className = bestResult[1]
@@ -299,26 +323,32 @@ rationalDenominatorFlags = bestResult[8]
 
 # now instantiate the "best fit" equation based on the name stored in the result list
 if polyfunctional2DFlags:
-    equation = eval(moduleName + "." + className + "('" + fittingTargetText + "', '" + extendedVersionHandlerName + "', " + str(polyfunctional2DFlags) + ")")
+    equation = eval(moduleName + "." + className + "('" + fittingTargetText +
+                    "', '" + extendedVersionHandlerName + "', " + str(polyfunctional2DFlags) + ")")
 elif polynomialOrderX != None:
-    equation = eval(moduleName + "." + className + "('" + fittingTargetText + "', '" + extendedVersionHandlerName + "', " + str(polynomialOrderX) + ", " + str(polynomialOrderY) + ")")
+    equation = eval(moduleName + "." + className + "('" + fittingTargetText + "', '" +
+                    extendedVersionHandlerName + "', " + str(polynomialOrderX) + ", " + str(polynomialOrderY) + ")")
 elif rationalNumeratorFlags and rationalDenominatorFlags:
-    equation = eval(moduleName + "." + className + "('" + fittingTargetText + "', '" + extendedVersionHandlerName + "', " + str(rationalNumeratorFlags) + ", " + str(rationalDenominatorFlags) + ")")
+    equation = eval(moduleName + "." + className + "('" + fittingTargetText + "', '" + extendedVersionHandlerName +
+                    "', " + str(rationalNumeratorFlags) + ", " + str(rationalDenominatorFlags) + ")")
 else:
-    equation = eval(moduleName + "." + className + "('" + fittingTargetText + "', '" + extendedVersionHandlerName + "')")
+    equation = eval(moduleName + "." + className + "('" +
+                    fittingTargetText + "', '" + extendedVersionHandlerName + "')")
 
 
 pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(rawData, equation, False)
 equation.fittingTarget = fittingTargetText
 equation.solvedCoefficients = solvedCoefficients
 equation.dataCache.FindOrCreateAllDataCache(equation)
-equation.CalculateModelErrors(equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
+equation.CalculateModelErrors(
+    equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
 
 
 print()
 print('\"Best fit\" was', moduleName + "." + className)
 
-print('Fitting target value', equation.fittingTarget + ":", equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+print('Fitting target value', equation.fittingTarget + ":",
+      equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
 
 if polyfunctional2DFlags:
     print()
@@ -337,10 +367,12 @@ if rationalNumeratorFlags and rationalDenominatorFlags:
     print()
 
 for i in range(len(equation.solvedCoefficients)):
-    print("Coefficient " + equation.GetCoefficientDesignators()[i] + ": " + str(equation.solvedCoefficients[i]))
+    print("Coefficient " + equation.GetCoefficientDesignators()
+          [i] + ": " + str(equation.solvedCoefficients[i]))
 print()
 for i in range(len(equation.dataCache.allDataCacheDictionary['DependentData'])):
-    print('X:', equation.dataCache.allDataCacheDictionary['IndependentData'][0][i],)
+    print(
+        'X:', equation.dataCache.allDataCacheDictionary['IndependentData'][0][i],)
     print('Y', equation.dataCache.allDataCacheDictionary['DependentData'][i],)
     print('Model:', equation.modelPredictions[i],)
     print('Abs. Error:', equation.modelAbsoluteError[i],)

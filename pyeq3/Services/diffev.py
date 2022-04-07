@@ -1,4 +1,5 @@
-import numpy, numpy.random
+import numpy
+import numpy.random
 
 '''
 Differential Evolution Optimization
@@ -39,6 +40,8 @@ DAMAGE.
 '''
 
 # heavily edited from original code
+
+
 class DiffEvolver(object):
 
     def __init__(self, func, pop0, crossover_rate, scale, prng):
@@ -55,10 +58,10 @@ class DiffEvolver(object):
         self.best_vector = self.population[bestidx]
         self.best_value = self.pop_values[bestidx]
 
-
     # heavily edited from original code
+
     def solve(self, sufficientSolution, newgens=100):
-        
+
         # Did generation zero already reach a sufficient solution?
         if self.best_value <= sufficientSolution:
             gen = 0
@@ -69,15 +72,17 @@ class DiffEvolver(object):
             randints = numpy.random.randint(0, self.npop-1, (self.npop, 2))
             for candidate in range(self.npop):
                 i1, i2 = randints[candidate]
-                
+
                 # this is the "difference" in differential evolution
-                diff1 = self.scale * (self.population[i1] - self.population[i2])
+                diff1 = self.scale * \
+                    (self.population[i1] - self.population[i2])
 
                 # crossover,  or "mating" probability with the "fittest" individual
-                trial = numpy.where(self.prng.rand(self.ndim) < self.crossover_rate, self.best_vector + diff1, self.population[candidate])
+                trial = numpy.where(self.prng.rand(
+                    self.ndim) < self.crossover_rate, self.best_vector + diff1, self.population[candidate])
 
                 trial_result = self.func(trial)
-                
+
                 # this is the "evolution" in differential evolution, also called "survival of the fittest"
                 if numpy.isfinite(trial_result) and numpy.isfinite(self.pop_values[candidate]) and trial_result < self.pop_values[candidate]:
                     self.population[candidate] = trial

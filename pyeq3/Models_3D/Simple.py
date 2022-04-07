@@ -8,28 +8,28 @@
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import sys, os
+import sys
+import os
 if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+    sys.path.append(os.path.join(
+        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
 
 import pyeq3
+import pyeq3.Model_3D_BaseClass
 
 import numpy
-numpy.seterr(all= 'ignore')
-
-
-import pyeq3.Model_3D_BaseClass
+numpy.seterr(all='ignore')
 
 
 class SimpleEquation_01(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 01"
     _HTML = 'z = a*pow(x,b)*pow(y,c)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -44,45 +44,45 @@ class SimpleEquation_01(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(x_in,b)*numpy.power(y_in,c)
+            temp = a*numpy.power(x_in, b)*numpy.power(y_in, c)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in,b)*pow(y_in,c);\n"
         return s
 
 
-
 class SimpleEquation_02(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 02"
     _HTML = 'z = x/(a+b*y)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -97,19 +97,21 @@ class SimpleEquation_02(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
@@ -119,22 +121,20 @@ class SimpleEquation_02(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = x_in/(a+b*y_in);\n"
         return s
 
 
-
 class SimpleEquation_03(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 03"
     _HTML = 'z = y/(a+b*x)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -149,19 +149,21 @@ class SimpleEquation_03(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
@@ -171,22 +173,20 @@ class SimpleEquation_03(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = y_in/(a+b*x_in);\n"
         return s
 
 
-
 class SimpleEquation_04(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 04"
     _HTML = 'z = a*pow(x,b*y)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -201,44 +201,44 @@ class SimpleEquation_04(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
-            temp = a*numpy.power(x_in,b*y_in)
+            temp = a*numpy.power(x_in, b*y_in)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in,b*y_in);\n"
         return s
 
 
-
 class SimpleEquation_05(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 05"
     _HTML = 'z = a*pow(y,b*x)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -253,44 +253,44 @@ class SimpleEquation_05(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
-            temp = a*numpy.power(y_in,b*x_in)
+            temp = a*numpy.power(y_in, b*x_in)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(y_in,b*x_in);\n"
         return s
 
 
-
 class SimpleEquation_06(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 06"
     _HTML = 'z = a*pow(x,b/y)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -305,44 +305,44 @@ class SimpleEquation_06(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = True
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
-            temp = a*numpy.power(x_in,b/y_in)
+            temp = a*numpy.power(x_in, b/y_in)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in,b/y_in);\n"
         return s
 
 
-
 class SimpleEquation_07(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 07"
     _HTML = 'z = a*pow(y,b/x)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -357,44 +357,44 @@ class SimpleEquation_07(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
-            temp = a*numpy.power(y_in,b/x_in)
+            temp = a*numpy.power(y_in, b/x_in)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(y_in,b/x_in);\n"
         return s
 
 
-
 class SimpleEquation_08(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 08"
     _HTML = 'z = a*x+b*pow(y,2.0)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -409,19 +409,21 @@ class SimpleEquation_08(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[2.0]), [2.0]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
+            NameOrValueFlag=1, args=[2.0]), [2.0]])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        PowY_2 = inDataCacheDictionary['PowY_2.0'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        PowY_2 = inDataCacheDictionary['PowY_2.0']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
@@ -431,22 +433,20 @@ class SimpleEquation_08(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = a*x_in+b*pow(y_in,2.0);\n"
         return s
 
 
-
 class SimpleEquation_09(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 09"
     _HTML = 'z = a*y+b*pow(x,2.0)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -461,19 +461,21 @@ class SimpleEquation_09(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
+            NameOrValueFlag=1, args=[2.0]), [2.0]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        PowX_2 = inDataCacheDictionary['PowX_2.0'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        PowX_2 = inDataCacheDictionary['PowX_2.0']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
@@ -483,22 +485,20 @@ class SimpleEquation_09(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = a*y_in+b*pow(x_in,2.0);\n"
         return s
 
 
-
 class SimpleEquation_10(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 10"
     _HTML = 'z = x/(a+b*pow(y,2.0))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -513,19 +513,21 @@ class SimpleEquation_10(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[2.0]), [2.0]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
+            NameOrValueFlag=1, args=[2.0]), [2.0]])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        PowY_2 = inDataCacheDictionary['PowY_2.0'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        PowY_2 = inDataCacheDictionary['PowY_2.0']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
@@ -535,22 +537,20 @@ class SimpleEquation_10(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = x_in/(a+b*pow(y_in,2.0));\n"
         return s
 
 
-
 class SimpleEquation_11(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 11"
     _HTML = 'z = y/(a+b*pow(x,2.0))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -565,19 +565,21 @@ class SimpleEquation_11(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
+            NameOrValueFlag=1, args=[2.0]), [2.0]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        PowX_2 = inDataCacheDictionary['PowX_2.0'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        PowX_2 = inDataCacheDictionary['PowX_2.0']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
@@ -587,22 +589,20 @@ class SimpleEquation_11(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = y_in/(a+b*pow(x_in,2.0));\n"
         return s
 
 
-
 class SimpleEquation_12(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 12"
     _HTML = 'z = a*pow(b,x)*pow(y,c)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -617,45 +617,45 @@ class SimpleEquation_12(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(b,x_in)*numpy.power(y_in,c)
+            temp = a*numpy.power(b, x_in)*numpy.power(y_in, c)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(b,x_in)*pow(y_in,c);\n"
         return s
 
 
-
 class SimpleEquation_13(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 13"
     _HTML = 'z = a*pow(b,y)*pow(x,c)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -670,45 +670,45 @@ class SimpleEquation_13(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(b,y_in)*numpy.power(x_in,c)
+            temp = a*numpy.power(b, y_in)*numpy.power(x_in, c)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(b,y_in)*pow(x_in,c);\n"
         return s
 
 
-
 class SimpleEquation_14(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 14"
     _HTML = 'z = a*pow(x*y,b)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -726,42 +726,40 @@ class SimpleEquation_14(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     independentData1CannotContainBothPositiveAndNegativeFlag = True
     independentData2CannotContainBothPositiveAndNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        XY = inDataCacheDictionary['XY'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        XY = inDataCacheDictionary['XY']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
-            temp = a*numpy.power(XY,b)
+            temp = a*numpy.power(XY, b)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in*y_in,b);\n"
         return s
 
 
-
 class SimpleEquation_15(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 15"
     _HTML = 'z = a*pow(x/y,b)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -779,42 +777,40 @@ class SimpleEquation_15(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     independentData1CannotContainBothPositiveAndNegativeFlag = True
     independentData2CannotContainBothPositiveAndNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.XOVERY(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.XOVERY(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        XOVERY = inDataCacheDictionary['XOVERY'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        XOVERY = inDataCacheDictionary['XOVERY']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
-            temp = a*numpy.power(XOVERY,b)
+            temp = a*numpy.power(XOVERY, b)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in/y_in,b);\n"
         return s
 
 
-
 class SimpleEquation_16(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 16"
     _HTML = 'z = a*(pow(b,1.0/x))*pow(y,c)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -829,45 +825,45 @@ class SimpleEquation_16(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.RecipX(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.RecipX(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        RecipX = inDataCacheDictionary['RecipX'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        RecipX = inDataCacheDictionary['RecipX']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*(numpy.power(b,RecipX))*numpy.power(y_in,c)
+            temp = a*(numpy.power(b, RecipX))*numpy.power(y_in, c)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*(pow(b,1.0/x_in))*pow(y_in,c);\n"
         return s
 
 
-
 class SimpleEquation_17(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 17"
     _HTML = 'z = a*pow(b,1.0/y)*pow(x,c)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -882,45 +878,45 @@ class SimpleEquation_17(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = True
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.RecipY(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.RecipY(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        RecipY = inDataCacheDictionary['RecipY'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        RecipY = inDataCacheDictionary['RecipY']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(b,RecipY)*numpy.power(x_in,c)
+            temp = a*numpy.power(b, RecipY)*numpy.power(x_in, c)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(b,1.0/y_in)*pow(x_in,c);\n"
         return s
 
 
-
 class SimpleEquation_18(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 18"
     _HTML = 'z = a*pow(x/b,c)*exp(y/b)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -937,45 +933,45 @@ class SimpleEquation_18(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainNegativeFlag = False
 
     independentData1CannotContainBothPositiveAndNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(x_in/b,c)*numpy.exp(y_in/b)
+            temp = a*numpy.power(x_in/b, c)*numpy.exp(y_in/b)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in/b,c)*exp(y_in/b);\n"
         return s
 
 
-
 class SimpleEquation_19(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 19"
     _HTML = 'z = a*pow(y/b,c)*exp(x/b)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -992,45 +988,45 @@ class SimpleEquation_19(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainNegativeFlag = False
 
     independentData2CannotContainBothPositiveAndNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(y_in/b,c)*numpy.exp(x_in/b)
+            temp = a*numpy.power(y_in/b, c)*numpy.exp(x_in/b)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(y_in/b,c)*exp(x_in/b);\n"
         return s
 
 
-
 class SimpleEquation_20(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 20"
     _HTML = 'z = a*pow(x,b+c*y)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1045,45 +1041,45 @@ class SimpleEquation_20(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(x_in,b+c*y_in)
+            temp = a*numpy.power(x_in, b+c*y_in)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in,b+c*y_in);\n"
         return s
 
 
-
 class SimpleEquation_21(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 21"
     _HTML = 'z = a*pow(y,b+c*x)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1098,45 +1094,45 @@ class SimpleEquation_21(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(y_in,b+c*x_in)
+            temp = a*numpy.power(y_in, b+c*x_in)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(y_in,b+c*x_in);\n"
         return s
 
 
-
 class SimpleEquation_22(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 22"
     _HTML = 'z = a*pow(x,b+c/y)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1151,45 +1147,45 @@ class SimpleEquation_22(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = True
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(x_in,b+c/y_in)
+            temp = a*numpy.power(x_in, b+c/y_in)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in,b+c/y_in);\n"
         return s
 
 
-
 class SimpleEquation_23(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 23"
     _HTML = 'z = a*pow(y,b+c/x)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1204,45 +1200,45 @@ class SimpleEquation_23(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(y_in,b+c/x_in)
+            temp = a*numpy.power(y_in, b+c/x_in)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(y_in,b+c/x_in);\n"
         return s
 
 
-
 class SimpleEquation_24(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 24"
     _HTML = 'z = a*pow(x,b+c*ln(y))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1257,45 +1253,45 @@ class SimpleEquation_24(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = True
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        LogY = inDataCacheDictionary['LogY']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(x_in,b+c*LogY)
+            temp = a*numpy.power(x_in, b+c*LogY)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in,b+c*log(y_in));\n"
         return s
 
 
-
 class SimpleEquation_25(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 25"
     _HTML = 'z = a*pow(y,b+c*ln(x))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1310,45 +1306,45 @@ class SimpleEquation_25(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        LogX = inDataCacheDictionary['LogX'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        LogX = inDataCacheDictionary['LogX']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(y_in,b+c*LogX)
+            temp = a*numpy.power(y_in, b+c*LogX)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(y_in,b+c*log(x_in));\n"
         return s
 
 
-
 class SimpleEquation_26(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 26"
     _HTML = 'z = a*pow(y,b+c/ln(x))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1363,45 +1359,45 @@ class SimpleEquation_26(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        LogX = inDataCacheDictionary['LogX'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        LogX = inDataCacheDictionary['LogX']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(y_in,b+c/LogX)
+            temp = a*numpy.power(y_in, b+c/LogX)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(y_in,b+c/log(x_in));\n"
         return s
 
 
-
 class SimpleEquation_27(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 27"
     _HTML = 'z = a*pow(x,b+c/ln(y))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1416,45 +1412,45 @@ class SimpleEquation_27(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = True
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        LogY = inDataCacheDictionary['LogY']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(x_in,b+c/LogY)
+            temp = a*numpy.power(x_in, b+c/LogY)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in,b+c/log(y_in));\n"
         return s
 
 
-
 class SimpleEquation_28(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 28"
     _HTML = 'z = a*exp(b*x+c*pow(y,2.0))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1469,19 +1465,21 @@ class SimpleEquation_28(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[2.0]), [2.0]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
+            NameOrValueFlag=1, args=[2.0]), [2.0]])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        PowY_2 = inDataCacheDictionary['PowY_2.0'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        PowY_2 = inDataCacheDictionary['PowY_2.0']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -1492,22 +1490,20 @@ class SimpleEquation_28(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = a*exp(b*x_in+c*pow(y_in,2.0));\n"
         return s
 
 
-
 class SimpleEquation_29(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 29"
     _HTML = 'z = a*exp(b*y+c*pow(x,2.0))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1522,19 +1518,21 @@ class SimpleEquation_29(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
+            NameOrValueFlag=1, args=[2.0]), [2.0]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        PowX_2 = inDataCacheDictionary['PowX_2.0'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        PowX_2 = inDataCacheDictionary['PowX_2.0']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -1545,22 +1543,20 @@ class SimpleEquation_29(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = a*exp(b*y_in+c*pow(x_in,2.0));\n"
         return s
 
 
-
 class SimpleEquation_30(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 30"
     _HTML = 'z = a*exp(b/x+c*y)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1575,19 +1571,21 @@ class SimpleEquation_30(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -1598,22 +1596,20 @@ class SimpleEquation_30(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = a*exp(b/x_in+c*y_in);\n"
         return s
 
 
-
 class SimpleEquation_31(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 31"
     _HTML = 'z = a*exp(b/y+c*x)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1628,19 +1624,21 @@ class SimpleEquation_31(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = True
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -1651,22 +1649,20 @@ class SimpleEquation_31(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = a*exp(b/y_in+c*x_in);\n"
         return s
 
 
-
 class SimpleEquation_32(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 32"
     _HTML = 'z = (a+x)/(b+c*y)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -1681,19 +1677,21 @@ class SimpleEquation_32(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -1704,22 +1702,20 @@ class SimpleEquation_32(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = (a+x_in)/(b+c*y_in);\n"
         return s
 
 
-
 class SimpleEquation_33(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 33"
     _HTML = 'z = (a+y)/(b+c*x)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -1734,19 +1730,21 @@ class SimpleEquation_33(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -1757,22 +1755,20 @@ class SimpleEquation_33(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = (a+y_in)/(b+c*x_in);\n"
         return s
 
 
-
 class SimpleEquation_34(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 34"
     _HTML = 'z = (a+x)/(b+c*pow(y,2.0))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -1787,19 +1783,21 @@ class SimpleEquation_34(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = True
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[2.0]), [2.0]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
+            NameOrValueFlag=1, args=[2.0]), [2.0]])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        PowY_2 = inDataCacheDictionary['PowY_2.0'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        PowY_2 = inDataCacheDictionary['PowY_2.0']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -1810,22 +1808,20 @@ class SimpleEquation_34(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = (a+x_in)/(b+c*pow(y_in,2.0));\n"
         return s
 
 
-
 class SimpleEquation_35(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 35"
     _HTML = 'z = (a+y)/(b+c*pow(x,2.0))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -1840,19 +1836,21 @@ class SimpleEquation_35(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
+            NameOrValueFlag=1, args=[2.0]), [2.0]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        PowX_2 = inDataCacheDictionary['PowX_2.0'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        PowX_2 = inDataCacheDictionary['PowX_2.0']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -1863,22 +1861,20 @@ class SimpleEquation_35(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = (a+y_in)/(b+c*pow(x_in,2.0));\n"
         return s
 
 
-
 class SimpleEquation_36(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 36"
     _HTML = 'z = a*(exp(b*x)-exp(c*y))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1893,19 +1889,21 @@ class SimpleEquation_36(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -1916,22 +1914,20 @@ class SimpleEquation_36(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = a*(exp(b*x_in)-exp(c*y_in));\n"
         return s
 
 
-
 class SimpleEquation_37(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 37"
     _HTML = 'z = a*pow(x,b*pow(y,c))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1946,45 +1942,45 @@ class SimpleEquation_37(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(x_in,b*numpy.power(y_in,c))
+            temp = a*numpy.power(x_in, b*numpy.power(y_in, c))
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in,b*pow(y_in,c));\n"
         return s
 
 
-
 class SimpleEquation_38(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 38"
     _HTML = 'z = a*pow(y,b*pow(x,c))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -1999,45 +1995,45 @@ class SimpleEquation_38(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(y_in,b*numpy.power(x_in,c))
+            temp = a*numpy.power(y_in, b*numpy.power(x_in, c))
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(y_in,b*pow(x_in,c));\n"
         return s
 
 
-
 class SimpleEquation_39(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 39"
     _HTML = 'z = x/(a+b*y+c*pow(y,0.5))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -2052,21 +2048,25 @@ class SimpleEquation_39(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[0.5]), [0.5]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
+            NameOrValueFlag=1, args=[0.5]), [0.5]])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        PowY05 = inDataCacheDictionary['PowY_0.5'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+        # only need to perform this dictionary look-up once
+        PowY05 = inDataCacheDictionary['PowY_0.5']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -2077,22 +2077,20 @@ class SimpleEquation_39(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = x_in/(a+b*y_in+c*pow(y_in,0.5));\n"
         return s
 
 
-
 class SimpleEquation_40(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 40"
     _HTML = 'z = y/(a+b*x+c*pow(x,0.5))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -2107,21 +2105,25 @@ class SimpleEquation_40(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[0.5]), [0.5]])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
+            NameOrValueFlag=1, args=[0.5]), [0.5]])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        PowX05 = inDataCacheDictionary['PowX_0.5'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+        # only need to perform this dictionary look-up once
+        PowX05 = inDataCacheDictionary['PowX_0.5']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -2132,22 +2134,20 @@ class SimpleEquation_40(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = y_in/(a+b*x_in+c*pow(x_in,0.5));\n"
         return s
 
 
-
 class SimpleEquation_41(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 41"
     _HTML = 'z = exp(a+b/x+c*ln(y))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -2162,19 +2162,21 @@ class SimpleEquation_41(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = True
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        LogY = inDataCacheDictionary['LogY']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -2185,22 +2187,20 @@ class SimpleEquation_41(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = exp(a+b/x_in+c*log(y_in));\n"
         return s
 
 
-
 class SimpleEquation_42(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 42"
     _HTML = 'z = exp(a+b/y+c*ln(x))'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -2215,19 +2215,21 @@ class SimpleEquation_42(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = True
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        LogX = inDataCacheDictionary['LogX'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        LogX = inDataCacheDictionary['LogX']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
@@ -2238,22 +2240,20 @@ class SimpleEquation_42(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = exp(a+b/y_in+c*log(x_in));\n"
         return s
 
 
-
 class SimpleEquation_43(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 43"
     _HTML = 'z = a*pow(x,b)*ln(y+c)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -2268,45 +2268,45 @@ class SimpleEquation_43(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(x_in,b)*numpy.log(y_in+c)
+            temp = a*numpy.power(x_in, b)*numpy.log(y_in+c)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in,b)*log(y_in+c);\n"
         return s
 
 
-
 class SimpleEquation_44(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-    autoGeneratePlusPlaneForm = True # auto-added by script
-    
+    autoGeneratePlusPlaneForm = True  # auto-added by script
+
     _baseName = "Simple Equation 44"
     _HTML = 'z = a*pow(y,b)*ln(x+c)'
     _leftSideHTML = 'z'
     _coefficientDesignators = ['a', 'b', 'c']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -2321,29 +2321,30 @@ class SimpleEquation_44(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = True
-    
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+        # only need to perform this dictionary look-up once
+        y_in = inDataCacheDictionary['Y']
+
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = a*numpy.power(y_in,b)*numpy.log(x_in+c)
+            temp = a*numpy.power(y_in, b)*numpy.log(x_in+c)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(y_in,b)*log(x_in+c);\n"

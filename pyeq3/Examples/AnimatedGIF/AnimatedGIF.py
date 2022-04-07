@@ -1,13 +1,16 @@
-import os, sys, numpy
+from matplotlib import cm  # to colormap the surface plot from blue to red
+from mpl_toolkits.mplot3d import Axes3D  # 3D apecific
+import matplotlib.pyplot as plt
+import os
+import sys
+import numpy
 
 import pyeq3
 
 
 import matplotlib
-matplotlib.use('Agg') # immediately preceding the "import matplotlib.pyplot" statement
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D # 3D apecific
-from matplotlib import cm # to colormap the surface plot from blue to red
+# immediately preceding the "import matplotlib.pyplot" statement
+matplotlib.use('Agg')
 
 
 # animation frame size
@@ -18,7 +21,8 @@ graphHeight = 480
 # model some data
 print("Modeling data")
 equation = pyeq3.Models_3D.Polynomial.FullCubic()
-pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(equation.exampleData, equation, False)
+pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+    equation.exampleData, equation, False)
 equation.Solve()
 
 
@@ -35,14 +39,17 @@ yModel = numpy.linspace(min(y_data), max(y_data), 20)
 X, Y = numpy.meshgrid(xModel, yModel)
 tempcache = equation.dataCache
 equation.dataCache = pyeq3.dataCache()
-equation.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array([X, Y])
+equation.dataCache.allDataCacheDictionary['IndependentData'] = numpy.array([
+                                                                           X, Y])
 equation.dataCache.FindOrCreateAllDataCache(equation)
-Z = equation.CalculateModelPredictions(equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
+Z = equation.CalculateModelPredictions(
+    equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
 equation.dataCache = tempcache
 
 
 # matplotlib specific code for the plots
-fig = plt.figure(figsize=(float(graphWidth ) / 100.0, float(graphHeight ) / 100.0), dpi=100)
+fig = plt.figure(figsize=(float(graphWidth) / 100.0,
+                 float(graphHeight) / 100.0), dpi=100)
 ax = fig.gca(projection='3d')
 
 
@@ -54,33 +61,33 @@ ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm,
 ax.scatter(x_data, y_data, z_data)
 
 
-ax.set_title("Surface Rotation") # add a title for surface plot
-ax.set_xlabel("X Data") # X axis data label
-ax.set_ylabel("Y Data") # Y axis data label
-ax.set_zlabel("Z Data") # Z axis data label
+ax.set_title("Surface Rotation")  # add a title for surface plot
+ax.set_xlabel("X Data")  # X axis data label
+ax.set_ylabel("Y Data")  # Y axis data label
+ax.set_zlabel("Z Data")  # Z axis data label
 
 
-plt.tight_layout() # prevents cropping axis labels
+plt.tight_layout()  # prevents cropping axis labels
 
 
 print("Creating animation frames", end=' ')
 # create individual frames for the animation
-for ii in range(0,360, 2): # create frame every two degrees
+for ii in range(0, 360, 2):  # create frame every two degrees
     print(ii, end=' ')
     sys.stdout.flush()
-    
+
     ax.view_init(elev=10., azim=ii)
-    
+
     # use leading zeros in file names for sorting by name
     numstr = str(ii)
     if ii < 100:
         numstr = "0" + str(ii)
         if ii < 10:
             numstr = "00" + str(ii)
-            
-    fig.savefig("anim_" + numstr + ".png") # GIF format not available
 
-plt.close('all') # done with matplotlib at this point
+    fig.savefig("anim_" + numstr + ".png")  # GIF format not available
+
+plt.close('all')  # done with matplotlib at this point
 
 print()
 

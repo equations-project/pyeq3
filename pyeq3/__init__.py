@@ -134,20 +134,20 @@ Acknowledgement and Support
 
 """
 
+from . import IModel
+from . import Models_3D
+from . import Models_2D
+from . import ExtendedVersionHandlers
+from . import Utilities
+from . import Services
+from . import DataCache
+from . import Graphics
+from .version import version as __version__
 import sys
 python_version = sys.version_info[0]
 if python_version < 3:
     raise Exception('Python 3 is required to use pyeq3')
 
-from .version import version as __version__
-from . import DataCache
-from . import Services
-from . import Utilities
-from . import ExtendedVersionHandlers
-from . import IModel
-from . import Models_2D
-from . import Models_3D
-from . import Graphics
 
 dataConvertorService = Services.DataConverterService.DataConverterService
 solverService = Services.SolverService.SolverService

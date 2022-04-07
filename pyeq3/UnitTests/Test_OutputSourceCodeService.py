@@ -1,35 +1,42 @@
-import sys, os, unittest, inspect
+import sys
+import os
+import unittest
+import inspect
 
 # the pyeq3 directory is located up one level from here
 if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
-    
+    sys.path.append(os.path.join(
+        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
 import pyeq3
 import DataForUnitTests
 
 
-
 class TestGenerationOfOutputSourceCodeForAllEquations(unittest.TestCase):
-    
-    def test_GenerationOf_CPP_ForAllEquations(self): # ensure no coding errors in source code generation for any equation
+
+    # ensure no coding errors in source code generation for any equation
+    def test_GenerationOf_CPP_ForAllEquations(self):
         for submodule in inspect.getmembers(pyeq3.Models_2D) + inspect.getmembers(pyeq3.Models_3D):
             if inspect.ismodule(submodule[1]):
                 for equationClass in inspect.getmembers(submodule[1]):
                     if inspect.isclass(equationClass[1]):
-                        try: # not all equation classes have a fixed number of coefficient designators
+                        try:  # not all equation classes have a fixed number of coefficient designators
                             equation = equationClass[1]()
-                            coeffCount = len(equation.GetCoefficientDesignators())
-                            equation.solvedCoefficients = [1.0] * len(equation.GetCoefficientDesignators())
+                            coeffCount = len(
+                                equation.GetCoefficientDesignators())
+                            equation.solvedCoefficients = [
+                                1.0] * len(equation.GetCoefficientDesignators())
                         except:
                             continue
                         generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeCPP(equation)
-                        self.assertIs(type(generated), type('')) # must be a striong
-                        self.assertTrue(len(generated) > 0) # must have a length > 0
-
+                        # must be a striong
+                        self.assertIs(type(generated), type(''))
+                        # must have a length > 0
+                        self.assertTrue(len(generated) > 0)
 
 
 class TestConversionsFromCPP(unittest.TestCase):
-    
+
     cppStringForTestingLanguageConversions = '''
 \t// comment
 \tdouble doubleVariable;
@@ -45,7 +52,6 @@ class TestConversionsFromCPP(unittest.TestCase):
 \ttemp = tanh(temp);
 \ttemp = cosh(temp);
 '''
-
 
     def test_ConversionFromCppToCSHARP(self):
         convertedShouldBe = '''
@@ -63,9 +69,9 @@ class TestConversionsFromCPP(unittest.TestCase):
 \t\ttemp = Math.Tanh(temp);
 \t\ttemp = Math.Cosh(temp);
 '''
-        converted = pyeq3.outputSourceCodeService().ConvertCppToCSHARP(self.cppStringForTestingLanguageConversions)
+        converted = pyeq3.outputSourceCodeService().ConvertCppToCSHARP(
+            self.cppStringForTestingLanguageConversions)
         self.assertEqual(converted, convertedShouldBe)
-
 
     def test_ConversionFromCppToJAVA(self):
         convertedShouldBe = '''
@@ -83,9 +89,9 @@ class TestConversionsFromCPP(unittest.TestCase):
 \t\ttemp = Math.tanh(temp);
 \t\ttemp = Math.cosh(temp);
 '''
-        converted = pyeq3.outputSourceCodeService().ConvertCppToJAVA(self.cppStringForTestingLanguageConversions)
+        converted = pyeq3.outputSourceCodeService().ConvertCppToJAVA(
+            self.cppStringForTestingLanguageConversions)
         self.assertEqual(converted, convertedShouldBe)
-
 
     def test_ConversionFromCppToVBA(self):
         convertedShouldBe = '''
@@ -103,10 +109,10 @@ class TestConversionsFromCPP(unittest.TestCase):
 \ttemp = Application.WorksheetFunction.tanh(temp)
 \ttemp = Application.WorksheetFunction.cosh(temp)
 '''
-        converted = pyeq3.outputSourceCodeService().ConvertCppToVBA(self.cppStringForTestingLanguageConversions)
+        converted = pyeq3.outputSourceCodeService().ConvertCppToVBA(
+            self.cppStringForTestingLanguageConversions)
         self.assertEqual(converted, convertedShouldBe)
-        
-        
+
     def test_ConversionFromCppToPYTHON(self):
         convertedShouldBe = '''
     # comment
@@ -123,9 +129,9 @@ class TestConversionsFromCPP(unittest.TestCase):
     temp = math.tanh(temp)
     temp = math.cosh(temp)
 '''
-        converted = pyeq3.outputSourceCodeService().ConvertCppToPYTHON(self.cppStringForTestingLanguageConversions)
+        converted = pyeq3.outputSourceCodeService().ConvertCppToPYTHON(
+            self.cppStringForTestingLanguageConversions)
         self.assertEqual(converted, convertedShouldBe)
-
 
     def test_ConversionFromCppToSCILAB(self):
         convertedShouldBe = '''
@@ -143,9 +149,9 @@ class TestConversionsFromCPP(unittest.TestCase):
 \ttemp = tanh(temp);
 \ttemp = cosh(temp);
 '''
-        converted = pyeq3.outputSourceCodeService().ConvertCppToSCILAB(self.cppStringForTestingLanguageConversions)
+        converted = pyeq3.outputSourceCodeService().ConvertCppToSCILAB(
+            self.cppStringForTestingLanguageConversions)
         self.assertEqual(converted, convertedShouldBe)
-
 
     def test_ConversionFromCppToMATLAB(self):
         convertedShouldBe = '''
@@ -163,13 +169,13 @@ class TestConversionsFromCPP(unittest.TestCase):
 \ttemp = tanh(temp);
 \ttemp = cosh(temp);
 '''
-        converted = pyeq3.outputSourceCodeService().ConvertCppToMATLAB(self.cppStringForTestingLanguageConversions)
+        converted = pyeq3.outputSourceCodeService().ConvertCppToMATLAB(
+            self.cppStringForTestingLanguageConversions)
         self.assertEqual(converted, convertedShouldBe)
 
 
-
 class TestGenerationOfOutputSourceCode(unittest.TestCase):
-    
+
     def test_GenerationOf_CPP(self):
         generatedShouldBe = '''// To the best of my knowledge this code is correct.
 // If you find any errors or problems please contact
@@ -197,11 +203,12 @@ double Polynomial_Linear_model(double x_in)
 }
 '''
         equation = pyeq3.Models_2D.Polynomial.Linear('SSQABS')
-        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(DataForUnitTests.asciiDataInColumns_2D, equation, False)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, equation, False)
         equation.Solve()
-        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeCPP(equation, inDigitsOfPrecisionString = '11')
+        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeCPP(
+            equation, inDigitsOfPrecisionString='11')
         self.assertEqual(generated, generatedShouldBe)
-
 
     def test_GenerationOf_VBA(self):
         generatedShouldBe = '''' To the best of my knowledge this code is correct.
@@ -225,11 +232,12 @@ Public Function Polynomial_Linear_model(x_in)
 End Function
 '''
         equation = pyeq3.Models_2D.Polynomial.Linear('SSQABS')
-        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(DataForUnitTests.asciiDataInColumns_2D, equation, False)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, equation, False)
         equation.Solve()
-        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeVBA(equation, inDigitsOfPrecisionString = '11')
+        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeVBA(
+            equation, inDigitsOfPrecisionString='11')
         self.assertEqual(generated, generatedShouldBe)
-
 
     def test_GenerationOf_PYTHON(self):
         generatedShouldBe = '''# To the best of my knowledge this code is correct.
@@ -255,11 +263,12 @@ def Polynomial_Linear_model(x_in):
     return temp
 '''
         equation = pyeq3.Models_2D.Polynomial.Linear('SSQABS')
-        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(DataForUnitTests.asciiDataInColumns_2D, equation, False)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, equation, False)
         equation.Solve()
-        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(equation, inDigitsOfPrecisionString = '11')
+        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(
+            equation, inDigitsOfPrecisionString='11')
         self.assertEqual(generated, generatedShouldBe)
-
 
     def test_GenerationOf_JAVA(self):
         generatedShouldBe = '''// To the best of my knowledge this code is correct.
@@ -291,11 +300,12 @@ class Polynomial_Linear
 }
 '''
         equation = pyeq3.Models_2D.Polynomial.Linear('SSQABS')
-        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(DataForUnitTests.asciiDataInColumns_2D, equation, False)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, equation, False)
         equation.Solve()
-        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeJAVA(equation, inDigitsOfPrecisionString = '11')
+        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeJAVA(
+            equation, inDigitsOfPrecisionString='11')
         self.assertEqual(generated, generatedShouldBe)
-
 
     def test_GenerationOf_CSHARP(self):
         generatedShouldBe = '''// To the best of my knowledge this code is correct.
@@ -327,11 +337,12 @@ class Polynomial_Linear
 }
 '''
         equation = pyeq3.Models_2D.Polynomial.Linear('SSQABS')
-        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(DataForUnitTests.asciiDataInColumns_2D, equation, False)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, equation, False)
         equation.Solve()
-        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeCSHARP(equation, inDigitsOfPrecisionString = '11')
+        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeCSHARP(
+            equation, inDigitsOfPrecisionString='11')
         self.assertEqual(generated, generatedShouldBe)
-
 
     def test_GenerationOf_SCILAB(self):
         generatedShouldBe = '''// To the best of my knowledge this code is correct.
@@ -357,11 +368,12 @@ function y = Polynomial_Linear_model(x_in)
 endfunction
 '''
         equation = pyeq3.Models_2D.Polynomial.Linear('SSQABS')
-        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(DataForUnitTests.asciiDataInColumns_2D, equation, False)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, equation, False)
         equation.Solve()
-        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeSCILAB(equation, inDigitsOfPrecisionString = '11')
+        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeSCILAB(
+            equation, inDigitsOfPrecisionString='11')
         self.assertEqual(generated, generatedShouldBe)
-
 
     def test_GenerationOf_MATLAB(self):
         generatedShouldBe = '''% To the best of my knowledge this code is correct.
@@ -386,11 +398,12 @@ function y = Polynomial_Linear_model(x_in)
 \ty = temp;
 '''
         equation = pyeq3.Models_2D.Polynomial.Linear('SSQABS')
-        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(DataForUnitTests.asciiDataInColumns_2D, equation, False)
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, equation, False)
         equation.Solve()
-        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeMATLAB(equation, inDigitsOfPrecisionString = '11')
+        generated = pyeq3.outputSourceCodeService().GetOutputSourceCodeMATLAB(
+            equation, inDigitsOfPrecisionString='11')
         self.assertEqual(generated, generatedShouldBe)
-
 
 
 if __name__ == '__main__':

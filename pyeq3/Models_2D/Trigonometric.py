@@ -8,18 +8,17 @@
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import sys, os
+import sys
+import os
 if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+    sys.path.append(os.path.join(
+        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
 
 import pyeq3
-
-import numpy
-numpy.seterr(all= 'ignore')
-
-
 import pyeq3.Model_2D_BaseClass
 
+import numpy
+numpy.seterr(all='ignore')
 
 
 class GreatCircleDegrees(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
@@ -28,7 +27,7 @@ class GreatCircleDegrees(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _leftSideHTML = 'latitude'
     _coefficientDesignators = ['A', 'B']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -44,38 +43,37 @@ class GreatCircleDegrees(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
-        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName)
+    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
+            self, inFittingTarget, inExtendedVersionName)
         self.lowerCoefficientBounds = [None, -360.0]
         self.upperCoefficientBounds = [None, 360.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
-
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+
         A = inCoeffs[0]
         B = inCoeffs[1]
 
         try:
-            temp = numpy.arctan(A*numpy.cos((B + x_in) / 57.2957795131)) * 57.2957795131
+            temp = numpy.arctan(
+                A*numpy.cos((B + x_in) / 57.2957795131)) * 57.2957795131
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = atan(A*cos((B + x_in) / 57.2957795131)) * 57.2957795131;\n"
         return s
-
 
 
 class GreatCircleRadians(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
@@ -84,7 +82,7 @@ class GreatCircleRadians(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _leftSideHTML = 'latitude'
     _coefficientDesignators = ['A', 'B']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
@@ -100,24 +98,24 @@ class GreatCircleRadians(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
-        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName)
+    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
+            self, inFittingTarget, inExtendedVersionName)
         self.lowerCoefficientBounds = [None, -6.2831853072]
         self.upperCoefficientBounds = [None, 6.2831853072]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
-
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+
         A = inCoeffs[0]
         B = inCoeffs[1]
 
@@ -127,11 +125,9 @@ class GreatCircleRadians(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = atan(A*cos(B + x_in));\n"
         return s
-
 
 
 class Sine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
@@ -140,7 +136,7 @@ class Sine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _leftSideHTML = 'y'
     _coefficientDesignators = ['amplitude', 'center', 'width']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -157,23 +153,23 @@ class Sine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
-        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName)
+    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
+            self, inFittingTarget, inExtendedVersionName)
         self.lowerCoefficientBounds = [None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
-
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+
         amplitude = inCoeffs[0]
         center = inCoeffs[1]
         width = inCoeffs[2]
@@ -184,11 +180,9 @@ class Sine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * (x_in - center) / width);\n"
         return s
-
 
 
 class Sine_NyquistLimited(Sine):
@@ -196,7 +190,8 @@ class Sine_NyquistLimited(Sine):
     autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
-        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+        # user did not override bound
+        if self.lowerCoefficientBounds[2] == 0.0:
             self.dataCache.FindOrCreateAllDataCache(self)
             x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
@@ -206,14 +201,13 @@ class Sine_NyquistLimited(Sine):
         Sine.Solve(self, inNonLinearSolverAlgorithmName)
 
 
-
 class SineSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _baseName = "Sine Squared [radians]"
     _HTML = 'y = amplitude * sin(pi * (x - center) / width)<sup>2</sup>'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['amplitude', 'center', 'width']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -230,38 +224,37 @@ class SineSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
-        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName)
+    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
+            self, inFittingTarget, inExtendedVersionName)
         self.lowerCoefficientBounds = [None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
-
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+
         amplitude = inCoeffs[0]
         center = inCoeffs[1]
         width = inCoeffs[2]
 
         try:
-            temp = amplitude * numpy.sin(numpy.pi * (x_in - center) / width) * numpy.sin(numpy.pi * (x_in - center) / width)
+            temp = amplitude * numpy.sin(numpy.pi * (x_in - center) / width) * \
+                numpy.sin(numpy.pi * (x_in - center) / width)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * (x_in - center) / width) * sin(3.14159265358979323846 * (x_in - center) / width);\n"
         return s
-
 
 
 class SineSquared_NyquistLimited(SineSquared):
@@ -269,7 +262,8 @@ class SineSquared_NyquistLimited(SineSquared):
     autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
-        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+        # user did not override bound
+        if self.lowerCoefficientBounds[2] == 0.0:
             self.dataCache.FindOrCreateAllDataCache(self)
             x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
@@ -279,14 +273,13 @@ class SineSquared_NyquistLimited(SineSquared):
         SineSquared.Solve(self, inNonLinearSolverAlgorithmName)
 
 
-
 class Tangent(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _baseName = "Tangent [radians]"
     _HTML = 'y = amplitude * tan(pi * (x - center) / width)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['amplitude', 'center', 'width']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -303,23 +296,23 @@ class Tangent(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
-        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName)
+    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
+            self, inFittingTarget, inExtendedVersionName)
         self.lowerCoefficientBounds = [None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
-
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+
         amplitude = inCoeffs[0]
         center = inCoeffs[1]
         width = inCoeffs[2]
@@ -330,11 +323,9 @@ class Tangent(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * tan(3.14159265358979323846 * (x_in - center) / width);\n"
         return s
-
 
 
 class Tangent_NyquistLimited(Tangent):
@@ -342,7 +333,8 @@ class Tangent_NyquistLimited(Tangent):
     autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
-        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+        # user did not override bound
+        if self.lowerCoefficientBounds[2] == 0.0:
             self.dataCache.FindOrCreateAllDataCache(self)
             x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
@@ -352,14 +344,13 @@ class Tangent_NyquistLimited(Tangent):
         Tangent.Solve(self, inNonLinearSolverAlgorithmName)
 
 
-
 class HyperbolicCosine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _baseName = "Hyperbolic Cosine [radians]"
     _HTML = 'y = amplitude * cosh(pi * (x - center) / width)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['amplitude', 'center', 'width']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -376,23 +367,23 @@ class HyperbolicCosine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
-        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName)
+    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
+            self, inFittingTarget, inExtendedVersionName)
         self.lowerCoefficientBounds = [None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
-
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+
         amplitude = inCoeffs[0]
         center = inCoeffs[1]
         width = inCoeffs[2]
@@ -403,11 +394,9 @@ class HyperbolicCosine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * cosh(3.14159265358979323846 * (x_in - center) / width);\n"
         return s
-
 
 
 class HyperbolicCosine_NyquistLimited(HyperbolicCosine):
@@ -415,7 +404,8 @@ class HyperbolicCosine_NyquistLimited(HyperbolicCosine):
     autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
-        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+        # user did not override bound
+        if self.lowerCoefficientBounds[2] == 0.0:
             self.dataCache.FindOrCreateAllDataCache(self)
             x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
@@ -425,14 +415,13 @@ class HyperbolicCosine_NyquistLimited(HyperbolicCosine):
         HyperbolicCosine.Solve(self, inNonLinearSolverAlgorithmName)
 
 
-
 class Sinc(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _baseName = "Cardinal Sine (sinc) [radians]"
     _HTML = 'y = amplitude * sin(pi * (x - center) / width) / (pi * (x - center) / width)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['amplitude', 'center', 'width']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -449,38 +438,38 @@ class Sinc(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
-        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName)
+    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
+            self, inFittingTarget, inExtendedVersionName)
         self.lowerCoefficientBounds = [None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
-
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+
         amplitude = inCoeffs[0]
         center = inCoeffs[1]
         width = inCoeffs[2]
 
         try:
-            temp = amplitude * numpy.sin(numpy.pi * (x_in - center) / width) / (numpy.pi * (x_in - center) / width)
+            temp = amplitude * \
+                numpy.sin(numpy.pi * (x_in - center) / width) / \
+                (numpy.pi * (x_in - center) / width)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * (x_in - center) / width) / (3.14159265358979323846 * (x_in - center) / width);\n"
         return s
-
 
 
 class Sinc_NyquistLimited(Sinc):
@@ -488,7 +477,8 @@ class Sinc_NyquistLimited(Sinc):
     autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
-        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+        # user did not override bound
+        if self.lowerCoefficientBounds[2] == 0.0:
             self.dataCache.FindOrCreateAllDataCache(self)
             x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)
@@ -498,14 +488,13 @@ class Sinc_NyquistLimited(Sinc):
         Sinc.Solve(self, inNonLinearSolverAlgorithmName)
 
 
-
 class SincSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _baseName = "Cardinal Sine (sinc) Squared [radians]"
     _HTML = 'y = amplitude * sin(pi * (x - center) / width)<sup>2</sup> / (pi * (x - center) / width)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['amplitude', 'center', 'width']
     _canLinearSolverBeUsedForSSQABS = False
-    
+
     webReferenceURL = ''
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
@@ -522,38 +511,37 @@ class SincSquared(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     independentData2CannotContainZeroFlag = False
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
-    
 
-    def __init__(self, inFittingTarget = 'SSQABS', inExtendedVersionName = 'Default'):
-        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(self, inFittingTarget, inExtendedVersionName)
+    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+        pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
+            self, inFittingTarget, inExtendedVersionName)
         self.lowerCoefficientBounds = [None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
-
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
         return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
 
-
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        x_in = inDataCacheDictionary['X'] # only need to perform this dictionary look-up once
-        
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary['X']
+
         amplitude = inCoeffs[0]
         center = inCoeffs[1]
         width = inCoeffs[2]
 
         try:
-            temp = amplitude * numpy.sin(numpy.pi * (x_in - center) / width) * numpy.sin(numpy.pi * (x_in - center) / width) / (numpy.pi * (x_in - center) / width)
+            temp = amplitude * numpy.sin(numpy.pi * (x_in - center) / width) * numpy.sin(
+                numpy.pi * (x_in - center) / width) / (numpy.pi * (x_in - center) / width)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
         except:
             return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
 
-
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * (x_in - center) / width) * sin(3.14159265358979323846 * (x_in - center) / width) / (3.14159265358979323846 * (x_in - center) / width);\n"
         return s
-
 
 
 class SincSquared_NyquistLimited(SincSquared):
@@ -561,7 +549,8 @@ class SincSquared_NyquistLimited(SincSquared):
     autoGeneratePlusLineForm = True
 
     def Solve(self, inNonLinearSolverAlgorithmName='Levenberg-Marquardt'):
-        if self.lowerCoefficientBounds[2] == 0.0: # user did not override bound
+        # user did not override bound
+        if self.lowerCoefficientBounds[2] == 0.0:
             self.dataCache.FindOrCreateAllDataCache(self)
             x = self.dataCache.allDataCacheDictionary['IndependentData'][0]
             xMax = max(x)

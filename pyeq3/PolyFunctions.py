@@ -9,7 +9,7 @@
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
 import numpy
-numpy.seterr(all= 'ignore')
+numpy.seterr(all='ignore')
 
 
 # duplicated in IExtendedVersionHandler.py
@@ -24,7 +24,7 @@ class PowerTerm(object):
     def __init__(self, variableName, codeName, powerString, logFlag):
         self.power = float(powerString)
         self.logFlag = logFlag
-        
+
         # data flags
         self.cannotAcceptDataWith_Zero = False
         self.cannotAcceptDataWith_Negative = False
@@ -32,7 +32,7 @@ class PowerTerm(object):
         if self.logFlag:
             self.cannotAcceptDataWith_Zero = True
             self.cannotAcceptDataWith_Negative = True
-        if  numpy.modf(self.power)[0]: # fractional power
+        if numpy.modf(self.power)[0]:  # fractional power
             self.cannotAcceptDataWith_Negative = True
         if self.power < 0.0:
             self.cannotAcceptDataWith_Zero = True
@@ -40,11 +40,15 @@ class PowerTerm(object):
 
             # code
         if self.logFlag:
-            self.HTML = 'ln(' + variableName + ')<sup>' + powerString + '</sup>'
-            self.JAVA = 'Math.pow(Math.log(' + codeName + '), ' + powerString + ')'
+            self.HTML = 'ln(' + variableName + ')<sup>' + \
+                powerString + '</sup>'
+            self.JAVA = 'Math.pow(Math.log(' + codeName + \
+                '), ' + powerString + ')'
             self.CPP = 'pow(log(' + codeName + '), ' + powerString + ')'
-            self.CSHARP = 'Math.Pow(Math.Log(' + codeName + '), ' + powerString + ')'
-            self.PYTHON = 'math.pow(math.log(' + codeName + '), ' + powerString + ')'
+            self.CSHARP = 'Math.Pow(Math.Log(' + \
+                codeName + '), ' + powerString + ')'
+            self.PYTHON = 'math.pow(math.log(' + \
+                codeName + '), ' + powerString + ')'
             self.SCILAB = '(log(' + codeName + ') ^ ' + powerString + ')'
         else:
             self.HTML = variableName + '<sup>' + powerString + '</sup>'
@@ -64,7 +68,6 @@ class PowerTerm(object):
             return ConvertInfAndNanToLargeNumber(returnValue)
         except:
             return 1.0E300 * numpy.ones_like(x)
-
 
 
 class Offset_Term(object):
@@ -316,29 +319,39 @@ class Log_Term(object):
 # the order of occurrence in this list is the order of display
 def GenerateListForPolyfunctionals_WithParameters(variableName, codeName, dimensionality):
     termList = []
-    
+
     termList.append(Offset_Term(variableName, codeName))
-    
-    termList.append(PowerTerm(variableName, codeName, powerString='0.5', logFlag=False))
+
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='0.5', logFlag=False))
     termList.append(VariableUnchanged_Term(variableName, codeName))
-    termList.append(PowerTerm(variableName, codeName, powerString='1.5', logFlag=False))
-    termList.append(PowerTerm(variableName, codeName, powerString='2', logFlag=False))
-    termList.append(PowerTerm(variableName, codeName, powerString='-0.5', logFlag=False))
-    termList.append(PowerTerm(variableName, codeName, powerString='-1', logFlag=False))
-    termList.append(PowerTerm(variableName, codeName, powerString='-2', logFlag=False))
-    
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='1.5', logFlag=False))
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='2', logFlag=False))
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='-0.5', logFlag=False))
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='-1', logFlag=False))
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='-2', logFlag=False))
+
     termList.append(Log_Term(variableName, codeName))
-    termList.append(PowerTerm(variableName, codeName, powerString='2', logFlag=True))
-    termList.append(PowerTerm(variableName, codeName, powerString='-1', logFlag=True))
-    termList.append(PowerTerm(variableName, codeName, powerString='-2', logFlag=True))
-    
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='2', logFlag=True))
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='-1', logFlag=True))
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='-2', logFlag=True))
+
     termList.append(Exponential_VariableUnchanged_Term(variableName, codeName))
-    termList.append(Exponential_VariableTimesNegativeOne_Term(variableName, codeName))
-    
+    termList.append(Exponential_VariableTimesNegativeOne_Term(
+        variableName, codeName))
+
     termList.append(Sine_Term(variableName, codeName))
     termList.append(Cosine_Term(variableName, codeName))
     termList.append(Tangent_Term(variableName, codeName))
-    
+
     # 3D makes an overwhelmimg number of X and Y permutations, only add these for 2D
     if dimensionality == 2:
         termList.append(HyperbolicSine_Term(variableName, codeName))
@@ -347,11 +360,11 @@ def GenerateListForPolyfunctionals_WithParameters(variableName, codeName, dimens
         termList.append(HyperbolicTangent_Term(variableName, codeName))
 
     return termList
-    
+
 
 def GenerateListForPolyfunctionals_2D():
     return GenerateListForPolyfunctionals_WithParameters('x', 'x_in', 2)
-    
+
 
 def GenerateListForPolyfunctionals_3D_X():
     return GenerateListForPolyfunctionals_WithParameters('x', 'x_in', 3)
@@ -362,30 +375,38 @@ def GenerateListForPolyfunctionals_3D_Y():
 
 
 # this list is small due to my available CPU, you can add more to be thorough
-def GenerateListForRationals_2D(variableName = 'x', codeName = 'x_in'):
+def GenerateListForRationals_2D(variableName='x', codeName='x_in'):
     termList = []
-    
+
     termList.append(Offset_Term(variableName, codeName))
-    
+
     termList.append(VariableUnchanged_Term(variableName, codeName))
-    termList.append(PowerTerm(variableName, codeName, powerString='-1', logFlag=False))
-    
-    termList.append(PowerTerm(variableName, codeName, powerString='2', logFlag=False))
-    termList.append(PowerTerm(variableName, codeName, powerString='-2', logFlag=False))
-    
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='-1', logFlag=False))
+
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='2', logFlag=False))
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='-2', logFlag=False))
+
     termList.append(Log_Term(variableName, codeName))
-    termList.append(PowerTerm(variableName, codeName, powerString='-1', logFlag=True))
+    termList.append(PowerTerm(variableName, codeName,
+                    powerString='-1', logFlag=True))
 
     termList.append(Exponential_VariableUnchanged_Term(variableName, codeName))
-    termList.append(Exponential_VariableTimesNegativeOne_Term(variableName, codeName))
+    termList.append(Exponential_VariableTimesNegativeOne_Term(
+        variableName, codeName))
 
     return termList
 
 # the order of occurrence in this list is the order of display
+
+
 def GenerateListForCustomPolynomials_WithParameters(variableName, codeName):
     termList = []
     for i in range(-8, 9):
-        termList.append(PowerTerm(variableName, codeName, powerString=str(i), logFlag=False))
+        termList.append(PowerTerm(variableName, codeName,
+                        powerString=str(i), logFlag=False))
     return termList
 
 

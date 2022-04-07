@@ -1,4 +1,6 @@
-import os, sys, inspect
+import os
+import sys
+import inspect
 
 import pyeq3
 
@@ -7,14 +9,16 @@ import pyeq3
 print("List of all possible extended version names")
 for extendedVersionName in pyeq3.ExtendedVersionHandlers.extendedVersionHandlerNameList:
     print(extendedVersionName)
-    
+
 print()
 
 # create an extended version of one equation
-equation = pyeq3.Models_2D.BioScience.HyperbolicLogistic('SSQABS', 'InverseWithOffset')
+equation = pyeq3.Models_2D.BioScience.HyperbolicLogistic(
+    'SSQABS', 'InverseWithOffset')
 
 # note that the extended version name can contain spaces
-equation = pyeq3.Models_2D.BioScience.HyperbolicLogistic('SSQABS', 'Inverse With Offset')
+equation = pyeq3.Models_2D.BioScience.HyperbolicLogistic(
+    'SSQABS', 'Inverse With Offset')
 
 print("Instantiated", equation.GetDisplayName())
 

@@ -1,4 +1,6 @@
-import os, sys, inspect
+import os
+import sys
+import inspect
 
 import pyeq3
 
@@ -6,9 +8,11 @@ import pyeq3
 functionString = 'm*X+B * (3/2)'
 
 # note that the constructor is passed the function string here
-equation = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(inUserFunctionString = functionString)
+equation = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+    inUserFunctionString=functionString)
 
-pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(equation.exampleData, equation, False)
+pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+    equation.exampleData, equation, False)
 
 equation.Solve()
 
@@ -16,17 +20,22 @@ equation.Solve()
 ##########################################################
 
 
-print("Equation:", equation.GetDisplayName(), str(equation.GetDimensionality()) + "D")
-print("Fitting target of", equation.fittingTargetDictionary[equation.fittingTarget], '=', equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+print("Equation:", equation.GetDisplayName(),
+      str(equation.GetDimensionality()) + "D")
+print("Fitting target of", equation.fittingTargetDictionary[equation.fittingTarget],
+      '=', equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
 print("Fitted Parameters:")
 for i in range(len(equation.solvedCoefficients)):
-    print("    %s = %-.16E" % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i]))
+    print("    %s = %-.16E" % (equation.GetCoefficientDesignators()
+          [i], equation.solvedCoefficients[i]))
 
 
-equation.CalculateModelErrors(equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
+equation.CalculateModelErrors(
+    equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
 print()
 for i in range(len(equation.dataCache.allDataCacheDictionary['DependentData'])):
-    print('X:', equation.dataCache.allDataCacheDictionary['IndependentData'][0][i],)
+    print(
+        'X:', equation.dataCache.allDataCacheDictionary['IndependentData'][0][i],)
     print('Y:', equation.dataCache.allDataCacheDictionary['DependentData'][i],)
     print('Model:', equation.modelPredictions[i],)
     print('Abs. Error:', equation.modelAbsoluteError[i],)
@@ -98,21 +107,24 @@ for i in range(len(equation.solvedCoefficients)):
     if type(equation.tstat_beta) == type(None):
         tstat = 'n/a'
     else:
-        tstat = '%-.5E' %  ( equation.tstat_beta[i])
+        tstat = '%-.5E' % (equation.tstat_beta[i])
 
     if type(equation.pstat_beta) == type(None):
         pstat = 'n/a'
     else:
-        pstat = '%-.5E' %  ( equation.pstat_beta[i])
+        pstat = '%-.5E' % (equation.pstat_beta[i])
 
     if type(equation.sd_beta) != type(None):
-        print("Coefficient %s = %-.16E, std error: %-.5E" % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i], equation.sd_beta[i]))
+        print("Coefficient %s = %-.16E, std error: %-.5E" % (equation.GetCoefficientDesignators()
+              [i], equation.solvedCoefficients[i], equation.sd_beta[i]))
     else:
-        print("Coefficient %s = %-.16E, std error: n/a" % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i]))
-    print("          t-stat: %s, p-stat: %s, 95 percent confidence intervals: [%-.5E, %-.5E]" % (tstat,  pstat, equation.ci[i][0], equation.ci[i][1]))
+        print("Coefficient %s = %-.16E, std error: n/a" %
+              (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i]))
+    print("          t-stat: %s, p-stat: %s, 95 percent confidence intervals: [%-.5E, %-.5E]" % (
+        tstat,  pstat, equation.ci[i][0], equation.ci[i][1]))
 
 
 print()
 print("Coefficient Covariance Matrix:")
-for i in  equation.cov_beta:
+for i in equation.cov_beta:
     print(i)
