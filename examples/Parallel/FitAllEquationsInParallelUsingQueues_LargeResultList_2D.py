@@ -3,8 +3,8 @@ import multiprocessing
 import numpy as np
 import matplotlib.pyplot as plt
 import pyeq3
-from pyeq3.Utilities.Multifit import fit_all_equations_in_parallel
-from pyeq3.Utilities.Multifit import instantiate_equation
+from pyeq3.Utilities.Multifit import FitModelsInParallel
+from pyeq3.Utilities.Multifit import InstantiateModel
 from pyeq3.Output import Print
 from pyeq3.Graphics.Graphics2D import ModelScatterConfidenceGraph
 
@@ -41,8 +41,8 @@ if __name__ == "__main__":
 
     number_of_cpus = multiprocessing.cpu_count()
 
-    allResults = fit_all_equations_in_parallel(data, dim, misfit_criterion,
-                                               max_params, number_of_cpus)
+    allResults = FitModelsInParallel(data, dim, misfit_criterion,
+                                     max_params, number_of_cpus)
 
     # sort the parallel runs and select the best result
     allResults = sorted(allResults, key=lambda x: x['fittingTargetValue'])
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     print(f'This inversion allowed a maximum of {max_params} parameters.')
 
     print('\nBest fit equation:')
-    equation = instantiate_equation(bestResult, data)
+    equation = InstantiateModel(bestResult, data)
     print(equation)
 
     print('\nFit information on each datum:')

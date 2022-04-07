@@ -6,7 +6,7 @@ import numpy as np
 import pyeq3
 from pyeq3.Utilities.Multifit import SetParametersAndFit
 from pyeq3.Utilities.Multifit import UniqueCombinations, UniqueCombinations2
-from pyeq3.Utilities.Multifit import instantiate_equation
+from pyeq3.Utilities.Multifit import InstantiateModel
 from pyeq3.Output import Print
 
 
@@ -395,7 +395,7 @@ if __name__ == "__main__":
         f'This inversion allowed a maximum of {smoothnessControl} parameters.')
 
     print('\nBest fit equation:')
-    equation = instantiate_equation(bestResult, rawData)
+    equation = InstantiateModel(bestResult, rawData)
     print(equation)
 
     Print.DatumInformation(equation)
