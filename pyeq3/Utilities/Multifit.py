@@ -39,7 +39,7 @@ def SetDataParametersAndFit(inRawData, inEquation, inPrintStatus):
 
     Arguments
     ---------
-    inRawData : numpy array
+    inRawData : numpy array or string
         The input data used to parameterise the equation.
 
     inEquation : pyeq3.IModel object
@@ -54,8 +54,8 @@ def SetDataParametersAndFit(inRawData, inEquation, inPrintStatus):
         A dictionary containing the equation and fitting information
         required to instantiate a new pyeq3.IModel object.
     """
-    pyeq3.dataConvertorService().ProcessNumpyArray(inRawData, inEquation,
-                                                   False)
+    pyeq3.dataConvertorService().ProcessData(inRawData, inEquation,
+                                             False)
     return SetParametersAndFit(inEquation, inPrintStatus)
 
 
@@ -487,7 +487,7 @@ def instantiate_equation(result, data):
     ---------
     result : dictionary
         The result from SetParametersAndFit
-    data : numpy array
+    data : numpy array or string
         Data used for fitting
 
     Returns
@@ -514,7 +514,7 @@ def instantiate_equation(result, data):
             f"{result['moduleName']}.{result['className']}('{result['fittingTarget']}', '{result['extendedVersionHandlerName']}')"
         )
 
-    pyeq3.dataConvertorService().ProcessNumpyArray(data, equation, False)
+    pyeq3.dataConvertorService().ProcessData(data, equation, False)
     equation.fittingTarget = result["fittingTarget"]
     equation.solvedCoefficients = result["solvedCoefficients"]
     equation.dataCache.FindOrCreateAllDataCache(equation)

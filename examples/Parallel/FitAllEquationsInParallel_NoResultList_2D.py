@@ -1,6 +1,7 @@
 import os
 import inspect
 import multiprocessing
+import numpy as np
 
 import pyeq3
 from pyeq3.Utilities.Multifit import SetParametersAndFit

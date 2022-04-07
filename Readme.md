@@ -31,8 +31,7 @@ you can use this command to get both:
 
 See the examples directory to get started.
 All of the examples should run by typing "python examplename.py"
-at a command prompt. A significantly larger number of examples can be
-found in the pyeq3/Examples directory.
+at a command prompt.
 
 ## A brief history of curve and surface fitting
 Prior to the invention of electronic calculation, only manual methods

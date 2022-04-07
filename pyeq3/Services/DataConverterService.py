@@ -250,3 +250,11 @@ class DataConverterService(object):
 
     def ConvertPythonSequences(self, inRawData, inModel):
         pass
+
+    def ProcessData(self, inRawData, inModel, inUseWeightsFlag):
+        if isinstance(inRawData, str):
+            self.ConvertAndSortColumnarASCII(inRawData, inModel,
+                                             inUseWeightsFlag)
+        else:
+            self.ProcessNumpyArray(inRawData, inModel,
+                                   inUseWeightsFlag)
