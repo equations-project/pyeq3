@@ -20,7 +20,7 @@ def UniqueCombinations(items, n):  # utility function
         yield []
     else:
         for i in range(len(items)):
-            for cc in UniqueCombinations(items[i + 1 :], n - 1):
+            for cc in UniqueCombinations(items[i + 1:], n - 1):
                 yield [items[i]] + cc
 
 
@@ -29,11 +29,11 @@ def UniqueCombinations2(items2, n2):  # utility function
         yield []
     else:
         for i2 in range(len(items2)):
-            for cc2 in UniqueCombinations2(items2[i2 + 1 :], n2 - 1):
+            for cc2 in UniqueCombinations2(items2[i2 + 1:], n2 - 1):
                 yield [items2[i2]] + cc2
 
 
-def SetParametersAndFit(inRawData, inEquation, inPrintStatus):
+def SetDataParametersAndFit(inRawData, inEquation, inPrintStatus):
     """
     Parameterises an equation based on data.
 
@@ -54,8 +54,29 @@ def SetParametersAndFit(inRawData, inEquation, inPrintStatus):
         A dictionary containing the equation and fitting information
         required to instantiate a new pyeq3.IModel object.
     """
-    pyeq3.dataConvertorService().ProcessNumpyArray(inRawData, inEquation, False)
+    pyeq3.dataConvertorService().ProcessNumpyArray(inRawData, inEquation,
+                                                   False)
+    return SetParametersAndFit(inEquation, inPrintStatus)
 
+
+def SetParametersAndFit(inEquation, inPrintStatus):
+    """
+    Parameterises an equation based on data already contained in the model.
+
+    Arguments
+    ---------
+    inEquation : pyeq3.IModel object
+        The equation to parameterise
+
+    inPrintStatus : boolean
+        Whether to be verbose during fitting.
+
+    Return
+    ------
+    t : dictionary
+        A dictionary containing the equation and fitting information
+        required to instantiate a new pyeq3.IModel object.
+    """
     try:
         # check for number of coefficients > number of data points to be fitted
         if len(inEquation.GetCoefficientDesignators()) > len(
@@ -78,7 +99,8 @@ def SetParametersAndFit(inRawData, inEquation, inPrintStatus):
 
         inEquation.Solve()
 
-        target = inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)
+        target = inEquation.CalculateAllDataFittingTarget(
+            inEquation.solvedCoefficients)
         if target > 1.0e290:  # error too large
             return None
     except:
@@ -180,7 +202,8 @@ def SubmitTasksToQueue(
                             continue
 
                         inTaskQueue.put(
-                            (SetParametersAndFit, (inRawData, equationInstance, False))
+                            (SetDataParametersAndFit,
+                             (inRawData, equationInstance, False))
                         )
                         totalNumberOfTasksSubmitted += 1
 
@@ -201,7 +224,8 @@ def SubmitTasksToQueue(
     functionIndexList = list(range(len(polyfunctionalEquationList)))
 
     for coeffCount in range(1, maxPolyfunctionalCoefficients + 1):
-        functionCombinations = UniqueCombinations(functionIndexList, coeffCount)
+        functionCombinations = UniqueCombinations(
+            functionIndexList, coeffCount)
         for functionCombination in functionCombinations:
 
             if len(functionCombination) > smoothnessControl:
@@ -227,7 +251,8 @@ def SubmitTasksToQueue(
             ):
                 continue
 
-            inTaskQueue.put((SetParametersAndFit, (inRawData, equationInstance, False)))
+            inTaskQueue.put(
+                (SetDataParametersAndFit, (inRawData, equationInstance, False)))
             totalNumberOfTasksSubmitted += 1
 
     # fit user-selectable polynomials here
@@ -255,7 +280,8 @@ def SubmitTasksToQueue(
         ):
             continue
 
-        inTaskQueue.put((SetParametersAndFit, (inRawData, equationInstance, False)))
+        inTaskQueue.put(
+            (SetDataParametersAndFit, (inRawData, equationInstance, False)))
         totalNumberOfTasksSubmitted += 1
 
     # fit user-selectable rationals here
@@ -270,7 +296,8 @@ def SubmitTasksToQueue(
     functionIndexList = list(range(len(functionList)))
 
     for numeratorCoeffCount in range(1, maxCoeffs):
-        numeratorComboList = UniqueCombinations(functionIndexList, numeratorCoeffCount)
+        numeratorComboList = UniqueCombinations(
+            functionIndexList, numeratorCoeffCount)
         for numeratorCombo in numeratorComboList:
             for denominatorCoeffCount in range(1, maxCoeffs):
                 denominatorComboList = UniqueCombinations2(
@@ -285,7 +312,8 @@ def SubmitTasksToQueue(
                             extraCoeffs = 1
 
                         if (
-                            len(numeratorCombo) + len(denominatorCombo) + extraCoeffs
+                            len(numeratorCombo) +
+                                len(denominatorCombo) + extraCoeffs
                         ) > smoothnessControl:
                             continue
 
@@ -312,7 +340,8 @@ def SubmitTasksToQueue(
                             continue
 
                         inTaskQueue.put(
-                            (SetParametersAndFit, (inRawData, equationInstance, False))
+                            (SetDataParametersAndFit,
+                             (inRawData, equationInstance, False))
                         )
                         totalNumberOfTasksSubmitted += 1
 
@@ -413,7 +442,8 @@ def fit_all_equations_in_parallel(
         try:
             for i in range(number_of_cpus):
                 p = multiprocessing.Process(
-                    target=parallelWorker, args=(fittingTasksQueue, fittingResultsQueue)
+                    target=parallelWorker, args=(
+                        fittingTasksQueue, fittingResultsQueue)
                 )
                 p.start()
                 processList.append(p)

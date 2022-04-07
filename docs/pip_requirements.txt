@@ -2,6 +2,7 @@ numpy
 numpydoc
 matplotlib
 scipy
+dispy
 sphinxcontrib.bibtex
 nbsphinx
 jupyter

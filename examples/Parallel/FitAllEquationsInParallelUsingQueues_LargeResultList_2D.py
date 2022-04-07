@@ -1,31 +1,45 @@
+import os
 import multiprocessing
 import numpy as np
+import matplotlib.pyplot as plt
 import pyeq3
 from pyeq3.Utilities.Multifit import fit_all_equations_in_parallel
 from pyeq3.Utilities.Multifit import instantiate_equation
+from pyeq3.Output import Print
 from pyeq3.Graphics.Graphics2D import ModelScatterConfidenceGraph
-import matplotlib.pyplot as plt
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
-    # The data to fit
-    data = np.array([[5.357, 0.376],
-                     [5.457, 0.489],
-                     [5.797, 0.874],
-                     [5.936, 1.049],
-                     [6.161, 1.327],
-                     [6.697, 2.054],
-                     [6.731, 2.077],
-                     [6.775, 2.138],
-                     [8.442, 4.744],
-                     [9.769, 7.068],
-                     [9.861, 7.104]])
+    data = np.array(
+        [
+            [5.357, 0.376],
+            [5.457, 0.489],
+            [5.797, 0.874],
+            [5.936, 1.049],
+            [6.161, 1.327],
+            [6.697, 2.054],
+            [6.731, 2.077],
+            [6.775, 2.138],
+            [8.442, 4.744],
+            [9.769, 7.068],
+            [9.861, 7.104],
+        ]
+    )
 
-    dim = 2  # The dimensionality of the data. Should be either 2 or 3
-    misfit_criterion = 'SSQABS'  # sum-of-squared errors
-    # (see IModel.fittingTargetDictionary for alternatives)
-    max_params = 2  # a low value makes the example run faster
-    number_of_cpus = multiprocessing.cpu_count()  # use all CPUs
+    # Standard lowest sum-of-squared errors in this example,
+    # see IModel.fittingTargetDictionary
+    misfit_criterion = "SSQABS"
+
+    # this value is used to make the example run faster
+    max_params = 3
+
+    # The dimensions of the data, not including optional weighting
+    # ([x1, y] or [x1, x2, y])
+    dim = 2
+
+    os.nice(10)  # I use this during development
+
+    number_of_cpus = multiprocessing.cpu_count()
 
     allResults = fit_all_equations_in_parallel(data, dim, misfit_criterion,
                                                max_params, number_of_cpus)
@@ -43,6 +57,9 @@ if __name__ == '__main__':
     print('\nBest fit equation:')
     equation = instantiate_equation(bestResult, data)
     print(equation)
+
+    print('\nFit information on each datum:')
+    Print.DatumInformation(equation)
 
     print('\nSome predicted values:')
     x = np.linspace(6., 10., 5)

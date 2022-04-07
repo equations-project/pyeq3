@@ -4,15 +4,14 @@ using pyeq3 and matplotlib.
 see http://commonproblems.readthedocs.io/en/latest/
 
 
-Step 1: Install matplotlib, imagemagick and gifsicle
+Step 1: Install imagemagick and gifsicle
 
-On Debian or Ubuntu Linux, you can use this command:
+Assuming you already have pyeq3 installed with the appropriate dependencies
+(see documentation), you need only install imagemagick and gifsicle:
 
-sudo apt-get install imagemagick python3-matplotlib gifsicle python3-pil
+Linux: sudo apt-get install imagemagick gifsicle
 
-and then install pyeq3 with the command:
-
-pip install pyeq3
+Mac: brew install imagemagick gifsicle
 
 
 

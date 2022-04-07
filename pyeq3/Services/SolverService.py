@@ -71,12 +71,16 @@ class SolverService(object):
     def SolveUsingSimplex(self, inModel):
         logging.info('running SolveUsingSimplex')
         inModel.dataCache.FindOrCreateAllDataCache(inModel)
+        try:
+            x_guess = inModel.estimatedCoefficients.x
+        except AttributeError:
+            x_guess = inModel.estimatedCoefficients
         inModel.solvedCoefficients = scipy.optimize.fmin(inModel.CalculateAllDataFittingTarget,
-                                                         inModel.estimatedCoefficients,
+                                                         x_guess,
                                                          maxiter=len(
-                                                             inModel.estimatedCoefficients) * self.fminIterationLimit,
+                                                             x_guess) * self.fminIterationLimit,
                                                          maxfun=len(
-                                                             inModel.estimatedCoefficients) * self.fmin_FunctionLimit,
+                                                             x_guess) * self.fmin_FunctionLimit,
                                                          disp=0,
                                                          xtol=self.fmin_xtol,
                                                          ftol=self.fmin_ftol)
