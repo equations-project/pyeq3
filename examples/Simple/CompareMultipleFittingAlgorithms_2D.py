@@ -1,7 +1,4 @@
-import os
 import sys
-import inspect
-
 import pyeq3
 
 fittingTargetText = "SSQABS"

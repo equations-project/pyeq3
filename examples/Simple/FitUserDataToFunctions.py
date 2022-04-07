@@ -1,8 +1,8 @@
-import os, sys, inspect
 import numpy as np
 import pyeq3
 
-equation = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(inUserFunctionString='m*X+B * (3/2)')
+equation = pyeq3.Models_2D.UserDefinedFunction.UserDefinedFunction(
+    inUserFunctionString='m*X+B * (3/2)')
 
 data = np.array([[5.357, 10.376, 1.],
                  [5.457, 10.489, 1.],
@@ -18,14 +18,16 @@ data = np.array([[5.357, 10.376, 1.],
 pyeq3.dataConvertorService().ProcessNumpyArray(data, equation, True)
 equation.Solve()
 print(f"Equation: {equation.GetDisplayName()} {equation.GetDimensionality()}D")
-print(f"Minimizing {equation.fittingTargetDictionary[equation.fittingTarget]}: {equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}")
+print(f"Minimizing {equation.fittingTargetDictionary[equation.fittingTarget]}"
+      ": "
+      f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}")
 print("Fitted Parameters:")
 for i, coeff in enumerate(equation.solvedCoefficients):
     print(f"    {equation.GetCoefficientDesignators()[i]} = {coeff:.16E}")
 
 
-
-equation = pyeq3.Models_3D.BioScience.HighLowAffinityIsotopeDisplacement('SSQABS')
+equation = pyeq3.Models_3D.BioScience.HighLowAffinityIsotopeDisplacement(
+    'SSQABS')
 data = np.array([[3.017, 2.175, 0.320],
                  [2.822, 2.624, 0.629],
                  [2.632, 2.839, 0.950],
@@ -54,12 +56,13 @@ data = np.array([[3.017, 2.175, 0.320],
                  [0.742, 2.568, 2.581],
                  [0.607, 2.571, 2.753]])
 pyeq3.dataConvertorService().ProcessNumpyArray(data, equation, False)
-#pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(equation.exampleData, equation, False)
 
 equation.Solve()
+
 print(f"Equation: {equation.GetDisplayName()} {equation.GetDimensionality()}D")
-print(f"Minimizing {equation.fittingTargetDictionary[equation.fittingTarget]}: {equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}")
+print(f"Minimizing {equation.fittingTargetDictionary[equation.fittingTarget]}"
+      ": "
+      f"{equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)}")
 print("Fitted Parameters:")
 for i, coeff in enumerate(equation.solvedCoefficients):
     print(f"    {equation.GetCoefficientDesignators()[i]} = {coeff:.16E}")
-

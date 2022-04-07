@@ -21,9 +21,6 @@ equation.fixedCoefficients = [2.0, None]
 equation.Solve()
 
 
-##########################################################
-
-
 print(equation.GetDisplayName(), str(equation.GetDimensionality()) + "D")
 print(equation.fittingTargetDictionary[equation.fittingTarget], '=',
       equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))

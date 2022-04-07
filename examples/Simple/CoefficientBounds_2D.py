@@ -1,7 +1,3 @@
-import os
-import sys
-import inspect
-
 import pyeq3
 
 
@@ -68,7 +64,8 @@ equation.lowerCoefficientBounds = []  # reset to have no lower bounds
 
 equation.Solve()
 
-print("Fitted Parameters With One Upper Bound And One Fixed Coefficient (fixed coeffs override bounds):")
+print("Fitted Parameters With One Upper Bound And One Fixed Coefficient "
+      "(fixed coeffs override bounds):")
 for i in range(len(equation.solvedCoefficients)):
     print("    %s = %-.16E" % (equation.GetCoefficientDesignators()
           [i], equation.solvedCoefficients[i]))

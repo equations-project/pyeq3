@@ -1,7 +1,3 @@
-import os
-import sys
-import inspect
-
 import pyeq3
 
 
@@ -18,10 +14,6 @@ equation.estimatedCoefficients = [2.0, 3.0E13]
 
 
 equation.Solve()
-
-
-##########################################################
-
 
 print(equation.GetDisplayName(), str(equation.GetDimensionality()) + "D")
 print(equation.fittingTargetDictionary[equation.fittingTarget], '=',
