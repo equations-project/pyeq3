@@ -20,4 +20,5 @@ instructions. After that, you might want to try out some :ref:`ref-examples`.
   :maxdepth: 4
 
   introduction
+  model_list
   zreferences

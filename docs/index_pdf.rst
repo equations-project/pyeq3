@@ -11,4 +11,5 @@ pyeq3: an equation, curve and surface fitting library
    :glob:
 
    introduction
+   model_list
    zreferences
