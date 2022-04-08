@@ -867,23 +867,12 @@ class IModel(object):
 
         return true_or_false
 
-    def IsDigitOrPeriod(self, character):
-        if str.isdigit(character) or character == '.':
-            return True
-        else:
-            return False
+    def IsDigitOrPoint(self, character):
+        return (str.isdigit(character) or character == '.')
 
     def ConvertStringIntsToStringFloats(self, string):
-        res = [''.join(g) for _, g in groupby(string, self.IsDigitOrPeriod)]
-
-        res2 = []
-        for r in res:
-            if r.isnumeric():
-                res2.append(r+'.0')
-            else:
-                res2.append(r)
-
-        return ''.join(res2)
+        res = [''.join(g) for _, g in groupby(string, self.IsDigitOrPoint)]
+        return ''.join([r+'.0' if r.isnumeric() else r for r in res])
 
     def GetSortedCoefficientsFromString(self, string, dim):
 
