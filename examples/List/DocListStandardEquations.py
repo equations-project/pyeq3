@@ -40,6 +40,8 @@ with open('model_list.rst', 'w') as outfile:
                             text = text.replace('\n', '').replace(
                                 '**', '^').replace('^ ', '^').replace('sqrt', '\\sqrt').replace('exp', '\\exp').replace('(', '{(').replace(')', ')}').replace('{}', '').replace('\\^', '^')
                             text = text.replace('Offset', '\\text{Offset}')
+                            text = text.replace('\\textsubscript', '_')
+                            text = text.replace('\\textsuperscript', '^')
 
                             if text.count('{') != text.count('}'):
                                 print('The html string of the following model '

@@ -30,13 +30,13 @@ BioScience
 
   * Aphid Population Growth
 
-    :math:`N{(t)} = a * \exp{(bt)} * {(1 + c * \exp{(bt)})}\textsuperscript{-2}`
+    :math:`N{(t)} = a * \exp{(bt)} * {(1 + c * \exp{(bt)})}^{-2}`
 
     [a, b, c]
 
   * Aphid Population Growth With Offset
 
-    :math:`N{(t)} = a * \exp{(bt)} * {(1 + c * \exp{(bt)})}\textsuperscript{-2} + \text{Offset}`
+    :math:`N{(t)} = a * \exp{(bt)} * {(1 + c * \exp{(bt)})}^{-2} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -44,13 +44,13 @@ BioScience
 
   * von Bertalanffy Growth
 
-    :math:`L{(t)} = L\textsubscript{inf} * {(1.0 - \exp{(-K *{(t-t\textsubscript{zero})})})}`
+    :math:`L{(t)} = L_{inf} * {(1.0 - \exp{(-K *{(t-t_{zero})})})}`
 
     [Linf, K, tzero]
 
   * von Bertalanffy Growth With Offset
 
-    :math:`L{(t)} = L\textsubscript{inf} * {(1.0 - \exp{(-K *{(t-t\textsubscript{zero})})})} + \text{Offset}`
+    :math:`L{(t)} = L_{inf} * {(1.0 - \exp{(-K *{(t-t_{zero})})})} + \text{Offset}`
 
     [Linf, K, tzero, Offset]
 
@@ -86,13 +86,13 @@ BioScience
 
   * BioScience A
 
-    :math:`y = a * {(1.0 - {(b * c\textsuperscript{x})})}`
+    :math:`y = a * {(1.0 - {(b * c^{x})})}`
 
     [a, b, c]
 
   * BioScience A With Offset
 
-    :math:`y = a * {(1.0 - {(b * c\textsuperscript{x})})} + \text{Offset}`
+    :math:`y = a * {(1.0 - {(b * c^{x})})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -100,13 +100,13 @@ BioScience
 
   * BioScience B
 
-    :math:`y = a * {(1.0 -{(1.0 + {(x/b)}\textsuperscript{c})}\textsuperscript{-1.0 *d})}`
+    :math:`y = a * {(1.0 -{(1.0 + {(x/b)}^{c})}^{-1.0 *d})}`
 
     [a, b, c, d]
 
   * BioScience B With Offset
 
-    :math:`y = a * {(1.0 -{(1.0 + {(x/b)}\textsuperscript{c})}\textsuperscript{-1.0 *d})} + \text{Offset}`
+    :math:`y = a * {(1.0 -{(1.0 + {(x/b)}^{c})}^{-1.0 *d})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -128,13 +128,13 @@ BioScience
 
   * Derek Duncan Custom Equation
 
-    :math:`y = a / {(1 + \exp{(-1/b*{(x-c)})})}\textsuperscript{d}`
+    :math:`y = a / {(1 + \exp{(-1/b*{(x-c)})})}^{d}`
 
     [a, b, c, d]
 
   * Derek Duncan Custom Equation With Offset
 
-    :math:`y = a / {(1 + \exp{(-1/b*{(x-c)})})}\textsuperscript{d} + \text{Offset}`
+    :math:`y = a / {(1 + \exp{(-1/b*{(x-c)})})}^{d} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -142,7 +142,7 @@ BioScience
 
   * Dose-Response A
 
-    :math:`y = b + {(a-b)} / {(1 + 10\textsuperscript{x-c})}`
+    :math:`y = b + {(a-b)} / {(1 + 10^{x-c})}`
 
     [a, b, c]
 
@@ -150,7 +150,7 @@ BioScience
 
   * Dose-Response B
 
-    :math:`y = b + {(a-b)} / {(1 + 10\textsuperscript{c-x})}`
+    :math:`y = b + {(a-b)} / {(1 + 10^{c-x})}`
 
     [a, b, c]
 
@@ -158,7 +158,7 @@ BioScience
 
   * Dose-Response C
 
-    :math:`y = b + {(a-b)} / {(1 + 10\textsuperscript{d*{(x-c)}})}`
+    :math:`y = b + {(a-b)} / {(1 + 10^{d*{(x-c)}})}`
 
     [a, b, c, d]
 
@@ -166,7 +166,7 @@ BioScience
 
   * Dose-Response D
 
-    :math:`y = b + {(a-b)} / {(1 + 10\textsuperscript{d*{(c-x)}})}`
+    :math:`y = b + {(a-b)} / {(1 + 10^{d*{(c-x)}})}`
 
     [a, b, c, d]
 
@@ -174,7 +174,7 @@ BioScience
 
   * Dose-Response E
 
-    :math:`y = b + {(a-b)} / {(1 + {(x/c)}\textsuperscript{d})}`
+    :math:`y = b + {(a-b)} / {(1 + {(x/c)}^{d})}`
 
     [a, b, c, d]
 
@@ -182,13 +182,13 @@ BioScience
 
   * Generalized Negative Exponential
 
-    :math:`y = a * {(1.0 - \exp{(-bx)})}\textsuperscript{c}`
+    :math:`y = a * {(1.0 - \exp{(-bx)})}^{c}`
 
     [a, b, c]
 
   * Generalized Negative Exponential With Offset
 
-    :math:`y = a * {(1.0 - \exp{(-bx)})}\textsuperscript{c} + \text{Offset}`
+    :math:`y = a * {(1.0 - \exp{(-bx)})}^{c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -408,13 +408,13 @@ BioScience
 
   * Hyperbolic Logistic
 
-    :math:`y = ax\textsuperscript{b} / {(c + x\textsuperscript{b})}`
+    :math:`y = ax^{b} / {(c + x^{b})}`
 
     [a, b, c]
 
   * Hyperbolic Logistic With Offset
 
-    :math:`y = ax\textsuperscript{b} / {(c + x\textsuperscript{b})} + \text{Offset}`
+    :math:`y = ax^{b} / {(c + x^{b})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -436,13 +436,13 @@ BioScience
 
   * Membrane Transport
 
-    :math:`y = a{(x-b)} / {(x\textsuperscript{2} + cx + d)}`
+    :math:`y = a{(x-b)} / {(x^{2} + cx + d)}`
 
     [a, b, c, d]
 
   * Membrane Transport With Offset
 
-    :math:`y = a{(x-b)} / {(x\textsuperscript{2} + cx + d)} + \text{Offset}`
+    :math:`y = a{(x-b)} / {(x^{2} + cx + d)} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -542,7 +542,7 @@ BioScience
 
   * New Zealand Ecology Logistic 2
 
-    :math:`n = B0 + {({(B1 - B0)} / {(1.0 + \exp{({(B2 + D + {(B4*D\textsuperscript{2})})} *B3)})})}`
+    :math:`n = B0 + {({(B1 - B0)} / {(1.0 + \exp{({(B2 + D + {(B4*D^{2})})} *B3)})})}`
 
     [B0, B1, B2, B3, B4]
 
@@ -606,13 +606,13 @@ BioScience
 
   * Plant Disease Weibull Model
 
-    :math:`Incidence = 1 - \exp{(-1.0 * {({(time - a)} / b)}\textsuperscript{c})}`
+    :math:`Incidence = 1 - \exp{(-1.0 * {({(time - a)} / b)}^{c})}`
 
     [a, b, c]
 
   * Plant Disease Weibull Model With Offset
 
-    :math:`Incidence = 1 - \exp{(-1.0 * {({(time - a)} / b)}\textsuperscript{c})} + \text{Offset}`
+    :math:`Incidence = 1 - \exp{(-1.0 * {({(time - a)} / b)}^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -620,13 +620,13 @@ BioScience
 
   * Plant Disease Weibull Model Scaled
 
-    :math:`y = Scale * {(1 - \exp{(-1.0 * {({(time - a)} / b)}\textsuperscript{c})})}`
+    :math:`y = Scale * {(1 - \exp{(-1.0 * {({(time - a)} / b)}^{c})})}`
 
     [a, b, c, Scale]
 
   * Plant Disease Weibull Model Scaled With Offset
 
-    :math:`y = Scale * {(1 - \exp{(-1.0 * {({(time - a)} / b)}\textsuperscript{c})})} +\text{Offset}`
+    :math:`y = Scale * {(1 - \exp{(-1.0 * {({(time - a)} / b)}^{c})})} +\text{Offset}`
 
     [a, b, c, Scale, Offset]
 
@@ -670,13 +670,13 @@ BioScience
 
   * Scaled Power
 
-    :math:`y = a * x\textsuperscript{b}`
+    :math:`y = a * x^{b}`
 
     [a, b]
 
   * Scaled Power With Offset
 
-    :math:`y = a * x\textsuperscript{b} + \text{Offset}`
+    :math:`y = a * x^{b} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -684,13 +684,13 @@ BioScience
 
   * Scaled Power Transform
 
-    :math:`y = a * {(cx + d)}\textsuperscript{b}`
+    :math:`y = a * {(cx + d)}^{b}`
 
     [a, b, c, d]
 
   * Scaled Power Transform With Offset
 
-    :math:`y = a * {(cx + d)}\textsuperscript{b} + \text{Offset}`
+    :math:`y = a * {(cx + d)}^{b} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -706,7 +706,7 @@ BioScience
 
   * Standard 4-Parameter Logistic Equation
 
-    :math:`y = d + {(a - d)} / {(1 + {(x / c)}\textsuperscript{b})}`
+    :math:`y = d + {(a - d)} / {(1 + {(x / c)}^{b})}`
 
     [a, b, c, d]
 
@@ -714,7 +714,7 @@ BioScience
 
   * Standard 5-Parameter Logistic Equation
 
-    :math:`y = d + {(a - d)} / {(1 + {(x / c)}\textsuperscript{b} )}\textsuperscript{f}`
+    :math:`y = d + {(a - d)} / {(1 + {(x / c)}^{b} )}^{f}`
 
     [a, b, c, d, f]
 
@@ -722,13 +722,13 @@ BioScience
 
   * Weibull
 
-    :math:`y = a * {(1.0 - \exp{(-b * {(x - c)}\textsuperscript{d})})}`
+    :math:`y = a * {(1.0 - \exp{(-b * {(x - c)}^{d})})}`
 
     [a, b, c, d]
 
   * Weibull With Offset
 
-    :math:`y = a * {(1.0 - \exp{(-b * {(x - c)}\textsuperscript{d})})} + \text{Offset}`
+    :math:`y = a * {(1.0 - \exp{(-b * {(x - c)}^{d})})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -768,13 +768,13 @@ BurkardtCollectionBased
 
   * Arcsin PDF Based
 
-    :math:`y = a / \sqrt{( b\textsuperscript{2} - x\textsuperscript{2})}`
+    :math:`y = a / \sqrt{( b^{2} - x^{2})}`
 
     [a, b]
 
   * Arcsin PDF Based With Offset
 
-    :math:`y = a / \sqrt{( b\textsuperscript{2} - x\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a / \sqrt{( b^{2} - x^{2})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -824,13 +824,13 @@ BurkardtCollectionBased
 
   * Burr CDF Based A
 
-    :math:`y = 1.0 / {( 1.0 + {( b / {( x-a )})}\textsuperscript{c})}\textsuperscript{d}`
+    :math:`y = 1.0 / {( 1.0 + {( b / {( x-a )})}^{c})}^{d}`
 
     [a, b, c, d]
 
   * Burr CDF Based A With Offset
 
-    :math:`y = 1.0 / {( 1.0 + {( b / {( x-a )})}\textsuperscript{c})}\textsuperscript{d}+ \text{Offset}`
+    :math:`y = 1.0 / {( 1.0 + {( b / {( x-a )})}^{c})}^{d}+ \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -838,13 +838,13 @@ BurkardtCollectionBased
 
   * Burr CDF Based B
 
-    :math:`y = f / {( 1.0 + {( b / {( x-a )})}\textsuperscript{c})}\textsuperscript{d}`
+    :math:`y = f / {( 1.0 + {( b / {( x-a )})}^{c})}^{d}`
 
     [a, b, c, d, f]
 
   * Burr CDF Based B With Offset
 
-    :math:`y = f / {( 1.0 + {( b / {( x-a )})}\textsuperscript{c})}\textsuperscript{d} +\text{Offset}`
+    :math:`y = f / {( 1.0 + {( b / {( x-a )})}^{c})}^{d} +\text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -950,13 +950,13 @@ BurkardtCollectionBased
 
   * Fisk CDF Based A
 
-    :math:`y = 1.0 / {(1.0+{(b/{(x-a)})}\textsuperscript{c})}`
+    :math:`y = 1.0 / {(1.0+{(b/{(x-a)})}^{c})}`
 
     [a, b, c]
 
   * Fisk CDF Based A With Offset
 
-    :math:`y = 1.0 / {(1.0+{(b/{(x-a)})}\textsuperscript{c})} + \text{Offset}`
+    :math:`y = 1.0 / {(1.0+{(b/{(x-a)})}^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -964,13 +964,13 @@ BurkardtCollectionBased
 
   * Fisk CDF Based B
 
-    :math:`y = d / {(1.0+{(b/{(x-a)})}\textsuperscript{c})}`
+    :math:`y = d / {(1.0+{(b/{(x-a)})}^{c})}`
 
     [a, b, c, d]
 
   * Fisk CDF Based B With Offset
 
-    :math:`y = d / {(1.0+{(b/{(x-a)})}\textsuperscript{c})} + \text{Offset}`
+    :math:`y = d / {(1.0+{(b/{(x-a)})}^{c})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -978,13 +978,13 @@ BurkardtCollectionBased
 
   * Fisk PDF Based
 
-    :math:`y = {(c/b)} * {({(x-a)}/b)}\textsuperscript{{(c-1.0)}} / {(1.0 +{({(x-a)}/b)}\textsuperscript{c})}\textsuperscript{2}`
+    :math:`y = {(c/b)} * {({(x-a)}/b)}^{{(c-1.0)}} / {(1.0 +{({(x-a)}/b)}^{c})}^{2}`
 
     [a, b, c]
 
   * Fisk PDF Based With Offset
 
-    :math:`y = {(c/b)} * {({(x-a)}/b)}\textsuperscript{{(c-1.0)}} / {(1.0 +{({(x-a)}/b)}\textsuperscript{c})}\textsuperscript{2} + \text{Offset}`
+    :math:`y = {(c/b)} * {({(x-a)}/b)}^{{(c-1.0)}} / {(1.0 +{({(x-a)}/b)}^{c})}^{2} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -992,13 +992,13 @@ BurkardtCollectionBased
 
   * Folded Normal PDF Based
 
-    :math:`y = c * {(1/b)} * cosh{(a*x/b\textsuperscript{2})} * \exp{(-0.5 *{(x\textsuperscript{2} + a\textsuperscript{2})}/b\textsuperscript{2})}`
+    :math:`y = c * {(1/b)} * cosh{(a*x/b^{2})} * \exp{(-0.5 *{(x^{2} + a^{2})}/b^{2})}`
 
     [a, b, c]
 
   * Folded Normal PDF Based With Offset
 
-    :math:`y = c * {(1/b)} * cosh{(a*x/b\textsuperscript{2})} * \exp{(-0.5 *{(x\textsuperscript{2} + a\textsuperscript{2})}/b\textsuperscript{2})} +\text{Offset}`
+    :math:`y = c * {(1/b)} * cosh{(a*x/b^{2})} * \exp{(-0.5 *{(x^{2} + a^{2})}/b^{2})} +\text{Offset}`
 
     [a, b, c, Offset]
 
@@ -1006,13 +1006,13 @@ BurkardtCollectionBased
 
   * Frechet CDF Based A
 
-    :math:`y = \exp{(-1.0 / x\textsuperscript{a})}`
+    :math:`y = \exp{(-1.0 / x^{a})}`
 
     [a]
 
   * Frechet CDF Based A With Offset
 
-    :math:`y = \exp{(-1.0 / x\textsuperscript{a})} + \text{Offset}`
+    :math:`y = \exp{(-1.0 / x^{a})} + \text{Offset}`
 
     [a, Offset]
 
@@ -1020,13 +1020,13 @@ BurkardtCollectionBased
 
   * Frechet CDF Based B
 
-    :math:`y = b * \exp{(-1.0 / x\textsuperscript{a})}`
+    :math:`y = b * \exp{(-1.0 / x^{a})}`
 
     [a, b]
 
   * Frechet CDF Based B With Offset
 
-    :math:`y = b * \exp{(-1.0 / x\textsuperscript{a})} + \text{Offset}`
+    :math:`y = b * \exp{(-1.0 / x^{a})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -1034,13 +1034,13 @@ BurkardtCollectionBased
 
   * Frechet PDF Based A
 
-    :math:`y = \exp{(- 1.0 / x\textsuperscript{a})} / x\textsuperscript{{( a + 1.0)}}`
+    :math:`y = \exp{(- 1.0 / x^{a})} / x^{{( a + 1.0)}}`
 
     [a]
 
   * Frechet PDF Based A With Offset
 
-    :math:`y = \exp{(- 1.0 / x\textsuperscript{a})} / x\textsuperscript{{( a + 1.0)}} +\text{Offset}`
+    :math:`y = \exp{(- 1.0 / x^{a})} / x^{{( a + 1.0)}} +\text{Offset}`
 
     [a, Offset]
 
@@ -1048,13 +1048,13 @@ BurkardtCollectionBased
 
   * Frechet PDF Based B
 
-    :math:`y = b * \exp{(- 1.0 / x\textsuperscript{a})} / x\textsuperscript{{( a +1.0)}}`
+    :math:`y = b * \exp{(- 1.0 / x^{a})} / x^{{( a +1.0)}}`
 
     [a, b]
 
   * Frechet PDF Based B With Offset
 
-    :math:`y = b * \exp{(- 1.0 / x\textsuperscript{a})} / x\textsuperscript{{( a +1.0)}} + \text{Offset}`
+    :math:`y = b * \exp{(- 1.0 / x^{a})} / x^{{( a +1.0)}} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -1062,13 +1062,13 @@ BurkardtCollectionBased
 
   * Genlogistic CDF Based A
 
-    :math:`y = {(1.0/{(1.0+\exp{(-{(x-a)}/b)})})}\textsuperscript{c}`
+    :math:`y = {(1.0/{(1.0+\exp{(-{(x-a)}/b)})})}^{c}`
 
     [a, b, c]
 
   * Genlogistic CDF Based A With Offset
 
-    :math:`y = {(1.0/{(1.0+\exp{(-{(x-a)}/b)})})}\textsuperscript{c} + \text{Offset}`
+    :math:`y = {(1.0/{(1.0+\exp{(-{(x-a)}/b)})})}^{c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -1076,13 +1076,13 @@ BurkardtCollectionBased
 
   * Genlogistic CDF Based B
 
-    :math:`y = {(d/{(1.0+\exp{(-{(x-a)}/b)})})}\textsuperscript{c}`
+    :math:`y = {(d/{(1.0+\exp{(-{(x-a)}/b)})})}^{c}`
 
     [a, b, c, d]
 
   * Genlogistic CDF Based B With Offset
 
-    :math:`y = {(d/{(1.0+\exp{(-{(x-a)}/b)})})}\textsuperscript{c} + \text{Offset}`
+    :math:`y = {(d/{(1.0+\exp{(-{(x-a)}/b)})})}^{c} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -1090,13 +1090,13 @@ BurkardtCollectionBased
 
   * Genlogistic PDF Based
 
-    :math:`y = {(c/b)} * \exp{(-{({(x-a)}/b)})} /{(1.0+\exp{(-{({(x-a)}/b)})})}\textsuperscript{{(c+1.0)}}`
+    :math:`y = {(c/b)} * \exp{(-{({(x-a)}/b)})} /{(1.0+\exp{(-{({(x-a)}/b)})})}^{{(c+1.0)}}`
 
     [a, b, c]
 
   * Genlogistic PDF Based With Offset
 
-    :math:`y = {(c/b)} * \exp{(-{({(x-a)}/b)})} /{(1.0+\exp{(-{({(x-a)}/b)})})}\textsuperscript{{(c+1.0)}} + \text{Offset}`
+    :math:`y = {(c/b)} * \exp{(-{({(x-a)}/b)})} /{(1.0+\exp{(-{({(x-a)}/b)})})}^{{(c+1.0)}} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -1104,13 +1104,13 @@ BurkardtCollectionBased
 
   * Gompertz CDF Based
 
-    :math:`y = 1.0 - \exp{(-b * {(a\textsuperscript{x}-1.0)} / ln{(a)})}`
+    :math:`y = 1.0 - \exp{(-b * {(a^{x}-1.0)} / ln{(a)})}`
 
     [a, b]
 
   * Gompertz CDF Based With Offset
 
-    :math:`y = 1.0 - \exp{(-b * {(a\textsuperscript{x}-1.0)} / ln{(a)})} + \text{Offset}`
+    :math:`y = 1.0 - \exp{(-b * {(a^{x}-1.0)} / ln{(a)})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -1118,13 +1118,13 @@ BurkardtCollectionBased
 
   * Gompertz CDF Based Scaled
 
-    :math:`y = Scale * {(1.0 - \exp{(-b * {(a\textsuperscript{x}-1.0)} / ln{(a)})})}`
+    :math:`y = Scale * {(1.0 - \exp{(-b * {(a^{x}-1.0)} / ln{(a)})})}`
 
     [a, b, Scale]
 
   * Gompertz CDF Based Scaled With Offset
 
-    :math:`y = Scale * {(1.0 - \exp{(-b * {(a\textsuperscript{x}-1.0)} / ln{(a)})})} +\text{Offset}`
+    :math:`y = Scale * {(1.0 - \exp{(-b * {(a^{x}-1.0)} / ln{(a)})})} +\text{Offset}`
 
     [a, b, Scale, Offset]
 
@@ -1174,13 +1174,13 @@ BurkardtCollectionBased
 
   * Inverse_gaussian PDF Based A
 
-    :math:`y = \sqrt{(b/{(c*x\textsuperscript{3})})}*\exp{(-b*{(x-a)}\textsuperscript{2} /{(2.0*a\textsuperscript{2}*x)})}`
+    :math:`y = \sqrt{(b/{(c*x^{3})})}*\exp{(-b*{(x-a)}^{2} /{(2.0*a^{2}*x)})}`
 
     [a, b, c]
 
   * Inverse_gaussian PDF Based A With Offset
 
-    :math:`y = \sqrt{(b/{(c*x\textsuperscript{3})})}*\exp{(-b*{(x-a)}\textsuperscript{2} /{(2.0*a\textsuperscript{2}*x)})} + \text{Offset}`
+    :math:`y = \sqrt{(b/{(c*x^{3})})}*\exp{(-b*{(x-a)}^{2} /{(2.0*a^{2}*x)})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -1188,13 +1188,13 @@ BurkardtCollectionBased
 
   * Inverse_gaussian PDF Based B
 
-    :math:`y = \sqrt{(b/{(c*x\textsuperscript{3})})}*\exp{(-b*{(x-a)}\textsuperscript{2} /{(2.0*a\textsuperscript{2}*x)})}`
+    :math:`y = \sqrt{(b/{(c*x^{3})})}*\exp{(-b*{(x-a)}^{2} /{(2.0*a^{2}*x)})}`
 
     [a, b, c, d]
 
   * Inverse_gaussian PDF Based B With Offset
 
-    :math:`y = \sqrt{(b/{(c*x\textsuperscript{3})})}*\exp{(-b*{(x-a)}\textsuperscript{2} /{(2.0*a\textsuperscript{2}*x)})} + \text{Offset}`
+    :math:`y = \sqrt{(b/{(c*x^{3})})}*\exp{(-b*{(x-a)}^{2} /{(2.0*a^{2}*x)})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -1202,13 +1202,13 @@ BurkardtCollectionBased
 
   * Levy PDF Based
 
-    :math:`y = b\textsuperscript{0.5} *\exp{(-b/{(2.0*{(x-a)})})}/\sqrt{({(x-a)}\textsuperscript{3})}`
+    :math:`y = b^{0.5} *\exp{(-b/{(2.0*{(x-a)})})}/\sqrt{({(x-a)}^{3})}`
 
     [a, b]
 
   * Levy PDF Based With Offset
 
-    :math:`y = b\textsuperscript{0.5} *\exp{(-b/{(2.0*{(x-a)})})}/\sqrt{({(x-a)}\textsuperscript{3})} + \text{Offset}`
+    :math:`y = b^{0.5} *\exp{(-b/{(2.0*{(x-a)})})}/\sqrt{({(x-a)}^{3})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -1216,13 +1216,13 @@ BurkardtCollectionBased
 
   * Levy PDF Based Scaled
 
-    :math:`y = Scale * b\textsuperscript{0.5} *\exp{(-b/{(2.0*{(x-a)})})}/\sqrt{({(x-a)}\textsuperscript{3})}`
+    :math:`y = Scale * b^{0.5} *\exp{(-b/{(2.0*{(x-a)})})}/\sqrt{({(x-a)}^{3})}`
 
     [a, b, Scale]
 
   * Levy PDF Based Scaled With Offset
 
-    :math:`y = Scale * b\textsuperscript{0.5} *\exp{(-b/{(2.0*{(x-a)})})}/\sqrt{({(x-a)}\textsuperscript{3})} + \text{Offset}`
+    :math:`y = Scale * b^{0.5} *\exp{(-b/{(2.0*{(x-a)})})}/\sqrt{({(x-a)}^{3})} + \text{Offset}`
 
     [a, b, Scale, Offset]
 
@@ -1230,13 +1230,13 @@ BurkardtCollectionBased
 
   * Log Normal PDF Based
 
-    :math:`y = \exp{(-0.5*{({(ln{(x)}-a)}/b)}\textsuperscript{2})} / {(b*x)}`
+    :math:`y = \exp{(-0.5*{({(ln{(x)}-a)}/b)}^{2})} / {(b*x)}`
 
     [a, b]
 
   * Log Normal PDF Based With Offset
 
-    :math:`y = \exp{(-0.5*{({(ln{(x)}-a)}/b)}\textsuperscript{2})} / {(b*x)} + \text{Offset}`
+    :math:`y = \exp{(-0.5*{({(ln{(x)}-a)}/b)}^{2})} / {(b*x)} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -1244,13 +1244,13 @@ BurkardtCollectionBased
 
   * Logistic PDF Based
 
-    :math:`y = \exp{({(a-x)}/b)} / {(b*{(1.0+\exp{({(a-x)}/b)})}\textsuperscript{2})}`
+    :math:`y = \exp{({(a-x)}/b)} / {(b*{(1.0+\exp{({(a-x)}/b)})}^{2})}`
 
     [a, b]
 
   * Logistic PDF Based With Offset
 
-    :math:`y = \exp{({(a-x)}/b)} / {(b*{(1.0+\exp{({(a-x)}/b)})}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = \exp{({(a-x)}/b)} / {(b*{(1.0+\exp{({(a-x)}/b)})}^{2})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -1258,13 +1258,13 @@ BurkardtCollectionBased
 
   * Pareto PDF Based
 
-    :math:`y = b * a\textsuperscript{b} / x\textsuperscript{{(b+1.0)}}`
+    :math:`y = b * a^{b} / x^{{(b+1.0)}}`
 
     [a, b]
 
   * Pareto PDF Based With Offset
 
-    :math:`y = b * a\textsuperscript{b} / x\textsuperscript{{(b+1.0)}} + \text{Offset}`
+    :math:`y = b * a^{b} / x^{{(b+1.0)}} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -1272,13 +1272,13 @@ BurkardtCollectionBased
 
   * Power PDF Based
 
-    :math:`y = {(a/b)} * {(x/b)}\textsuperscript{{(a-1.0)}}`
+    :math:`y = {(a/b)} * {(x/b)}^{{(a-1.0)}}`
 
     [a, b]
 
   * Power PDF Based With Offset
 
-    :math:`y = {(a/b)} * {(x/b)}\textsuperscript{{(a-1.0)}} + \text{Offset}`
+    :math:`y = {(a/b)} * {(x/b)}^{{(a-1.0)}} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -1286,13 +1286,13 @@ BurkardtCollectionBased
 
   * Rayleigh CDF Based A
 
-    :math:`y = 1.0 - \exp{(-x\textsuperscript{2}/{(2.0*a\textsuperscript{2})})}`
+    :math:`y = 1.0 - \exp{(-x^{2}/{(2.0*a^{2})})}`
 
     [a]
 
   * Rayleigh CDF Based A With Offset
 
-    :math:`y = 1.0 - \exp{(-x\textsuperscript{2}/{(2.0*a\textsuperscript{2})})} + \text{Offset}`
+    :math:`y = 1.0 - \exp{(-x^{2}/{(2.0*a^{2})})} + \text{Offset}`
 
     [a, Offset]
 
@@ -1300,13 +1300,13 @@ BurkardtCollectionBased
 
   * Rayleigh CDF Based B
 
-    :math:`y = b * \exp{(-x\textsuperscript{2}/{(2.0*a\textsuperscript{2})})}`
+    :math:`y = b * \exp{(-x^{2}/{(2.0*a^{2})})}`
 
     [a, b]
 
   * Rayleigh CDF Based B With Offset
 
-    :math:`y = b * \exp{(-x\textsuperscript{2}/{(2.0*a\textsuperscript{2})})} + \text{Offset}`
+    :math:`y = b * \exp{(-x^{2}/{(2.0*a^{2})})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -1314,13 +1314,13 @@ BurkardtCollectionBased
 
   * Rayleigh PDF Based
 
-    :math:`y = {(x/a\textsuperscript{2})} *\exp{(-x\textsuperscript{2}/{(2.0*a\textsuperscript{2})})}`
+    :math:`y = {(x/a^{2})} *\exp{(-x^{2}/{(2.0*a^{2})})}`
 
     [a]
 
   * Rayleigh PDF Based With Offset
 
-    :math:`y = {(x/a\textsuperscript{2})} *\exp{(-x\textsuperscript{2}/{(2.0*a\textsuperscript{2})})} + \text{Offset}`
+    :math:`y = {(x/a^{2})} *\exp{(-x^{2}/{(2.0*a^{2})})} + \text{Offset}`
 
     [a, Offset]
 
@@ -1328,13 +1328,13 @@ BurkardtCollectionBased
 
   * Rayleigh PDF Based Scaled
 
-    :math:`y = Scale * {(x/a\textsuperscript{2})} *\exp{(-x\textsuperscript{2}/{(2.0*a\textsuperscript{2})})}`
+    :math:`y = Scale * {(x/a^{2})} *\exp{(-x^{2}/{(2.0*a^{2})})}`
 
     [a, Scale]
 
   * Rayleigh PDF Based Scaled With Offset
 
-    :math:`y = Scale * {(x/a\textsuperscript{2})} *\exp{(-x\textsuperscript{2}/{(2.0*a\textsuperscript{2})})} + \text{Offset}`
+    :math:`y = Scale * {(x/a^{2})} *\exp{(-x^{2}/{(2.0*a^{2})})} + \text{Offset}`
 
     [a, Scale, Offset]
 
@@ -1370,13 +1370,13 @@ BurkardtCollectionBased
 
   * Weibull CDF Based A
 
-    :math:`y = 1.0 / \exp{({({(x-a)}/b)}\textsuperscript{c})}`
+    :math:`y = 1.0 / \exp{({({(x-a)}/b)}^{c})}`
 
     [a, b, c]
 
   * Weibull CDF Based A With Offset
 
-    :math:`y = 1.0 / \exp{({({(x-a)}/b)}\textsuperscript{c})} + \text{Offset}`
+    :math:`y = 1.0 / \exp{({({(x-a)}/b)}^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -1384,13 +1384,13 @@ BurkardtCollectionBased
 
   * Weibull CDF Based B
 
-    :math:`y = d / \exp{({({(x-a)}/b)}\textsuperscript{c})}`
+    :math:`y = d / \exp{({({(x-a)}/b)}^{c})}`
 
     [a, b, c, d]
 
   * Weibull CDF Based B With Offset
 
-    :math:`y = d / \exp{({({(x-a)}/b)}\textsuperscript{c})} + \text{Offset}`
+    :math:`y = d / \exp{({({(x-a)}/b)}^{c})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -1398,13 +1398,13 @@ BurkardtCollectionBased
 
   * Weibull PDF Based
 
-    :math:`y = {(c/b)} * {({(x-a)}/b)}\textsuperscript{{(c-1.0)}} /\exp{({({(x-a)}/b)}\textsuperscript{c})}`
+    :math:`y = {(c/b)} * {({(x-a)}/b)}^{{(c-1.0)}} /\exp{({({(x-a)}/b)}^{c})}`
 
     [a, b, c]
 
   * Weibull PDF Based With Offset
 
-    :math:`y = {(c/b)} * {({(x-a)}/b)}\textsuperscript{{(c-1.0)}} /\exp{({({(x-a)}/b)}\textsuperscript{c})} + \text{Offset}`
+    :math:`y = {(c/b)} * {({(x-a)}/b)}^{{(c-1.0)}} /\exp{({({(x-a)}/b)}^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -1416,7 +1416,7 @@ Engineering
 
   * Dispersion Optical
 
-    :math:`n\textsuperscript{2}{(x)} = A1 + A2*x\textsuperscript{2} +A3/x\textsuperscript{2} + A4/x\textsuperscript{4}`
+    :math:`n^{2}{(x)} = A1 + A2*x^{2} +A3/x^{2} + A4/x^{4}`
 
     [A1, A2, A3, A4]
 
@@ -1424,7 +1424,7 @@ Engineering
 
   * Dispersion Optical Square Root
 
-    :math:`n = {(A1 + A2*x\textsuperscript{2} + A3/x\textsuperscript{2} +A4/x\textsuperscript{4})}\textsuperscript{0.5}`
+    :math:`n = {(A1 + A2*x^{2} + A3/x^{2} +A4/x^{4})}^{0.5}`
 
     [A1, A2, A3, A4]
 
@@ -1432,13 +1432,13 @@ Engineering
 
   * Electron Beam Lithography Point Spread
 
-    :math:`y = a*\exp{(-b*x)} + c*\exp{(-{(x-d)}\textsuperscript{2} /f\textsuperscript{2})} + g*\exp{(-{(x-h)}\textsuperscript{2} /i\textsuperscript{2})} + j*\exp{(-{(x-k)}\textsuperscript{2} /l\textsuperscript{2})}`
+    :math:`y = a*\exp{(-b*x)} + c*\exp{(-{(x-d)}^{2} /f^{2})} + g*\exp{(-{(x-h)}^{2} /i^{2})} + j*\exp{(-{(x-k)}^{2} /l^{2})}`
 
     [a, b, c, d, f, g, h, i, j, k, l]
 
   * Electron Beam Lithography Point Spread With Offset
 
-    :math:`y = a*\exp{(-b*x)} + c*\exp{(-{(x-d)}\textsuperscript{2} /f\textsuperscript{2})} + g*\exp{(-{(x-h)}\textsuperscript{2} /i\textsuperscript{2})} + j*\exp{(-{(x-k)}\textsuperscript{2} /l\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a*\exp{(-b*x)} + c*\exp{(-{(x-d)}^{2} /f^{2})} + g*\exp{(-{(x-h)}^{2} /i^{2})} + j*\exp{(-{(x-k)}^{2} /l^{2})} + \text{Offset}`
 
     [a, b, c, d, f, g, h, i, j, k, l, Offset]
 
@@ -1446,7 +1446,7 @@ Engineering
 
   * Extended Steinhart-Hart
 
-    :math:`1/T = A + Bln{(R)} + C{(ln{(R)})}\textsuperscript{2} +D{(ln{(R)})}\textsuperscript{3}`
+    :math:`1/T = A + Bln{(R)} + C{(ln{(R)})}^{2} +D{(ln{(R)})}^{3}`
 
     [A, B, C, D]
 
@@ -1552,13 +1552,13 @@ Engineering
 
   * Ramberg-Osgood
 
-    :math:`y = {(Stress / Youngs\_Modulus)} + {(Stress/K)}\textsuperscript{{(1.0/n)}}`
+    :math:`y = {(Stress / Youngs\_Modulus)} + {(Stress/K)}^{{(1.0/n)}}`
 
     [Youngs_Modulus, K, n]
 
   * Ramberg-Osgood With Offset
 
-    :math:`y = {(Stress / Youngs\_Modulus)} + {(Stress/K)}\textsuperscript{{(1.0/n)}} +\text{Offset}`
+    :math:`y = {(Stress / Youngs\_Modulus)} + {(Stress/K)}^{{(1.0/n)}} +\text{Offset}`
 
     [Youngs_Modulus, K, n, Offset]
 
@@ -1566,13 +1566,13 @@ Engineering
 
   * Reciprocal Extended Steinhart-Hart
 
-    :math:`T = 1.0 / {(A + Bln{(R)} + C{(ln{(R)})}\textsuperscript{2} +D{(ln{(R)})}\textsuperscript{3})}`
+    :math:`T = 1.0 / {(A + Bln{(R)} + C{(ln{(R)})}^{2} +D{(ln{(R)})}^{3})}`
 
     [A, B, C, D]
 
   * Reciprocal Extended Steinhart-Hart With Offset
 
-    :math:`T = 1.0 / {(A + Bln{(R)} + C{(ln{(R)})}\textsuperscript{2} +D{(ln{(R)})}\textsuperscript{3})} + \text{Offset}`
+    :math:`T = 1.0 / {(A + Bln{(R)} + C{(ln{(R)})}^{2} +D{(ln{(R)})}^{3})} + \text{Offset}`
 
     [A, B, C, D, Offset]
 
@@ -1580,13 +1580,13 @@ Engineering
 
   * Reciprocal Steinhart-Hart
 
-    :math:`T = 1.0 / {(A + Bln{(R)} + C{(ln{(R)})}\textsuperscript{3})}`
+    :math:`T = 1.0 / {(A + Bln{(R)} + C{(ln{(R)})}^{3})}`
 
     [A, B, C]
 
   * Reciprocal Steinhart-Hart With Offset
 
-    :math:`T = 1.0 / {(A + Bln{(R)} + C{(ln{(R)})}\textsuperscript{3})} + \text{Offset}`
+    :math:`T = 1.0 / {(A + Bln{(R)} + C{(ln{(R)})}^{3})} + \text{Offset}`
 
     [A, B, C, Offset]
 
@@ -1594,13 +1594,13 @@ Engineering
 
   * Sellmeier Optical
 
-    :math:`n\textsuperscript{2}{(x)} = 1 + {(B1x\textsuperscript{2})}/{(x\textsuperscript{2}-C1)} + {(B2x\textsuperscript{2})}/{(x\textsuperscript{2}-C2)} + {(B3x\textsuperscript{2})}/{(x\textsuperscript{2}-C3)}`
+    :math:`n^{2}{(x)} = 1 + {(B1x^{2})}/{(x^{2}-C1)} + {(B2x^{2})}/{(x^{2}-C2)} + {(B3x^{2})}/{(x^{2}-C3)}`
 
     [B1, C1, B2, C2, B3, C3]
 
   * Sellmeier Optical With Offset
 
-    :math:`n\textsuperscript{2}{(x)} = 1 + {(B1x\textsuperscript{2})}/{(x\textsuperscript{2}-C1)} + {(B2x\textsuperscript{2})}/{(x\textsuperscript{2}-C2)} + {(B3x\textsuperscript{2})}/{(x\textsuperscript{2}-C3)} + \text{Offset}`
+    :math:`n^{2}{(x)} = 1 + {(B1x^{2})}/{(x^{2}-C1)} + {(B2x^{2})}/{(x^{2}-C2)} + {(B3x^{2})}/{(x^{2}-C3)} + \text{Offset}`
 
     [B1, C1, B2, C2, B3, C3, Offset]
 
@@ -1608,13 +1608,13 @@ Engineering
 
   * Sellmeier Optical Square Root
 
-    :math:`n = {(1 + {(B1 x\textsuperscript{2})}/{(x\textsuperscript{2}-C1)} + {(B2x\textsuperscript{2})}/{(x\textsuperscript{2}-C2)} + {(B3x\textsuperscript{2})}/{(x\textsuperscript{2}-C3)})}\textsuperscript{0.5}`
+    :math:`n = {(1 + {(B1 x^{2})}/{(x^{2}-C1)} + {(B2x^{2})}/{(x^{2}-C2)} + {(B3x^{2})}/{(x^{2}-C3)})}^{0.5}`
 
     [B1, C1, B2, C2, B3, C3]
 
   * Sellmeier Optical Square Root With Offset
 
-    :math:`n = {(1 + {(B1 x\textsuperscript{2})}/{(x\textsuperscript{2}-C1)} + {(B2x\textsuperscript{2})}/{(x\textsuperscript{2}-C2)} + {(B3x\textsuperscript{2})}/{(x\textsuperscript{2}-C3)})}\textsuperscript{0.5} +\text{Offset}`
+    :math:`n = {(1 + {(B1 x^{2})}/{(x^{2}-C1)} + {(B2x^{2})}/{(x^{2}-C2)} + {(B3x^{2})}/{(x^{2}-C3)})}^{0.5} +\text{Offset}`
 
     [B1, C1, B2, C2, B3, C3, Offset]
 
@@ -1622,7 +1622,7 @@ Engineering
 
   * Steinhart-Hart
 
-    :math:`1/T = A + Bln{(R)} + C{(ln{(R)})}\textsuperscript{3}`
+    :math:`1/T = A + Bln{(R)} + C{(ln{(R)})}^{3}`
 
     [A, B, C]
 
@@ -1642,13 +1642,13 @@ Exponential
 
   * Asymptotic Exponential A
 
-    :math:`y = 1.0 - a\textsuperscript{x}`
+    :math:`y = 1.0 - a^{x}`
 
     [a]
 
   * Asymptotic Exponential A With Offset
 
-    :math:`y = 1.0 - a\textsuperscript{x} + \text{Offset}`
+    :math:`y = 1.0 - a^{x} + \text{Offset}`
 
     [a, Offset]
 
@@ -1656,13 +1656,13 @@ Exponential
 
   * Asymptotic Exponential A Transform
 
-    :math:`y = 1.0 - a\textsuperscript{bx + c}`
+    :math:`y = 1.0 - a^{bx + c}`
 
     [a, b, c]
 
   * Asymptotic Exponential A Transform With Offset
 
-    :math:`y = 1.0 - a\textsuperscript{bx + c} + \text{Offset}`
+    :math:`y = 1.0 - a^{bx + c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -1734,7 +1734,7 @@ Exponential
 
   * Hocket-Sherby
 
-    :math:`y = b - {(b-a)} * \exp{(-c * {(x\textsuperscript{d})})}`
+    :math:`y = b - {(b-a)} * \exp{(-c * {(x^{d})})}`
 
     [a, b, c, d]
 
@@ -1742,13 +1742,13 @@ Exponential
 
   * Hoerl
 
-    :math:`y = x\textsuperscript{a} * \exp{(x)}`
+    :math:`y = x^{a} * \exp{(x)}`
 
     [a]
 
   * Hoerl With Offset
 
-    :math:`y = x\textsuperscript{a} * \exp{(x)} + \text{Offset}`
+    :math:`y = x^{a} * \exp{(x)} + \text{Offset}`
 
     [a, Offset]
 
@@ -1756,13 +1756,13 @@ Exponential
 
   * Hoerl Transform
 
-    :math:`y = {(bx + c)}\textsuperscript{a} * \exp{(bx + c)}`
+    :math:`y = {(bx + c)}^{a} * \exp{(bx + c)}`
 
     [a, b, c]
 
   * Hoerl Transform With Offset
 
-    :math:`y = {(bx + c)}\textsuperscript{a} * \exp{(bx + c)} + \text{Offset}`
+    :math:`y = {(bx + c)}^{a} * \exp{(bx + c)} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -1862,13 +1862,13 @@ Exponential
 
   * Simple Exponential
 
-    :math:`y = a\textsuperscript{x}`
+    :math:`y = a^{x}`
 
     [a]
 
   * Simple Exponential With Offset
 
-    :math:`y = a\textsuperscript{x} + \text{Offset}`
+    :math:`y = a^{x} + \text{Offset}`
 
     [a, Offset]
 
@@ -1994,7 +1994,7 @@ LegendrePolynomial
 
   * Legendre Polynomial G - Eighth Degree
 
-    :math:`y = a + bx + cP\textsubscript{2} + dP\textsubscript{3} +fP\textsubscript{4} + gP\textsubscript{5} + hP\textsubscript{6} +iP\textsubscript{7} + jP\textsubscript{8}`
+    :math:`y = a + bx + cP_{2} + dP_{3} +fP_{4} + gP_{5} + hP_{6} +iP_{7} + jP_{8}`
 
     [a, b, c, d, f, g, h, i, j]
 
@@ -2002,7 +2002,7 @@ LegendrePolynomial
 
   * Legendre Polynomial D - Fifth Degree
 
-    :math:`y = a + bx + cP\textsubscript{2} + dP\textsubscript{3} +fP\textsubscript{4} + gP\textsubscript{5}`
+    :math:`y = a + bx + cP_{2} + dP_{3} +fP_{4} + gP_{5}`
 
     [a, b, c, d, f, g]
 
@@ -2010,7 +2010,7 @@ LegendrePolynomial
 
   * Legendre Polynomial C - Fourth Degree
 
-    :math:`y = a + bx + cP\textsubscript{2} + dP\textsubscript{3} +fP\textsubscript{4}`
+    :math:`y = a + bx + cP_{2} + dP_{3} +fP_{4}`
 
     [a, b, c, d, f]
 
@@ -2018,7 +2018,7 @@ LegendrePolynomial
 
   * Gamma Ray Angular Distribution (degrees) A
 
-    :math:`y = A0 + A2 * P\textsubscript{2}{(cos{(theta)})}`
+    :math:`y = A0 + A2 * P_{2}{(cos{(theta)})}`
 
     [A0, A2]
 
@@ -2026,7 +2026,7 @@ LegendrePolynomial
 
   * Gamma Ray Angular Distribution (degrees) B
 
-    :math:`y = A0 + A2 * P\textsubscript{2}{(cos{(theta)})} + A4 *P\textsubscript{4}{(cos{(theta)})}`
+    :math:`y = A0 + A2 * P_{2}{(cos{(theta)})} + A4 *P_{4}{(cos{(theta)})}`
 
     [A0, A2, A4]
 
@@ -2034,7 +2034,7 @@ LegendrePolynomial
 
   * Gamma Ray Angular Distribution (radians) A
 
-    :math:`y = A0 + A2 * P\textsubscript{2}{(cos{(theta)})}`
+    :math:`y = A0 + A2 * P_{2}{(cos{(theta)})}`
 
     [A0, A2]
 
@@ -2042,7 +2042,7 @@ LegendrePolynomial
 
   * Gamma Ray Angular Distribution (radians) B
 
-    :math:`y = A0 + A2 * P\textsubscript{2}{(cos{(theta)})} + A4 *P\textsubscript{4}{(cos{(theta)})}`
+    :math:`y = A0 + A2 * P_{2}{(cos{(theta)})} + A4 *P_{4}{(cos{(theta)})}`
 
     [A0, A2, A4]
 
@@ -2050,7 +2050,7 @@ LegendrePolynomial
 
   * Legendre Polynomial H - Ninth Degree
 
-    :math:`y = a + bx + cP\textsubscript{2} + dP\textsubscript{3} +fP\textsubscript{4} + gP\textsubscript{5} + hP\textsubscript{6} +iP\textsubscript{7} + jP\textsubscript{8} + kP\textsubscript{9}`
+    :math:`y = a + bx + cP_{2} + dP_{3} +fP_{4} + gP_{5} + hP_{6} +iP_{7} + jP_{8} + kP_{9}`
 
     [a, b, c, d, f, g, h, i, j, k]
 
@@ -2058,7 +2058,7 @@ LegendrePolynomial
 
   * Legendre Polynomial A - Second Degree
 
-    :math:`y = a + bx + cP\textsubscript{2}`
+    :math:`y = a + bx + cP_{2}`
 
     [a, b, c]
 
@@ -2066,7 +2066,7 @@ LegendrePolynomial
 
   * Legendre Polynomial F - Seventh Degree
 
-    :math:`y = a + bx + cP\textsubscript{2} + dP\textsubscript{3} +fP\textsubscript{4} + gP\textsubscript{5} + hP\textsubscript{6} +iP\textsubscript{7}`
+    :math:`y = a + bx + cP_{2} + dP_{3} +fP_{4} + gP_{5} + hP_{6} +iP_{7}`
 
     [a, b, c, d, f, g, h, i]
 
@@ -2074,7 +2074,7 @@ LegendrePolynomial
 
   * Legendre Polynomial E - Sixth Degree
 
-    :math:`y = a + bx + cP\textsubscript{2} + dP\textsubscript{3} +fP\textsubscript{4} + gP\textsubscript{5} + hP\textsubscript{6}`
+    :math:`y = a + bx + cP_{2} + dP_{3} +fP_{4} + gP_{5} + hP_{6}`
 
     [a, b, c, d, f, g, h]
 
@@ -2082,7 +2082,7 @@ LegendrePolynomial
 
   * Legendre Polynomial I - Tenth Degree
 
-    :math:`y = a + bx + cP\textsubscript{2} + dP\textsubscript{3} +fP\textsubscript{4} + gP\textsubscript{5} + hP\textsubscript{6} +iP\textsubscript{7} + jP\textsubscript{8} + kP\textsubscript{9} +mP\textsubscript{10}`
+    :math:`y = a + bx + cP_{2} + dP_{3} +fP_{4} + gP_{5} + hP_{6} +iP_{7} + jP_{8} + kP_{9} +mP_{10}`
 
     [a, b, c, d, f, g, h, i, j, k, m]
 
@@ -2090,7 +2090,7 @@ LegendrePolynomial
 
   * Legendre Polynomial B - Third Degree
 
-    :math:`y = a + bx + cP\textsubscript{2} + dP\textsubscript{3}`
+    :math:`y = a + bx + cP_{2} + dP_{3}`
 
     [a, b, c, d]
 
@@ -2102,7 +2102,7 @@ Logarithmic
 
   * Base 10 Logarithmic
 
-    :math:`y = a + b*log\textsubscript{10}{(x)}`
+    :math:`y = a + b*log_{10}{(x)}`
 
     [a, b]
 
@@ -2146,7 +2146,7 @@ Logarithmic
 
   * Cubic Logarithmic
 
-    :math:`y = a + b*ln{(x)} + c*ln{(x)}\textsuperscript{2} +d*ln{(x)}\textsuperscript{3}`
+    :math:`y = a + b*ln{(x)} + c*ln{(x)}^{2} +d*ln{(x)}^{3}`
 
     [a, b, c, d]
 
@@ -2154,7 +2154,7 @@ Logarithmic
 
   * Cubic Logarithmic Scaled
 
-    :math:`y = a + b*ln{(f*x)} + c*ln{(f*x)}\textsuperscript{2} +d*ln{(f*x)}\textsuperscript{3}`
+    :math:`y = a + b*ln{(f*x)} + c*ln{(f*x)}^{2} +d*ln{(f*x)}^{3}`
 
     [a, b, c, d, f]
 
@@ -2162,7 +2162,7 @@ Logarithmic
 
   * Cubic Logarithmic Transform
 
-    :math:`y = a + b*ln{(f*x+g)} + c*ln{(f*x+g)}\textsuperscript{2} +d*ln{(f*x+g)}\textsuperscript{3}`
+    :math:`y = a + b*ln{(f*x+g)} + c*ln{(f*x+g)}^{2} +d*ln{(f*x+g)}^{3}`
 
     [a, b, c, d, f, g]
 
@@ -2202,7 +2202,7 @@ Logarithmic
 
   * Quadratic Logarithmic
 
-    :math:`y = a + b*ln{(x)} + c*ln{(x)}\textsuperscript{2}`
+    :math:`y = a + b*ln{(x)} + c*ln{(x)}^{2}`
 
     [a, b, c]
 
@@ -2210,7 +2210,7 @@ Logarithmic
 
   * Quadratic Logarithmic Scaled
 
-    :math:`y = a + b*ln{(dx)} + c*ln{(dx)}\textsuperscript{2}`
+    :math:`y = a + b*ln{(dx)} + c*ln{(dx)}^{2}`
 
     [a, b, c, d]
 
@@ -2218,7 +2218,7 @@ Logarithmic
 
   * Quadratic Logarithmic Transform
 
-    :math:`y = a + b*ln{(dx+f)} + c*ln{(dx+f)}\textsuperscript{2}`
+    :math:`y = a + b*ln{(dx+f)} + c*ln{(dx+f)}^{2}`
 
     [a, b, c, d, f]
 
@@ -2226,7 +2226,7 @@ Logarithmic
 
   * Quartic Logarithmic
 
-    :math:`y = a + b*ln{(x)} + c*ln{(x)}\textsuperscript{2} +d*ln{(x)}\textsuperscript{3} + f*ln{(x)}\textsuperscript{4}`
+    :math:`y = a + b*ln{(x)} + c*ln{(x)}^{2} +d*ln{(x)}^{3} + f*ln{(x)}^{4}`
 
     [a, b, c, d, f]
 
@@ -2234,7 +2234,7 @@ Logarithmic
 
   * Quartic Logarithmic Scaled
 
-    :math:`y = a + b*ln{(h*x)} + c*ln{(h*x)}\textsuperscript{2} +d*ln{(h*x)}\textsuperscript{3} + f*ln{(h*x)}\textsuperscript{4}`
+    :math:`y = a + b*ln{(h*x)} + c*ln{(h*x)}^{2} +d*ln{(h*x)}^{3} + f*ln{(h*x)}^{4}`
 
     [a, b, c, d, f, g]
 
@@ -2242,7 +2242,7 @@ Logarithmic
 
   * Quartic Logarithmic Transform
 
-    :math:`y = a + b*ln{(g*x+h)} + c*ln{(g*x+h)}\textsuperscript{2} +d*ln{(g*x+h)}\textsuperscript{3} + f*ln{(g*x+h)}\textsuperscript{4}`
+    :math:`y = a + b*ln{(g*x+h)} + c*ln{(g*x+h)}^{2} +d*ln{(g*x+h)}^{3} + f*ln{(g*x+h)}^{4}`
 
     [a, b, c, d, f, g, h]
 
@@ -2250,7 +2250,7 @@ Logarithmic
 
   * Quintic Logarithmic
 
-    :math:`y = a + b*ln{(x)} + c*ln{(x)}\textsuperscript{2} +d*ln{(x)}\textsuperscript{3} + f*ln{(x)}\textsuperscript{4} +g*ln{(x)}\textsuperscript{5}`
+    :math:`y = a + b*ln{(x)} + c*ln{(x)}^{2} +d*ln{(x)}^{3} + f*ln{(x)}^{4} +g*ln{(x)}^{5}`
 
     [a, b, c, d, f, g]
 
@@ -2258,7 +2258,7 @@ Logarithmic
 
   * Quintic Logarithmic Scaled
 
-    :math:`y = a + b*ln{(h*x)} + c*ln{(h*x)}\textsuperscript{2} +d*ln{(h*x)}\textsuperscript{3} + f*ln{(h*x)}\textsuperscript{4} +g*ln{(h*x)}\textsuperscript{4}`
+    :math:`y = a + b*ln{(h*x)} + c*ln{(h*x)}^{2} +d*ln{(h*x)}^{3} + f*ln{(h*x)}^{4} +g*ln{(h*x)}^{4}`
 
     [a, b, c, d, f, g, h]
 
@@ -2266,7 +2266,7 @@ Logarithmic
 
   * Quintic Logarithmic Transform
 
-    :math:`y = a + b*ln{(h*x+i)} + c*ln{(h*x+i)}\textsuperscript{2} +d*ln{(h*x+i)}\textsuperscript{3} + f*ln{(h*x+i)}\textsuperscript{4} +g*ln{(h*x+i)}\textsuperscript{5}`
+    :math:`y = a + b*ln{(h*x+i)} + c*ln{(h*x+i)}^{2} +d*ln{(h*x+i)}^{3} + f*ln{(h*x+i)}^{4} +g*ln{(h*x+i)}^{5}`
 
     [a, b, c, d, f, g, h, i]
 
@@ -2306,13 +2306,13 @@ Miscellaneous
 
   * Bleasdale-Nelder
 
-    :math:`y = {(a + bx)}\textsuperscript{-c}`
+    :math:`y = {(a + bx)}^{-c}`
 
     [a, b, c]
 
   * Bleasdale-Nelder With Offset
 
-    :math:`y = {(a + bx)}\textsuperscript{-c} + \text{Offset}`
+    :math:`y = {(a + bx)}^{-c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2348,13 +2348,13 @@ Miscellaneous
 
   * Cissoid Of Diocles
 
-    :math:`y = a{(x\textsuperscript{3} / {(2b-x)})}\textsuperscript{0.5}`
+    :math:`y = a{(x^{3} / {(2b-x)})}^{0.5}`
 
     [a, b]
 
   * Cissoid Of Diocles With Offset
 
-    :math:`y = a{(x\textsuperscript{3} / {(2b-x)})}\textsuperscript{0.5} + \text{Offset}`
+    :math:`y = a{(x^{3} / {(2b-x)})}^{0.5} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -2362,13 +2362,13 @@ Miscellaneous
 
   * Cissoid Of Diocles Transform
 
-    :math:`y = a{({(x*c-d)}\textsuperscript{3} / {(2b-{(x*c-d)})})}\textsuperscript{0.5}`
+    :math:`y = a{({(x*c-d)}^{3} / {(2b-{(x*c-d)})})}^{0.5}`
 
     [a, b, c, d]
 
   * Cissoid Of Diocles Transform With Offset
 
-    :math:`y = a{({(x*c-d)}\textsuperscript{3} / {(2b-{(x*c-d)})})}\textsuperscript{0.5} +\text{Offset}`
+    :math:`y = a{({(x*c-d)}^{3} / {(2b-{(x*c-d)})})}^{0.5} +\text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -2376,13 +2376,13 @@ Miscellaneous
 
   * Combined Power And Exponential
 
-    :math:`y = ax\textsuperscript{b} * \exp{(cx)}`
+    :math:`y = ax^{b} * \exp{(cx)}`
 
     [a, b, c]
 
   * Combined Power And Exponential With Offset
 
-    :math:`y = ax\textsuperscript{b} * \exp{(cx)} + \text{Offset}`
+    :math:`y = ax^{b} * \exp{(cx)} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2390,7 +2390,7 @@ Miscellaneous
 
   * David Rodbard NIH
 
-    :math:`y = d + {(a - d)} / {(1.0 + {(x/c)}\textsuperscript{b})}`
+    :math:`y = d + {(a - d)} / {(1.0 + {(x/c)}^{b})}`
 
     [a, b, c, d]
 
@@ -2440,13 +2440,13 @@ Miscellaneous
 
   * Figure Eight Curve
 
-    :math:`y = a{(x\textsuperscript{2} -{(x\textsuperscript{4}/b\textsuperscript{2})})}\textsuperscript{0.5}`
+    :math:`y = a{(x^{2} -{(x^{4}/b^{2})})}^{0.5}`
 
     [a, b]
 
   * Figure Eight Curve With Offset
 
-    :math:`y = a{(x\textsuperscript{2} -{(x\textsuperscript{4}/b\textsuperscript{2})})}\textsuperscript{0.5} +\text{Offset}`
+    :math:`y = a{(x^{2} -{(x^{4}/b^{2})})}^{0.5} +\text{Offset}`
 
     [a, b, Offset]
 
@@ -2454,13 +2454,13 @@ Miscellaneous
 
   * Figure Eight Curve Transform
 
-    :math:`y = a{({(cx+d)}\textsuperscript{2} -{({(cx+d)}\textsuperscript{4}/b\textsuperscript{2})})}\textsuperscript{0.5}`
+    :math:`y = a{({(cx+d)}^{2} -{({(cx+d)}^{4}/b^{2})})}^{0.5}`
 
     [a, b, c, d]
 
   * Figure Eight Curve Transform With Offset
 
-    :math:`y = a{({(cx+d)}\textsuperscript{2} -{({(cx+d)}\textsuperscript{4}/b\textsuperscript{2})})}\textsuperscript{0.5} +\text{Offset}`
+    :math:`y = a{({(cx+d)}^{2} -{({(cx+d)}^{4}/b^{2})})}^{0.5} +\text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -2468,13 +2468,13 @@ Miscellaneous
 
   * Gunary
 
-    :math:`y = x / {(a + bx + cx\textsuperscript{0.5})}`
+    :math:`y = x / {(a + bx + cx^{0.5})}`
 
     [a, b, c]
 
   * Gunary With Offset
 
-    :math:`y = x / {(a + bx + cx\textsuperscript{0.5})} + \text{Offset}`
+    :math:`y = x / {(a + bx + cx^{0.5})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2524,7 +2524,7 @@ Miscellaneous
 
   * Karplus NMR Spectroscopy
 
-    :math:`J{(da)} = Acos\textsuperscript{2}{(da)} + Bcos{(da)} + C`
+    :math:`J{(da)} = Acos^{2}{(da)} + Bcos{(da)} + C`
 
     [A, B, C]
 
@@ -2532,7 +2532,7 @@ Miscellaneous
 
   * Karplus NMR Spectroscopy Scaled
 
-    :math:`J{(da)} = Acos\textsuperscript{2}{(s * da)} + Bcos{(s * da)} + C`
+    :math:`J{(da)} = Acos^{2}{(s * da)} + Bcos{(s * da)} + C`
 
     [A, B, C, s]
 
@@ -2540,13 +2540,13 @@ Miscellaneous
 
   * Lame's Cubic
 
-    :math:`y = {(a\textsuperscript{3} - x\textsuperscript{3})}\textsuperscript{1/3}`
+    :math:`y = {(a^{3} - x^{3})}^{1/3}`
 
     [a]
 
   * Lame's Cubic With Offset
 
-    :math:`y = {(a\textsuperscript{3} - x\textsuperscript{3})}\textsuperscript{1/3} +\text{Offset}`
+    :math:`y = {(a^{3} - x^{3})}^{1/3} +\text{Offset}`
 
     [a, Offset]
 
@@ -2554,13 +2554,13 @@ Miscellaneous
 
   * Lame's Cubic Transform
 
-    :math:`y = {(a\textsuperscript{3} - {(bx +c)}\textsuperscript{3})}\textsuperscript{1/3}`
+    :math:`y = {(a^{3} - {(bx +c)}^{3})}^{1/3}`
 
     [a, b, c]
 
   * Lame's Cubic Transform With Offset
 
-    :math:`y = {(a\textsuperscript{3} - {(bx +c)}\textsuperscript{3})}\textsuperscript{1/3} + \text{Offset}`
+    :math:`y = {(a^{3} - {(bx +c)}^{3})}^{1/3} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2606,13 +2606,13 @@ Miscellaneous
 
   * Niele's Semi-cubical Parabola
 
-    :math:`y = {(ax\textsuperscript{2})}\textsuperscript{1.0/3.0}`
+    :math:`y = {(ax^{2})}^{1.0/3.0}`
 
     [a]
 
   * Niele's Semi-cubical Parabola With Offset
 
-    :math:`y = {(ax\textsuperscript{2})}\textsuperscript{1.0/3.0} + \text{Offset}`
+    :math:`y = {(ax^{2})}^{1.0/3.0} + \text{Offset}`
 
     [a, Offset]
 
@@ -2620,13 +2620,13 @@ Miscellaneous
 
   * Niele's Semi-cubical Parabola Transform
 
-    :math:`y = {(a{(b*x+c)}\textsuperscript{2})}\textsuperscript{1.0/3.0}`
+    :math:`y = {(a{(b*x+c)}^{2})}^{1.0/3.0}`
 
     [a, b, c]
 
   * Niele's Semi-cubical Parabola Transform With Offset
 
-    :math:`y = {(a{(b*x+c)}\textsuperscript{2})}\textsuperscript{1.0/3.0} + \text{Offset}`
+    :math:`y = {(a{(b*x+c)}^{2})}^{1.0/3.0} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2634,13 +2634,13 @@ Miscellaneous
 
   * Pareto A
 
-    :math:`y = 1 - x\textsuperscript{-a}`
+    :math:`y = 1 - x^{-a}`
 
     [a]
 
   * Pareto A With Offset
 
-    :math:`y = 1 - x\textsuperscript{-a} + \text{Offset}`
+    :math:`y = 1 - x^{-a} + \text{Offset}`
 
     [a, Offset]
 
@@ -2648,13 +2648,13 @@ Miscellaneous
 
   * Pareto B
 
-    :math:`y = a{(1 - x\textsuperscript{-b})}`
+    :math:`y = a{(1 - x^{-b})}`
 
     [a, b]
 
   * Pareto B With Offset
 
-    :math:`y = a{(1 - x\textsuperscript{-b})} + \text{Offset}`
+    :math:`y = a{(1 - x^{-b})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -2662,13 +2662,13 @@ Miscellaneous
 
   * Pareto C
 
-    :math:`y = 1.0 - {(1.0 / {(1 + ax)}\textsuperscript{b})}`
+    :math:`y = 1.0 - {(1.0 / {(1 + ax)}^{b})}`
 
     [a, b]
 
   * Pareto C With Offset
 
-    :math:`y = 1.0 - {(1.0 / {(1 + ax)}\textsuperscript{b})} + \text{Offset}`
+    :math:`y = 1.0 - {(1.0 / {(1 + ax)}^{b})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -2676,13 +2676,13 @@ Miscellaneous
 
   * Pareto D
 
-    :math:`y = 1.0 - {(1.0 / x\textsuperscript{a})}`
+    :math:`y = 1.0 - {(1.0 / x^{a})}`
 
     [a]
 
   * Pareto D With Offset
 
-    :math:`y = 1.0 - {(1.0 / x\textsuperscript{a})} + \text{Offset}`
+    :math:`y = 1.0 - {(1.0 / x^{a})} + \text{Offset}`
 
     [a, Offset]
 
@@ -2690,13 +2690,13 @@ Miscellaneous
 
   * Pear-shaped Quartic
 
-    :math:`y = a{(x\textsuperscript{3}{(b-x)} /c\textsuperscript{2})}\textsuperscript{0.5}`
+    :math:`y = a{(x^{3}{(b-x)} /c^{2})}^{0.5}`
 
     [a, b, c]
 
   * Pear-shaped Quartic With Offset
 
-    :math:`y = a{(x\textsuperscript{3}{(b-x)} /c\textsuperscript{2})}\textsuperscript{0.5} + \text{Offset}`
+    :math:`y = a{(x^{3}{(b-x)} /c^{2})}^{0.5} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2704,13 +2704,13 @@ Miscellaneous
 
   * Pear-shaped Quartic Transform
 
-    :math:`y = a{({(dx+f)}\textsuperscript{3}{(b-{(dx+f)})} /c\textsuperscript{2})}\textsuperscript{0.5}`
+    :math:`y = a{({(dx+f)}^{3}{(b-{(dx+f)})} /c^{2})}^{0.5}`
 
     [a, b, c, d, f]
 
   * Pear-shaped Quartic Transform With Offset
 
-    :math:`y = a{({(dx+f)}\textsuperscript{3}{(b-{(dx+f)})} /c\textsuperscript{2})}\textsuperscript{0.5} + \text{Offset}`
+    :math:`y = a{({(dx+f)}^{3}{(b-{(dx+f)})} /c^{2})}^{0.5} + \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -2726,13 +2726,13 @@ Miscellaneous
 
   * Physicist Peter's Pendulum Traversal
 
-    :math:`y = a*{(x + b)}\textsuperscript{1/2}`
+    :math:`y = a*{(x + b)}^{1/2}`
 
     [a, b]
 
   * Physicist Peter's Pendulum Traversal With Offset
 
-    :math:`y = a*{(x + b)}\textsuperscript{1/2} + \text{Offset}`
+    :math:`y = a*{(x + b)}^{1/2} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -2740,13 +2740,13 @@ Miscellaneous
 
   * Polytrope
 
-    :math:`y = a / x\textsuperscript{b}`
+    :math:`y = a / x^{b}`
 
     [a, b]
 
   * Polytrope With Offset
 
-    :math:`y = a / x\textsuperscript{b} + \text{Offset}`
+    :math:`y = a / x^{b} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -2754,13 +2754,13 @@ Miscellaneous
 
   * Polytrope Transform
 
-    :math:`y = a / {(cx + d)}\textsuperscript{b}`
+    :math:`y = a / {(cx + d)}^{b}`
 
     [a, b, c, d]
 
   * Polytrope Transform With Offset
 
-    :math:`y = a / {(cx + d)}\textsuperscript{b} + \text{Offset}`
+    :math:`y = a / {(cx + d)}^{b} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -2768,13 +2768,13 @@ Miscellaneous
 
   * Pursuit Curve
 
-    :math:`y = ax\textsuperscript{2} - log{(x)}`
+    :math:`y = ax^{2} - log{(x)}`
 
     [a]
 
   * Pursuit Curve With Offset
 
-    :math:`y = ax\textsuperscript{2} - log{(x)} + \text{Offset}`
+    :math:`y = ax^{2} - log{(x)} + \text{Offset}`
 
     [a, Offset]
 
@@ -2782,13 +2782,13 @@ Miscellaneous
 
   * Pursuit Curve Transform
 
-    :math:`y = a{(bx + c)}\textsuperscript{2} - log{(bx + c)}`
+    :math:`y = a{(bx + c)}^{2} - log{(bx + c)}`
 
     [a, b, c]
 
   * Pursuit Curve Transform With Offset
 
-    :math:`y = a{(bx + c)}\textsuperscript{2} - log{(bx + c)} + \text{Offset}`
+    :math:`y = a{(bx + c)}^{2} - log{(bx + c)} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2824,13 +2824,13 @@ Miscellaneous
 
   * Serpentine
 
-    :math:`y = ax / {(1.0 + bx\textsuperscript{2})}`
+    :math:`y = ax / {(1.0 + bx^{2})}`
 
     [a, b]
 
   * Serpentine With Offset
 
-    :math:`y = ax / {(1.0 + bx\textsuperscript{2})} + \text{Offset}`
+    :math:`y = ax / {(1.0 + bx^{2})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -2852,13 +2852,13 @@ Miscellaneous
 
   * Square Modified
 
-    :math:`y = x\textsuperscript{2} - ax`
+    :math:`y = x^{2} - ax`
 
     [a]
 
   * Square Modified With Offset
 
-    :math:`y = x\textsuperscript{2} - ax + \text{Offset}`
+    :math:`y = x^{2} - ax + \text{Offset}`
 
     [a, Offset]
 
@@ -2866,13 +2866,13 @@ Miscellaneous
 
   * Square Modified Transform
 
-    :math:`y = {(bx + c)}\textsuperscript{2} - a{(bx + c)}`
+    :math:`y = {(bx + c)}^{2} - a{(bx + c)}`
 
     [a, b, c]
 
   * Square Modified Transform With Offset
 
-    :math:`y = {(bx + c)}\textsuperscript{2} - a{(bx + c)} + \text{Offset}`
+    :math:`y = {(bx + c)}^{2} - a{(bx + c)} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2894,13 +2894,13 @@ Miscellaneous
 
   * Transition State Rate Constant Law
 
-    :math:`y = ax\textsuperscript{b} * \exp{(-c/x)}`
+    :math:`y = ax^{b} * \exp{(-c/x)}`
 
     [a, b, c]
 
   * Transition State Rate Constant Law With Offset
 
-    :math:`y = ax\textsuperscript{b} * \exp{(-c/x)} + \text{Offset}`
+    :math:`y = ax^{b} * \exp{(-c/x)} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2908,13 +2908,13 @@ Miscellaneous
 
   * Trisectrix Of Maclaurin
 
-    :math:`y = a{(x\textsuperscript{2}{(3b-x)} / {(b+x)})}\textsuperscript{0.5}`
+    :math:`y = a{(x^{2}{(3b-x)} / {(b+x)})}^{0.5}`
 
     [a, b]
 
   * Trisectrix Of Maclaurin With Offset
 
-    :math:`y = a{(x\textsuperscript{2}{(3b-x)} / {(b+x)})}\textsuperscript{0.5} + \text{Offset}`
+    :math:`y = a{(x^{2}{(3b-x)} / {(b+x)})}^{0.5} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -2922,13 +2922,13 @@ Miscellaneous
 
   * Trisectrix Of Maclaurin Transform
 
-    :math:`y = a{({(cx+d)}\textsuperscript{2}{(3b-{(cx+d)})} /{(b+{(cx+d)})})}\textsuperscript{0.5}`
+    :math:`y = a{({(cx+d)}^{2}{(3b-{(cx+d)})} /{(b+{(cx+d)})})}^{0.5}`
 
     [a, b, c, d]
 
   * Trisectrix Of Maclaurin Transform With Offset
 
-    :math:`y = a{({(cx+d)}\textsuperscript{2}{(3b-{(cx+d)})} /{(b+{(cx+d)})})}\textsuperscript{0.5} + \text{Offset}`
+    :math:`y = a{({(cx+d)}^{2}{(3b-{(cx+d)})} /{(b+{(cx+d)})})}^{0.5} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -2936,13 +2936,13 @@ Miscellaneous
 
   * Witch Of Maria Agnesi A
 
-    :math:`y = 8a\textsuperscript{3} / {(x\textsuperscript{2} +4a\textsuperscript{2})}`
+    :math:`y = 8a^{3} / {(x^{2} +4a^{2})}`
 
     [a]
 
   * Witch Of Maria Agnesi A With Offset
 
-    :math:`y = 8a\textsuperscript{3} / {(x\textsuperscript{2} +4a\textsuperscript{2})} + \text{Offset}`
+    :math:`y = 8a^{3} / {(x^{2} +4a^{2})} + \text{Offset}`
 
     [a, Offset]
 
@@ -2950,13 +2950,13 @@ Miscellaneous
 
   * Witch Of Maria Agnesi B
 
-    :math:`y = a\textsuperscript{3} / {(x\textsuperscript{2} + a\textsuperscript{2})}`
+    :math:`y = a^{3} / {(x^{2} + a^{2})}`
 
     [a]
 
   * Witch Of Maria Agnesi B With Offset
 
-    :math:`y = a\textsuperscript{3} / {(x\textsuperscript{2} + a\textsuperscript{2})}+ \text{Offset}`
+    :math:`y = a^{3} / {(x^{2} + a^{2})}+ \text{Offset}`
 
     [a, Offset]
 
@@ -2964,13 +2964,13 @@ Miscellaneous
 
   * Witch Of Maria Agnesi C
 
-    :math:`y = a\textsuperscript{3} / {({(x * b + c)}\textsuperscript{2} +a\textsuperscript{2})}`
+    :math:`y = a^{3} / {({(x * b + c)}^{2} +a^{2})}`
 
     [a, b, c]
 
   * Witch Of Maria Agnesi C With Offset
 
-    :math:`y = a\textsuperscript{3} / {({(x * b + c)}\textsuperscript{2} +a\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a^{3} / {({(x * b + c)}^{2} +a^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -2982,13 +2982,13 @@ NIST
 
   * NIST Bennett5
 
-    :math:`y = a * {(b+x)}\textsuperscript{-1/c}`
+    :math:`y = a * {(b+x)}^{-1/c}`
 
     [a, b, c]
 
   * NIST Bennett5 With Offset
 
-    :math:`y = a * {(b+x)}\textsuperscript{-1/c} + \text{Offset}`
+    :math:`y = a * {(b+x)}^{-1/c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -3024,13 +3024,13 @@ NIST
 
   * NIST DanWood
 
-    :math:`y = a*x\textsuperscript{b}`
+    :math:`y = a*x^{b}`
 
     [a, b]
 
   * NIST DanWood With Offset
 
-    :math:`y = a*x\textsuperscript{b} + \text{Offset}`
+    :math:`y = a*x^{b} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -3046,13 +3046,13 @@ NIST
 
   * NIST Eckerle4
 
-    :math:`y = {(a/b)} * \exp{(-0.5*{({(x-c)}/b)}\textsuperscript{2})}`
+    :math:`y = {(a/b)} * \exp{(-0.5*{({(x-c)}/b)}^{2})}`
 
     [a, b, c]
 
   * NIST Eckerle4 With Offset
 
-    :math:`y = {(a/b)} * \exp{(-0.5*{({(x-c)}/b)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = {(a/b)} * \exp{(-0.5*{({(x-c)}/b)}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -3060,13 +3060,13 @@ NIST
 
   * NIST Gauss
 
-    :math:`y = a*\exp{(-b*x)} + c*\exp{(-{(x-d)}\textsuperscript{2} /f\textsuperscript{2})} + g*\exp{(-{(x-h)}\textsuperscript{2} /i\textsuperscript{2})}`
+    :math:`y = a*\exp{(-b*x)} + c*\exp{(-{(x-d)}^{2} /f^{2})} + g*\exp{(-{(x-h)}^{2} /i^{2})}`
 
     [a, b, c, d, f, g, h, i]
 
   * NIST Gauss With Offset
 
-    :math:`y = a*\exp{(-b*x)} + c*\exp{(-{(x-d)}\textsuperscript{2} /f\textsuperscript{2})} + g*\exp{(-{(x-h)}\textsuperscript{2} /i\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a*\exp{(-b*x)} + c*\exp{(-{(x-d)}^{2} /f^{2})} + g*\exp{(-{(x-h)}^{2} /i^{2})} + \text{Offset}`
 
     [a, b, c, d, f, g, h, i, Offset]
 
@@ -3074,13 +3074,13 @@ NIST
 
   * NIST Hahn
 
-    :math:`y = {(a + b*x + c*x\textsuperscript{2} + d*x\textsuperscript{3})} / {(1.0 +f*x + g*x\textsuperscript{2} + h*x\textsuperscript{3})}`
+    :math:`y = {(a + b*x + c*x^{2} + d*x^{3})} / {(1.0 +f*x + g*x^{2} + h*x^{3})}`
 
     [a, b, c, d, f, g, h]
 
   * NIST Hahn With Offset
 
-    :math:`y = {(a + b*x + c*x\textsuperscript{2} + d*x\textsuperscript{3})} / {(1.0 +f*x + g*x\textsuperscript{2} + h*x\textsuperscript{3})} + \text{Offset}`
+    :math:`y = {(a + b*x + c*x^{2} + d*x^{3})} / {(1.0 +f*x + g*x^{2} + h*x^{3})} + \text{Offset}`
 
     [a, b, c, d, f, g, h, Offset]
 
@@ -3088,13 +3088,13 @@ NIST
 
   * NIST Kirby
 
-    :math:`y = {(a + b*x + c*x\textsuperscript{2})} / {(1.0 + d*x +f*x\textsuperscript{2})}`
+    :math:`y = {(a + b*x + c*x^{2})} / {(1.0 + d*x +f*x^{2})}`
 
     [a, b, c, d, f]
 
   * NIST Kirby With Offset
 
-    :math:`y = {(a + b*x + c*x\textsuperscript{2})} / {(1.0 + d*x +f*x\textsuperscript{2})} + \text{Offset}`
+    :math:`y = {(a + b*x + c*x^{2})} / {(1.0 + d*x +f*x^{2})} + \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -3116,13 +3116,13 @@ NIST
 
   * NIST MGH09
 
-    :math:`y = a * {(x\textsuperscript{2} + b*x)} / {(x\textsuperscript{2} + c*x + d)}`
+    :math:`y = a * {(x^{2} + b*x)} / {(x^{2} + c*x + d)}`
 
     [a, b, c, d]
 
   * NIST MGH09 With Offset
 
-    :math:`y = a * {(x\textsuperscript{2} + b*x)} / {(x\textsuperscript{2} + c*x + d)}+ \text{Offset}`
+    :math:`y = a * {(x^{2} + b*x)} / {(x^{2} + c*x + d)}+ \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -3166,13 +3166,13 @@ NIST
 
   * NIST Misra1b
 
-    :math:`y = a * {(1.0 - {(1.0+b*x/2.0)}\textsuperscript{-2.0})}`
+    :math:`y = a * {(1.0 - {(1.0+b*x/2.0)}^{-2.0})}`
 
     [a, b]
 
   * NIST Misra1b With Offset
 
-    :math:`y = a * {(1.0 - {(1.0+b*x/2.0)}\textsuperscript{-2.0})} + \text{Offset}`
+    :math:`y = a * {(1.0 - {(1.0+b*x/2.0)}^{-2.0})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -3180,13 +3180,13 @@ NIST
 
   * NIST Misra1c
 
-    :math:`y = a * {(1.0 - {(1.0 + 2.0*b*x)}\textsuperscript{-0.5})}`
+    :math:`y = a * {(1.0 - {(1.0 + 2.0*b*x)}^{-0.5})}`
 
     [a, b]
 
   * NIST Misra1c With Offset
 
-    :math:`y = a * {(1.0 - {(1.0 + 2.0*b*x)}\textsuperscript{-0.5})} + \text{Offset}`
+    :math:`y = a * {(1.0 - {(1.0 + 2.0*b*x)}^{-0.5})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -3194,13 +3194,13 @@ NIST
 
   * NIST Misra1d
 
-    :math:`y = a * b * x * {(1.0 + b*x)}\textsuperscript{-1.0}`
+    :math:`y = a * b * x * {(1.0 + b*x)}^{-1.0}`
 
     [a, b]
 
   * NIST Misra1d With Offset
 
-    :math:`y = a * b * x * {(1.0 + b*x)}\textsuperscript{-1.0} + \text{Offset}`
+    :math:`y = a * b * x * {(1.0 + b*x)}^{-1.0} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -3222,13 +3222,13 @@ NIST
 
   * NIST Rat43
 
-    :math:`y = a / {({(1.0 + \exp{(b - c*x)})}\textsuperscript{{(1.0/d)}})}`
+    :math:`y = a / {({(1.0 + \exp{(b - c*x)})}^{{(1.0/d)}})}`
 
     [a, b, c, d]
 
   * NIST Rat43 With Offset
 
-    :math:`y = a / {({(1.0 + \exp{(b - c*x)})}\textsuperscript{{(1.0/d)}})} + \text{Offset}`
+    :math:`y = a / {({(1.0 + \exp{(b - c*x)})}^{{(1.0/d)}})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -3244,13 +3244,13 @@ NIST
 
   * NIST Thurber
 
-    :math:`y = {(a + bx + cx\textsuperscript{2} + dx\textsuperscript{3})} / {(1.0 + fx+ gx\textsuperscript{2} + hx\textsuperscript{3})}`
+    :math:`y = {(a + bx + cx^{2} + dx^{3})} / {(1.0 + fx+ gx^{2} + hx^{3})}`
 
     [a, b, c, d, f, g, h]
 
   * NIST Thurber With Offset
 
-    :math:`y = {(a + bx + cx\textsuperscript{2} + dx\textsuperscript{3})} / {(1.0 + fx+ gx\textsuperscript{2} + hx\textsuperscript{3})} + \text{Offset}`
+    :math:`y = {(a + bx + cx^{2} + dx^{3})} / {(1.0 + fx+ gx^{2} + hx^{3})} + \text{Offset}`
 
     [a, b, c, d, f, g, h, Offset]
 
@@ -3262,7 +3262,7 @@ Optical
 
   * CAUCHY
 
-    :math:`n = A + B/x\textsuperscript{2} + C/x\textsuperscript{4}`
+    :math:`n = A + B/x^{2} + C/x^{4}`
 
     [A, B, C]
 
@@ -3270,7 +3270,7 @@ Optical
 
   * CONRADY1
 
-    :math:`n = A + B/x + C/x\textsuperscript{3.5}`
+    :math:`n = A + B/x + C/x^{3.5}`
 
     [A, B, C]
 
@@ -3278,7 +3278,7 @@ Optical
 
   * CONRADY2
 
-    :math:`n = A + B/x\textsuperscript{2} + C/x\textsuperscript{3.5}`
+    :math:`n = A + B/x^{2} + C/x^{3.5}`
 
     [A, B, C]
 
@@ -3294,7 +3294,7 @@ Optical
 
   * HARTMANN2
 
-    :math:`n = A + B/{(C - x)}\textsuperscript{2}`
+    :math:`n = A + B/{(C - x)}^{2}`
 
     [A, B, C]
 
@@ -3302,7 +3302,7 @@ Optical
 
   * HARTMANN3a
 
-    :math:`n = A + B/{(C - x)}\textsuperscript{1.2}`
+    :math:`n = A + B/{(C - x)}^{1.2}`
 
     [A, B, C]
 
@@ -3310,13 +3310,13 @@ Optical
 
   * HARTMANN3b
 
-    :math:`n = A/{(x - B)}\textsuperscript{1.2}`
+    :math:`n = A/{(x - B)}^{1.2}`
 
     [A, B]
 
   * HARTMANN3b With Offset
 
-    :math:`n = A/{(x - B)}\textsuperscript{1.2} + \text{Offset}`
+    :math:`n = A/{(x - B)}^{1.2} + \text{Offset}`
 
     [A, B, Offset]
 
@@ -3332,7 +3332,7 @@ Optical
 
   * HERZBRGR2X2
 
-    :math:`n = A + Bx\textsuperscript{2} + C / {(x\textsuperscript{2} - 0.028)} + D /{(x\textsuperscript{2} - 0.028)}\textsuperscript{2}`
+    :math:`n = A + Bx^{2} + C / {(x^{2} - 0.028)} + D /{(x^{2} - 0.028)}^{2}`
 
     [A, B, C, D]
 
@@ -3340,7 +3340,7 @@ Optical
 
   * HERZBRGR3X2
 
-    :math:`n = A + Bx\textsuperscript{2} + Cx\textsuperscript{4} + D /{(x\textsuperscript{2} - 0.028)} + E / {(x\textsuperscript{2} -0.028)}\textsuperscript{2}`
+    :math:`n = A + Bx^{2} + Cx^{4} + D /{(x^{2} - 0.028)} + E / {(x^{2} -0.028)}^{2}`
 
     [A, B, C, D, E]
 
@@ -3348,7 +3348,7 @@ Optical
 
   * HERZBRGR3X3
 
-    :math:`n = A + Bx\textsuperscript{2} + Cx\textsuperscript{4} + D /{(x\textsuperscript{2} - 0.028)} + E / {(x\textsuperscript{2} -0.028)}\textsuperscript{2} + F / {(x\textsuperscript{2} -0.028)}\textsuperscript{4}`
+    :math:`n = A + Bx^{2} + Cx^{4} + D /{(x^{2} - 0.028)} + E / {(x^{2} -0.028)}^{2} + F / {(x^{2} -0.028)}^{4}`
 
     [A, B, C, D, E, F]
 
@@ -3356,7 +3356,7 @@ Optical
 
   * HERZBRGR4X2
 
-    :math:`n = A + Bx\textsuperscript{2} + Cx\textsuperscript{4} +Dx\textsuperscript{6} + E / {(x\textsuperscript{2} - 0.028)} + F /{(x\textsuperscript{2} - 0.028)}\textsuperscript{2}`
+    :math:`n = A + Bx^{2} + Cx^{4} +Dx^{6} + E / {(x^{2} - 0.028)} + F /{(x^{2} - 0.028)}^{2}`
 
     [A, B, C, D, E, F]
 
@@ -3364,7 +3364,7 @@ Optical
 
   * HERZBRGR5X2
 
-    :math:`n = A + Bx\textsuperscript{2} + Cx\textsuperscript{4} +Dx\textsuperscript{6} + Ex\textsuperscript{8} + F /{(x\textsuperscript{2} - 0.028)} + G / {(x\textsuperscript{2} -0.028)}\textsuperscript{2}`
+    :math:`n = A + Bx^{2} + Cx^{4} +Dx^{6} + Ex^{8} + F /{(x^{2} - 0.028)} + G / {(x^{2} -0.028)}^{2}`
 
     [A, B, C, D, E, F, G]
 
@@ -3372,7 +3372,7 @@ Optical
 
   * HERZBRGRJK
 
-    :math:`n = A + Bx\textsuperscript{2} + Cx\textsuperscript{4} +Dx\textsuperscript{6} + E / {(x\textsuperscript{2} - J)} + F /{(x\textsuperscript{2} - K)}\textsuperscript{2}`
+    :math:`n = A + Bx^{2} + Cx^{4} +Dx^{6} + E / {(x^{2} - J)} + F /{(x^{2} - K)}^{2}`
 
     [A, B, C, D, E, F, J, K]
 
@@ -3380,7 +3380,7 @@ Optical
 
   * HoO1
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + C /{(x\textsuperscript{2} - D\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} + C /{(x^{2} - D^{2})}`
 
     [A, B, C, D]
 
@@ -3388,7 +3388,7 @@ Optical
 
   * HoO2
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{2}/ {(x\textsuperscript{2} - D\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{2}/ {(x^{2} - D^{2})}`
 
     [A, B, C, D]
 
@@ -3396,7 +3396,7 @@ Optical
 
   * KINGSLAKE1
 
-    :math:`n\textsuperscript{2} = A + B/{(x\textsuperscript{2}-C\textsuperscript{2})}+ D/{(x\textsuperscript{2}-E\textsuperscript{2})}`
+    :math:`n^{2} = A + B/{(x^{2}-C^{2})}+ D/{(x^{2}-E^{2})}`
 
     [A, B, C, D, E]
 
@@ -3404,7 +3404,7 @@ Optical
 
   * KINGSLAKE2
 
-    :math:`n\textsuperscript{2} = A + B/{(x\textsuperscript{2}-C\textsuperscript{2})}+ D/{(x\textsuperscript{2}-E\textsuperscript{2})} +F/{(x\textsuperscript{2}-G\textsuperscript{2})}`
+    :math:`n^{2} = A + B/{(x^{2}-C^{2})}+ D/{(x^{2}-E^{2})} +F/{(x^{2}-G^{2})}`
 
     [A, B, C, D, E, F, G]
 
@@ -3412,7 +3412,7 @@ Optical
 
   * MISC01
 
-    :math:`n\textsuperscript{2} = A + B/{(x\textsuperscript{2}-C\textsuperscript{2})}`
+    :math:`n^{2} = A + B/{(x^{2}-C^{2})}`
 
     [A, B, C]
 
@@ -3420,7 +3420,7 @@ Optical
 
   * MISC02
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} +C/{(x\textsuperscript{2}-D\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} +C/{(x^{2}-D^{2})}`
 
     [A, B, C, D]
 
@@ -3428,7 +3428,7 @@ Optical
 
   * MISC03
 
-    :math:`n\textsuperscript{2} = A + B/x\textsuperscript{2} +Cx\textsuperscript{2}/{(x\textsuperscript{2}-D\textsuperscript{2})}`
+    :math:`n^{2} = A + B/x^{2} +Cx^{2}/{(x^{2}-D^{2})}`
 
     [A, B, C, D]
 
@@ -3436,7 +3436,7 @@ Optical
 
   * MISC04
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{4}+ D/x\textsuperscript{2} +Ex\textsuperscript{2}/{(x\textsuperscript{2}-F+{(Gx\textsuperscript{2}/{(x\textsuperscript{2}-F)})})}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{4}+ D/x^{2} +Ex^{2}/{(x^{2}-F+{(Gx^{2}/{(x^{2}-F)})})}`
 
     [A, B, C, D, E, F, G]
 
@@ -3444,7 +3444,7 @@ Optical
 
   * SCHOTT2X3
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} +C/x\textsuperscript{2} + D/x\textsuperscript{4} + E/x\textsuperscript{6}`
+    :math:`n^{2} = A + Bx^{2} +C/x^{2} + D/x^{4} + E/x^{6}`
 
     [A, B, C, D, E]
 
@@ -3452,7 +3452,7 @@ Optical
 
   * SCHOTT2X4
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} +C/x\textsuperscript{2} + D/x\textsuperscript{4} + E/x\textsuperscript{6}+ F/x\textsuperscript{8}`
+    :math:`n^{2} = A + Bx^{2} +C/x^{2} + D/x^{4} + E/x^{6}+ F/x^{8}`
 
     [A, B, C, D, E, F]
 
@@ -3460,7 +3460,7 @@ Optical
 
   * SCHOTT2X5
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} +C/x\textsuperscript{2} + D/x\textsuperscript{4} + E/x\textsuperscript{6}+ F/x\textsuperscript{8} + G/x\textsuperscript{10}`
+    :math:`n^{2} = A + Bx^{2} +C/x^{2} + D/x^{4} + E/x^{6}+ F/x^{8} + G/x^{10}`
 
     [A, B, C, D, E, F, G]
 
@@ -3468,7 +3468,7 @@ Optical
 
   * SCHOTT2X6
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} +C/x\textsuperscript{2} + D/x\textsuperscript{4} + E/x\textsuperscript{6}+ F/x\textsuperscript{8} + G/x\textsuperscript{10} +H/x\textsuperscript{12}`
+    :math:`n^{2} = A + Bx^{2} +C/x^{2} + D/x^{4} + E/x^{6}+ F/x^{8} + G/x^{10} +H/x^{12}`
 
     [A, B, C, D, E, F, G, H]
 
@@ -3476,7 +3476,7 @@ Optical
 
   * SCHOTT3X3
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{4}+ D/x\textsuperscript{2} + E/x\textsuperscript{4} +F/x\textsuperscript{6}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{4}+ D/x^{2} + E/x^{4} +F/x^{6}`
 
     [A, B, C, D, E, F]
 
@@ -3484,7 +3484,7 @@ Optical
 
   * SCHOTT3X4
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{4}+ D/x\textsuperscript{2} + E/x\textsuperscript{4} +F/x\textsuperscript{6} + G/x\textsuperscript{8}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{4}+ D/x^{2} + E/x^{4} +F/x^{6} + G/x^{8}`
 
     [A, B, C, D, E, F, G]
 
@@ -3492,7 +3492,7 @@ Optical
 
   * SCHOTT3X5
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{4}+ D/x\textsuperscript{2} + E/x\textsuperscript{4} +F/x\textsuperscript{6} + G/x\textsuperscript{8} +H/x\textsuperscript{10}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{4}+ D/x^{2} + E/x^{4} +F/x^{6} + G/x^{8} +H/x^{10}`
 
     [A, B, C, D, E, F, G, H]
 
@@ -3500,7 +3500,7 @@ Optical
 
   * SCHOTT4X4
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{4}+ Dx\textsuperscript{6} + E/x\textsuperscript{2} +F/x\textsuperscript{4} + G/x\textsuperscript{6} + H/x\textsuperscript{8}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{4}+ Dx^{6} + E/x^{2} +F/x^{4} + G/x^{6} + H/x^{8}`
 
     [A, B, C, D, E, F, G, H]
 
@@ -3508,7 +3508,7 @@ Optical
 
   * SCHOTT5X5
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{4}+ Dx\textsuperscript{6} + Ex\textsuperscript{8} + F/x\textsuperscript{2}+ G/x\textsuperscript{4} + H/x\textsuperscript{6} +J/x\textsuperscript{8} + K/x\textsuperscript{10}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{4}+ Dx^{6} + Ex^{8} + F/x^{2}+ G/x^{4} + H/x^{6} +J/x^{8} + K/x^{10}`
 
     [A, B, C, D, E, F, G, H, J, K]
 
@@ -3516,7 +3516,7 @@ Optical
 
   * SELL1T
 
-    :math:`n\textsuperscript{2} = 1 + Ax\textsuperscript{2} / {(x\textsuperscript{2}- B\textsuperscript{2})}`
+    :math:`n^{2} = 1 + Ax^{2} / {(x^{2}- B^{2})}`
 
     [A, B]
 
@@ -3524,7 +3524,7 @@ Optical
 
   * SELL1TA
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} / {(x\textsuperscript{2}- C\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} / {(x^{2}- C^{2})}`
 
     [A, B, C]
 
@@ -3532,7 +3532,7 @@ Optical
 
   * SELL2T
 
-    :math:`n\textsuperscript{2} = 1 +Ax\textsuperscript{2}/{(x\textsuperscript{2}-B\textsuperscript{2})} +Cx\textsuperscript{2}/{(x\textsuperscript{2}-D\textsuperscript{2})}`
+    :math:`n^{2} = 1 +Ax^{2}/{(x^{2}-B^{2})} +Cx^{2}/{(x^{2}-D^{2})}`
 
     [A, B, C, D]
 
@@ -3540,7 +3540,7 @@ Optical
 
   * SELL2TA
 
-    :math:`n\textsuperscript{2} = A +Bx\textsuperscript{2}/{(x\textsuperscript{2}-C\textsuperscript{2})} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})}`
+    :math:`n^{2} = A +Bx^{2}/{(x^{2}-C^{2})} +Dx^{2}/{(x^{2}-E^{2})}`
 
     [A, B, C, D, E]
 
@@ -3548,7 +3548,7 @@ Optical
 
   * SELL3T
 
-    :math:`n\textsuperscript{2} = 1 +Ax\textsuperscript{2}/{(x\textsuperscript{2}-B\textsuperscript{2})} +Cx\textsuperscript{2}/{(x\textsuperscript{2}-D\textsuperscript{2})} +Ex\textsuperscript{2}/{(x\textsuperscript{2}-F\textsuperscript{2})}`
+    :math:`n^{2} = 1 +Ax^{2}/{(x^{2}-B^{2})} +Cx^{2}/{(x^{2}-D^{2})} +Ex^{2}/{(x^{2}-F^{2})}`
 
     [A, B, C, D, E, F]
 
@@ -3556,7 +3556,7 @@ Optical
 
   * SELL3TA
 
-    :math:`n\textsuperscript{2} = A +Bx\textsuperscript{2}/{(x\textsuperscript{2}-C\textsuperscript{2})} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})} +Fx\textsuperscript{2}/{(x\textsuperscript{2}-G\textsuperscript{2})}`
+    :math:`n^{2} = A +Bx^{2}/{(x^{2}-C^{2})} +Dx^{2}/{(x^{2}-E^{2})} +Fx^{2}/{(x^{2}-G^{2})}`
 
     [A, B, C, D, E, F, G]
 
@@ -3564,7 +3564,7 @@ Optical
 
   * SELL4T
 
-    :math:`n\textsuperscript{2} = 1 +Ax\textsuperscript{2}/{(x\textsuperscript{2}-B\textsuperscript{2})} +Cx\textsuperscript{2}/{(x\textsuperscript{2}-D\textsuperscript{2})} +Ex\textsuperscript{2}/{(x\textsuperscript{2}-F\textsuperscript{2})} +Gx\textsuperscript{2}/{(x\textsuperscript{2}-H\textsuperscript{2})}`
+    :math:`n^{2} = 1 +Ax^{2}/{(x^{2}-B^{2})} +Cx^{2}/{(x^{2}-D^{2})} +Ex^{2}/{(x^{2}-F^{2})} +Gx^{2}/{(x^{2}-H^{2})}`
 
     [A, B, C, D, E, F, G, H]
 
@@ -3572,7 +3572,7 @@ Optical
 
   * SELL4TA
 
-    :math:`n\textsuperscript{2} = A +Bx\textsuperscript{2}/{(x\textsuperscript{2}-C\textsuperscript{2})} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})} +Fx\textsuperscript{2}/{(x\textsuperscript{2}-G\textsuperscript{2})} +Hx\textsuperscript{2}/{(x\textsuperscript{2}-J\textsuperscript{2})}`
+    :math:`n^{2} = A +Bx^{2}/{(x^{2}-C^{2})} +Dx^{2}/{(x^{2}-E^{2})} +Fx^{2}/{(x^{2}-G^{2})} +Hx^{2}/{(x^{2}-J^{2})}`
 
     [A, B, C, D, E, F, G, H, J]
 
@@ -3580,7 +3580,7 @@ Optical
 
   * SELL5T
 
-    :math:`n\textsuperscript{2} = 1 +Ax\textsuperscript{2}/{(x\textsuperscript{2}-B\textsuperscript{2})} +Cx\textsuperscript{2}/{(x\textsuperscript{2}-D\textsuperscript{2})} +Ex\textsuperscript{2}/{(x\textsuperscript{2}-F\textsuperscript{2})} +Gx\textsuperscript{2}/{(x\textsuperscript{2}-H\textsuperscript{2})} +Jx\textsuperscript{2}/{(x\textsuperscript{2}-K\textsuperscript{2})}`
+    :math:`n^{2} = 1 +Ax^{2}/{(x^{2}-B^{2})} +Cx^{2}/{(x^{2}-D^{2})} +Ex^{2}/{(x^{2}-F^{2})} +Gx^{2}/{(x^{2}-H^{2})} +Jx^{2}/{(x^{2}-K^{2})}`
 
     [A, B, C, D, E, F, G, H, J, K]
 
@@ -3588,7 +3588,7 @@ Optical
 
   * SELL5TA
 
-    :math:`n\textsuperscript{2} = A +Bx\textsuperscript{2}/{(x\textsuperscript{2}-C\textsuperscript{2})} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})} +Fx\textsuperscript{2}/{(x\textsuperscript{2}-G\textsuperscript{2})} +Hx\textsuperscript{2}/{(x\textsuperscript{2}-J\textsuperscript{2})} +Kx\textsuperscript{2}/{(x\textsuperscript{2}-M\textsuperscript{2})}`
+    :math:`n^{2} = A +Bx^{2}/{(x^{2}-C^{2})} +Dx^{2}/{(x^{2}-E^{2})} +Fx^{2}/{(x^{2}-G^{2})} +Hx^{2}/{(x^{2}-J^{2})} +Kx^{2}/{(x^{2}-M^{2})}`
 
     [A, B, C, D, E, F, G, H, J, K, M]
 
@@ -3596,7 +3596,7 @@ Optical
 
   * SELL6TA
 
-    :math:`n\textsuperscript{2} = A +Bx\textsuperscript{2}/{(x\textsuperscript{2}-C\textsuperscript{2})} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})} +Fx\textsuperscript{2}/{(x\textsuperscript{2}-G\textsuperscript{2})} +Hx\textsuperscript{2}/{(x\textsuperscript{2}-J\textsuperscript{2})} +Kx\textsuperscript{2}/{(x\textsuperscript{2}-M\textsuperscript{2})} +Nx\textsuperscript{2}/{(x\textsuperscript{2}-P\textsuperscript{2})}`
+    :math:`n^{2} = A +Bx^{2}/{(x^{2}-C^{2})} +Dx^{2}/{(x^{2}-E^{2})} +Fx^{2}/{(x^{2}-G^{2})} +Hx^{2}/{(x^{2}-J^{2})} +Kx^{2}/{(x^{2}-M^{2})} +Nx^{2}/{(x^{2}-P^{2})}`
 
     [A, B, C, D, E, F, G, H, J, K, M, N, P]
 
@@ -3604,7 +3604,7 @@ Optical
 
   * SELL7TA
 
-    :math:`n\textsuperscript{2} = A +Bx\textsuperscript{2}/{(x\textsuperscript{2}-C\textsuperscript{2})} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})} +Fx\textsuperscript{2}/{(x\textsuperscript{2}-G\textsuperscript{2})} +Hx\textsuperscript{2}/{(x\textsuperscript{2}-J\textsuperscript{2})} +Kx\textsuperscript{2}/{(x\textsuperscript{2}-M\textsuperscript{2})} +Nx\textsuperscript{2}/{(x\textsuperscript{2}-P\textsuperscript{2})} +Qx\textsuperscript{2}/{(x\textsuperscript{2}-R\textsuperscript{2})}`
+    :math:`n^{2} = A +Bx^{2}/{(x^{2}-C^{2})} +Dx^{2}/{(x^{2}-E^{2})} +Fx^{2}/{(x^{2}-G^{2})} +Hx^{2}/{(x^{2}-J^{2})} +Kx^{2}/{(x^{2}-M^{2})} +Nx^{2}/{(x^{2}-P^{2})} +Qx^{2}/{(x^{2}-R^{2})}`
 
     [A, B, C, D, E, F, G, H, J, K, M, N, P, Q, R]
 
@@ -3612,7 +3612,7 @@ Optical
 
   * SELLMOD1
 
-    :math:`n\textsuperscript{2} = A + Bx + Cx\textsuperscript{2} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx + Cx^{2} +Dx^{2}/{(x^{2}-E^{2})}`
 
     [A, B, C, D, E]
 
@@ -3620,7 +3620,7 @@ Optical
 
   * SELLMOD1A
 
-    :math:`n\textsuperscript{2} = A + Bx + Cx\textsuperscript{2} +D/{(x\textsuperscript{2}-E\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx + Cx^{2} +D/{(x^{2}-E^{2})}`
 
     [A, B, C, D, E]
 
@@ -3628,7 +3628,7 @@ Optical
 
   * SELLMOD2
 
-    :math:`n\textsuperscript{2} = A + Bx + Cx\textsuperscript{4} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx + Cx^{4} +Dx^{2}/{(x^{2}-E^{2})}`
 
     [A, B, C, D, E]
 
@@ -3636,7 +3636,7 @@ Optical
 
   * SELLMOD2A
 
-    :math:`n\textsuperscript{2} = A + Bx + Cx\textsuperscript{4} +D/{(x\textsuperscript{2}-E\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx + Cx^{4} +D/{(x^{2}-E^{2})}`
 
     [A, B, C, D, E]
 
@@ -3644,13 +3644,13 @@ Optical
 
   * SELLMOD3
 
-    :math:`n\textsuperscript{2} ={(Ax\textsuperscript{2}+B)}/{(x\textsuperscript{2}-C\textsuperscript{2})} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})}`
+    :math:`n^{2} ={(Ax^{2}+B)}/{(x^{2}-C^{2})} +Dx^{2}/{(x^{2}-E^{2})}`
 
     [A, B, C, D, E]
 
   * SELLMOD3 With Offset
 
-    :math:`n\textsuperscript{2} ={(Ax\textsuperscript{2}+B)}/{(x\textsuperscript{2}-C\textsuperscript{2})} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})} +\text{Offset}`
+    :math:`n^{2} ={(Ax^{2}+B)}/{(x^{2}-C^{2})} +Dx^{2}/{(x^{2}-E^{2})} +\text{Offset}`
 
     [A, B, C, D, E, Offset]
 
@@ -3658,7 +3658,7 @@ Optical
 
   * SELLMOD4
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} +C/x\textsuperscript{2} +Dx\textsuperscript{2}/{(x\textsuperscript{2}-E\textsuperscript{2})} +Fx\textsuperscript{2}/{(x\textsuperscript{2}-G\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} +C/x^{2} +Dx^{2}/{(x^{2}-E^{2})} +Fx^{2}/{(x^{2}-G^{2})}`
 
     [A, B, C, D, E, F, G]
 
@@ -3666,7 +3666,7 @@ Optical
 
   * SELLMOD4A
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} +C/x\textsuperscript{2} + D/{(x\textsuperscript{2}-E\textsuperscript{2})} +F/{(x\textsuperscript{2}-G\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} +C/x^{2} + D/{(x^{2}-E^{2})} +F/{(x^{2}-G^{2})}`
 
     [A, B, C, D, E, F, G]
 
@@ -3674,7 +3674,7 @@ Optical
 
   * SELLMOD5
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} +Cx\textsuperscript{2}/{(x\textsuperscript{2}-D\textsuperscript{2})} +Ex\textsuperscript{2}/{(x\textsuperscript{2}-F\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} +Cx^{2}/{(x^{2}-D^{2})} +Ex^{2}/{(x^{2}-F^{2})}`
 
     [A, B, C, D, E, F]
 
@@ -3682,7 +3682,7 @@ Optical
 
   * SELLMOD6
 
-    :math:`n\textsuperscript{2} = A +Bx\textsuperscript{2}/{(x\textsuperscript{2}-C\textsuperscript{2})} +D/{(x\textsuperscript{2}-E\textsuperscript{2})}`
+    :math:`n^{2} = A +Bx^{2}/{(x^{2}-C^{2})} +D/{(x^{2}-E^{2})}`
 
     [A, B, C, D, E]
 
@@ -3690,7 +3690,7 @@ Optical
 
   * SELLMOD7
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{4}+ D/x\textsuperscript{6} +Ex\textsuperscript{2}/{(x\textsuperscript{2}-F\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{4}+ D/x^{6} +Ex^{2}/{(x^{2}-F^{2})}`
 
     [A, B, C, D, E, F]
 
@@ -3698,7 +3698,7 @@ Optical
 
   * SELLMOD7A
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{4}+ D/x\textsuperscript{6} + E/{(x\textsuperscript{2}-F\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{4}+ D/x^{6} + E/{(x^{2}-F^{2})}`
 
     [A, B, C, D, E, F]
 
@@ -3706,7 +3706,7 @@ Optical
 
   * SELLMOD8
 
-    :math:`n\textsuperscript{2} = A + Bx\textsuperscript{2} + Cx\textsuperscript{4}+ D/{(x\textsuperscript{2}-E\textsuperscript{2})} +F/{(x\textsuperscript{2}-G\textsuperscript{2})}`
+    :math:`n^{2} = A + Bx^{2} + Cx^{4}+ D/{(x^{2}-E^{2})} +F/{(x^{2}-G^{2})}`
 
     [A, B, C, D, E, F, G]
 
@@ -3714,7 +3714,7 @@ Optical
 
   * SELLMOD9
 
-    :math:`n\textsuperscript{2} = A + B/x\textsuperscript{2} +C/x\textsuperscript{4} + D/x\textsuperscript{6} +Ex\textsuperscript{2}/{(x\textsuperscript{2}-F\textsuperscript{2})}`
+    :math:`n^{2} = A + B/x^{2} +C/x^{4} + D/x^{6} +Ex^{2}/{(x^{2}-F^{2})}`
 
     [A, B, C, D, E, F]
 
@@ -3726,13 +3726,13 @@ Peak
 
   * Arnold Cohen Log-Normal Peak Shifted
 
-    :math:`y = a * {(\exp{(-0.5 * {({(ln{(x-f)}-b)}/c)}\textsuperscript{2})})} / {(d * {(x-g)})}`
+    :math:`y = a * {(\exp{(-0.5 * {({(ln{(x-f)}-b)}/c)}^{2})})} / {(d * {(x-g)})}`
 
     [a, b, c, d, f, g]
 
   * Arnold Cohen Log-Normal Peak Shifted With Offset
 
-    :math:`y = a * {(\exp{(-0.5 * {({(ln{(x-f)}-b)}/c)}\textsuperscript{2})})} / {(d * {(x-g)})} +\text{Offset}`
+    :math:`y = a * {(\exp{(-0.5 * {({(ln{(x-f)}-b)}/c)}^{2})})} / {(d * {(x-g)})} +\text{Offset}`
 
     [a, b, c, d, f, g, Offset]
 
@@ -3740,13 +3740,13 @@ Peak
 
   * Arnold Cohen Two-Parameter Log-Normal Peak Shifted
 
-    :math:`y = \exp{(-0.5 * {({(ln{(x-d)}-b)}/c)}\textsuperscript{2})} / {(\sqrt{(2*pi)} * c *{(x-f)})}`
+    :math:`y = \exp{(-0.5 * {({(ln{(x-d)}-b)}/c)}^{2})} / {(\sqrt{(2*pi)} * c *{(x-f)})}`
 
     [b, c, d, f]
 
   * Arnold Cohen Two-Parameter Log-Normal Peak Shifted With Offset
 
-    :math:`y = \exp{(-0.5 * {({(ln{(x-d)}-b)}/c)}\textsuperscript{2})} / {(\sqrt{(2*pi)} * c *{(x-f)})} + \text{Offset}`
+    :math:`y = \exp{(-0.5 * {({(ln{(x-d)}-b)}/c)}^{2})} / {(\sqrt{(2*pi)} * c *{(x-f)})} + \text{Offset}`
 
     [b, c, d, f, Offset]
 
@@ -3754,13 +3754,13 @@ Peak
 
   * Box Lucas A
 
-    :math:`y = a * {(1.0 - b\textsuperscript{x})}`
+    :math:`y = a * {(1.0 - b^{x})}`
 
     [a, b]
 
   * Box Lucas A With Offset
 
-    :math:`y = a * {(1.0 - b\textsuperscript{x})} + \text{Offset}`
+    :math:`y = a * {(1.0 - b^{x})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -3768,13 +3768,13 @@ Peak
 
   * Box Lucas A Shifted
 
-    :math:`y = a * {(1.0 - b\textsuperscript{x-c})}`
+    :math:`y = a * {(1.0 - b^{x-c})}`
 
     [a, b, c]
 
   * Box Lucas A Shifted With Offset
 
-    :math:`y = a * {(1.0 - b\textsuperscript{x-c})} + \text{Offset}`
+    :math:`y = a * {(1.0 - b^{x-c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -3880,13 +3880,13 @@ Peak
 
   * Gaussian Area
 
-    :math:`y = {(a / {(pow{(2*pi, 0.5)} * c)})} * \exp{(-0.5 *{({(x-b)}/c)}\textsuperscript{2})}`
+    :math:`y = {(a / {(pow{(2*pi, 0.5)} * c)})} * \exp{(-0.5 *{({(x-b)}/c)}^{2})}`
 
     [a, b, c]
 
   * Gaussian Area With Offset
 
-    :math:`y = {(a / {(pow{(2*pi, 0.5)} * c)})} * \exp{(-0.5 *{({(x-b)}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = {(a / {(pow{(2*pi, 0.5)} * c)})} * \exp{(-0.5 *{({(x-b)}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -3894,13 +3894,13 @@ Peak
 
   * Gaussian Peak
 
-    :math:`y = a * \exp{(-0.5 * {({(x-b)}/c)}\textsuperscript{2})}`
+    :math:`y = a * \exp{(-0.5 * {({(x-b)}/c)}^{2})}`
 
     [a, b, c]
 
   * Gaussian Peak With Offset
 
-    :math:`y = a * \exp{(-0.5 * {({(x-b)}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {({(x-b)}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -3908,13 +3908,13 @@ Peak
 
   * Gaussian Peak Modified
 
-    :math:`y = a * \exp{(-0.5 * {({(x-b)}/c)}\textsuperscript{d})}`
+    :math:`y = a * \exp{(-0.5 * {({(x-b)}/c)}^{d})}`
 
     [a, b, c, d]
 
   * Gaussian Peak Modified With Offset
 
-    :math:`y = a * \exp{(-0.5 * {({(x-b)}/c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {({(x-b)}/c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -3922,13 +3922,13 @@ Peak
 
   * Hamilton
 
-    :math:`Vb = Gb * {(I/mu)}\textsuperscript{ln{(mu/I)}/{(B*B)}} +{(Vb\textsubscript{max} * I)}/{(I + sigma\_b)}`
+    :math:`Vb = Gb * {(I/mu)}^{ln{(mu/I)}/{(B*B)}} +{(Vb_{max} * I)}/{(I + sigma\_b)}`
 
     [Gb, mu, B, Vbmax, sigma_b]
 
   * Hamilton With Offset
 
-    :math:`Vb = Gb * {(I/mu)}\textsuperscript{ln{(mu/I)}/{(B*B)}} +{(Vb\textsubscript{max} * I)}/{(I + sigma\_b)} + \text{Offset}`
+    :math:`Vb = Gb * {(I/mu)}^{ln{(mu/I)}/{(B*B)}} +{(Vb_{max} * I)}/{(I + sigma\_b)} + \text{Offset}`
 
     [Gb, mu, B, Vbmax, sigma_b, Offset]
 
@@ -3964,13 +3964,13 @@ Peak
 
   * Log-Normal 4 Parameter
 
-    :math:`y = a * \exp{(-1.0 * {(ln{(2)} * ln{({({({(x-b)} * {(d\textsuperscript{2}-1)})} /{(c*d)})} + 1.0)}\textsuperscript{2})} / ln{(d)}\textsuperscript{2})}`
+    :math:`y = a * \exp{(-1.0 * {(ln{(2)} * ln{({({({(x-b)} * {(d^{2}-1)})} /{(c*d)})} + 1.0)}^{2})} / ln{(d)}^{2})}`
 
     [a, b, c, d]
 
   * Log-Normal 4 Parameter With Offset
 
-    :math:`y = a * \exp{(-1.0 * {(ln{(2)} * ln{({({({(x-b)} * {(d\textsuperscript{2}-1)})} /{(c*d)})} + 1.0)}\textsuperscript{2})} / ln{(d)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a * \exp{(-1.0 * {(ln{(2)} * ln{({({({(x-b)} * {(d^{2}-1)})} /{(c*d)})} + 1.0)}^{2})} / ln{(d)}^{2})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -3978,13 +3978,13 @@ Peak
 
   * Log-Normal Peak A
 
-    :math:`y = a * \exp{(-0.5 * {({(ln{(x)}-b)}/c)}\textsuperscript{2})}`
+    :math:`y = a * \exp{(-0.5 * {({(ln{(x)}-b)}/c)}^{2})}`
 
     [a, b, c]
 
   * Log-Normal Peak A With Offset
 
-    :math:`y = a * \exp{(-0.5 * {({(ln{(x)}-b)}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {({(ln{(x)}-b)}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -3992,13 +3992,13 @@ Peak
 
   * Log-Normal Peak A Shifted
 
-    :math:`y = a * \exp{(-0.5 * {({(ln{(x-d)}-b)}/c)}\textsuperscript{2})}`
+    :math:`y = a * \exp{(-0.5 * {({(ln{(x-d)}-b)}/c)}^{2})}`
 
     [a, b, c, d]
 
   * Log-Normal Peak A Shifted With Offset
 
-    :math:`y = a * \exp{(-0.5 * {({(ln{(x-d)}-b)}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {({(ln{(x-d)}-b)}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4006,13 +4006,13 @@ Peak
 
   * Log-Normal Peak A Modified
 
-    :math:`y = a * \exp{(-0.5 * {({(ln{(x)}-b)}/c)}\textsuperscript{d})}`
+    :math:`y = a * \exp{(-0.5 * {({(ln{(x)}-b)}/c)}^{d})}`
 
     [a, b, c, d]
 
   * Log-Normal Peak A Modified With Offset
 
-    :math:`y = a * \exp{(-0.5 * {({(ln{(x)}-b)}/c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {({(ln{(x)}-b)}/c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4020,13 +4020,13 @@ Peak
 
   * Log-Normal Peak A Modified Shifted
 
-    :math:`y = a * \exp{(-0.5 * {({(ln{(x-f)}-b)}/c)}\textsuperscript{d})}`
+    :math:`y = a * \exp{(-0.5 * {({(ln{(x-f)}-b)}/c)}^{d})}`
 
     [a, b, c, d, f]
 
   * Log-Normal Peak A Modified Shifted With Offset
 
-    :math:`y = a * \exp{(-0.5 * {({(ln{(x-f)}-b)}/c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {({(ln{(x-f)}-b)}/c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -4034,13 +4034,13 @@ Peak
 
   * Log-Normal Peak B
 
-    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}\textsuperscript{2})}`
+    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}^{2})}`
 
     [a, b, c]
 
   * Log-Normal Peak B With Offset
 
-    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4048,13 +4048,13 @@ Peak
 
   * Log-Normal Peak B Shifted
 
-    :math:`y = a * \exp{(-0.5 * {(ln{({(x-d/b)})}/c)}\textsuperscript{2})}`
+    :math:`y = a * \exp{(-0.5 * {(ln{({(x-d/b)})}/c)}^{2})}`
 
     [a, b, c, d]
 
   * Log-Normal Peak B Shifted With Offset
 
-    :math:`y = a * \exp{(-0.5 * {(ln{({(x-d/b)})}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {(ln{({(x-d/b)})}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4062,13 +4062,13 @@ Peak
 
   * Log-Normal Peak B Modified
 
-    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}\textsuperscript{d})}`
+    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}^{d})}`
 
     [a, b, c, d]
 
   * Log-Normal Peak B Modified With Offset
 
-    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4076,13 +4076,13 @@ Peak
 
   * Log-Normal Peak B Modified Shifted
 
-    :math:`y = a * \exp{(-0.5 * {(ln{({(x-f)}/b)}/c)}\textsuperscript{d})}`
+    :math:`y = a * \exp{(-0.5 * {(ln{({(x-f)}/b)}/c)}^{d})}`
 
     [a, b, c, d, f]
 
   * Log-Normal Peak B Modified Shifted With Offset
 
-    :math:`y = a * \exp{(-0.5 * {(ln{({(x-f)}/b)}/c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {(ln{({(x-f)}/b)}/c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -4090,13 +4090,13 @@ Peak
 
   * Logistic Area
 
-    :math:`y = a * \exp{(-1.0 * {(x-b)} / c)} / {(c * {(1.0 + \exp{(-1.0 * {(x-b)} /c)})}\textsuperscript{2})}`
+    :math:`y = a * \exp{(-1.0 * {(x-b)} / c)} / {(c * {(1.0 + \exp{(-1.0 * {(x-b)} /c)})}^{2})}`
 
     [a, b, c]
 
   * Logistic Area With Offset
 
-    :math:`y = a * \exp{(-1.0 * {(x-b)} / c)} / {(c * {(1.0 + \exp{(-1.0 * {(x-b)} /c)})}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a * \exp{(-1.0 * {(x-b)} / c)} / {(c * {(1.0 + \exp{(-1.0 * {(x-b)} /c)})}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4104,13 +4104,13 @@ Peak
 
   * Logistic Peak
 
-    :math:`y = 4a * \exp{(-1.0 * {(x-b)} / c)} / {(1.0 + \exp{(-1.0 * {(x-b)} /c)})}\textsuperscript{2}`
+    :math:`y = 4a * \exp{(-1.0 * {(x-b)} / c)} / {(1.0 + \exp{(-1.0 * {(x-b)} /c)})}^{2}`
 
     [a, b, c]
 
   * Logistic Peak With Offset
 
-    :math:`y = 4a * \exp{(-1.0 * {(x-b)} / c)} / {(1.0 + \exp{(-1.0 * {(x-b)} /c)})}\textsuperscript{2} + \text{Offset}`
+    :math:`y = 4a * \exp{(-1.0 * {(x-b)} / c)} / {(1.0 + \exp{(-1.0 * {(x-b)} /c)})}^{2} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4118,13 +4118,13 @@ Peak
 
   * Lorentzian Modified Peak A
 
-    :math:`y = 1.0 / {(1.0 + {(x-a)}\textsuperscript{b})}`
+    :math:`y = 1.0 / {(1.0 + {(x-a)}^{b})}`
 
     [a, b]
 
   * Lorentzian Modified Peak A With Offset
 
-    :math:`y = 1.0 / {(1.0 + {(x-a)}\textsuperscript{b})} + \text{Offset}`
+    :math:`y = 1.0 / {(1.0 + {(x-a)}^{b})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4132,13 +4132,13 @@ Peak
 
   * Lorentzian Modified Peak B
 
-    :math:`y = 1.0 / {(a + {(x-b)}\textsuperscript{c})}`
+    :math:`y = 1.0 / {(a + {(x-b)}^{c})}`
 
     [a, b, c]
 
   * Lorentzian Modified Peak B With Offset
 
-    :math:`y = 1.0 / {(a + {(x-b)}\textsuperscript{c})} + \text{Offset}`
+    :math:`y = 1.0 / {(a + {(x-b)}^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4146,13 +4146,13 @@ Peak
 
   * Lorentzian Modified Peak C
 
-    :math:`y = a / {(b + {(x-c)}\textsuperscript{d})}`
+    :math:`y = a / {(b + {(x-c)}^{d})}`
 
     [a, b, c, d]
 
   * Lorentzian Modified Peak C With Offset
 
-    :math:`y = a / {(b + {(x-c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = a / {(b + {(x-c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4160,13 +4160,13 @@ Peak
 
   * Lorentzian Modified Peak D
 
-    :math:`y = 1.0 / {(1.0 + {({(x-a)}/b)}\textsuperscript{c})}`
+    :math:`y = 1.0 / {(1.0 + {({(x-a)}/b)}^{c})}`
 
     [a, b, c]
 
   * Lorentzian Modified Peak D With Offset
 
-    :math:`y = 1.0 / {(1.0 + {({(x-a)}/b)}\textsuperscript{c})} + \text{Offset}`
+    :math:`y = 1.0 / {(1.0 + {({(x-a)}/b)}^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4174,13 +4174,13 @@ Peak
 
   * Lorentzian Modified Peak E
 
-    :math:`y = 1.0 / {(a + {({(x-b)}/c)}\textsuperscript{d})}`
+    :math:`y = 1.0 / {(a + {({(x-b)}/c)}^{d})}`
 
     [a, b, c, d]
 
   * Lorentzian Modified Peak E With Offset
 
-    :math:`y = 1.0 / {(a + {({(x-b)}/c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = 1.0 / {(a + {({(x-b)}/c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4188,13 +4188,13 @@ Peak
 
   * Lorentzian Modified Peak F
 
-    :math:`y = a / {(b + {({(x-c)}/d)}\textsuperscript{f})}`
+    :math:`y = a / {(b + {({(x-c)}/d)}^{f})}`
 
     [a, b, c, d, f]
 
   * Lorentzian Modified Peak F With Offset
 
-    :math:`y = a / {(b + {({(x-c)}/d)}\textsuperscript{f})} + \text{Offset}`
+    :math:`y = a / {(b + {({(x-c)}/d)}^{f})} + \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -4202,13 +4202,13 @@ Peak
 
   * Lorentzian Modified Peak G
 
-    :math:`y = a / {(1.0 + {({(x-b)}/c)}\textsuperscript{d})}`
+    :math:`y = a / {(1.0 + {({(x-b)}/c)}^{d})}`
 
     [a, b, c, d]
 
   * Lorentzian Modified Peak G With Offset
 
-    :math:`y = a / {(1.0 + {({(x-b)}/c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = a / {(1.0 + {({(x-b)}/c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4216,13 +4216,13 @@ Peak
 
   * Lorentzian Peak A
 
-    :math:`y = 1.0 / {(1.0 + {(x-a)}\textsuperscript{2})}`
+    :math:`y = 1.0 / {(1.0 + {(x-a)}^{2})}`
 
     [a]
 
   * Lorentzian Peak A With Offset
 
-    :math:`y = 1.0 / {(1.0 + {(x-a)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = 1.0 / {(1.0 + {(x-a)}^{2})} + \text{Offset}`
 
     [a, Offset]
 
@@ -4230,13 +4230,13 @@ Peak
 
   * Lorentzian Peak B
 
-    :math:`y = 1.0 / {(a + {(x-b)}\textsuperscript{2})}`
+    :math:`y = 1.0 / {(a + {(x-b)}^{2})}`
 
     [a, b]
 
   * Lorentzian Peak B With Offset
 
-    :math:`y = 1.0 / {(a + {(x-b)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = 1.0 / {(a + {(x-b)}^{2})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4244,13 +4244,13 @@ Peak
 
   * Lorentzian Peak C
 
-    :math:`y = a / {(b + {(x-c)}\textsuperscript{2})}`
+    :math:`y = a / {(b + {(x-c)}^{2})}`
 
     [a, b, c]
 
   * Lorentzian Peak C With Offset
 
-    :math:`y = a / {(b + {(x-c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a / {(b + {(x-c)}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4258,13 +4258,13 @@ Peak
 
   * Lorentzian Peak D
 
-    :math:`y = 1.0 / {(1.0 + {({(x-a)}/b)}\textsuperscript{2})}`
+    :math:`y = 1.0 / {(1.0 + {({(x-a)}/b)}^{2})}`
 
     [a, b]
 
   * Lorentzian Peak D With Offset
 
-    :math:`y = 1.0 / {(1.0 + {({(x-a)}/b)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = 1.0 / {(1.0 + {({(x-a)}/b)}^{2})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4272,13 +4272,13 @@ Peak
 
   * Lorentzian Peak E
 
-    :math:`y = 1.0 / {(a + {({(x-b)}/c)}\textsuperscript{2})}`
+    :math:`y = 1.0 / {(a + {({(x-b)}/c)}^{2})}`
 
     [a, b, c]
 
   * Lorentzian Peak E With Offset
 
-    :math:`y = 1.0 / {(a + {({(x-b)}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = 1.0 / {(a + {({(x-b)}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4286,13 +4286,13 @@ Peak
 
   * Lorentzian Peak F
 
-    :math:`y = a / {(b + {({(x-c)}/d)}\textsuperscript{2})}`
+    :math:`y = a / {(b + {({(x-c)}/d)}^{2})}`
 
     [a, b, c, d]
 
   * Lorentzian Peak F With Offset
 
-    :math:`y = a / {(b + {({(x-c)}/d)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a / {(b + {({(x-c)}/d)}^{2})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4300,13 +4300,13 @@ Peak
 
   * Lorentzian Peak G
 
-    :math:`y = a / {(1.0 + {({(x-b)}/c)}\textsuperscript{2})}`
+    :math:`y = a / {(1.0 + {({(x-b)}/c)}^{2})}`
 
     [a, b, c]
 
   * Lorentzian Peak G With Offset
 
-    :math:`y = a / {(1.0 + {({(x-b)}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a / {(1.0 + {({(x-b)}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4314,13 +4314,13 @@ Peak
 
   * Pseudo-Voight Peak
 
-    :math:`y = a * {(d * {(1/{(1+{({(x-b)}/c)}\textsuperscript{2})})} + {(1-d)} * \exp{(-0.5 *{({(x-b)}/c)}\textsuperscript{2})})}`
+    :math:`y = a * {(d * {(1/{(1+{({(x-b)}/c)}^{2})})} + {(1-d)} * \exp{(-0.5 *{({(x-b)}/c)}^{2})})}`
 
     [a, b, c, d]
 
   * Pseudo-Voight Peak With Offset
 
-    :math:`y = a * {(d * {(1/{(1+{({(x-b)}/c)}\textsuperscript{2})})} + {(1-d)} * \exp{(-0.5 *{({(x-b)}/c)}\textsuperscript{2})})} + \text{Offset}`
+    :math:`y = a * {(d * {(1/{(1+{({(x-b)}/c)}^{2})})} + {(1-d)} * \exp{(-0.5 *{({(x-b)}/c)}^{2})})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4328,13 +4328,13 @@ Peak
 
   * Pseudo-Voight Peak Modified
 
-    :math:`y = a * {(d * {(1/{(1+{({(x-b)}/c)}\textsuperscript{f})})} + {(1-d)} * \exp{(-0.5 *{({(x-b)}/c)}\textsuperscript{g})})}`
+    :math:`y = a * {(d * {(1/{(1+{({(x-b)}/c)}^{f})})} + {(1-d)} * \exp{(-0.5 *{({(x-b)}/c)}^{g})})}`
 
     [a, b, c, d, f, g]
 
   * Pseudo-Voight Peak Modified With Offset
 
-    :math:`y = a * {(d * {(1/{(1+{({(x-b)}/c)}\textsuperscript{f})})} + {(1-d)} * \exp{(-0.5 *{({(x-b)}/c)}\textsuperscript{g})})} + \text{Offset}`
+    :math:`y = a * {(d * {(1/{(1+{({(x-b)}/c)}^{f})})} + {(1-d)} * \exp{(-0.5 *{({(x-b)}/c)}^{g})})} + \text{Offset}`
 
     [a, b, c, d, f, g, Offset]
 
@@ -4356,13 +4356,13 @@ Peak
 
   * UVED Fruit Growth Rate
 
-    :math:`y ={({(t/5)}\textsuperscript{{(a-1)}}*{(1-t/5)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}`
+    :math:`y ={({(t/5)}^{{(a-1)}}*{(1-t/5)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}`
 
     [a, b]
 
   * UVED Fruit Growth Rate With Offset
 
-    :math:`y ={({(t/5)}\textsuperscript{{(a-1)}}*{(1-t/5)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}+ \text{Offset}`
+    :math:`y ={({(t/5)}^{{(a-1)}}*{(1-t/5)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}+ \text{Offset}`
 
     [a, b, Offset]
 
@@ -4370,13 +4370,13 @@ Peak
 
   * UVED Fruit Growth Rate B
 
-    :math:`y = c *{({(t/5)}\textsuperscript{{(a-1)}}*{(1-t/5)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}`
+    :math:`y = c *{({(t/5)}^{{(a-1)}}*{(1-t/5)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}`
 
     [a, b, c]
 
   * UVED Fruit Growth Rate B With Offset
 
-    :math:`y = c *{({(t/5)}\textsuperscript{{(a-1)}}*{(1-t/5)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}+ \text{Offset}`
+    :math:`y = c *{({(t/5)}^{{(a-1)}}*{(1-t/5)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}+ \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4384,13 +4384,13 @@ Peak
 
   * UVED Fruit Growth Rate Scaled
 
-    :math:`y ={(c*t)}\textsuperscript{{(a-1)}}*{(1-{(c*t)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}`
+    :math:`y ={(c*t)}^{{(a-1)}}*{(1-{(c*t)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}`
 
     [a, b, c]
 
   * UVED Fruit Growth Rate Scaled With Offset
 
-    :math:`y ={(c*t)}\textsuperscript{{(a-1)}}*{(1-{(c*t)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}+ \text{Offset}`
+    :math:`y ={(c*t)}^{{(a-1)}}*{(1-{(c*t)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}+ \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4398,13 +4398,13 @@ Peak
 
   * UVED Fruit Growth Rate Scaled B
 
-    :math:`y = d *{(c*t)}\textsuperscript{{(a-1)}}*{(1-{(c*t)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}`
+    :math:`y = d *{(c*t)}^{{(a-1)}}*{(1-{(c*t)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}`
 
     [a, b, c, d]
 
   * UVED Fruit Growth Rate Scaled B With Offset
 
-    :math:`y = d *{(c*t)}\textsuperscript{{(a-1)}}*{(1-{(c*t)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}+ \text{Offset}`
+    :math:`y = d *{(c*t)}^{{(a-1)}}*{(1-{(c*t)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}+ \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4412,13 +4412,13 @@ Peak
 
   * UVED Fruit Growth Rate Transform
 
-    :math:`y ={(c*t+d)}\textsuperscript{{(a-1)}}*{(1-{(c*t+d)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}`
+    :math:`y ={(c*t+d)}^{{(a-1)}}*{(1-{(c*t+d)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}`
 
     [a, b, c, d]
 
   * UVED Fruit Growth Rate Transform With Offset
 
-    :math:`y ={(c*t+d)}\textsuperscript{{(a-1)}}*{(1-{(c*t+d)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}+ \text{Offset}`
+    :math:`y ={(c*t+d)}^{{(a-1)}}*{(1-{(c*t+d)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}+ \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4426,13 +4426,13 @@ Peak
 
   * UVED Fruit Growth Rate Transform B
 
-    :math:`y = f *{(c*t+d)}\textsuperscript{{(a-1)}}*{(1-{(c*t+d)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}`
+    :math:`y = f *{(c*t+d)}^{{(a-1)}}*{(1-{(c*t+d)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}`
 
     [a, b, c, d, f]
 
   * UVED Fruit Growth Rate Transform B With Offset
 
-    :math:`y = f *{(c*t+d)}\textsuperscript{{(a-1)}}*{(1-{(c*t+d)}\textsuperscript{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}\textsuperscript{{(a-1)}}*{({(b-1)}/{(a+b-2)})}\textsuperscript{{(b-1)}})}+ \text{Offset}`
+    :math:`y = f *{(c*t+d)}^{{(a-1)}}*{(1-{(c*t+d)}^{{(b-1)}})}/{({({(a-1)}/{(a+b-2)})}^{{(a-1)}}*{({(b-1)}/{(a+b-2)})}^{{(b-1)}})}+ \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -4440,13 +4440,13 @@ Peak
 
   * Weibull Peak
 
-    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}\textsuperscript{2})}`
+    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}^{2})}`
 
     [a, b, c]
 
   * Weibull Peak With Offset
 
-    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4454,13 +4454,13 @@ Peak
 
   * Weibull Peak Shifted
 
-    :math:`y = a * \exp{(-0.5 * {(ln{({(x-d)}/b)}/c)}\textsuperscript{2})}`
+    :math:`y = a * \exp{(-0.5 * {(ln{({(x-d)}/b)}/c)}^{2})}`
 
     [a, b, c, d]
 
   * Weibull Peak Shifted With Offset
 
-    :math:`y = a * \exp{(-0.5 * {(ln{({(x-d)}/b)}/c)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {(ln{({(x-d)}/b)}/c)}^{2})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4468,13 +4468,13 @@ Peak
 
   * Weibull Peak Modified
 
-    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}\textsuperscript{d})}`
+    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}^{d})}`
 
     [a, b, c, d]
 
   * Weibull Peak Modified With Offset
 
-    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {(ln{(x/b)}/c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4482,13 +4482,13 @@ Peak
 
   * Weibull Peak Modified Shifted
 
-    :math:`y = a * \exp{(-0.5 * {(ln{({(x-f)}/b)}/c)}\textsuperscript{d})}`
+    :math:`y = a * \exp{(-0.5 * {(ln{({(x-f)}/b)}/c)}^{d})}`
 
     [a, b, c, d, f]
 
   * Weibull Peak Modified Shifted With Offset
 
-    :math:`y = a * \exp{(-0.5 * {(ln{({(x-f)}/b)}/c)}\textsuperscript{d})} + \text{Offset}`
+    :math:`y = a * \exp{(-0.5 * {(ln{({(x-f)}/b)}/c)}^{d})} + \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -4512,7 +4512,7 @@ Polynomial
 
   * 3rd Order (Cubic)
 
-    :math:`y = a + bx + cx\textsuperscript{2} + dx\textsuperscript{3}`
+    :math:`y = a + bx + cx^{2} + dx^{3}`
 
     [a, b, c, d]
 
@@ -4528,13 +4528,13 @@ Polynomial
 
   * Marc Plante's Custom Quadratic
 
-    :math:`y = {(-b + {(b\textsuperscript{2} - 4 a {(c - x)})}\textsuperscript{0.5})} / 2/ a`
+    :math:`y = {(-b + {(b^{2} - 4 a {(c - x)})}^{0.5})} / 2/ a`
 
     [a, b, c]
 
   * Marc Plante's Custom Quadratic With Offset
 
-    :math:`y = {(-b + {(b\textsuperscript{2} - 4 a {(c - x)})}\textsuperscript{0.5})} / 2/ a + \text{Offset}`
+    :math:`y = {(-b + {(b^{2} - 4 a {(c - x)})}^{0.5})} / 2/ a + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4542,7 +4542,7 @@ Polynomial
 
   * 2nd Order (Quadratic)
 
-    :math:`y = a + bx + cx\textsuperscript{2}`
+    :math:`y = a + bx + cx^{2}`
 
     [a, b, c]
 
@@ -4550,7 +4550,7 @@ Polynomial
 
   * 4th Order (Quartic)
 
-    :math:`y = a + bx + cx\textsuperscript{2} + dx\textsuperscript{3} +fx\textsuperscript{4}`
+    :math:`y = a + bx + cx^{2} + dx^{3} +fx^{4}`
 
     [a, b, c, d, f]
 
@@ -4558,7 +4558,7 @@ Polynomial
 
   * 5th Order (Quintic)
 
-    :math:`y = a + bx + cx\textsuperscript{2} + dx\textsuperscript{3} +fx\textsuperscript{4} + gx\textsuperscript{5}`
+    :math:`y = a + bx + cx^{2} + dx^{3} +fx^{4} + gx^{5}`
 
     [a, b, c, d, f, g]
 
@@ -4585,13 +4585,13 @@ Power
 
   * Geometric Modified
 
-    :math:`y = a * x\textsuperscript{{(b/x)}}`
+    :math:`y = a * x^{{(b/x)}}`
 
     [a, b]
 
   * Geometric Modified With Offset
 
-    :math:`y = a * x\textsuperscript{{(b/x)}} + \text{Offset}`
+    :math:`y = a * x^{{(b/x)}} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4599,13 +4599,13 @@ Power
 
   * Power A Modified
 
-    :math:`y = a * b\textsuperscript{x}`
+    :math:`y = a * b^{x}`
 
     [a, b]
 
   * Power A Modified With Offset
 
-    :math:`y = a * b\textsuperscript{x} + \text{Offset}`
+    :math:`y = a * b^{x} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4613,13 +4613,13 @@ Power
 
   * Power A Modified Transform
 
-    :math:`y = a * b\textsuperscript{cx + d}`
+    :math:`y = a * b^{cx + d}`
 
     [a, b, c, d]
 
   * Power A Modified Transform With Offset
 
-    :math:`y = a * b\textsuperscript{cx + d} + \text{Offset}`
+    :math:`y = a * b^{cx + d} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -4627,13 +4627,13 @@ Power
 
   * Power B Modified
 
-    :math:`y = a\textsuperscript{ln{(x)}}`
+    :math:`y = a^{ln{(x)}}`
 
     [a]
 
   * Power B Modified With Offset
 
-    :math:`y = a\textsuperscript{ln{(x)}} + \text{Offset}`
+    :math:`y = a^{ln{(x)}} + \text{Offset}`
 
     [a, Offset]
 
@@ -4641,13 +4641,13 @@ Power
 
   * Power B Modified Transform
 
-    :math:`y = a\textsuperscript{ln{(bx + c)}}`
+    :math:`y = a^{ln{(bx + c)}}`
 
     [a, b, c]
 
   * Power B Modified Transform With Offset
 
-    :math:`y = a\textsuperscript{ln{(bx + c)}} + \text{Offset}`
+    :math:`y = a^{ln{(bx + c)}} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4655,13 +4655,13 @@ Power
 
   * Power C Modified
 
-    :math:`y = {(a + x)}\textsuperscript{b}`
+    :math:`y = {(a + x)}^{b}`
 
     [a, b]
 
   * Power C Modified With Offset
 
-    :math:`y = {(a + x)}\textsuperscript{b} + \text{Offset}`
+    :math:`y = {(a + x)}^{b} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4669,13 +4669,13 @@ Power
 
   * Power C Modified Transform
 
-    :math:`y = {(a + bx)}\textsuperscript{c}`
+    :math:`y = {(a + bx)}^{c}`
 
     [a, b, c]
 
   * Power C Modified Transform With Offset
 
-    :math:`y = {(a + bx)}\textsuperscript{c} + \text{Offset}`
+    :math:`y = {(a + bx)}^{c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4683,13 +4683,13 @@ Power
 
   * Power Law With Exponential Cutoff
 
-    :math:`p{(k)} = C * k\textsuperscript{{(-T)}} * \exp{(-k/K)}`
+    :math:`p{(k)} = C * k^{{(-T)}} * \exp{(-k/K)}`
 
     [C, T, K]
 
   * Power Law With Exponential Cutoff With Offset
 
-    :math:`p{(k)} = C * k\textsuperscript{{(-T)}} * \exp{(-k/K)} + \text{Offset}`
+    :math:`p{(k)} = C * k^{{(-T)}} * \exp{(-k/K)} + \text{Offset}`
 
     [C, T, K, Offset]
 
@@ -4697,13 +4697,13 @@ Power
 
   * Root
 
-    :math:`y = a\textsuperscript{{(1.0/x)}}`
+    :math:`y = a^{{(1.0/x)}}`
 
     [a]
 
   * Root With Offset
 
-    :math:`y = a\textsuperscript{{(1.0/x)}} + \text{Offset}`
+    :math:`y = a^{{(1.0/x)}} + \text{Offset}`
 
     [a, Offset]
 
@@ -4711,13 +4711,13 @@ Power
 
   * Simple Power
 
-    :math:`y = x\textsuperscript{a}`
+    :math:`y = x^{a}`
 
     [a]
 
   * Simple Power With Offset
 
-    :math:`y = x\textsuperscript{a} + \text{Offset}`
+    :math:`y = x^{a} + \text{Offset}`
 
     [a, Offset]
 
@@ -4725,13 +4725,13 @@ Power
 
   * Standard Geometric
 
-    :math:`y = a * x\textsuperscript{bx}`
+    :math:`y = a * x^{bx}`
 
     [a, b]
 
   * Standard Geometric With Offset
 
-    :math:`y = a * x\textsuperscript{bx} + \text{Offset}`
+    :math:`y = a * x^{bx} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4739,13 +4739,13 @@ Power
 
   * Standard Power
 
-    :math:`y = a * x\textsuperscript{b}`
+    :math:`y = a * x^{b}`
 
     [a, b]
 
   * Standard Power With Offset
 
-    :math:`y = a * x\textsuperscript{b} + \text{Offset}`
+    :math:`y = a * x^{b} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4753,13 +4753,13 @@ Power
 
   * X Shifted Power
 
-    :math:`y = a * {(x-b)}\textsuperscript{c}`
+    :math:`y = a * {(x-b)}^{c}`
 
     [a, b, c]
 
   * X Shifted Power With Offset
 
-    :math:`y = a * {(x-b)}\textsuperscript{c} + \text{Offset}`
+    :math:`y = a * {(x-b)}^{c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4789,13 +4789,13 @@ Sigmoidal
 
   * BET Sigmoidal A
 
-    :math:`y = x / {(a + bx - {(a+b)}x\textsuperscript{2})}`
+    :math:`y = x / {(a + bx - {(a+b)}x^{2})}`
 
     [a, b]
 
   * BET Sigmoidal A With Offset
 
-    :math:`y = x / {(a + bx - {(a+b)}x\textsuperscript{2})} + \text{Offset}`
+    :math:`y = x / {(a + bx - {(a+b)}x^{2})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4803,13 +4803,13 @@ Sigmoidal
 
   * BET Sigmoidal B
 
-    :math:`y = abx / {(1.0 + {(b-2.0)}x - {(b-1.0)}x\textsuperscript{2})}`
+    :math:`y = abx / {(1.0 + {(b-2.0)}x - {(b-1.0)}x^{2})}`
 
     [a, b]
 
   * BET Sigmoidal B With Offset
 
-    :math:`y = abx / {(1.0 + {(b-2.0)}x - {(b-1.0)}x\textsuperscript{2})} + \text{Offset}`
+    :math:`y = abx / {(1.0 + {(b-2.0)}x - {(b-1.0)}x^{2})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -4833,13 +4833,13 @@ Sigmoidal
 
   * Chapman
 
-    :math:`y = a * {(1.0 - \exp{(-bx)})}\textsuperscript{c}`
+    :math:`y = a * {(1.0 - \exp{(-bx)})}^{c}`
 
     [a, b, c]
 
   * Chapman With Offset
 
-    :math:`y = a * {(1.0 - \exp{(-bx)})}\textsuperscript{c} + \text{Offset}`
+    :math:`y = a * {(1.0 - \exp{(-bx)})}^{c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4861,7 +4861,7 @@ Sigmoidal
 
   * Five-Parameter Logistic
 
-    :math:`y = d + {(a-d)} / {(1.0 + {(x/c)}\textsuperscript{b})}\textsuperscript{f}`
+    :math:`y = d + {(a-d)} / {(1.0 + {(x/c)}^{b})}^{f}`
 
     [a, b, c, d, f]
 
@@ -4869,7 +4869,7 @@ Sigmoidal
 
   * Four-Parameter Logistic
 
-    :math:`y = d + {(a-d)} / {(1.0 + {(x/c)}\textsuperscript{b})}`
+    :math:`y = d + {(a-d)} / {(1.0 + {(x/c)}^{b})}`
 
     [a, b, c, d]
 
@@ -4877,7 +4877,7 @@ Sigmoidal
 
   * Generalised Logistic
 
-    :math:`y = A + C / {(1 + T * \exp{(-B * {(x - M)})})}\textsuperscript{1/T}`
+    :math:`y = A + C / {(1 + T * \exp{(-B * {(x - M)})})}^{1/T}`
 
     [A, C, M, B, T]
 
@@ -4927,13 +4927,13 @@ Sigmoidal
 
   * Hill
 
-    :math:`y = ax\textsuperscript{b} / {(c\textsuperscript{b} +x\textsuperscript{b})}`
+    :math:`y = ax^{b} / {(c^{b} +x^{b})}`
 
     [a, b, c]
 
   * Hill With Offset
 
-    :math:`y = ax\textsuperscript{b} / {(c\textsuperscript{b} +x\textsuperscript{b})} + \text{Offset}`
+    :math:`y = ax^{b} / {(c^{b} +x^{b})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4955,7 +4955,7 @@ Sigmoidal
 
   * Janoschek Growth
 
-    :math:`w = a - {(1.0 - \exp{(-b * t\textsuperscript{c})})}`
+    :math:`w = a - {(1.0 - \exp{(-b * t^{c})})}`
 
     [a, b, c]
 
@@ -4963,7 +4963,7 @@ Sigmoidal
 
   * Janoschek Growth Modified
 
-    :math:`w = a - {(a - w0)} * {(1.0 - \exp{(-b * t\textsuperscript{c})})}`
+    :math:`w = a - {(a - w0)} * {(1.0 - \exp{(-b * t^{c})})}`
 
     [a, b, c, w0]
 
@@ -4985,13 +4985,13 @@ Sigmoidal
 
   * Logistic B
 
-    :math:`y = a / {(1.0 + {(x/b)}\textsuperscript{c})}`
+    :math:`y = a / {(1.0 + {(x/b)}^{c})}`
 
     [a, b, c]
 
   * Logistic B With Offset
 
-    :math:`y = a / {(1.0 + {(x/b)}\textsuperscript{c})} + \text{Offset}`
+    :math:`y = a / {(1.0 + {(x/b)}^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -4999,13 +4999,13 @@ Sigmoidal
 
   * Lomolino
 
-    :math:`y = a / {(1.0 + b\textsuperscript{ln{(c/x)}})}`
+    :math:`y = a / {(1.0 + b^{ln{(c/x)}})}`
 
     [a, b, c]
 
   * Lomolino With Offset
 
-    :math:`y = a / {(1.0 + b\textsuperscript{ln{(c/x)}})} + \text{Offset}`
+    :math:`y = a / {(1.0 + b^{ln{(c/x)}})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -5027,13 +5027,13 @@ Sigmoidal
 
   * Morgan-Mercer-Flodin (MMF)
 
-    :math:`y = {(a * b + c * x\textsuperscript{d})} / {(b + x\textsuperscript{d})}`
+    :math:`y = {(a * b + c * x^{d})} / {(b + x^{d})}`
 
     [a, b, c, d]
 
   * Morgan-Mercer-Flodin (MMF) With Offset
 
-    :math:`y = {(a * b + c * x\textsuperscript{d})} / {(b + x\textsuperscript{d})} +\text{Offset}`
+    :math:`y = {(a * b + c * x^{d})} / {(b + x^{d})} +\text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -5127,13 +5127,13 @@ Sigmoidal
 
   * Richards
 
-    :math:`y = 1.0 / {(a + b * e\textsuperscript{{(c*x)}})}\textsuperscript{d}`
+    :math:`y = 1.0 / {(a + b * e^{{(c*x)}})}^{d}`
 
     [a, b, c, d]
 
   * Richards With Offset
 
-    :math:`y = 1.0 / {(a + b * e\textsuperscript{{(c*x)}})}\textsuperscript{d} + \text{Offset}`
+    :math:`y = 1.0 / {(a + b * e^{{(c*x)}})}^{d} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -5155,13 +5155,13 @@ Sigmoidal
 
   * Sigmoid A Modified
 
-    :math:`y = 1.0 / {(1.0 + \exp{(-a{(x-b)})})}\textsuperscript{c}`
+    :math:`y = 1.0 / {(1.0 + \exp{(-a{(x-b)})})}^{c}`
 
     [a, b, c]
 
   * Sigmoid A Modified With Offset
 
-    :math:`y = 1.0 / {(1.0 + \exp{(-a{(x-b)})})}\textsuperscript{c} + \text{Offset}`
+    :math:`y = 1.0 / {(1.0 + \exp{(-a{(x-b)})})}^{c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -5183,13 +5183,13 @@ Sigmoidal
 
   * Sigmoid B Modified
 
-    :math:`y = a / {(1.0 + \exp{(-{(x-b)}/c)})}\textsuperscript{d}`
+    :math:`y = a / {(1.0 + \exp{(-{(x-b)}/c)})}^{d}`
 
     [a, b, c, d]
 
   * Sigmoid B Modified With Offset
 
-    :math:`y = a / {(1.0 + \exp{(-{(x-b)}/c)})}\textsuperscript{d} + \text{Offset}`
+    :math:`y = a / {(1.0 + \exp{(-{(x-b)}/c)})}^{d} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -5197,7 +5197,7 @@ Sigmoidal
 
   * Weibull
 
-    :math:`y = a - b*\exp{(-cx\textsuperscript{d})}`
+    :math:`y = a - b*\exp{(-cx^{d})}`
 
     [a, b, c, d]
 
@@ -5205,13 +5205,13 @@ Sigmoidal
 
   * Weibull CDF
 
-    :math:`y = 1.0 - \exp{(-{(x/b)}\textsuperscript{a})}`
+    :math:`y = 1.0 - \exp{(-{(x/b)}^{a})}`
 
     [a, b]
 
   * Weibull CDF With Offset
 
-    :math:`y = 1.0 - \exp{(-{(x/b)}\textsuperscript{a})} + \text{Offset}`
+    :math:`y = 1.0 - \exp{(-{(x/b)}^{a})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -5219,13 +5219,13 @@ Sigmoidal
 
   * Weibull CDF Scaled
 
-    :math:`y = Scale * {(1.0 - \exp{(-{(x/b)}\textsuperscript{a})})}`
+    :math:`y = Scale * {(1.0 - \exp{(-{(x/b)}^{a})})}`
 
     [a, b, Scale]
 
   * Weibull CDF Scaled With Offset
 
-    :math:`y = Scale * {(1.0 - \exp{(-{(x/b)}\textsuperscript{a})})} + \text{Offset}`
+    :math:`y = Scale * {(1.0 - \exp{(-{(x/b)}^{a})})} + \text{Offset}`
 
     [a, b, Scale, Offset]
 
@@ -5233,13 +5233,13 @@ Sigmoidal
 
   * Weibull PDF
 
-    :math:`y = {(a/b)} * {(x/b)}\textsuperscript{{(a-1.0)}} *\exp{(-{(x/b)}\textsuperscript{a})}`
+    :math:`y = {(a/b)} * {(x/b)}^{{(a-1.0)}} *\exp{(-{(x/b)}^{a})}`
 
     [a, b]
 
   * Weibull PDF With Offset
 
-    :math:`y = {(a/b)} * {(x/b)}\textsuperscript{{(a-1.0)}} *\exp{(-{(x/b)}\textsuperscript{a})} + \text{Offset}`
+    :math:`y = {(a/b)} * {(x/b)}^{{(a-1.0)}} *\exp{(-{(x/b)}^{a})} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -5892,13 +5892,13 @@ Trigonometric
 
   * Cardinal Sine (sinc) Squared [radians]
 
-    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}\textsuperscript{2} / {(pi* {(x - center)} / width)}`
+    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}^{2} / {(pi* {(x - center)} / width)}`
 
     [amplitude, center, width]
 
   * Cardinal Sine (sinc) Squared [radians] With Offset
 
-    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}\textsuperscript{2} / {(pi* {(x - center)} / width)} + \text{Offset}`
+    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}^{2} / {(pi* {(x - center)} / width)} + \text{Offset}`
 
     [amplitude, center, width, Offset]
 
@@ -5906,13 +5906,13 @@ Trigonometric
 
   * Cardinal Sine (sinc) Squared [radians] (Nyquist Limited)
 
-    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}\textsuperscript{2} / {(pi* {(x - center)} / width)}`
+    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}^{2} / {(pi* {(x - center)} / width)}`
 
     [amplitude, center, width]
 
   * Cardinal Sine (sinc) Squared [radians] (Nyquist Limited) With Offset
 
-    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}\textsuperscript{2} / {(pi* {(x - center)} / width)} + \text{Offset}`
+    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}^{2} / {(pi* {(x - center)} / width)} + \text{Offset}`
 
     [amplitude, center, width, Offset]
 
@@ -5948,13 +5948,13 @@ Trigonometric
 
   * Sine Squared [radians]
 
-    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}\textsuperscript{2}`
+    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}^{2}`
 
     [amplitude, center, width]
 
   * Sine Squared [radians] With Offset
 
-    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}\textsuperscript{2} +\text{Offset}`
+    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}^{2} +\text{Offset}`
 
     [amplitude, center, width, Offset]
 
@@ -5962,13 +5962,13 @@ Trigonometric
 
   * Sine Squared [radians] (Nyquist Limited)
 
-    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}\textsuperscript{2}`
+    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}^{2}`
 
     [amplitude, center, width]
 
   * Sine Squared [radians] (Nyquist Limited) With Offset
 
-    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}\textsuperscript{2} +\text{Offset}`
+    :math:`y = amplitude * sin{(pi * {(x - center)} / width)}^{2} +\text{Offset}`
 
     [amplitude, center, width, Offset]
 
@@ -6033,13 +6033,13 @@ YieldDensity
 
   * Bleasdale
 
-    :math:`y = 1.0 / {(a + bx)}\textsuperscript{{(-1.0/c)}}`
+    :math:`y = 1.0 / {(a + bx)}^{{(-1.0/c)}}`
 
     [a, b, c]
 
   * Bleasdale With Offset
 
-    :math:`y = 1.0 / {(a + bx)}\textsuperscript{{(-1.0/c)}} + \text{Offset}`
+    :math:`y = 1.0 / {(a + bx)}^{{(-1.0/c)}} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -6047,13 +6047,13 @@ YieldDensity
 
   * Extended Holliday
 
-    :math:`y = a / {(a + bx + cx\textsuperscript{2})}`
+    :math:`y = a / {(a + bx + cx^{2})}`
 
     [a, b, c]
 
   * Extended Holliday With Offset
 
-    :math:`y = a / {(a + bx + cx\textsuperscript{2})} + \text{Offset}`
+    :math:`y = a / {(a + bx + cx^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -6061,13 +6061,13 @@ YieldDensity
 
   * Harris
 
-    :math:`y = 1.0 / {(a + bx\textsuperscript{c})}`
+    :math:`y = 1.0 / {(a + bx^{c})}`
 
     [a, b, c]
 
   * Harris With Offset
 
-    :math:`y = 1.0 / {(a + bx\textsuperscript{c})} + \text{Offset}`
+    :math:`y = 1.0 / {(a + bx^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -6075,13 +6075,13 @@ YieldDensity
 
   * Holliday
 
-    :math:`y = 1.0 / {(a + bx + cx\textsuperscript{2})}`
+    :math:`y = 1.0 / {(a + bx + cx^{2})}`
 
     [a, b, c]
 
   * Holliday With Offset
 
-    :math:`y = 1.0 / {(a + bx + cx\textsuperscript{2})} + \text{Offset}`
+    :math:`y = 1.0 / {(a + bx + cx^{2})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -6089,13 +6089,13 @@ YieldDensity
 
   * Inverse Bleasdale
 
-    :math:`y = x / {(a + bx)}\textsuperscript{{(-1.0/c)}}`
+    :math:`y = x / {(a + bx)}^{{(-1.0/c)}}`
 
     [a, b, c]
 
   * Inverse Bleasdale With Offset
 
-    :math:`y = x / {(a + bx)}\textsuperscript{{(-1.0/c)}} + \text{Offset}`
+    :math:`y = x / {(a + bx)}^{{(-1.0/c)}} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -6103,13 +6103,13 @@ YieldDensity
 
   * InverseHarris
 
-    :math:`y = x / {(a + bx\textsuperscript{c})}`
+    :math:`y = x / {(a + bx^{c})}`
 
     [a, b, c]
 
   * InverseHarris With Offset
 
-    :math:`y = x / {(a + bx\textsuperscript{c})} + \text{Offset}`
+    :math:`y = x / {(a + bx^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -6117,13 +6117,13 @@ YieldDensity
 
   * Nelder
 
-    :math:`y = {(a + x)} / {(b + c{(a + x)} + d{(a + x)}\textsuperscript{2})}`
+    :math:`y = {(a + x)} / {(b + c{(a + x)} + d{(a + x)}^{2})}`
 
     [a, b, c, d]
 
   * Nelder With Offset
 
-    :math:`y = {(a + x)} / {(b + c{(a + x)} + d{(a + x)}\textsuperscript{2})} + \text{Offset}`
+    :math:`y = {(a + x)} / {(b + c{(a + x)} + d{(a + x)}^{2})} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -6137,13 +6137,13 @@ BioScience
 
   * Chen-Clayton
 
-    :math:`r.h.{(T\textsubscript{k},M)} = \exp{(-{(C1/T\textsuperscript{C2})} *\exp{(-C3*T\textsuperscript{C4}*M)})}`
+    :math:`r.h.{(T_{k},M)} = \exp{(-{(C1/T^{C2})} *\exp{(-C3*T^{C4}*M)})}`
 
     [C1, C2, C3, C4]
 
   * Chen-Clayton With Offset
 
-    :math:`r.h.{(T\textsubscript{k},M)} = \exp{(-{(C1/T\textsuperscript{C2})} *\exp{(-C3*T\textsuperscript{C4}*M)})} + \text{Offset}`
+    :math:`r.h.{(T_{k},M)} = \exp{(-{(C1/T^{C2})} *\exp{(-C3*T^{C4}*M)})} + \text{Offset}`
 
     [C1, C2, C3, C4, Offset]
 
@@ -6151,13 +6151,13 @@ BioScience
 
   * Chen-Clayton Scaled
 
-    :math:`z = Scale * \exp{(-{(C1/T\textsuperscript{C2})} *\exp{(-C3*T\textsuperscript{C4}*M)})}`
+    :math:`z = Scale * \exp{(-{(C1/T^{C2})} *\exp{(-C3*T^{C4}*M)})}`
 
     [C1, C2, C3, C4, Scale]
 
   * Chen-Clayton Scaled With Offset
 
-    :math:`z = Scale * \exp{(-{(C1/T\textsuperscript{C2})} *\exp{(-C3*T\textsuperscript{C4}*M)})} + \text{Offset}`
+    :math:`z = Scale * \exp{(-{(C1/T^{C2})} *\exp{(-C3*T^{C4}*M)})} + \text{Offset}`
 
     [C1, C2, C3, C4, Scale, Offset]
 
@@ -6243,13 +6243,13 @@ BioScience
 
   * Modified Halsey
 
-    :math:`r.h.{(T,M)} = \exp{(-\exp{(C1 + C2*T)} * M\textsuperscript{-C3})}`
+    :math:`r.h.{(T,M)} = \exp{(-\exp{(C1 + C2*T)} * M^{-C3})}`
 
     [C1, C2, C3]
 
   * Modified Halsey With Offset
 
-    :math:`r.h.{(T,M)} = \exp{(-\exp{(C1 + C2*T)} * M\textsuperscript{-C3})} + \text{Offset}`
+    :math:`r.h.{(T,M)} = \exp{(-\exp{(C1 + C2*T)} * M^{-C3})} + \text{Offset}`
 
     [C1, C2, C3, Offset]
 
@@ -6257,13 +6257,13 @@ BioScience
 
   * Modified Halsey Scaled
 
-    :math:`z = Scale * \exp{(-\exp{(C1 + C2*T)} * M\textsuperscript{-C3})}`
+    :math:`z = Scale * \exp{(-\exp{(C1 + C2*T)} * M^{-C3})}`
 
     [C1, C2, C3, Scale]
 
   * Modified Halsey Scaled With Offset
 
-    :math:`z = Scale * \exp{(-\exp{(C1 + C2*T)} * M\textsuperscript{-C3})} + \text{Offset}`
+    :math:`z = Scale * \exp{(-\exp{(C1 + C2*T)} * M^{-C3})} + \text{Offset}`
 
     [C1, C2, C3, Scale, Offset]
 
@@ -6271,13 +6271,13 @@ BioScience
 
   * Modified Henderson
 
-    :math:`r.h.{(T,M)} = 1 - \exp{(-C1 * {(T + C2)} * M\textsuperscript{C3})}`
+    :math:`r.h.{(T,M)} = 1 - \exp{(-C1 * {(T + C2)} * M^{C3})}`
 
     [C1, C2, C3]
 
   * Modified Henderson With Offset
 
-    :math:`r.h.{(T,M)} = 1 - \exp{(-C1 * {(T + C2)} * M\textsuperscript{C3})} + \text{Offset}`
+    :math:`r.h.{(T,M)} = 1 - \exp{(-C1 * {(T + C2)} * M^{C3})} + \text{Offset}`
 
     [C1, C2, C3, Offset]
 
@@ -6285,13 +6285,13 @@ BioScience
 
   * Strohman-Yoerger
 
-    :math:`r.h.{(P\textsubscript{s},M)} = \exp{(C1*\exp{(-C2*M)}*ln{(P\textsubscript{s})} -C3*\exp{(-C4*M)})}`
+    :math:`r.h.{(P_{s},M)} = \exp{(C1*\exp{(-C2*M)}*ln{(P_{s})} -C3*\exp{(-C4*M)})}`
 
     [C1, C2, C3, C4]
 
   * Strohman-Yoerger With Offset
 
-    :math:`r.h.{(P\textsubscript{s},M)} = \exp{(C1*\exp{(-C2*M)}*ln{(P\textsubscript{s})} -C3*\exp{(-C4*M)})} + \text{Offset}`
+    :math:`r.h.{(P_{s},M)} = \exp{(C1*\exp{(-C2*M)}*ln{(P_{s})} -C3*\exp{(-C4*M)})} + \text{Offset}`
 
     [C1, C2, C3, C4, Offset]
 
@@ -6531,7 +6531,7 @@ Exponential
 
   * Full Cubic Exponential
 
-    :math:`z = a + b*\exp{(x)} + c*\exp{(y)} + d*\exp{(x)}\textsuperscript{2} +f*\exp{(y)}\textsuperscript{2} + g*\exp{(x)}\textsuperscript{3} +h*\exp{(y)}\textsuperscript{3} + i*\exp{(x)}*\exp{(y)} +j*\exp{(x)}\textsuperscript{2}*\exp{(y)} + k*\exp{(x)}*\exp{(y)}\textsuperscript{2}`
+    :math:`z = a + b*\exp{(x)} + c*\exp{(y)} + d*\exp{(x)}^{2} +f*\exp{(y)}^{2} + g*\exp{(x)}^{3} +h*\exp{(y)}^{3} + i*\exp{(x)}*\exp{(y)} +j*\exp{(x)}^{2}*\exp{(y)} + k*\exp{(x)}*\exp{(y)}^{2}`
 
     [a, b, c, d, f, g, h, i, j, k]
 
@@ -6539,7 +6539,7 @@ Exponential
 
   * Transform Full Cubic Exponential
 
-    :math:`z = a + b*\exp{(m*x+n)} + c*\exp{(o*y+p)} + d*\exp{(m*x+n)}\textsuperscript{2} +f*\exp{(o*y+p)}\textsuperscript{2} + g*\exp{(m*x+n)}\textsuperscript{3} +h*\exp{(o*y+p)}\textsuperscript{3} + i*\exp{(m*x+n)}*\exp{(o*y+p)} +j*\exp{(m*x+n)}\textsuperscript{2}*\exp{(o*y+p)} +k*\exp{(m*x+n)}*\exp{(o*y+p)}\textsuperscript{2}`
+    :math:`z = a + b*\exp{(m*x+n)} + c*\exp{(o*y+p)} + d*\exp{(m*x+n)}^{2} +f*\exp{(o*y+p)}^{2} + g*\exp{(m*x+n)}^{3} +h*\exp{(o*y+p)}^{3} + i*\exp{(m*x+n)}*\exp{(o*y+p)} +j*\exp{(m*x+n)}^{2}*\exp{(o*y+p)} +k*\exp{(m*x+n)}*\exp{(o*y+p)}^{2}`
 
     [a, b, c, d, f, g, h, i, j, k, m, n, o, p]
 
@@ -6547,7 +6547,7 @@ Exponential
 
   * Full Quadratic Exponential
 
-    :math:`z = a + b*\exp{(x)} + c*\exp{(y)} + d*\exp{(x)}\textsuperscript{2} +f*\exp{(y)}\textsuperscript{2} + g*\exp{(x)}*\exp{(y)}`
+    :math:`z = a + b*\exp{(x)} + c*\exp{(y)} + d*\exp{(x)}^{2} +f*\exp{(y)}^{2} + g*\exp{(x)}*\exp{(y)}`
 
     [a, b, c, d, f, g]
 
@@ -6555,7 +6555,7 @@ Exponential
 
   * Transform Full Quadratic Exponential
 
-    :math:`z = a + b*\exp{(h*x+i)} + c*\exp{(j*y+k)} + d*\exp{(h*x+i)}\textsuperscript{2} +e*\exp{(j*y+k)}\textsuperscript{2} + f*\exp{(h*x+i)}*\exp{(j*y+k)}`
+    :math:`z = a + b*\exp{(h*x+i)} + c*\exp{(j*y+k)} + d*\exp{(h*x+i)}^{2} +e*\exp{(j*y+k)}^{2} + f*\exp{(h*x+i)}*\exp{(j*y+k)}`
 
     [a, b, c, d, f, g, h, i, j, k]
 
@@ -6579,7 +6579,7 @@ Exponential
 
   * Simplified Cubic Exponential
 
-    :math:`z = a + b*\exp{(x)} + c*\exp{(y)} + d*\exp{(x)}\textsuperscript{2} +e*\exp{(y)}\textsuperscript{2} + f*\exp{(x)}\textsuperscript{3} +g*\exp{(y)}\textsuperscript{3}`
+    :math:`z = a + b*\exp{(x)} + c*\exp{(y)} + d*\exp{(x)}^{2} +e*\exp{(y)}^{2} + f*\exp{(x)}^{3} +g*\exp{(y)}^{3}`
 
     [a, b, c, d, f, g, h]
 
@@ -6587,7 +6587,7 @@ Exponential
 
   * Transform Simplified Cubic Exponential
 
-    :math:`z = a + b*\exp{(i*x+j)} + c*\exp{(k*y+m)} + d*\exp{(i*x+j)}\textsuperscript{2} +f*\exp{(k*y+m)}\textsuperscript{2} + g*\exp{(i*x+j)}\textsuperscript{3} +h*\exp{(k*y+m)}\textsuperscript{3}`
+    :math:`z = a + b*\exp{(i*x+j)} + c*\exp{(k*y+m)} + d*\exp{(i*x+j)}^{2} +f*\exp{(k*y+m)}^{2} + g*\exp{(i*x+j)}^{3} +h*\exp{(k*y+m)}^{3}`
 
     [a, b, c, d, f, g, h, i, j, k, m]
 
@@ -6595,7 +6595,7 @@ Exponential
 
   * Simplified Quadratic Exponential
 
-    :math:`z = a + b*\exp{(x)} + c*\exp{(y)} + d*\exp{(x)}\textsuperscript{2} +f*\exp{(y)}\textsuperscript{2}`
+    :math:`z = a + b*\exp{(x)} + c*\exp{(y)} + d*\exp{(x)}^{2} +f*\exp{(y)}^{2}`
 
     [a, b, c, d, f]
 
@@ -6603,7 +6603,7 @@ Exponential
 
   * Transform Simplified Quadratic Exponential
 
-    :math:`z = a + b*\exp{(g*x+h)} + c*\exp{(i*y+j)} + d*\exp{(g*x+h)}\textsuperscript{2} +f*\exp{(i*y+j)}\textsuperscript{2}`
+    :math:`z = a + b*\exp{(g*x+h)} + c*\exp{(i*y+j)} + d*\exp{(g*x+h)}^{2} +f*\exp{(i*y+j)}^{2}`
 
     [a, b, c, d, f, g, h, i, j]
 
@@ -6615,7 +6615,7 @@ Logarithmic
 
   * Full Cubic Logarithmic
 
-    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}\textsuperscript{2} +f*ln{(y)}\textsuperscript{2} + g*ln{(x)}\textsuperscript{3} +h*ln{(y)}\textsuperscript{3} + i*ln{(x)}*ln{(y)} +j*ln{(x)}\textsuperscript{2}*ln{(y)} + k*ln{(x)}*ln{(y)}\textsuperscript{2}`
+    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}^{2} +f*ln{(y)}^{2} + g*ln{(x)}^{3} +h*ln{(y)}^{3} + i*ln{(x)}*ln{(y)} +j*ln{(x)}^{2}*ln{(y)} + k*ln{(x)}*ln{(y)}^{2}`
 
     [a, b, c, d, f, g, h, i, j, k]
 
@@ -6623,7 +6623,7 @@ Logarithmic
 
   * Transform Full Cubic Logarithmic
 
-    :math:`z = a + b*ln{(m*x+n)} + c*ln{(o*y+p)} + d*ln{(m*x+n)}\textsuperscript{2} +f*ln{(o*y+p)}\textsuperscript{2} + g*ln{(m*x+n)}\textsuperscript{3} +h*ln{(o*y+p)}\textsuperscript{3} + i*ln{(m*x+n)}*ln{(o*y+p)} +j*ln{(m*x+n)}\textsuperscript{2}*ln{(o*y+p)} +k*ln{(m*x+n)}*ln{(o*y+p)}\textsuperscript{2}`
+    :math:`z = a + b*ln{(m*x+n)} + c*ln{(o*y+p)} + d*ln{(m*x+n)}^{2} +f*ln{(o*y+p)}^{2} + g*ln{(m*x+n)}^{3} +h*ln{(o*y+p)}^{3} + i*ln{(m*x+n)}*ln{(o*y+p)} +j*ln{(m*x+n)}^{2}*ln{(o*y+p)} +k*ln{(m*x+n)}*ln{(o*y+p)}^{2}`
 
     [a, b, c, d, f, g, h, i, j, k, m, n, o, p]
 
@@ -6631,7 +6631,7 @@ Logarithmic
 
   * Full Quadratic Logarithmic
 
-    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}\textsuperscript{2} +f*ln{(y)}\textsuperscript{2} + g*ln{(x)}*ln{(y)}`
+    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}^{2} +f*ln{(y)}^{2} + g*ln{(x)}*ln{(y)}`
 
     [a, b, c, d, f, g]
 
@@ -6639,7 +6639,7 @@ Logarithmic
 
   * Transform Full Quadratic Logarithmic
 
-    :math:`z = a + b*ln{(h*x+i)} + c*ln{(j*y+k)} + d*ln{(h*x+i)}\textsuperscript{2} +f*ln{(j*y+k)}\textsuperscript{2} + g*ln{(h*x+i)}*ln{(j*y+k)}`
+    :math:`z = a + b*ln{(h*x+i)} + c*ln{(j*y+k)} + d*ln{(h*x+i)}^{2} +f*ln{(j*y+k)}^{2} + g*ln{(h*x+i)}*ln{(j*y+k)}`
 
     [a, b, c, d, f, g, h, i, j, k]
 
@@ -6663,7 +6663,7 @@ Logarithmic
 
   * Simplified Cubic Logarithmic
 
-    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}\textsuperscript{2} +f*ln{(y)}\textsuperscript{2} + g*ln{(x)}\textsuperscript{3} +h*ln{(y)}\textsuperscript{3}`
+    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}^{2} +f*ln{(y)}^{2} + g*ln{(x)}^{3} +h*ln{(y)}^{3}`
 
     [a, b, c, d, f, g, h]
 
@@ -6671,7 +6671,7 @@ Logarithmic
 
   * Transform Simplified Cubic Logarithmic
 
-    :math:`z = a + b*ln{(i*x+j)} + c*ln{(k*y+m)} + d*ln{(i*x+j)}\textsuperscript{2} +f*ln{(k*y+m)}\textsuperscript{2} + g*ln{(i*x+j)}\textsuperscript{3} +h*ln{(k*y+m)}\textsuperscript{3}`
+    :math:`z = a + b*ln{(i*x+j)} + c*ln{(k*y+m)} + d*ln{(i*x+j)}^{2} +f*ln{(k*y+m)}^{2} + g*ln{(i*x+j)}^{3} +h*ln{(k*y+m)}^{3}`
 
     [a, b, c, d, f, g, h, i, j, k, m]
 
@@ -6679,7 +6679,7 @@ Logarithmic
 
   * Simplified Quadratic Logarithmic
 
-    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}\textsuperscript{2} +f*ln{(y)}\textsuperscript{2}`
+    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}^{2} +f*ln{(y)}^{2}`
 
     [a, b, c, d, f]
 
@@ -6687,7 +6687,7 @@ Logarithmic
 
   * Transform Simplified Quadratic Logarithmic
 
-    :math:`z = a + b*ln{(g*x+h)} + c*ln{(i*y+j)} + d*ln{(g*x+h)}\textsuperscript{2} +f*ln{(i*y+j)}\textsuperscript{2}`
+    :math:`z = a + b*ln{(g*x+h)} + c*ln{(i*y+j)} + d*ln{(g*x+h)}^{2} +f*ln{(i*y+j)}^{2}`
 
     [a, b, c, d, f, g, h, i, j]
 
@@ -6699,13 +6699,13 @@ Miscellaneous
 
   * Gary Cler's Custom Equation Transform
 
-    :math:`z = a * {(dx + f)}\textsuperscript{b} * {(gy + h)}\textsuperscript{c}`
+    :math:`z = a * {(dx + f)}^{b} * {(gy + h)}^{c}`
 
     [a, b, c, d, f, g, h]
 
   * Gary Cler's Custom Equation Transform With Offset
 
-    :math:`z = a * {(dx + f)}\textsuperscript{b} * {(gy + h)}\textsuperscript{c} +\text{Offset}`
+    :math:`z = a * {(dx + f)}^{b} * {(gy + h)}^{c} +\text{Offset}`
 
     [a, b, c, d, f, g, h, Offset]
 
@@ -6713,13 +6713,13 @@ Miscellaneous
 
   * Gaussian Curvature Of Paraboloid
 
-    :math:`z = 4a\textsuperscript{2} / {(1 + 4a\textsuperscript{2} *{(x\textsuperscript{2} + y\textsuperscript{2})})}\textsuperscript{2}`
+    :math:`z = 4a^{2} / {(1 + 4a^{2} *{(x^{2} + y^{2})})}^{2}`
 
     [a]
 
   * Gaussian Curvature Of Paraboloid With Offset
 
-    :math:`z = 4a\textsuperscript{2} / {(1 + 4a\textsuperscript{2} *{(x\textsuperscript{2} + y\textsuperscript{2})})}\textsuperscript{2} +\text{Offset}`
+    :math:`z = 4a^{2} / {(1 + 4a^{2} *{(x^{2} + y^{2})})}^{2} +\text{Offset}`
 
     [a, Offset]
 
@@ -6727,13 +6727,13 @@ Miscellaneous
 
   * Gaussian Curvature Of Paraboloid Scaled
 
-    :math:`z = Scale * 4a\textsuperscript{2} / {(1 + 4a\textsuperscript{2} *{(x\textsuperscript{2} + y\textsuperscript{2})})}\textsuperscript{2}`
+    :math:`z = Scale * 4a^{2} / {(1 + 4a^{2} *{(x^{2} + y^{2})})}^{2}`
 
     [a, Scale]
 
   * Gaussian Curvature Of Paraboloid Scaled With Offset
 
-    :math:`z = Scale * 4a\textsuperscript{2} / {(1 + 4a\textsuperscript{2} *{(x\textsuperscript{2} + y\textsuperscript{2})})}\textsuperscript{2} +\text{Offset}`
+    :math:`z = Scale * 4a^{2} / {(1 + 4a^{2} *{(x^{2} + y^{2})})}^{2} +\text{Offset}`
 
     [a, Scale, Offset]
 
@@ -6741,13 +6741,13 @@ Miscellaneous
 
   * Gaussian Curvature Of Richmond's Minimal Surface
 
-    :math:`z = -1.0 * a * {(x\textsuperscript{2} +y\textsuperscript{2})}\textsuperscript{3} / {(b + {(x\textsuperscript{2} +y\textsuperscript{2})}\textsuperscript{2})}\textsuperscript{4}`
+    :math:`z = -1.0 * a * {(x^{2} +y^{2})}^{3} / {(b + {(x^{2} +y^{2})}^{2})}^{4}`
 
     [a, b]
 
   * Gaussian Curvature Of Richmond's Minimal Surface With Offset
 
-    :math:`z = -1.0 * a * {(x\textsuperscript{2} +y\textsuperscript{2})}\textsuperscript{3} / {(b + {(x\textsuperscript{2} +y\textsuperscript{2})}\textsuperscript{2})}\textsuperscript{4} + \text{Offset}`
+    :math:`z = -1.0 * a * {(x^{2} +y^{2})}^{3} / {(b + {(x^{2} +y^{2})}^{2})}^{4} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -6755,13 +6755,13 @@ Miscellaneous
 
   * Gaussian Curvature Of Whitney's Umbrella A
 
-    :math:`z = -1.0 * a * y\textsuperscript{2} / {(x\textsuperscript{2} + a *{(y\textsuperscript{2} + y\textsuperscript{4})})}\textsuperscript{2}`
+    :math:`z = -1.0 * a * y^{2} / {(x^{2} + a *{(y^{2} + y^{4})})}^{2}`
 
     [a]
 
   * Gaussian Curvature Of Whitney's Umbrella A With Offset
 
-    :math:`z = -1.0 * a * y\textsuperscript{2} / {(x\textsuperscript{2} + a *{(y\textsuperscript{2} + y\textsuperscript{4})})}\textsuperscript{2} +\text{Offset}`
+    :math:`z = -1.0 * a * y^{2} / {(x^{2} + a *{(y^{2} + y^{4})})}^{2} +\text{Offset}`
 
     [a, Offset]
 
@@ -6769,13 +6769,13 @@ Miscellaneous
 
   * Gaussian Curvature Of Whitney's Umbrella B
 
-    :math:`z = -1.0 * a * x\textsuperscript{2} / {(y\textsuperscript{2} + a *{(x\textsuperscript{2} + x\textsuperscript{4})})}\textsuperscript{2}`
+    :math:`z = -1.0 * a * x^{2} / {(y^{2} + a *{(x^{2} + x^{4})})}^{2}`
 
     [a]
 
   * Gaussian Curvature Of Whitney's Umbrella B With Offset
 
-    :math:`z = -1.0 * a * x\textsuperscript{2} / {(y\textsuperscript{2} + a *{(x\textsuperscript{2} + x\textsuperscript{4})})}\textsuperscript{2} +\text{Offset}`
+    :math:`z = -1.0 * a * x^{2} / {(y^{2} + a *{(x^{2} + x^{4})})}^{2} +\text{Offset}`
 
     [a, Offset]
 
@@ -6783,13 +6783,13 @@ Miscellaneous
 
   * Liping Zheng's core loss coefficients
 
-    :math:`z = ax\textsuperscript{2}y + bx\textsuperscript{2}y\textsuperscript{2} +cx\textsuperscript{1.5}y\textsuperscript{1.5}`
+    :math:`z = ax^{2}y + bx^{2}y^{2} +cx^{1.5}y^{1.5}`
 
     [a, b, c]
 
   * Liping Zheng's core loss coefficients With Offset
 
-    :math:`z = ax\textsuperscript{2}y + bx\textsuperscript{2}y\textsuperscript{2} +cx\textsuperscript{1.5}y\textsuperscript{1.5} + \text{Offset}`
+    :math:`z = ax^{2}y + bx^{2}y^{2} +cx^{1.5}y^{1.5} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -6797,13 +6797,13 @@ Miscellaneous
 
   * Mean Curvature Of Paraboloid
 
-    :math:`z = 2 * {(a + 2a\textsuperscript{3} * {(x\textsuperscript{2} +y\textsuperscript{2})})} / {(1 + 4a\textsuperscript{2} *{(x\textsuperscript{2} + y\textsuperscript{2})})}\textsuperscript{1.5}`
+    :math:`z = 2 * {(a + 2a^{3} * {(x^{2} +y^{2})})} / {(1 + 4a^{2} *{(x^{2} + y^{2})})}^{1.5}`
 
     [a]
 
   * Mean Curvature Of Paraboloid With Offset
 
-    :math:`z = 2 * {(a + 2a\textsuperscript{3} * {(x\textsuperscript{2} +y\textsuperscript{2})})} / {(1 + 4a\textsuperscript{2} *{(x\textsuperscript{2} + y\textsuperscript{2})})}\textsuperscript{1.5} +\text{Offset}`
+    :math:`z = 2 * {(a + 2a^{3} * {(x^{2} +y^{2})})} / {(1 + 4a^{2} *{(x^{2} + y^{2})})}^{1.5} +\text{Offset}`
 
     [a, Offset]
 
@@ -6811,13 +6811,13 @@ Miscellaneous
 
   * Mean Curvature Of Paraboloid Scaled
 
-    :math:`z = Scale * {(a + 2a\textsuperscript{3} * {(x\textsuperscript{2} +y\textsuperscript{2})})} / {(1 + 4a\textsuperscript{2} *{(x\textsuperscript{2} + y\textsuperscript{2})})}\textsuperscript{1.5}`
+    :math:`z = Scale * {(a + 2a^{3} * {(x^{2} +y^{2})})} / {(1 + 4a^{2} *{(x^{2} + y^{2})})}^{1.5}`
 
     [a, Scale]
 
   * Mean Curvature Of Paraboloid Scaled With Offset
 
-    :math:`z = Scale * {(a + 2a\textsuperscript{3} * {(x\textsuperscript{2} +y\textsuperscript{2})})} / {(1 + 4a\textsuperscript{2} *{(x\textsuperscript{2} + y\textsuperscript{2})})}\textsuperscript{1.5} +\text{Offset}`
+    :math:`z = Scale * {(a + 2a^{3} * {(x^{2} +y^{2})})} / {(1 + 4a^{2} *{(x^{2} + y^{2})})}^{1.5} +\text{Offset}`
 
     [a, Scale, Offset]
 
@@ -6825,13 +6825,13 @@ Miscellaneous
 
   * Mean Curvature Of Whitney's Umbrella A
 
-    :math:`z = -1.0 * x * {(a + b * y\textsuperscript{2})} / {(x\textsuperscript{2} +a * {(y\textsuperscript{2} + y\textsuperscript{4})})}\textsuperscript{1.5}`
+    :math:`z = -1.0 * x * {(a + b * y^{2})} / {(x^{2} +a * {(y^{2} + y^{4})})}^{1.5}`
 
     [a, b]
 
   * Mean Curvature Of Whitney's Umbrella A With Offset
 
-    :math:`z = -1.0 * x * {(a + b * y\textsuperscript{2})} / {(x\textsuperscript{2} +a * {(y\textsuperscript{2} + y\textsuperscript{4})})}\textsuperscript{1.5}+ \text{Offset}`
+    :math:`z = -1.0 * x * {(a + b * y^{2})} / {(x^{2} +a * {(y^{2} + y^{4})})}^{1.5}+ \text{Offset}`
 
     [a, b, Offset]
 
@@ -6839,13 +6839,13 @@ Miscellaneous
 
   * Mean Curvature Of Whitney's Umbrella B
 
-    :math:`z = -1.0 * y * {(a + b * x\textsuperscript{2})} / {(y\textsuperscript{2} +a * {(x\textsuperscript{2} + x\textsuperscript{4})})}\textsuperscript{1.5}`
+    :math:`z = -1.0 * y * {(a + b * x^{2})} / {(y^{2} +a * {(x^{2} + x^{4})})}^{1.5}`
 
     [a, b]
 
   * Mean Curvature Of Whitney's Umbrella B With Offset
 
-    :math:`z = -1.0 * y * {(a + b * x\textsuperscript{2})} / {(y\textsuperscript{2} +a * {(x\textsuperscript{2} + x\textsuperscript{4})})}\textsuperscript{1.5}+ \text{Offset}`
+    :math:`z = -1.0 * y * {(a + b * x^{2})} / {(y^{2} +a * {(x^{2} + x^{4})})}^{1.5}+ \text{Offset}`
 
     [a, b, Offset]
 
@@ -6853,13 +6853,13 @@ Miscellaneous
 
   * Menn's Surface A
 
-    :math:`z = ax\textsuperscript{4} + bx\textsuperscript{2}y -cy\textsuperscript{2}`
+    :math:`z = ax^{4} + bx^{2}y -cy^{2}`
 
     [a, b, c]
 
   * Menn's Surface A With Offset
 
-    :math:`z = ax\textsuperscript{4} + bx\textsuperscript{2}y -cy\textsuperscript{2} + \text{Offset}`
+    :math:`z = ax^{4} + bx^{2}y -cy^{2} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -6867,13 +6867,13 @@ Miscellaneous
 
   * Menn's Surface B
 
-    :math:`z = ay\textsuperscript{4} + by\textsuperscript{2}x -cx\textsuperscript{2}`
+    :math:`z = ay^{4} + by^{2}x -cx^{2}`
 
     [a, b, c]
 
   * Menn's Surface B With Offset
 
-    :math:`z = ay\textsuperscript{4} + by\textsuperscript{2}x -cx\textsuperscript{2} + \text{Offset}`
+    :math:`z = ay^{4} + by^{2}x -cx^{2} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -6881,13 +6881,13 @@ Miscellaneous
 
   * Monkey Saddle A
 
-    :math:`z = ax\textsuperscript{3} - bxy\textsuperscript{2}`
+    :math:`z = ax^{3} - bxy^{2}`
 
     [a, b]
 
   * Monkey Saddle A With Offset
 
-    :math:`z = ax\textsuperscript{3} - bxy\textsuperscript{2} + \text{Offset}`
+    :math:`z = ax^{3} - bxy^{2} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -6895,13 +6895,13 @@ Miscellaneous
 
   * Monkey Saddle B
 
-    :math:`z = ay\textsuperscript{3} - byx\textsuperscript{2}`
+    :math:`z = ay^{3} - byx^{2}`
 
     [a, b]
 
   * Monkey Saddle B With Offset
 
-    :math:`z = ay\textsuperscript{3} - byx\textsuperscript{2} + \text{Offset}`
+    :math:`z = ay^{3} - byx^{2} + \text{Offset}`
 
     [a, b, Offset]
 
@@ -6909,13 +6909,13 @@ Miscellaneous
 
   * Monkey Saddle Transform A
 
-    :math:`z = a{(cx + d)}\textsuperscript{3} - b{(cx + d)}{(fy + g)}\textsuperscript{2}`
+    :math:`z = a{(cx + d)}^{3} - b{(cx + d)}{(fy + g)}^{2}`
 
     [a, b, c, d, f, g]
 
   * Monkey Saddle Transform A With Offset
 
-    :math:`z = a{(cx + d)}\textsuperscript{3} - b{(cx + d)}{(fy + g)}\textsuperscript{2}+ \text{Offset}`
+    :math:`z = a{(cx + d)}^{3} - b{(cx + d)}{(fy + g)}^{2}+ \text{Offset}`
 
     [a, b, c, d, f, g, Offset]
 
@@ -6923,13 +6923,13 @@ Miscellaneous
 
   * Monkey Saddle Transform B
 
-    :math:`z = a{(cy + d)}\textsuperscript{3} - b{(cy + d)}{(fx + g)}\textsuperscript{2}`
+    :math:`z = a{(cy + d)}^{3} - b{(cy + d)}{(fx + g)}^{2}`
 
     [a, b, c, d, f, g]
 
   * Monkey Saddle Transform B With Offset
 
-    :math:`z = a{(cy + d)}\textsuperscript{3} - b{(cy + d)}{(fx + g)}\textsuperscript{2}+ \text{Offset}`
+    :math:`z = a{(cy + d)}^{3} - b{(cy + d)}{(fx + g)}^{2}+ \text{Offset}`
 
     [a, b, c, d, f, g, Offset]
 
@@ -6937,13 +6937,13 @@ Miscellaneous
 
   * Paraboloid
 
-    :math:`z = a * {(x\textsuperscript{2} + y\textsuperscript{2})}`
+    :math:`z = a * {(x^{2} + y^{2})}`
 
     [a]
 
   * Paraboloid With Offset
 
-    :math:`z = a * {(x\textsuperscript{2} + y\textsuperscript{2})} + \text{Offset}`
+    :math:`z = a * {(x^{2} + y^{2})} + \text{Offset}`
 
     [a, Offset]
 
@@ -6951,13 +6951,13 @@ Miscellaneous
 
   * Paraboloid Transform
 
-    :math:`z = a * {({(bx + c)}\textsuperscript{2} + {(dy + f)}\textsuperscript{2})}`
+    :math:`z = a * {({(bx + c)}^{2} + {(dy + f)}^{2})}`
 
     [a, b, c, d, f]
 
   * Paraboloid Transform With Offset
 
-    :math:`z = a * {({(bx + c)}\textsuperscript{2} + {(dy + f)}\textsuperscript{2})} +\text{Offset}`
+    :math:`z = a * {({(bx + c)}^{2} + {(dy + f)}^{2})} +\text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -7051,13 +7051,13 @@ Optical
 
   * Sag For Asphere 0
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})}`
 
     [k, r]
 
   * Sag For Asphere 0 With Offset
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} + \text{Offset}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} + \text{Offset}`
 
     [k, r, Offset]
 
@@ -7065,13 +7065,13 @@ Optical
 
   * Sag For Asphere 0 Borisovsky
 
-    :math:`s\textsuperscript{2} = {(x - a)}\textsuperscript{2} + {(y -b)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} + offset`
+    :math:`s^{2} = {(x - a)}^{2} + {(y -b)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} + offset`
 
     [a, b, k, r, offset]
 
   * Sag For Asphere 0 Borisovsky With Offset
 
-    :math:`s\textsuperscript{2} = {(x - a)}\textsuperscript{2} + {(y -b)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} + offset +\text{Offset}`
+    :math:`s^{2} = {(x - a)}^{2} + {(y -b)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} + offset +\text{Offset}`
 
     [a, b, k, r, offset, Offset]
 
@@ -7079,13 +7079,13 @@ Optical
 
   * Transform Sag For Asphere 0
 
-    :math:`s\textsuperscript{2} = {(ax+b)}\textsuperscript{2} +{(cy+d)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})}`
+    :math:`s^{2} = {(ax+b)}^{2} +{(cy+d)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})}`
 
     [k, r, a, b, c, d]
 
   * Transform Sag For Asphere 0 With Offset
 
-    :math:`s\textsuperscript{2} = {(ax+b)}\textsuperscript{2} +{(cy+d)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} + \text{Offset}`
+    :math:`s^{2} = {(ax+b)}^{2} +{(cy+d)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} + \text{Offset}`
 
     [k, r, a, b, c, d, Offset]
 
@@ -7093,13 +7093,13 @@ Optical
 
   * Sag For Asphere 0 Scaled
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = Scale * {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = Scale * {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})}`
 
     [k, r, Scale]
 
   * Sag For Asphere 0 Scaled With Offset
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = Scale * {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} + \text{Offset}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = Scale * {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} + \text{Offset}`
 
     [k, r, Scale, Offset]
 
@@ -7107,13 +7107,13 @@ Optical
 
   * Sag For Asphere 1
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4}`
 
     [k, r, A4]
 
   * Sag For Asphere 1 With Offset
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + \text{Offset}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + \text{Offset}`
 
     [k, r, A4, Offset]
 
@@ -7121,13 +7121,13 @@ Optical
 
   * Transform Sag For Asphere 1
 
-    :math:`s\textsuperscript{2} = {(ax+b)}\textsuperscript{2} +{(cy+d)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4}`
+    :math:`s^{2} = {(ax+b)}^{2} +{(cy+d)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4}`
 
     [k, r, A4, a, b, c, d]
 
   * Transform Sag For Asphere 1 With Offset
 
-    :math:`s\textsuperscript{2} = {(ax+b)}\textsuperscript{2} +{(cy+d)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + \text{Offset}`
+    :math:`s^{2} = {(ax+b)}^{2} +{(cy+d)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + \text{Offset}`
 
     [k, r, A4, a, b, c, d, Offset]
 
@@ -7135,13 +7135,13 @@ Optical
 
   * Sag For Asphere 2
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + A6*s\textsuperscript{6}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + A6*s^{6}`
 
     [k, r, A4, A6]
 
   * Sag For Asphere 2 With Offset
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + A6*s\textsuperscript{6} + \text{Offset}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + A6*s^{6} + \text{Offset}`
 
     [k, r, A4, A6, Offset]
 
@@ -7149,13 +7149,13 @@ Optical
 
   * Transform Sag For Asphere 2
 
-    :math:`s\textsuperscript{2} = {(ax+b)}\textsuperscript{2} +{(cy+d)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + A6*s\textsuperscript{6}`
+    :math:`s^{2} = {(ax+b)}^{2} +{(cy+d)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + A6*s^{6}`
 
     [k, r, A4, A6, a, b, c, d]
 
   * Transform Sag For Asphere 2 With Offset
 
-    :math:`s\textsuperscript{2} = {(ax+b)}\textsuperscript{2} +{(cy+d)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + A6*s\textsuperscript{6} + \text{Offset}`
+    :math:`s^{2} = {(ax+b)}^{2} +{(cy+d)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + A6*s^{6} + \text{Offset}`
 
     [k, r, A4, A6, a, b, c, d, Offset]
 
@@ -7163,13 +7163,13 @@ Optical
 
   * Sag For Asphere 3
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + A6*s\textsuperscript{6} +A8*s\textsuperscript{8}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + A6*s^{6} +A8*s^{8}`
 
     [k, r, A4, A6, A8]
 
   * Sag For Asphere 3 With Offset
 
-    :math:`s\textsuperscript{2} = x\textsuperscript{2} + y\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + A6*s\textsuperscript{6} +A8*s\textsuperscript{8} + \text{Offset}`
+    :math:`s^{2} = x^{2} + y^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + A6*s^{6} +A8*s^{8} + \text{Offset}`
 
     [k, r, A4, A6, A8, Offset]
 
@@ -7177,13 +7177,13 @@ Optical
 
   * Transform Sag For Asphere 3
 
-    :math:`s\textsuperscript{2} = {(ax+b)}\textsuperscript{2} +{(cy+d)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + A6*s\textsuperscript{6} +A8*s\textsuperscript{8}`
+    :math:`s^{2} = {(ax+b)}^{2} +{(cy+d)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + A6*s^{6} +A8*s^{8}`
 
     [k, r, A4, A6, A8, a, b, c, d]
 
   * Transform Sag For Asphere 3 With Offset
 
-    :math:`s\textsuperscript{2} = {(ax+b)}\textsuperscript{2} +{(cy+d)}\textsuperscript{2}\\z = {(s\textsuperscript{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}\textsuperscript{2})}\textsuperscript{1/2})} +A4*s\textsuperscript{4} + A6*s\textsuperscript{6} +A8*s\textsuperscript{8} + \text{Offset}`
+    :math:`s^{2} = {(ax+b)}^{2} +{(cy+d)}^{2}\\z = {(s^{2}/r)} /{(1+{(1-{(k+1)}{(s/r)}^{2})}^{1/2})} +A4*s^{4} + A6*s^{6} +A8*s^{8} + \text{Offset}`
 
     [k, r, A4, A6, A8, a, b, c, d, Offset]
 
@@ -7223,13 +7223,13 @@ Peak
 
   * Gaussian A
 
-    :math:`z = a * \exp{(-0.5 * {({({(x-b)}/c)}\textsuperscript{2} +{({(y-d)}/f)}\textsuperscript{2})})}`
+    :math:`z = a * \exp{(-0.5 * {({({(x-b)}/c)}^{2} +{({(y-d)}/f)}^{2})})}`
 
     [a, b, c, d, f]
 
   * Gaussian A With Offset
 
-    :math:`z = a * \exp{(-0.5 * {({({(x-b)}/c)}\textsuperscript{2} +{({(y-d)}/f)}\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = a * \exp{(-0.5 * {({({(x-b)}/c)}^{2} +{({(y-d)}/f)}^{2})})} + \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -7237,13 +7237,13 @@ Peak
 
   * Gaussian B
 
-    :math:`z = a * \exp{(-0.5 * {({({(x-b)}/c)}\textsuperscript{2})})} + d * \exp{(-0.5 *{({({(y-f)}/g)}\textsuperscript{2})})}`
+    :math:`z = a * \exp{(-0.5 * {({({(x-b)}/c)}^{2})})} + d * \exp{(-0.5 *{({({(y-f)}/g)}^{2})})}`
 
     [a, b, c, d, f, g]
 
   * Gaussian B With Offset
 
-    :math:`z = a * \exp{(-0.5 * {({({(x-b)}/c)}\textsuperscript{2})})} + d * \exp{(-0.5 *{({({(y-f)}/g)}\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = a * \exp{(-0.5 * {({({(x-b)}/c)}^{2})})} + d * \exp{(-0.5 *{({({(y-f)}/g)}^{2})})} + \text{Offset}`
 
     [a, b, c, d, f, g, Offset]
 
@@ -7251,13 +7251,13 @@ Peak
 
   * Log-Normal A
 
-    :math:`z = a * \exp{(-0.5 * {({({(ln{(x)}-b)}/c)}\textsuperscript{2} +{({(ln{(y)}-d)}/f)}\textsuperscript{2})})}`
+    :math:`z = a * \exp{(-0.5 * {({({(ln{(x)}-b)}/c)}^{2} +{({(ln{(y)}-d)}/f)}^{2})})}`
 
     [a, b, c, d, f]
 
   * Log-Normal A With Offset
 
-    :math:`z = a * \exp{(-0.5 * {({({(ln{(x)}-b)}/c)}\textsuperscript{2} +{({(ln{(y)}-d)}/f)}\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = a * \exp{(-0.5 * {({({(ln{(x)}-b)}/c)}^{2} +{({(ln{(y)}-d)}/f)}^{2})})} + \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -7265,13 +7265,13 @@ Peak
 
   * Log-Normal B
 
-    :math:`z = a * \exp{(-0.5 * {({({(ln{(x)}-b)}/c)}\textsuperscript{2})})} + d * \exp{(-0.5 *{({({(ln{(y)}-f)}/g)}\textsuperscript{2})})}`
+    :math:`z = a * \exp{(-0.5 * {({({(ln{(x)}-b)}/c)}^{2})})} + d * \exp{(-0.5 *{({({(ln{(y)}-f)}/g)}^{2})})}`
 
     [a, b, c, d, f, g]
 
   * Log-Normal B With Offset
 
-    :math:`z = a * \exp{(-0.5 * {({({(ln{(x)}-b)}/c)}\textsuperscript{2})})} + d * \exp{(-0.5 *{({({(ln{(y)}-f)}/g)}\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = a * \exp{(-0.5 * {({({(ln{(x)}-b)}/c)}^{2})})} + d * \exp{(-0.5 *{({({(ln{(y)}-f)}/g)}^{2})})} + \text{Offset}`
 
     [a, b, c, d, f, g, Offset]
 
@@ -7279,13 +7279,13 @@ Peak
 
   * Logistic A
 
-    :math:`z = 4a * \exp{(-{({(x-b)}/c)})}/{({(1+\exp{(-{({(x-b)}/c)})})}\textsuperscript{2})} + 4d *\exp{(-{({(y-f)}/g)})}/{({(1+\exp{(-{({(y-f)}/g)})})}\textsuperscript{2})}`
+    :math:`z = 4a * \exp{(-{({(x-b)}/c)})}/{({(1+\exp{(-{({(x-b)}/c)})})}^{2})} + 4d *\exp{(-{({(y-f)}/g)})}/{({(1+\exp{(-{({(y-f)}/g)})})}^{2})}`
 
     [a, b, c, d, f, g]
 
   * Logistic A With Offset
 
-    :math:`z = 4a * \exp{(-{({(x-b)}/c)})}/{({(1+\exp{(-{({(x-b)}/c)})})}\textsuperscript{2})} + 4d *\exp{(-{({(y-f)}/g)})}/{({(1+\exp{(-{({(y-f)}/g)})})}\textsuperscript{2})} + \text{Offset}`
+    :math:`z = 4a * \exp{(-{({(x-b)}/c)})}/{({(1+\exp{(-{({(x-b)}/c)})})}^{2})} + 4d *\exp{(-{({(y-f)}/g)})}/{({(1+\exp{(-{({(y-f)}/g)})})}^{2})} + \text{Offset}`
 
     [a, b, c, d, f, g, Offset]
 
@@ -7293,13 +7293,13 @@ Peak
 
   * Logistic B
 
-    :math:`z = 16a * \exp{(-{({(x-b)}/c)}-{({(y-d)}/f)})} /{({(1+\exp{(-{({(x-b)}/c)})})}\textsuperscript{2} *{(1+\exp{(-{({(y-d)}/f)})})}\textsuperscript{2})}`
+    :math:`z = 16a * \exp{(-{({(x-b)}/c)}-{({(y-d)}/f)})} /{({(1+\exp{(-{({(x-b)}/c)})})}^{2} *{(1+\exp{(-{({(y-d)}/f)})})}^{2})}`
 
     [a, b, c, d, f]
 
   * Logistic B With Offset
 
-    :math:`z = 16a * \exp{(-{({(x-b)}/c)}-{({(y-d)}/f)})} /{({(1+\exp{(-{({(x-b)}/c)})})}\textsuperscript{2} *{(1+\exp{(-{({(y-d)}/f)})})}\textsuperscript{2})} + \text{Offset}`
+    :math:`z = 16a * \exp{(-{({(x-b)}/c)}-{({(y-d)}/f)})} /{({(1+\exp{(-{({(x-b)}/c)})})}^{2} *{(1+\exp{(-{({(y-d)}/f)})})}^{2})} + \text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -7307,13 +7307,13 @@ Peak
 
   * Lorentzian A
 
-    :math:`z = a /{({(1+{({(x-b)}/c)}\textsuperscript{2})}*{(1+{({(y-d)}/f)}\textsuperscript{2})})}`
+    :math:`z = a /{({(1+{({(x-b)}/c)}^{2})}*{(1+{({(y-d)}/f)}^{2})})}`
 
     [a, b, c, d, f]
 
   * Lorentzian A With Offset
 
-    :math:`z = a /{({(1+{({(x-b)}/c)}\textsuperscript{2})}*{(1+{({(y-d)}/f)}\textsuperscript{2})})} +\text{Offset}`
+    :math:`z = a /{({(1+{({(x-b)}/c)}^{2})}*{(1+{({(y-d)}/f)}^{2})})} +\text{Offset}`
 
     [a, b, c, d, f, Offset]
 
@@ -7321,13 +7321,13 @@ Peak
 
   * Lorentzian B
 
-    :math:`z = a / {(1+{({(x-b)}/c)}\textsuperscript{2})} + d *{(1+{({(y-f)}/g)}\textsuperscript{2})}`
+    :math:`z = a / {(1+{({(x-b)}/c)}^{2})} + d *{(1+{({(y-f)}/g)}^{2})}`
 
     [a, b, c, d, f, g]
 
   * Lorentzian B With Offset
 
-    :math:`z = a / {(1+{({(x-b)}/c)}\textsuperscript{2})} + d *{(1+{({(y-f)}/g)}\textsuperscript{2})} + \text{Offset}`
+    :math:`z = a / {(1+{({(x-b)}/c)}^{2})} + d *{(1+{({(y-f)}/g)}^{2})} + \text{Offset}`
 
     [a, b, c, d, f, g, Offset]
 
@@ -7351,7 +7351,7 @@ Polynomial
 
   * Full Cubic
 
-    :math:`z = a + bx + cy + dx\textsuperscript{2} + fy\textsuperscript{2} +gx\textsuperscript{3} + hy\textsuperscript{3} + ixy +jx\textsuperscript{2}y + kxy\textsuperscript{2}`
+    :math:`z = a + bx + cy + dx^{2} + fy^{2} +gx^{3} + hy^{3} + ixy +jx^{2}y + kxy^{2}`
 
     [a, b, c, d, f, g, h, i, j, k]
 
@@ -7359,7 +7359,7 @@ Polynomial
 
   * Full Quadratic
 
-    :math:`z = a + bx + cy + dx\textsuperscript{2} + fy\textsuperscript{2} + gxy`
+    :math:`z = a + bx + cy + dx^{2} + fy^{2} + gxy`
 
     [a, b, c, d, f, g]
 
@@ -7375,7 +7375,7 @@ Polynomial
 
   * Simplified Cubic
 
-    :math:`z = a + bx + cy + dx\textsuperscript{2} + fy\textsuperscript{2} +gx\textsuperscript{3} + hy\textsuperscript{3}`
+    :math:`z = a + bx + cy + dx^{2} + fy^{2} +gx^{3} + hy^{3}`
 
     [a, b, c, d, f, g, h]
 
@@ -7383,7 +7383,7 @@ Polynomial
 
   * Simplified Quadratic
 
-    :math:`z = a + bx + cy + dx\textsuperscript{2} + fy\textsuperscript{2}`
+    :math:`z = a + bx + cy + dx^{2} + fy^{2}`
 
     [a, b, c, d, f]
 
@@ -7402,13 +7402,13 @@ Power
 
   * Power A
 
-    :math:`z = a * {(x\textsuperscript{b} + y\textsuperscript{c})}`
+    :math:`z = a * {(x^{b} + y^{c})}`
 
     [a, b, c]
 
   * Power A With Offset
 
-    :math:`z = a * {(x\textsuperscript{b} + y\textsuperscript{c})} + \text{Offset}`
+    :math:`z = a * {(x^{b} + y^{c})} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -7416,13 +7416,13 @@ Power
 
   * Transform Power A
 
-    :math:`z = a * {({(dx + f)}\textsuperscript{b} + {(gy + h)}\textsuperscript{c})}`
+    :math:`z = a * {({(dx + f)}^{b} + {(gy + h)}^{c})}`
 
     [a, b, c, d, f, g, h]
 
   * Transform Power A With Offset
 
-    :math:`z = a * {({(dx + f)}\textsuperscript{b} + {(gy + h)}\textsuperscript{c})} +\text{Offset}`
+    :math:`z = a * {({(dx + f)}^{b} + {(gy + h)}^{c})} +\text{Offset}`
 
     [a, b, c, d, f, g, h, Offset]
 
@@ -7430,7 +7430,7 @@ Power
 
   * Power B
 
-    :math:`z = a + x\textsuperscript{b} + y\textsuperscript{c}`
+    :math:`z = a + x^{b} + y^{c}`
 
     [a, b, c]
 
@@ -7438,7 +7438,7 @@ Power
 
   * Transform Power B
 
-    :math:`z = a + {(dx + f)}\textsuperscript{b} + {(gy + h)}\textsuperscript{c}`
+    :math:`z = a + {(dx + f)}^{b} + {(gy + h)}^{c}`
 
     [a, b, c, d, f, g, h]
 
@@ -7446,7 +7446,7 @@ Power
 
   * Power C
 
-    :math:`z = a + x\textsuperscript{b} * y\textsuperscript{c}`
+    :math:`z = a + x^{b} * y^{c}`
 
     [a, b, c]
 
@@ -7454,7 +7454,7 @@ Power
 
   * Transform Power C
 
-    :math:`z = a + {(dx + f)}\textsuperscript{b} * {(gy + h)}\textsuperscript{c}`
+    :math:`z = a + {(dx + f)}^{b} * {(gy + h)}^{c}`
 
     [a, b, c, d, f, g, h]
 
@@ -7462,13 +7462,13 @@ Power
 
   * Power D
 
-    :math:`z = ax\textsuperscript{b} + cy\textsuperscript{d}`
+    :math:`z = ax^{b} + cy^{d}`
 
     [a, b, c, d]
 
   * Power D With Offset
 
-    :math:`z = ax\textsuperscript{b} + cy\textsuperscript{d} + \text{Offset}`
+    :math:`z = ax^{b} + cy^{d} + \text{Offset}`
 
     [a, b, c, d, Offset]
 
@@ -7476,13 +7476,13 @@ Power
 
   * Transform Power D
 
-    :math:`z = a{(fx + g)}\textsuperscript{b} + c{(hy + i)}\textsuperscript{d}`
+    :math:`z = a{(fx + g)}^{b} + c{(hy + i)}^{d}`
 
     [a, b, c, d, f, g, h, i]
 
   * Transform Power D With Offset
 
-    :math:`z = a{(fx + g)}\textsuperscript{b} + c{(hy + i)}\textsuperscript{d} + \text{Offset}`
+    :math:`z = a{(fx + g)}^{b} + c{(hy + i)}^{d} + \text{Offset}`
 
     [a, b, c, d, f, g, h, i, Offset]
 
@@ -7490,13 +7490,13 @@ Power
 
   * Power E
 
-    :math:`z = a * x\textsuperscript{b} * y\textsuperscript{c}`
+    :math:`z = a * x^{b} * y^{c}`
 
     [a, b, c]
 
   * Power E With Offset
 
-    :math:`z = a * x\textsuperscript{b} * y\textsuperscript{c} + \text{Offset}`
+    :math:`z = a * x^{b} * y^{c} + \text{Offset}`
 
     [a, b, c, Offset]
 
@@ -7504,13 +7504,13 @@ Power
 
   * Transform Power E
 
-    :math:`z = a * {(dx + f)}\textsuperscript{b} * {(gy + h)}\textsuperscript{c}`
+    :math:`z = a * {(dx + f)}^{b} * {(gy + h)}^{c}`
 
     [a, b, c, d, f, g, h]
 
   * Transform Power E With Offset
 
-    :math:`z = a * {(dx + f)}\textsuperscript{b} * {(gy + h)}\textsuperscript{c} +\text{Offset}`
+    :math:`z = a * {(dx + f)}^{b} * {(gy + h)}^{c} +\text{Offset}`
 
     [a, b, c, d, f, g, h, Offset]
 
@@ -7890,13 +7890,13 @@ RomanSurfaces
 
   * Roman Surface (minus)
 
-    :math:`z = {(k{(y\textsuperscript{2}-x\textsuperscript{2})} -{(x\textsuperscript{2}-y\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-x\textsuperscript{2}-y\textsuperscript{2})})}/ {(2{(x\textsuperscript{2}+y\textsuperscript{2})})}`
+    :math:`z = {(k{(y^{2}-x^{2})} -{(x^{2}-y^{2})}\sqrt{(k^{2}-x^{2}-y^{2})})}/ {(2{(x^{2}+y^{2})})}`
 
     [k]
 
   * Roman Surface (minus) With Offset
 
-    :math:`z = {(k{(y\textsuperscript{2}-x\textsuperscript{2})} -{(x\textsuperscript{2}-y\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-x\textsuperscript{2}-y\textsuperscript{2})})}/ {(2{(x\textsuperscript{2}+y\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = {(k{(y^{2}-x^{2})} -{(x^{2}-y^{2})}\sqrt{(k^{2}-x^{2}-y^{2})})}/ {(2{(x^{2}+y^{2})})} + \text{Offset}`
 
     [k, Offset]
 
@@ -7904,13 +7904,13 @@ RomanSurfaces
 
   * Roman Surface (minus) Offset XY
 
-    :math:`z = {(k{({(y+b)}\textsuperscript{2}-{(x+a)}\textsuperscript{2})} -{({(x+a)}\textsuperscript{2}-{(y+b)}\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-{(x+a)}\textsuperscript{2}-{(y+b)}\textsuperscript{2})})}/ {(2{({(x+a)}\textsuperscript{2}+{(y+b)}\textsuperscript{2})})}`
+    :math:`z = {(k{({(y+b)}^{2}-{(x+a)}^{2})} -{({(x+a)}^{2}-{(y+b)}^{2})}\sqrt{(k^{2}-{(x+a)}^{2}-{(y+b)}^{2})})}/ {(2{({(x+a)}^{2}+{(y+b)}^{2})})}`
 
     [k, a, b]
 
   * Roman Surface (minus) Offset XY With Offset
 
-    :math:`z = {(k{({(y+b)}\textsuperscript{2}-{(x+a)}\textsuperscript{2})} -{({(x+a)}\textsuperscript{2}-{(y+b)}\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-{(x+a)}\textsuperscript{2}-{(y+b)}\textsuperscript{2})})}/ {(2{({(x+a)}\textsuperscript{2}+{(y+b)}\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = {(k{({(y+b)}^{2}-{(x+a)}^{2})} -{({(x+a)}^{2}-{(y+b)}^{2})}\sqrt{(k^{2}-{(x+a)}^{2}-{(y+b)}^{2})})}/ {(2{({(x+a)}^{2}+{(y+b)}^{2})})} + \text{Offset}`
 
     [k, a, b, Offset]
 
@@ -7918,13 +7918,13 @@ RomanSurfaces
 
   * Roman Surface (minus) Scaled And Offset XY
 
-    :math:`z = {(k{({(cy+d)}\textsuperscript{2}-{(ax+b)}\textsuperscript{2})} -{({(ax+b)}\textsuperscript{2}-{(cy+d)}\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-{(ax+b)}\textsuperscript{2}-{(cy+d)}\textsuperscript{2})})}/ {(2{({(ax+b)}\textsuperscript{2}+{(cy+d)}\textsuperscript{2})})}`
+    :math:`z = {(k{({(cy+d)}^{2}-{(ax+b)}^{2})} -{({(ax+b)}^{2}-{(cy+d)}^{2})}\sqrt{(k^{2}-{(ax+b)}^{2}-{(cy+d)}^{2})})}/ {(2{({(ax+b)}^{2}+{(cy+d)}^{2})})}`
 
     [k, a, b, c, d]
 
   * Roman Surface (minus) Scaled And Offset XY With Offset
 
-    :math:`z = {(k{({(cy+d)}\textsuperscript{2}-{(ax+b)}\textsuperscript{2})} -{({(ax+b)}\textsuperscript{2}-{(cy+d)}\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-{(ax+b)}\textsuperscript{2}-{(cy+d)}\textsuperscript{2})})}/ {(2{({(ax+b)}\textsuperscript{2}+{(cy+d)}\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = {(k{({(cy+d)}^{2}-{(ax+b)}^{2})} -{({(ax+b)}^{2}-{(cy+d)}^{2})}\sqrt{(k^{2}-{(ax+b)}^{2}-{(cy+d)}^{2})})}/ {(2{({(ax+b)}^{2}+{(cy+d)}^{2})})} + \text{Offset}`
 
     [k, a, b, c, d, Offset]
 
@@ -7932,13 +7932,13 @@ RomanSurfaces
 
   * Roman Surface (plus)
 
-    :math:`z = {(k{(y\textsuperscript{2}-x\textsuperscript{2})} +{(x\textsuperscript{2}-y\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-x\textsuperscript{2}-y\textsuperscript{2})})}/ {(2{(x\textsuperscript{2}+y\textsuperscript{2})})}`
+    :math:`z = {(k{(y^{2}-x^{2})} +{(x^{2}-y^{2})}\sqrt{(k^{2}-x^{2}-y^{2})})}/ {(2{(x^{2}+y^{2})})}`
 
     [k]
 
   * Roman Surface (plus) With Offset
 
-    :math:`z = {(k{(y\textsuperscript{2}-x\textsuperscript{2})} +{(x\textsuperscript{2}-y\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-x\textsuperscript{2}-y\textsuperscript{2})})}/ {(2{(x\textsuperscript{2}+y\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = {(k{(y^{2}-x^{2})} +{(x^{2}-y^{2})}\sqrt{(k^{2}-x^{2}-y^{2})})}/ {(2{(x^{2}+y^{2})})} + \text{Offset}`
 
     [k, Offset]
 
@@ -7946,13 +7946,13 @@ RomanSurfaces
 
   * Roman Surface (plus) Offset XY
 
-    :math:`z = {(k{({(y+b)}\textsuperscript{2}-{(x+a)}\textsuperscript{2})} +{({(x+a)}\textsuperscript{2}-{(y+b)}\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-{(x+a)}\textsuperscript{2}-{(y+b)}\textsuperscript{2})})}/ {(2{({(x+a)}\textsuperscript{2}+{(y+b)}\textsuperscript{2})})}`
+    :math:`z = {(k{({(y+b)}^{2}-{(x+a)}^{2})} +{({(x+a)}^{2}-{(y+b)}^{2})}\sqrt{(k^{2}-{(x+a)}^{2}-{(y+b)}^{2})})}/ {(2{({(x+a)}^{2}+{(y+b)}^{2})})}`
 
     [k, a, b]
 
   * Roman Surface (plus) Offset XY With Offset
 
-    :math:`z = {(k{({(y+b)}\textsuperscript{2}-{(x+a)}\textsuperscript{2})} +{({(x+a)}\textsuperscript{2}-{(y+b)}\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-{(x+a)}\textsuperscript{2}-{(y+b)}\textsuperscript{2})})}/ {(2{({(x+a)}\textsuperscript{2}+{(y+b)}\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = {(k{({(y+b)}^{2}-{(x+a)}^{2})} +{({(x+a)}^{2}-{(y+b)}^{2})}\sqrt{(k^{2}-{(x+a)}^{2}-{(y+b)}^{2})})}/ {(2{({(x+a)}^{2}+{(y+b)}^{2})})} + \text{Offset}`
 
     [k, a, b, Offset]
 
@@ -7960,13 +7960,13 @@ RomanSurfaces
 
   * Roman Surface (plus) Scaled And Offset XY
 
-    :math:`z = {(k{({(cy+d)}\textsuperscript{2}-{(ax+b)}\textsuperscript{2})} +{({(ax+b)}\textsuperscript{2}-{(cy+d)}\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-{(ax+b)}\textsuperscript{2}-{(cy+d)}\textsuperscript{2})})}/ {(2{({(ax+b)}\textsuperscript{2}+{(cy+d)}\textsuperscript{2})})}`
+    :math:`z = {(k{({(cy+d)}^{2}-{(ax+b)}^{2})} +{({(ax+b)}^{2}-{(cy+d)}^{2})}\sqrt{(k^{2}-{(ax+b)}^{2}-{(cy+d)}^{2})})}/ {(2{({(ax+b)}^{2}+{(cy+d)}^{2})})}`
 
     [k, a, b, c, d]
 
   * Roman Surface (plus) Scaled And Offset XY With Offset
 
-    :math:`z = {(k{({(cy+d)}\textsuperscript{2}-{(ax+b)}\textsuperscript{2})} +{({(ax+b)}\textsuperscript{2}-{(cy+d)}\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-{(ax+b)}\textsuperscript{2}-{(cy+d)}\textsuperscript{2})})}/ {(2{({(ax+b)}\textsuperscript{2}+{(cy+d)}\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = {(k{({(cy+d)}^{2}-{(ax+b)}^{2})} +{({(ax+b)}^{2}-{(cy+d)}^{2})}\sqrt{(k^{2}-{(ax+b)}^{2}-{(cy+d)}^{2})})}/ {(2{({(ax+b)}^{2}+{(cy+d)}^{2})})} + \text{Offset}`
 
     [k, a, b, c, d, Offset]
 
@@ -7974,13 +7974,13 @@ RomanSurfaces
 
   * Roman Surface (plus) Scaled
 
-    :math:`z = Scale * {(k{(y\textsuperscript{2}-x\textsuperscript{2})} +{(x\textsuperscript{2}-y\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-x\textsuperscript{2}-y\textsuperscript{2})})}/ {(2{(x\textsuperscript{2}+y\textsuperscript{2})})}`
+    :math:`z = Scale * {(k{(y^{2}-x^{2})} +{(x^{2}-y^{2})}\sqrt{(k^{2}-x^{2}-y^{2})})}/ {(2{(x^{2}+y^{2})})}`
 
     [k, Scale]
 
   * Roman Surface (plus) Scaled With Offset
 
-    :math:`z = Scale * {(k{(y\textsuperscript{2}-x\textsuperscript{2})} +{(x\textsuperscript{2}-y\textsuperscript{2})}\sqrt{(k\textsuperscript{2}-x\textsuperscript{2}-y\textsuperscript{2})})}/ {(2{(x\textsuperscript{2}+y\textsuperscript{2})})} + \text{Offset}`
+    :math:`z = Scale * {(k{(y^{2}-x^{2})} +{(x^{2}-y^{2})}\sqrt{(k^{2}-x^{2}-y^{2})})}/ {(2{(x^{2}+y^{2})})} + \text{Offset}`
 
     [k, Scale, Offset]
 
@@ -8685,7 +8685,7 @@ TaylorSeries
 
   * Taylor Series A
 
-    :math:`z = a + bx + cy + dx\textsuperscript{2} + fy\textsuperscript{2} + gxy`
+    :math:`z = a + bx + cy + dx^{2} + fy^{2} + gxy`
 
     [a, b, c, d, f, g]
 
@@ -8693,7 +8693,7 @@ TaylorSeries
 
   * Taylor Series B
 
-    :math:`z = a + b*ln{(x)} + cy + d*ln{(x)}\textsuperscript{2} +fy\textsuperscript{2} + g*ln{(x)}*y`
+    :math:`z = a + b*ln{(x)} + cy + d*ln{(x)}^{2} +fy^{2} + g*ln{(x)}*y`
 
     [a, b, c, d, f, g]
 
@@ -8701,7 +8701,7 @@ TaylorSeries
 
   * Taylor Series C
 
-    :math:`z = a + bx + c*ln{(y)} + dx\textsuperscript{2} +f*ln{(y)}\textsuperscript{2} + g*x*ln{(y)}`
+    :math:`z = a + bx + c*ln{(y)} + dx^{2} +f*ln{(y)}^{2} + g*x*ln{(y)}`
 
     [a, b, c, d, f, g]
 
@@ -8709,7 +8709,7 @@ TaylorSeries
 
   * Taylor Series D
 
-    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}\textsuperscript{2} +f*ln{(y)}\textsuperscript{2} + g*ln{(x)}*ln{(y)}`
+    :math:`z = a + b*ln{(x)} + c*ln{(y)} + d*ln{(x)}^{2} +f*ln{(y)}^{2} + g*ln{(x)}*ln{(y)}`
 
     [a, b, c, d, f, g]
 
@@ -8717,7 +8717,7 @@ TaylorSeries
 
   * Taylor Series E
 
-    :math:`z = a + b/x + cy + d/x\textsuperscript{2} + fy\textsuperscript{2} + gy/x`
+    :math:`z = a + b/x + cy + d/x^{2} + fy^{2} + gy/x`
 
     [a, b, c, d, f, g]
 
@@ -8725,7 +8725,7 @@ TaylorSeries
 
   * Taylor Series F
 
-    :math:`z = a + b/ln{(x)} + cy + d/ln{(x)}\textsuperscript{2} +fy\textsuperscript{2} + gy/ln{(x)}`
+    :math:`z = a + b/ln{(x)} + cy + d/ln{(x)}^{2} +fy^{2} + gy/ln{(x)}`
 
     [a, b, c, d, f, g]
 
@@ -8733,7 +8733,7 @@ TaylorSeries
 
   * Taylor Series G
 
-    :math:`z = a + b/x + c*ln{(y)} + d/x\textsuperscript{2} +f*ln{(y)}\textsuperscript{2} + g*ln{(y)}/x`
+    :math:`z = a + b/x + c*ln{(y)} + d/x^{2} +f*ln{(y)}^{2} + g*ln{(y)}/x`
 
     [a, b, c, d, f, g]
 
@@ -8741,7 +8741,7 @@ TaylorSeries
 
   * Taylor Series H
 
-    :math:`z = a + b/ln{(x)} + c*ln{(y)} + d/ln{(x)}\textsuperscript{2} +f*ln{(y)}\textsuperscript{2} + g*ln{(y)}/ln{(x)}`
+    :math:`z = a + b/ln{(x)} + c*ln{(y)} + d/ln{(x)}^{2} +f*ln{(y)}^{2} + g*ln{(y)}/ln{(x)}`
 
     [a, b, c, d, f, g]
 
@@ -8749,7 +8749,7 @@ TaylorSeries
 
   * Taylor Series I
 
-    :math:`z = a + bx + c/y + dx\textsuperscript{2} + f/y\textsuperscript{2} + gx/y`
+    :math:`z = a + bx + c/y + dx^{2} + f/y^{2} + gx/y`
 
     [a, b, c, d, f, g]
 
@@ -8757,7 +8757,7 @@ TaylorSeries
 
   * Taylor Series J
 
-    :math:`z = a + b*ln{(x)} + c/y + d*ln{(x)}\textsuperscript{2} +f/y\textsuperscript{2} + g*ln{(x)}/y`
+    :math:`z = a + b*ln{(x)} + c/y + d*ln{(x)}^{2} +f/y^{2} + g*ln{(x)}/y`
 
     [a, b, c, d, f, g]
 
@@ -8765,7 +8765,7 @@ TaylorSeries
 
   * Taylor Series K
 
-    :math:`z = a + bx + c/ln{(y)} + dx\textsuperscript{2} +f/ln{(y)}\textsuperscript{2} + gx/ln{(y)}`
+    :math:`z = a + bx + c/ln{(y)} + dx^{2} +f/ln{(y)}^{2} + gx/ln{(y)}`
 
     [a, b, c, d, f, g]
 
@@ -8773,7 +8773,7 @@ TaylorSeries
 
   * Taylor Series L
 
-    :math:`z = a + b*ln{(x)} + c/ln{(y)} + d*ln{(x)}\textsuperscript{2} +f/ln{(y)}\textsuperscript{2} + g*ln{(x)}/ln{(y)}`
+    :math:`z = a + b*ln{(x)} + c/ln{(y)} + d*ln{(x)}^{2} +f/ln{(y)}^{2} + g*ln{(x)}/ln{(y)}`
 
     [a, b, c, d, f, g]
 
@@ -8781,7 +8781,7 @@ TaylorSeries
 
   * Taylor Series M
 
-    :math:`z = a + b/x + c/y + d/x\textsuperscript{2} + f/y\textsuperscript{2} +g/{(xy)}`
+    :math:`z = a + b/x + c/y + d/x^{2} + f/y^{2} +g/{(xy)}`
 
     [a, b, c, d, f, g]
 
@@ -8789,7 +8789,7 @@ TaylorSeries
 
   * Taylor Series N
 
-    :math:`z = a + b/ln{(x)} + c/y + d/ln{(x)}\textsuperscript{2} +f/y\textsuperscript{2} + g/{(ln{(x)}*y)}`
+    :math:`z = a + b/ln{(x)} + c/y + d/ln{(x)}^{2} +f/y^{2} + g/{(ln{(x)}*y)}`
 
     [a, b, c, d, f, g]
 
@@ -8797,7 +8797,7 @@ TaylorSeries
 
   * Taylor Series O
 
-    :math:`z = a + b/x + c/ln{(y)} + d/x\textsuperscript{2} +f/ln{(y)}\textsuperscript{2} + g/{(x*ln{(y)})}`
+    :math:`z = a + b/x + c/ln{(y)} + d/x^{2} +f/ln{(y)}^{2} + g/{(x*ln{(y)})}`
 
     [a, b, c, d, f, g]
 
@@ -8805,7 +8805,7 @@ TaylorSeries
 
   * Taylor Series P
 
-    :math:`z = a + b/ln{(x)} + c/ln{(y)} + d/ln{(x)}\textsuperscript{2} +f/ln{(y)}\textsuperscript{2} + g/{(ln{(x)}*ln{(y)})}`
+    :math:`z = a + b/ln{(x)} + c/ln{(y)} + d/ln{(x)}^{2} +f/ln{(y)}^{2} + g/{(ln{(x)}*ln{(y)})}`
 
     [a, b, c, d, f, g]
 
@@ -8915,13 +8915,13 @@ Trigonometric
 
   * Reza's Custom Equation One [radians]
 
-    :math:`z = {(cos{(a*x - b*y)} + sin{(c*x - d*y)})}\textsuperscript{n} - {(cos{(f*x -g*y)} + sin{(h*x- i*y)})}\textsuperscript{n}`
+    :math:`z = {(cos{(a*x - b*y)} + sin{(c*x - d*y)})}^{n} - {(cos{(f*x -g*y)} + sin{(h*x- i*y)})}^{n}`
 
     [a, b, c, d, f, g, h, i, n]
 
   * Reza's Custom Equation One [radians] With Offset
 
-    :math:`z = {(cos{(a*x - b*y)} + sin{(c*x - d*y)})}\textsuperscript{n} - {(cos{(f*x -g*y)} + sin{(h*x- i*y)})}\textsuperscript{n} + \text{Offset}`
+    :math:`z = {(cos{(a*x - b*y)} + sin{(c*x - d*y)})}^{n} - {(cos{(f*x -g*y)} + sin{(h*x- i*y)})}^{n} + \text{Offset}`
 
     [a, b, c, d, f, g, h, i, n, Offset]
 
@@ -8929,13 +8929,13 @@ Trigonometric
 
   * Reza's Custom Equation Two [radians]
 
-    :math:`z = abs{(cos{({(A*{(x+B)})} + C*{(y+D)})})} + abs{(cos{({(A*{(x+B)})} - C*{(y+D)})})} -{(sin{(E*x+F)})}\textsuperscript{2} - {(sin{(E*y+G)})}\textsuperscript{2}`
+    :math:`z = abs{(cos{({(A*{(x+B)})} + C*{(y+D)})})} + abs{(cos{({(A*{(x+B)})} - C*{(y+D)})})} -{(sin{(E*x+F)})}^{2} - {(sin{(E*y+G)})}^{2}`
 
     [A, B, C, D, E, F, G]
 
   * Reza's Custom Equation Two [radians] With Offset
 
-    :math:`z = abs{(cos{({(A*{(x+B)})} + C*{(y+D)})})} + abs{(cos{({(A*{(x+B)})} - C*{(y+D)})})} -{(sin{(E*x+F)})}\textsuperscript{2} - {(sin{(E*y+G)})}\textsuperscript{2} +\text{Offset}`
+    :math:`z = abs{(cos{({(A*{(x+B)})} + C*{(y+D)})})} + abs{(cos{({(A*{(x+B)})} - C*{(y+D)})})} -{(sin{(E*x+F)})}^{2} - {(sin{(E*y+G)})}^{2} +\text{Offset}`
 
     [A, B, C, D, E, F, G, Offset]
 
