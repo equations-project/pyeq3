@@ -1765,7 +1765,7 @@ class ParetoC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Pareto C"
-    _HTML = 'y = 1.0 - (1.0 / (1 + ax)<sup>b</sup>'
+    _HTML = 'y = 1.0 - (1.0 / (1 + ax)<sup>b</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b']
     _canLinearSolverBeUsedForSSQABS = False
@@ -2680,7 +2680,7 @@ class MorsePotential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class NelsonSiegel(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Nelson-Siegel"
-    _HTML = 'y(m) = B0 + B1*((1-exp(-m/t))/(m/t)) + B2*(((1-exp(-m/t))/(m/t)) - exp(-m/t)))'
+    _HTML = 'y(m) = B0 + B1*((1-exp(-m/t))/(m/t)) + B2*(((1-exp(-m/t))/(m/t)) - exp(-m/t))'
     _leftSideHTML = 'y(m)'
     _coefficientDesignators = ['B0', 'B1', 'B2', 't']
     _canLinearSolverBeUsedForSSQABS = False

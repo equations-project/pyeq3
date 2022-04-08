@@ -320,7 +320,7 @@ class InverseHarris(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Nelder"
-    _HTML = 'y = (a + x) / (b + c(a + x) + d(a + x)<sup>2</sup>'
+    _HTML = 'y = (a + x) / (b + c(a + x) + d(a + x)<sup>2</sup>)'
     _leftSideHTML = 'y'
     _coefficientDesignators = ['a', 'b', 'c', 'd']
     _canLinearSolverBeUsedForSSQABS = False
