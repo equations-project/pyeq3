@@ -8,10 +8,12 @@
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
+import io
 import pyeq3
 import numpy
 import scipy.interpolate
 import scipy.stats
+from itertools import groupby
 
 numpy.seterr(all="ignore")
 
@@ -865,6 +867,51 @@ class IModel(object):
 
         return true_or_false
 
+    def IsDigitOrPeriod(self, character):
+        if str.isdigit(character) or character == '.':
+            return True
+        else:
+            return False
+
+    def ConvertStringIntsToStringFloats(self, string):
+        res = [''.join(g) for _, g in groupby(string, self.IsDigitOrPeriod)]
+
+        res2 = []
+        for r in res:
+            if r.isnumeric():
+                res2.append(r+'.0')
+            else:
+                res2.append(r)
+
+        return ''.join(res2)
+
+    def GetSortedCoefficientsFromString(self, string, dim):
+
+        numpySafeTokenList = []
+        for key in list(self.functionDictionary.keys()):
+            numpySafeTokenList += self.functionDictionary[key]
+        for key in list(self.constantsDictionary.keys()):
+            numpySafeTokenList += self.constantsDictionary[key]
+
+        # some safe tokens have numbers. split these.
+        new_list = []
+        for t in numpySafeTokenList:
+            tsplit = [''.join(g)
+                      for _, g in groupby(t, str.isalpha)]
+            tsplit = [g for g in tsplit if str.isalpha(g[0])]
+            new_list.extend(tsplit)
+        numpySafeTokenList = new_list
+
+        tokenNames = [''.join(g)
+                      for _, g in groupby(string, str.isalpha)]
+        tokenNames = [g for g in tokenNames
+                      if (g not in numpySafeTokenList and
+                          str.isalpha(g[0]))]
+        if dim == 2:
+            return sorted(list(set(tokenNames) - set(['X'])))
+        else:
+            return sorted(list(set(tokenNames) - set(['X', 'Y'])))
+
     def RecursivelyConvertIntStringsToFloatStrings(self, inList):
         returnList = []
         for item in inList:
@@ -880,6 +927,97 @@ class IModel(object):
             else:
                 returnList.append(item)
         return returnList
+
+    def ProcessAndValidateFunctionString(self, inString, dim):
+
+        # no blank lines of text, StringIO() allows using file methods on text
+        stringToConvert = ''
+        rawData = io.StringIO(inString).readlines()
+
+        for line in rawData:
+            stripped = line.strip()
+            if len(stripped) > 0:  # no empty strings
+                if stripped[0] != '#':  # no comment-only lines
+                    stringToConvert += stripped + '\n'
+
+        # convert brackets to parentheses
+        stringToConvert = stringToConvert.replace('[', '(').replace(']', ')')
+
+        if stringToConvert == '':
+            raise Exception('You must enter some function '
+                            'text for the software to use.')
+
+        if -1 != stringToConvert.find('='):
+            raise Exception('Please do not use an equals '
+                            'sign "=" in your text.')
+
+        if '^' in stringToConvert:
+            raise Exception('The caret symbol "^" is not recognized '
+                            'by the parser, please substitute double '
+                            'asterisks "**" for "^".')
+
+        if 'ln' in stringToConvert:
+            raise Exception("The parser uses log() for the natural "
+                            "log function, not ln(). "
+                            "Please use log() in your text.")
+
+        if 'abs' in stringToConvert:
+            raise Exception("The parser uses fabs() for the absolute "
+                            "value, not abs(). Please use fabs() in "
+                            "your text.")
+
+        if 'EXP' in stringToConvert:
+            raise Exception("The parser uses lower case exp(), "
+                            "not upper case EXP(). Please use "
+                            "lower case exp() in your text.")
+
+        if 'LOG' in stringToConvert:
+            raise Exception("The parser uses lower case log(), "
+                            "not upper case LOG(). Please use "
+                            "lower case log() in your text.")
+
+        if 'X' not in stringToConvert:
+            raise Exception('You must use a separate upper case "X" '
+                            'in your function to enter a valid function of X.')
+
+        if dim == 3 and 'Y' not in stringToConvert:
+            raise Exception('You must use a separate upper case "Y" '
+                            'in your function to enter a valid function of Y.')
+
+        return stringToConvert
+
+    def ParseAndCompileUserFunctionString(self, inString, dim):
+
+        stringToConvert = self.ProcessAndValidateFunctionString(inString, dim)
+
+        self._coefficientDesignators = self.GetSortedCoefficientsFromString(
+            inString, dim)
+
+        if len(self._coefficientDesignators) == 0:
+            raise Exception('I could not find any equation parameter '
+                            'or coefficient names, please check the '
+                            'function text')
+
+        # now compile code object using safe tokens with integer conversion
+        self.safe_dict = locals()
+
+        numpySafeTokenList = []
+        for key in list(self.functionDictionary.keys()):
+            numpySafeTokenList += self.functionDictionary[key]
+        for key in list(self.constantsDictionary.keys()):
+            numpySafeTokenList += self.constantsDictionary[key]
+
+        for f in numpySafeTokenList:
+            self.safe_dict[f] = eval('numpy.' + f)
+
+        # convert integer use such as (3/2) into floats such as (3.0/2.0)
+        stringToConvert = self.ConvertStringIntsToStringFloats(stringToConvert)
+
+        # later evals re-use this compiled code for improved performance
+        # in EvaluateCachedData() methods
+        self.userFunctionCodeObject = compile(stringToConvert,
+                                              '<string>',
+                                              mode='eval')
 
     def CalculateModelPredictionsFromNewData(self, independent_data):
         ModelCache = pyeq3.dataCache()

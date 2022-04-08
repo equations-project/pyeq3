@@ -8,8 +8,6 @@
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import parser
-import io
 import sys
 import os
 if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
@@ -45,7 +43,7 @@ class UserDefinedFunction(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default', inUserFunctionString=''):
         if inUserFunctionString:
-            self.ParseAndCompileUserFunctionString(inUserFunctionString)
+            self.ParseAndCompileUserFunctionString(inUserFunctionString, dim=3)
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
             self, inFittingTarget, inExtendedVersionName)  # call superclass
 
@@ -59,106 +57,6 @@ class UserDefinedFunction(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         functionList.append(
             [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
         return functionList
-
-    def GetTokensFromTupleParsingHelper(self, tup, inList=None):
-        if inList is None:
-            inList = []
-        if type(tup) is tuple:
-            tupleLength = len(tup)
-            if tupleLength > 1 and type(tup[0]) is not tuple:
-                if tup[0] == 1:
-                    inList.append(tup[1])
-            if tupleLength == 2:  # so a caret character can be trapped later
-                if tup[0] == 32:
-                    if tup[1] == '^':
-                        inList.append('^')
-            for i in tup:
-                inList = self.GetTokensFromTupleParsingHelper(i, inList)
-        return inList
-
-    def ParseAndCompileUserFunctionString(self, inString):
-
-        # shift user functions into numpy namespace at run time, not import time
-        numpySafeTokenList = []
-        for key in list(self.functionDictionary.keys()):
-            numpySafeTokenList += self.functionDictionary[key]
-        for key in list(self.constantsDictionary.keys()):
-            numpySafeTokenList += self.constantsDictionary[key]
-
-        # no blank lines of text, StringIO() allows using file methods on text
-        stringToConvert = ''
-        rawData = io.StringIO(inString).readlines()
-
-        for line in rawData:
-            stripped = line.strip()
-            if len(stripped) > 0:  # no empty strings
-                if stripped[0] != '#':  # no comment-only lines
-                    stringToConvert += stripped + '\n'
-
-        # convert brackets to parentheses
-        stringToConvert = stringToConvert.replace('[', '(').replace(']', ')')
-
-        if stringToConvert == '':
-            raise Exception(
-                'You must enter some function text for the software to use.')
-
-        if -1 != stringToConvert.find('='):
-            raise Exception(
-                'Please do not use an equals sign "=" in your text.')
-
-        st = parser.expr(stringToConvert)
-        tup = st.totuple()
-        tokens = self.GetTokensFromTupleParsingHelper(tup)
-
-        if '^' in tokens:
-            raise Exception(
-                'The caret symbol "^" is not recognized by the parser, please substitute double asterisks "**" for "^".')
-
-        if 'ln' in tokens:
-            raise Exception(
-                "The parser uses log() for the natural log function, not ln(). Please use log() in your text.")
-
-        if 'abs' in tokens:
-            raise Exception(
-                "The parser uses fabs() for the absolute value, not abs(). Please use fabs() in your text.")
-
-        if 'EXP' in tokens:
-            raise Exception(
-                "The parser uses lower case exp(), not upper case EXP(). Please use lower case exp() in your text.")
-
-        if 'LOG' in tokens:
-            raise Exception(
-                "The parser uses lower case log(), not upper case LOG(). Please use lower case log() in your text.")
-
-        # test for required reserved tokens
-        tokenNames = list(set(tokens) - set(numpySafeTokenList))
-        if 'X' not in tokenNames:
-            raise Exception(
-                'You must use a separate upper case "X" in your function to enter a valid function of X.')
-        if 'Y' not in tokenNames:
-            raise Exception(
-                'You must use a separate upper case "Y" in your function to enter a valid function of Y.')
-
-        self._coefficientDesignators = sorted(
-            list(set(tokenNames) - set(['X', 'Y'])))
-
-        if len(self._coefficientDesignators) == 0:
-            raise Exception(
-                'I could not find any equation parameter or coefficient names, please check the function text')
-
-        # now compile code object using safe tokens with integer conversion
-        self.safe_dict = locals()
-        for f in numpySafeTokenList:
-            self.safe_dict[f] = eval('numpy.' + f)
-
-        # convert integer use such as (3/2) into floats such as (3.0/2.0)
-        st = parser.expr(stringToConvert)
-        stList = parser.st2list(st)
-        stList = self.RecursivelyConvertIntStringsToFloatStrings(stList)
-        st = parser.sequence2st(stList)
-
-        # later evals re-use this compiled code for improved performance in EvaluateCachedData() methods
-        self.userFunctionCodeObject = parser.compilest(st)
 
     def ShouldDataBeRejected(self, inModel):
         return False
@@ -185,7 +83,7 @@ class UserDefinedFunction(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     def Solve(self, inUserFunctionString=None, inAlgorithmName="Levenberg-Marquardt"):
         if inUserFunctionString:
-            self.ParseAndCompileUserFunctionString(inUserFunctionString)
+            self.ParseAndCompileUserFunctionString(inUserFunctionString, dim=3)
 
         # starting point
         if len(self.estimatedCoefficients) == 0:
