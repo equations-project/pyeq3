@@ -8,10 +8,10 @@ It includes orthogonal distance and relative error regressions.
 
 pyeq3 is released under a permissive license. It relies on numpy, scipy, and matplotlib.
 
- - Homepage: https://github.com/bobmyhill/pyeq3
+ - Homepage: https://github.com/equations-project/pyeq3
  - Discussion group: https://groups.google.com/g/findcurves
  - Documentation: http://pyeq3.readthedocs.io
- - Source code with examples: https://github.com/bobmyhill/pyeq3
+ - Source code with examples: https://github.com/equations-project/pyeq3
 
 If you haven't yet installed pyeq3, you can go straight to :ref:`ref-installation` for detailed
 instructions. After that, you might want to try out some :ref:`ref-examples`.
