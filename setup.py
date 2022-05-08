@@ -17,13 +17,14 @@ long_description = ("A large collection of Python3 equations that "
                     "web-based graphical examples. "
                     "Includes orthogonal distance and "
                     "relative error regressions.\n\n"
-                    "Discussion group: https://groups.google.com/g/findcurves\n"
-                    "Full source code with examples: https://github.com/bobmyhill/pyeq3.")
+                    "Discussion group: https://groups.google.com/g/findcurves"
+                    "\n\n"
+                    "Full source code with examples: https://github.com/equations-project/pyeq3.")
 
 metadata = dict(name='pyeq3',
                 version=versionstuff['version'],
                 description='An equation, curve and surface fitting library',
-                url='https://github.com/bobmyhill/pyeq3',
+                url='https://github.com/equations-project/pyeq3',
                 author='James Phillips, Robert Myhill',
                 author_email='bob.myhill@bristol.ac.uk',
                 license='BSD',

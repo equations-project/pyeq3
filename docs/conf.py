@@ -192,7 +192,7 @@ latex_maketitle = r'''
 James Phillips\\Robert Myhill\\
 }
 
-{\fontfamily{\sfdefault}\selectfont \href{https://github.com/bobmyhill/pyeq3}{https://github.com/bobmyhill/pyeq3}}
+{\fontfamily{\sfdefault}\selectfont \href{https://github.com/equations-project/pyeq3}{https://github.com/equations-project/pyeq3}}
 
 
 %LINE%

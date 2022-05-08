@@ -4,13 +4,11 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
-#
-#    License: BSD-style (see LICENSE.txt in main source directory)
+#    License: BSD-style (see license.txt in main source directory)
 
 cppOutputSourceCodeUpperComment = """// If there are any errors or problems with this
 // code output please raise an issue on GitHub:
-// github.com/bobmyhill/pyeq3
+// github.com/equations-project/pyeq3
 
 """
 
