@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6528718.svg)](https://doi.org/10.5281/zenodo.6528718)
+
 # pyeq3: an equation, curve and surface fitting library
 
 <p align="center">

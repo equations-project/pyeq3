@@ -1,10 +1,10 @@
-from setuptools import setup, find_packages  # Always prefer setuptools over distutils
+from setuptools import find_packages
 from codecs import open  # To use a consistent encoding
 from os import path
 import re
 
-versionstuff = dict(
-    re.findall("(.+) = '(.+)'\n", open('pyeq3/version.py').read()))
+versionstuff = dict(re.findall("(.+) = '(.+)'",
+                               open('pyeq3/version.py').read()))
 
 here = path.abspath(path.dirname(__file__))
 
