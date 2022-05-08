@@ -1,0 +1,10 @@
+Changelog
+---------
+
+Release v12.6.0 (May 8, 2022)
+  - Code restructured and reformatted
+  - Updates to code to for use with Python 3.9+
+  - Adds ability to add data as a numpy array
+  - Adds string output to the IModel class
+  - Fixes solved coefficients output for fixed or bounded solutions
+  - Adds basic sphinx documentation

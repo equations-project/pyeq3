@@ -1,10 +1,10 @@
-from setuptools import setup, find_packages  # Always prefer setuptools over distutils
+from setuptools import find_packages
 from codecs import open  # To use a consistent encoding
 from os import path
 import re
 
-versionstuff = dict(
-    re.findall("(.+) = '(.+)'\n", open('pyeq3/version.py').read()))
+versionstuff = dict(re.findall("(.+) = '(.+)'",
+                               open('pyeq3/version.py').read()))
 
 here = path.abspath(path.dirname(__file__))
 
@@ -17,13 +17,14 @@ long_description = ("A large collection of Python3 equations that "
                     "web-based graphical examples. "
                     "Includes orthogonal distance and "
                     "relative error regressions.\n\n"
-                    "Discussion group: https://groups.google.com/g/findcurves\n"
-                    "Full source code with examples: https://github.com/bobmyhill/pyeq3.")
+                    "Discussion group: https://groups.google.com/g/findcurves"
+                    "\n\n"
+                    "Full source code with examples: https://github.com/equations-project/pyeq3.")
 
 metadata = dict(name='pyeq3',
                 version=versionstuff['version'],
                 description='An equation, curve and surface fitting library',
-                url='https://github.com/bobmyhill/pyeq3',
+                url='https://github.com/equations-project/pyeq3',
                 author='James Phillips, Robert Myhill',
                 author_email='bob.myhill@bristol.ac.uk',
                 license='BSD',
