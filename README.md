@@ -15,9 +15,9 @@ pyeq3 comes with cluster, parallel, IPython, GUI, NodeJS,
 and web-based graphical examples. Includes orthogonal distance and
 relative error regressions. 
 
- - Homepage: https://github.com/bobmyhill/pyeq3
+ - Homepage: https://github.com/equations-project/pyeq3
  - Documentation: http://pyeq3.readthedocs.io
- - Source code: https://github.com/bobmyhill/pyeq3
+ - Source code: https://github.com/equations-project/pyeq3
  - Web App: http://findcurves.com/
  - Discussion group: https://groups.google.com/g/findcurves
 
