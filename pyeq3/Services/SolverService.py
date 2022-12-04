@@ -16,8 +16,8 @@ from . import diffev
 try:
     import scipy.interpolate
     import scipy.optimize
-    import scipy.odr.odrpack
-except:
+    import scipy.odr
+except ImportError:
     pass
 numpy.seterr(all="ignore")
 
@@ -33,7 +33,9 @@ class custom_prng_for_diffev(numpy.random.mtrand.RandomState):
     def rand(self, inSize):
         if self.index + inSize > self.max_index:
             self.index = 0
-        return_val = self.array[self.index : self.index + inSize]
+        sidx = self.index
+        eidx = self.index + inSize
+        return_val = self.array[sidx:eidx]
         self.index += inSize
         return return_val
 
@@ -161,9 +163,8 @@ class SolverService(object):
         logging.info(f"running SolveUsingSelectedAlgorithm: {inAlgorithmName}")
         if inAlgorithmName not in self.ListOfNonLinearSolverAlgorithmNames:
             raise Exception(
-                '"'
-                + inAlgorithmName
-                + '" was not in the list of known non-linear solver algorithm names.  Please see the SolverService class definition.'
+                f"{inAlgorithmName} was not in the list of known non-linear "
+                "solver algorithm names. Please see the SolverService class definition."
             )
 
         inModel.dataCache.FindOrCreateAllDataCache(inModel)
@@ -188,8 +189,8 @@ class SolverService(object):
                 )
             SSQ = inModel.CalculateAllDataFittingTarget(coeffs)
             results.append([SSQ, coeffs])
-            logging.info(f"solved with initial coefficients equal to 1")
-        except:
+            logging.info("solved with initial coefficients equal to 1")
+        except Exception:
             pass
 
         # try with initial coefficients from DE
@@ -210,8 +211,8 @@ class SolverService(object):
                 )
             SSQ = inModel.CalculateAllDataFittingTarget(coeffs)
             results.append([SSQ, coeffs])
-            logging.info(f"solved with initial coefficients from DE")
-        except:
+            logging.info("solved with initial coefficients from DE")
+        except Exception:
             pass
 
         # try using estimated coefficients, if any
@@ -220,8 +221,8 @@ class SolverService(object):
                 coeffs = inModel.estimatedCoefficients
                 SSQ = inModel.CalculateAllDataFittingTarget(coeffs)
                 results.append([SSQ, coeffs])
-                logging.info(f"assigning estimated coefficients")
-            except:
+                logging.info("assigning estimated coefficients")
+            except Exception:
                 pass
 
             try:
@@ -241,8 +242,8 @@ class SolverService(object):
                     )
                 SSQ = inModel.CalculateAllDataFittingTarget(coeffs)
                 results.append([SSQ, coeffs])
-                logging.info(f"solved using estimated coefficients, if any")
-            except:
+                logging.info("solved using estimated coefficients, if any")
+            except Exception:
                 pass
 
         if results == []:
@@ -257,15 +258,15 @@ class SolverService(object):
     def SolveUsingODR(self, inModel):
         logging.info("running SolveUsingODR")
         inModel.dataCache.FindOrCreateAllDataCache(inModel)
-        modelObject = scipy.odr.odrpack.Model(inModel.WrapperForODR)
+        modelObject = scipy.odr.Model(inModel.WrapperForODR)
         if len(inModel.dataCache.allDataCacheDictionary["Weights"]):
-            dataObject = scipy.odr.odrpack.Data(
+            dataObject = scipy.odr.Data(
                 inModel.dataCache.allDataCacheDictionary["IndependentData"],
                 inModel.dataCache.allDataCacheDictionary["DependentData"],
                 inModel.dataCache.allDataCacheDictionary["Weights"],
             )
         else:
-            dataObject = scipy.odr.odrpack.Data(
+            dataObject = scipy.odr.Data(
                 inModel.dataCache.allDataCacheDictionary["IndependentData"],
                 inModel.dataCache.allDataCacheDictionary["DependentData"],
             )
@@ -274,7 +275,7 @@ class SolverService(object):
 
         # try with initial coefficients equal to 1
         try:
-            myodr = scipy.odr.odrpack.ODR(
+            myodr = scipy.odr.ODR(
                 dataObject,
                 modelObject,
                 beta0=numpy.ones(len(inModel.GetCoefficientDesignators())),
@@ -288,12 +289,12 @@ class SolverService(object):
             SSQ = out.sum_square
             if not numpy.any(numpy.isnan(coeffs)):
                 results.append([SSQ, coeffs])
-        except:
+        except Exception:
             pass
 
         # try with initial coefficients from DE
         try:
-            myodr = scipy.odr.odrpack.ODR(
+            myodr = scipy.odr.ODR(
                 dataObject,
                 modelObject,
                 beta0=inModel.deEstimatedCoefficients,
@@ -307,7 +308,7 @@ class SolverService(object):
             SSQ = out.sum_square
             if not numpy.any(numpy.isnan(coeffs)):
                 results.append([SSQ, coeffs])
-        except:
+        except Exception:
             pass
 
         # try using estimated coefficients, if any
@@ -316,11 +317,11 @@ class SolverService(object):
                 coeffs = inModel.estimatedCoefficients
                 SSQ = inModel.CalculateAllDataFittingTarget(coeffs)
                 results.append([SSQ, coeffs])
-            except:
+            except Exception:
                 pass
 
             try:
-                myodr = scipy.odr.odrpack.ODR(
+                myodr = scipy.odr.ODR(
                     dataObject,
                     modelObject,
                     beta0=inModel.estimatedCoefficients,
@@ -335,7 +336,7 @@ class SolverService(object):
                 SSQ = out.sum_square
                 if not numpy.any(numpy.isnan(coeffs)):
                     results.append([SSQ, coeffs])
-            except:
+            except Exception:
                 pass
 
         if results == []:
@@ -391,7 +392,7 @@ class SolverService(object):
             )
         try:
             distribution = eval("scipy.stats." + distributionName)
-        except:
+        except Exception:
             return 0
         # only need to calculate these once
         eps = numpy.finfo(float).eps * 2.0
@@ -399,7 +400,8 @@ class SolverService(object):
         data_max = data.max()
         data_mean = data.mean()
         data_range = data_max - data_min
-        # note on precision http://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html
+        # note on precision "
+        # "http://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html
         data_std_dev = numpy.std(data, dtype=numpy.float32)
 
         # Try different starting parameters
@@ -429,7 +431,7 @@ class SolverService(object):
                 if numpy.isfinite(nnlf) and nnlf < best_nnlf:
                     best_parameters = par_est
                     best_nnlf = nnlf
-            except:
+            except Exception:
                 pass
 
         if distribution.name in ["truncnorm", "betaprime", "reciprocal"]:
@@ -442,7 +444,7 @@ class SolverService(object):
                 if numpy.isfinite(nnlf) and nnlf < best_nnlf:
                     best_parameters = par_est
                     best_nnlf = nnlf
-            except:
+            except Exception:
                 pass
 
         try:
@@ -451,7 +453,7 @@ class SolverService(object):
             if numpy.isfinite(nnlf) and nnlf < best_nnlf:
                 best_parameters = par_est
                 best_nnlf = nnlf
-        except:
+        except Exception:
             pass
 
         try:
@@ -460,7 +462,7 @@ class SolverService(object):
             if numpy.isfinite(nnlf) and nnlf < best_nnlf:
                 best_parameters = par_est
                 best_nnlf = nnlf
-        except:
+        except Exception:
             pass
 
         try:
@@ -469,7 +471,7 @@ class SolverService(object):
             if numpy.isfinite(nnlf) and nnlf < best_nnlf:
                 best_parameters = par_est
                 best_nnlf = nnlf
-        except:
+        except Exception:
             pass
 
         try:
@@ -480,7 +482,7 @@ class SolverService(object):
             if numpy.isfinite(nnlf) and nnlf < best_nnlf:
                 best_parameters = par_est
                 best_nnlf = nnlf
-        except:
+        except Exception:
             pass
 
         try:
@@ -491,7 +493,7 @@ class SolverService(object):
             if numpy.isfinite(nnlf) and nnlf < best_nnlf:
                 best_parameters = par_est
                 best_nnlf = nnlf
-        except:
+        except Exception:
             pass
 
         try:
@@ -502,7 +504,7 @@ class SolverService(object):
             if numpy.isfinite(nnlf) and nnlf < best_nnlf:
                 best_parameters = par_est
                 best_nnlf = nnlf
-        except:
+        except Exception:
             pass
 
         try:
@@ -513,7 +515,7 @@ class SolverService(object):
             if numpy.isfinite(nnlf) and nnlf < best_nnlf:
                 best_parameters = par_est
                 best_nnlf = nnlf
-        except:
+        except Exception:
             pass
 
         if (best_nnlf < 1.0e300) and (best_parameters is not None):
@@ -536,7 +538,7 @@ class SolverService(object):
                     return [AIC, temp]
                 else:
                     return [AICc_BA, temp]
-            except:
+            except Exception:
                 return 0
         else:
             return 0

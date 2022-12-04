@@ -17,7 +17,9 @@ if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
 import pyeq3
 import pyeq3.Model_2D_BaseClass
 
-import numpy  # implicitly required by compiling the userFunctionCodeObject in the method EvaluateCachedData() below
+# implicitly required by compiling the userFunctionCodeObject
+# in the method EvaluateCachedData() below
+import numpy
 
 numpy.seterr(all="ignore")
 
@@ -105,7 +107,7 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["X"])) * 1.0e300
 
     def Solve(self, inUserFunctionString=None, inAlgorithmName="Levenberg-Marquardt"):

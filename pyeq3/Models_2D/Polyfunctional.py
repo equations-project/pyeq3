@@ -168,7 +168,7 @@ class UserSelectablePolyfunctional(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):

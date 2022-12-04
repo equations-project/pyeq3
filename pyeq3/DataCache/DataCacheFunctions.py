@@ -37,7 +37,7 @@ def RecipX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return 1.0 / data[0]
-    except:
+    except ZeroDivisionError:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -58,7 +58,7 @@ def RecipY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return 1.0 / data[1]
-    except:
+    except ZeroDivisionError:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -67,7 +67,7 @@ def SinX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.sin(data[0])
-    except:
+    except TypeError:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -76,7 +76,7 @@ def Pow2SinX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.power(numpy.sin(data[0]), 2.0)
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -85,7 +85,7 @@ def SinMultX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0])
     try:
         return numpy.sin(data[0] * args[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -94,7 +94,7 @@ def CosMultX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0])
     try:
         return numpy.cos(data[0] * args[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -103,7 +103,7 @@ def CosX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.cos(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -112,7 +112,7 @@ def Pow2CosX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.power(numpy.cos(data[0]), 2.0)
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -121,7 +121,7 @@ def TanX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.tan(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -130,7 +130,7 @@ def ArctanX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.arctan(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -139,7 +139,7 @@ def CoshX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.cosh(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -148,7 +148,7 @@ def LogX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.log(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -157,7 +157,7 @@ def Log10X(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.log10(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -166,7 +166,7 @@ def PowX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0])
     try:
         return numpy.power(data[0], args[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -175,7 +175,7 @@ def PowLogX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0])
     try:
         return numpy.power(numpy.log(data[0]), args[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -184,7 +184,7 @@ def PowExpX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0])
     try:
         return numpy.power(numpy.exp(data[0]), args[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -193,7 +193,7 @@ def Polyfunctional2D(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args)
     try:
         return eqInstance.polyfunctionalEquationList[args].value(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -202,7 +202,7 @@ def Polynomial2D(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args)
     try:
         return eqInstance.polynomialEquationList[args].value(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -211,7 +211,7 @@ def Rational2D(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args)
     try:
         return eqInstance.rationalEquationList[args].value(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -220,7 +220,7 @@ def TwoPiX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return 2.0 * numpy.pi * data[0]
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -229,7 +229,7 @@ def NistEnsoCosX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.cos(2.0 * numpy.pi * data[0] / 12.0)
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -238,7 +238,7 @@ def NistEnsoSinX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.sin(2.0 * numpy.pi * data[0] / 12.0)
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -247,7 +247,7 @@ def ExpX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.exp(data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -256,7 +256,7 @@ def ExpNegX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.exp(-1.0 * data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -265,7 +265,7 @@ def ExpNegExpNegX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.exp(-1.0 * numpy.exp(-1.0 * data[0]))
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -275,7 +275,7 @@ def ExpNegXMinusExpNegX(data=None, args=None, eqInstance=None, NameOrValueFlag=0
     try:
         negx = -1.0 * data[0]
         return numpy.exp(negx - numpy.exp(negx))
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -284,7 +284,7 @@ def ExpXY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.exp(data[0] * data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -293,7 +293,7 @@ def XSQMINUSYSQ(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return (data[0] * data[0]) - (data[1] * data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -302,7 +302,7 @@ def YSQMINUSXSQ(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return (data[1] * data[1]) - (data[0] * data[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -311,7 +311,7 @@ def XSQPLUSYSQ(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return (data[0] * data[0]) + (data[1] * data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -320,7 +320,7 @@ def XSQPLUSYSQ_POW4_3D(data=None, args=None, eqInstance=None, NameOrValueFlag=0)
         return sys._getframe().f_code.co_name
     try:
         return numpy.power((data[0] * data[0]) + (data[1] * data[1]), 4.0)
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -329,7 +329,7 @@ def XSQPLUSYSQ_POW6_3D(data=None, args=None, eqInstance=None, NameOrValueFlag=0)
         return sys._getframe().f_code.co_name
     try:
         return numpy.power((data[0] * data[0]) + (data[1] * data[1]), 6.0)
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -338,7 +338,7 @@ def XSQPLUSYSQ_POW8_3D(data=None, args=None, eqInstance=None, NameOrValueFlag=0)
         return sys._getframe().f_code.co_name
     try:
         return numpy.power((data[0] * data[0]) + (data[1] * data[1]), 8.0)
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -347,7 +347,7 @@ def ExpY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.exp(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -358,7 +358,7 @@ def Polyfunctional3D(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return eqInstance.polyfunctionalEquationList_X[args[0]].value(
             data[0]
         ) * eqInstance.polyfunctionalEquationList_Y[args[1]].value(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -367,7 +367,7 @@ def PowLogY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0])
     try:
         return numpy.power(numpy.log(data[1]), args[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -376,7 +376,7 @@ def PowExpY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0])
     try:
         return numpy.power(numpy.exp(data[1]), args[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -385,7 +385,7 @@ def PowX_PowY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0]) + str(args[1])
     try:
         return numpy.power(data[0], args[0]) * numpy.power(data[1], args[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -396,7 +396,7 @@ def PowLogX_PowLogY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return numpy.power(numpy.log(data[0]), args[0]) * numpy.power(
             numpy.log(data[1]), args[1]
         )
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -407,7 +407,7 @@ def PowExpX_PowExpY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return numpy.power(numpy.exp(data[0]), args[0]) * numpy.power(
             numpy.exp(data[1]), args[1]
         )
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -416,7 +416,7 @@ def PowX_PowLogY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0]) + str(args[1])
     try:
         return numpy.power(data[0], args[0]) * numpy.power(numpy.log(data[1]), args[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -425,7 +425,7 @@ def PowLogX_PowY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0]) + str(args[1])
     try:
         return numpy.power(numpy.log(data[0]), args[0]) * numpy.power(data[1], args[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -434,7 +434,7 @@ def PowY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name + "_" + str(args[0])
     try:
         return numpy.power(data[1], args[0])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -443,7 +443,7 @@ def Log10Y(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.log10(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -452,7 +452,7 @@ def LogY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.log(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -461,7 +461,7 @@ def LogXY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.log(data[0] * data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -470,7 +470,7 @@ def SinXY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.sin(data[0] * data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -479,7 +479,7 @@ def TanXY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.tan(data[0] * data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -488,7 +488,7 @@ def CoshXY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.cosh(data[0] * data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -497,7 +497,7 @@ def CoshY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.cosh(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -506,7 +506,7 @@ def CoshXCoshY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.cosh(data[0]) * numpy.cosh(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -515,7 +515,7 @@ def TanY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.tan(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -524,7 +524,7 @@ def TanXTanY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.tan(data[0]) * numpy.tan(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -533,7 +533,7 @@ def SinY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.sin(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -542,7 +542,7 @@ def SinXSinY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.sin(data[0]) * numpy.sin(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -551,7 +551,7 @@ def XY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return data[0] * data[1]
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -560,7 +560,7 @@ def XOVERY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return data[0] / data[1]
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -569,7 +569,7 @@ def XPLUSY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return data[0] + data[1]
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -578,7 +578,7 @@ def LogX_LogY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.log(data[0]) * numpy.log(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -587,7 +587,7 @@ def ExpX_LogY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.exp(data[0]) * numpy.log(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -596,7 +596,7 @@ def LogX_ExpY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.log(data[0]) * numpy.exp(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -605,7 +605,7 @@ def ExpX_ExpY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.exp(data[0]) * numpy.exp(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -614,7 +614,7 @@ def X_LogY(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return data[0] * numpy.log(data[1])
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -623,7 +623,7 @@ def LogX_Y(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
         return sys._getframe().f_code.co_name
     try:
         return numpy.log(data[0]) * data[1]
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 
@@ -707,7 +707,7 @@ def LegendreX(data=None, args=None, eqInstance=None, NameOrValueFlag=0):
                 + " is too high, please use a degree of 10 or less."
             )  # will be trapped
 
-    except:
+    except Exception:
         return 1.0e300 * numpy.ones_like(data[0])
 
 

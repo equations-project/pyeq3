@@ -67,7 +67,7 @@ class Bleasdale(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -128,7 +128,7 @@ class ExtendedHolliday(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -181,7 +181,7 @@ class Harris(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -242,7 +242,7 @@ class Holliday(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -295,7 +295,7 @@ class InverseBleasdale(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -348,7 +348,7 @@ class InverseHarris(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -403,9 +403,10 @@ class Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = (a + x_in) / (b + c * (a + x_in) + d * (a + x_in) * (a + x_in));\n"
+        s = "\ttemp = (a + x_in) / (b + c * (a + x_in) "
+        s += "+ d * (a + x_in) * (a + x_in));\n"
         return s

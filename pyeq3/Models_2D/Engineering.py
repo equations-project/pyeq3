@@ -69,7 +69,7 @@ class MaxwellWiechert_1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -125,7 +125,7 @@ class MaxwellWiechert_2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -187,7 +187,7 @@ class MaxwellWiechert_3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -252,11 +252,12 @@ class MaxwellWiechert_4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = a1*exp(-x_in/Tau1) + a2*exp(-x_in/Tau2) + a3*exp(-x_in/Tau3) + a4*exp(-x_in/Tau4);\n"
+        s = "\ttemp = a1*exp(-x_in/Tau1) + a2*exp(-x_in/Tau2) "
+        s += "+ a3*exp(-x_in/Tau3) + a4*exp(-x_in/Tau4);\n"
         return s
 
 
@@ -320,18 +321,20 @@ class DispersionOptical(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = A1 + (A2 * x_in * x_in) + (A3 / (x_in * x_in)) + (A4 / (x_in * x_in * x_in * x_in));\n"
+        s = "\ttemp = A1 + (A2 * x_in * x_in) + (A3 / (x_in * x_in)) "
+        s += "+ (A4 / (x_in * x_in * x_in * x_in));\n"
         return s
 
 
 class DispersionOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Dispersion Optical Square Root"
-    _HTML = "n = (A1 + A2*x<sup>2</sup> + A3/x<sup>2</sup> + A4/x<sup>4</sup>)<sup>0.5</sup>"
+    _HTML = "n = (A1 + A2*x<sup>2</sup> + A3/x<sup>2</sup> "
+    _HTML = "+ A4/x<sup>4</sup>)<sup>0.5</sup>"
     _leftSideHTML = "n"
     _coefficientDesignators = ["A1", "A2", "A3", "A4"]
     _canLinearSolverBeUsedForSSQABS = False
@@ -386,11 +389,12 @@ class DispersionOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = pow(A1 + (A2 * x_in * x_in) + (A3 / (x_in * x_in)) + (A4 / (x_in * x_in * x_in * x_in)), 0.5);\n"
+        s = "\ttemp = pow(A1 + (A2 * x_in * x_in) + (A3 / (x_in * x_in)) "
+        s += "+ (A4 / (x_in * x_in * x_in * x_in)), 0.5);\n"
         return s
 
 
@@ -443,11 +447,12 @@ class Extended_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = A + B*log(x_in) + C*pow(log(x_in), 2.0) + D*pow(log(x_in), 3.0);\n"
+        s = "\ttemp = A + B*log(x_in) + C*pow(log(x_in), 2.0) "
+        s += "+ D*pow(log(x_in), 3.0);\n"
         return s
 
 
@@ -500,7 +505,7 @@ class Ramberg_Osgood(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -555,11 +560,12 @@ class Reciprocal_Extended_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = 1.0 / (A + B*log(x_in) + C*pow(log(x_in), 2.0) + D*pow(log(x_in), 3.0));\n"
+        s = "\ttemp = 1.0 / (A + B*log(x_in) + C*pow(log(x_in), 2.0) "
+        s += "+ D*pow(log(x_in), 3.0));\n"
         return s
 
 
@@ -617,7 +623,7 @@ class Reciprocal_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -628,7 +634,9 @@ class Reciprocal_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class SellmeierOptical(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Sellmeier Optical"
-    _HTML = "n<sup>2</sup>(x) = 1 + (B1 x<sup>2</sup>)/(x<sup>2</sup>-C1) + (B2 x<sup>2</sup>)/(x<sup>2</sup>-C2) + (B3 x<sup>2</sup>)/(x<sup>2</sup>-C3)"
+    _HTML = "n<sup>2</sup>(x) = 1 + (B1 x<sup>2</sup>)/(x<sup>2</sup>-C1) "
+    _HTML += "+ (B2 x<sup>2</sup>)/(x<sup>2</sup>-C2) "
+    _HTML += "+ (B3 x<sup>2</sup>)/(x<sup>2</sup>-C3)"
     _leftSideHTML = "n<sup>2</sup>(x)"
     _coefficientDesignators = ["B1", "C1", "B2", "C2", "B3", "C3"]
     _canLinearSolverBeUsedForSSQABS = False
@@ -683,18 +691,22 @@ class SellmeierOptical(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = 1.0 + ((B1 * x_in * x_in)/(x_in * x_in - C1)) + ((B2 * x_in * x_in)/(x_in * x_in - C2)) + ((B3 * x_in * x_in)/(x_in * x_in - C3));\n"
+        s = "\ttemp = 1.0 + ((B1 * x_in * x_in)/(x_in * x_in - C1)) "
+        s += "+ ((B2 * x_in * x_in)/(x_in * x_in - C2)) "
+        s += "+ ((B3 * x_in * x_in)/(x_in * x_in - C3));\n"
         return s
 
 
 class SellmeierOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Sellmeier Optical Square Root"
-    _HTML = "n = (1 + (B1 x<sup>2</sup>)/(x<sup>2</sup>-C1) + (B2 x<sup>2</sup>)/(x<sup>2</sup>-C2) + (B3 x<sup>2</sup>)/(x<sup>2</sup>-C3))<sup>0.5</sup>"
+    _HTML = "n = (1 + (B1 x<sup>2</sup>)/(x<sup>2</sup>-C1) "
+    _HTML += "+ (B2 x<sup>2</sup>)/(x<sup>2</sup>-C2) "
+    _HTML += "+ (B3 x<sup>2</sup>)/(x<sup>2</sup>-C3))<sup>0.5</sup>"
     _leftSideHTML = "n"
     _coefficientDesignators = ["B1", "C1", "B2", "C2", "B3", "C3"]
     _canLinearSolverBeUsedForSSQABS = False
@@ -749,11 +761,13 @@ class SellmeierOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = pow(1.0 + ((B1 * x_in * x_in)/(x_in * x_in - C1)) + ((B2 * x_in * x_in)/(x_in * x_in - C2)) + ((B3 * x_in * x_in)/(x_in * x_in - C3)), 0.5);\n"
+        s = "\ttemp = pow(1.0 + ((B1 * x_in * x_in)/(x_in * x_in - C1)) "
+        s += "+ ((B2 * x_in * x_in)/(x_in * x_in - C2)) "
+        s += "+ ((B3 * x_in * x_in)/(x_in * x_in - C3)), 0.5);\n"
         return s
 
 
@@ -800,7 +814,7 @@ class Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -865,7 +879,7 @@ class VanDeemterChromatography(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -876,7 +890,9 @@ class VanDeemterChromatography(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class ElectronBeamLithographyPointSpread(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Electron Beam Lithography Point Spread"
-    _HTML = "y = a*exp(-b*x) + c*exp(-(x-d)<sup>2</sup> / f<sup>2</sup>) + g*exp(-(x-h)<sup>2</sup> / i<sup>2</sup>) + j*exp(-(x-k)<sup>2</sup> / l<sup>2</sup>)"
+    _HTML = "y = a*exp(-b*x) + c*exp(-(x-d)<sup>2</sup> / f<sup>2</sup>) "
+    _HTML += "+ g*exp(-(x-h)<sup>2</sup> / i<sup>2</sup>) + j*exp(-(x-k)<sup>2</sup> "
+    _HTML += "/ l<sup>2</sup>)"
     _leftSideHTML = "y"
     _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l"]
     _canLinearSolverBeUsedForSSQABS = False
@@ -921,7 +937,7 @@ class ElectronBeamLithographyPointSpread(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
         i = inCoeffs[7]
         j = inCoeffs[8]
         k = inCoeffs[9]
-        l = inCoeffs[10]
+        m = inCoeffs[10]
 
         try:
             xminusd = x_in - d
@@ -930,15 +946,17 @@ class ElectronBeamLithographyPointSpread(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
             temp = a * numpy.exp(-b * x_in)
             temp += c * numpy.exp(-1.0 * xminusd * xminusd / (f * f))
             temp += g * numpy.exp(-1.0 * xminush * xminush / (i * i))
-            temp += j * numpy.exp(-1.0 * xminusk * xminusk / (l * l))
+            temp += j * numpy.exp(-1.0 * xminusk * xminusk / (m * m))
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = a * exp(-b * x_in) + c * exp(-1.0 * (x_in-d) * (x_in-d) / (f * f)) + g * exp(-1.0 * (x_in-h) * (x_in-h) / (i * i)) + j * exp(-1.0 * (x_in-k) * (x_in-k) / (l * l));\n"
+        s = "\ttemp = a * exp(-b * x_in) + c * exp(-1.0 * (x_in-d) * (x_in-d) "
+        s += "/ (f * f)) + g * exp(-1.0 * (x_in-h) * (x_in-h) / (i * i)) + j "
+        s += "* exp(-1.0 * (x_in-k) * (x_in-k) / (l * l));\n"
         return s
 
 
@@ -989,7 +1007,7 @@ class KlimpelFlotationA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1049,7 +1067,7 @@ class GraemePatersonElectricMotor(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1106,9 +1124,10 @@ class ModifiedArpsWellProduction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = (qi_x/((1.0-b_x)*Di_x)) * (1.0 - pow((1.0+b_x*Di_x*x_in), (1.0-1.0/b_x)));\n"
+        s = "\ttemp = (qi_x/((1.0-b_x)*Di_x)) "
+        s += "* (1.0 - pow((1.0+b_x*Di_x*x_in), (1.0-1.0/b_x)));\n"
         return s

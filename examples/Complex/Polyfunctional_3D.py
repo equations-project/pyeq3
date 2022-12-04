@@ -1,6 +1,4 @@
-import os
 import sys
-import inspect
 import copy
 
 import pyeq3
@@ -11,7 +9,8 @@ def UniqueCombinations(items, n):  # utility function
         yield []
     else:
         for i in range(len(items)):
-            for cc in UniqueCombinations(items[i + 1 :], n - 1):
+            sidx = i + 1
+            for cc in UniqueCombinations(items[sidx:], n - 1):
                 yield [items[i]] + cc
 
 
@@ -32,7 +31,7 @@ def SetParametersAndFit(inEquation, resultList):  # utility function
         target = inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)
         if target > 1.0e290:  # error too large
             return
-    except:
+    except Exception:
         print(
             "Exception in "
             + inEquation.__class__.__name__
@@ -104,9 +103,9 @@ pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(rawData, equation, Fals
 
 functionList = []
 for k in range(len(equation.polyfunctionalEquationList_X)):
-    for l in range(len(equation.polyfunctionalEquationList_Y)):
-        if [l, k] not in functionList:
-            functionList.append([k, l])
+    for m in range(len(equation.polyfunctionalEquationList_Y)):
+        if [m, k] not in functionList:
+            functionList.append([k, m])
 
 # WARNING: increasing this value creates huge numbers
 # of combinations and causes very large memory use. If

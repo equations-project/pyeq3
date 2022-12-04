@@ -50,7 +50,7 @@ class ExtendedVersionHandler_ExponentialGrowth(
                     + x_or_xy
                     + "))"
                 )
-            except:
+            except AttributeError:
                 return (
                     inModel._HTML
                     + "<br>"

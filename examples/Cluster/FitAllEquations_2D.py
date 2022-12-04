@@ -69,7 +69,7 @@ def SetParametersAndFit(
         )
         if fittedTarget > 1.0e290:  # error too large
             return None
-    except:
+    except AttributeError:
         return None
 
     return [

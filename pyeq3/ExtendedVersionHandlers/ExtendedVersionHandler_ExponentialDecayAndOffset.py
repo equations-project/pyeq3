@@ -50,7 +50,7 @@ class ExtendedVersionHandler_ExponentialDecayAndOffset(
                     + x_or_xy
                     + ")) + Offset"
                 )
-            except:
+            except AttributeError:
                 return (
                     inModel._HTML
                     + "<br>"

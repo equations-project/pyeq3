@@ -75,7 +75,7 @@ class arcsin_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -133,7 +133,7 @@ class arcsin_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -188,7 +188,7 @@ class bradford_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -244,7 +244,7 @@ class bradford_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -299,7 +299,7 @@ class bradford_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -353,7 +353,7 @@ class burr_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -408,7 +408,7 @@ class burr_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -468,11 +468,12 @@ class burr_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = (c*d/b) * pow((x_in-a)/b, -c-1.0) * pow(1.0+pow((x_in-a)/b, -c), -d-1.0);\n"
+        s = "\ttemp = (c*d/b) * pow((x_in-a)/b, -c-1.0) "
+        s += "* pow(1.0+pow((x_in-a)/b, -c), -d-1.0);\n"
         return s
 
 
@@ -527,7 +528,7 @@ class dipole_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -582,7 +583,7 @@ class exponential_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -637,7 +638,7 @@ class exponential_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -692,7 +693,7 @@ class extreme_values_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -747,7 +748,7 @@ class extreme_values_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -802,7 +803,7 @@ class extreme_values_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -855,7 +856,7 @@ class fisk_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -909,7 +910,7 @@ class fisk_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -920,7 +921,8 @@ class fisk_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class fisk_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Fisk PDF Based"
-    _HTML = "y = (c/b) * ((x-a)/b)<sup>(c-1.0)</sup> / (1.0 + ((x-a)/b)<sup>c</sup>)<sup>2</sup>"
+    _HTML = "y = (c/b) * ((x-a)/b)<sup>(c-1.0)</sup> "
+    _HTML += "/ (1.0 + ((x-a)/b)<sup>c</sup>)<sup>2</sup>"
     _leftSideHTML = "y"
     _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
@@ -966,18 +968,20 @@ class fisk_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = (c/b) * pow((x_in-a)/b, c-1.0) / pow(1.0 + pow((x_in-a)/b, c), 2.0);\n"
+        s = "\ttemp = (c/b) * pow((x_in-a)/b, c-1.0) "
+        s += "/ pow(1.0 + pow((x_in-a)/b, c), 2.0);\n"
         return s
 
 
 class folded_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Folded Normal PDF Based"
-    _HTML = "y = c * (1/b) * cosh(a*x/b<sup>2</sup>) * exp(-0.5 * (x<sup>2</sup> + a<sup>2</sup>)/b<sup>2</sup>)"
+    _HTML = "y = c * (1/b) * cosh(a*x/b<sup>2</sup>) * exp(-0.5 * (x<sup>2</sup> "
+    _HTML += "+ a<sup>2</sup>)/b<sup>2</sup>)"
     _leftSideHTML = "y"
     _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
@@ -1027,11 +1031,12 @@ class folded_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = c * (1/b) * cosh(a*x_in/(b*b)) * exp(-0.5 * ((x_in*x_in) + a*a)/(b*b));\n"
+        s = "\ttemp = c * (1/b) * cosh(a*x_in/(b*b)) "
+        s += "* exp(-0.5 * ((x_in*x_in) + a*a)/(b*b));\n"
         return s
 
 
@@ -1081,7 +1086,7 @@ class frechet_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1136,7 +1141,7 @@ class frechet_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1190,7 +1195,7 @@ class frechet_pdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1247,7 +1252,7 @@ class frechet_pdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1300,7 +1305,7 @@ class genlogistic_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1354,7 +1359,7 @@ class genlogistic_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1413,11 +1418,12 @@ class genlogistic_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = (c/b) * exp(-((x_in-a)/b)) / pow(1.0+exp(-((x_in-a)/b)), c+1.0);\n"
+        s = "\ttemp = (c/b) * exp(-((x_in-a)/b)) "
+        s += "/ pow(1.0+exp(-((x_in-a)/b)), c+1.0);\n"
         return s
 
 
@@ -1468,7 +1474,7 @@ class gompertz_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1525,7 +1531,7 @@ class gompertz_cdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1579,7 +1585,7 @@ class gumbel_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1638,7 +1644,7 @@ class gumbel_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1693,7 +1699,7 @@ class half_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1704,7 +1710,8 @@ class half_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class inverse_gaussian_pdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Inverse_gaussian PDF Based A"
-    _HTML = "y = sqrt(b/(c*x<sup>3</sup>))*exp(-b*(x-a)<sup>2</sup> / (2.0*a<sup>2</sup>*x))"
+    _HTML = "y = sqrt(b/(c*x<sup>3</sup>))*exp(-b*(x-a)<sup>2</sup> "
+    _HTML += "/ (2.0*a<sup>2</sup>*x))"
     _leftSideHTML = "y"
     _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
@@ -1759,18 +1766,20 @@ class inverse_gaussian_pdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = pow(b/(c*pow(x_in, 3.0)), 0.5) * exp(-b*(x_in-a)*(x_in-a) / (2.0*a*a*x_in));\n"
+        s = "\ttemp = pow(b/(c*pow(x_in, 3.0)), 0.5) * exp(-b*(x_in-a)*(x_in-a) "
+        s += "/ (2.0*a*a*x_in));\n"
         return s
 
 
 class inverse_gaussian_pdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     _baseName = "Inverse_gaussian PDF Based B"
-    _HTML = "y = sqrt(b/(c*x<sup>3</sup>))*exp(-b*(x-a)<sup>2</sup> / (2.0*a<sup>2</sup>*x))"
+    _HTML = "y = sqrt(b/(c*x<sup>3</sup>))*exp(-b*(x-a)<sup>2</sup> "
+    _HTML += "/ (2.0*a<sup>2</sup>*x))"
     _leftSideHTML = "y"
     _coefficientDesignators = ["a", "b", "c", "d"]
     _canLinearSolverBeUsedForSSQABS = False
@@ -1828,11 +1837,12 @@ class inverse_gaussian_pdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = d * pow(b/(c*pow(x_in, 3.0)), 0.5) * exp(-b*(x_in-a)*(x_in-a) / (2.0*a*a*x_in));\n"
+        s = "\ttemp = d * pow(b/(c*pow(x_in, 3.0)), 0.5) * exp(-b*(x_in-a)*(x_in-a) "
+        s += "/ (2.0*a*a*x_in));\n"
         return s
 
 
@@ -1893,7 +1903,7 @@ class levy_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1959,11 +1969,12 @@ class levy_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = Scale * pow(b, 0.5)*exp(-b/(2.0*(x_in-a)))/pow(pow(x_in-a, 3.0), 0.5);\n"
+        s = "\ttemp = Scale * pow(b, 0.5)*exp(-b/(2.0*(x_in-a)))"
+        s += "/pow(pow(x_in-a, 3.0), 0.5);\n"
         return s
 
 
@@ -2021,7 +2032,7 @@ class log_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2077,7 +2088,7 @@ class logistic_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2132,7 +2143,7 @@ class pareto_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2187,7 +2198,7 @@ class power_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2244,7 +2255,7 @@ class rayleigh_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2302,7 +2313,7 @@ class rayleigh_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2365,7 +2376,7 @@ class rayleigh_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2429,7 +2440,7 @@ class rayleigh_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2484,7 +2495,7 @@ class reciprocal_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2539,7 +2550,7 @@ class sech_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2591,7 +2602,7 @@ class weibull_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2644,7 +2655,7 @@ class weibull_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2703,7 +2714,7 @@ class weibull_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except Exception:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):

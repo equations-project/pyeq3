@@ -70,9 +70,10 @@ class King_14(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = k * pow(1.0/pow(1.0 + pow(x_in/r_c, 2.0), 0.5) - 1.0/pow(1.0 + pow(r_t/r_c, 2.0), 0.5), 2.0);\n"
+        s = "\ttemp = k * pow(1.0/pow(1.0 + pow(x_in/r_c, 2.0), 0.5) "
+        s += "- 1.0/pow(1.0 + pow(r_t/r_c, 2.0), 0.5), 2.0);\n"
         return s

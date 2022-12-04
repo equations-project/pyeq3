@@ -50,7 +50,7 @@ class ExtendedVersionHandler_ExponentialDecay(
                     + x_or_xy
                     + "))"
                 )
-            except:
+            except AttributeError:
                 return (
                     inModel._HTML
                     + "<br>"

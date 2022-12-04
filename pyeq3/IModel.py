@@ -227,7 +227,7 @@ class IModel(object):
   0.742  2.568   2.581
   0.607  2.571   2.753
 """
-        except:
+        except Exception:
             pass
 
     def __str__(self):
@@ -308,12 +308,12 @@ class IModel(object):
             # giving tiny negative R-squared values
             if self.r2 < 0.0:
                 self.r2 = None
-        except:
+        except Exception:
             self.r2 = None
 
         try:
             self.rmse = numpy.sqrt(self.sumOfSquaredErrors / self.nobs)
-        except:
+        except Exception:
             self.rmse = None
 
         try:
@@ -321,36 +321,37 @@ class IModel(object):
             self.r2adj = 1.0 - (1.0 - self.r2) * (
                 (self.nobs - 1.0) / (self.nobs - self.ncoef)
             )
-        except:
+        except Exception:
             self.r2adj = None
 
         try:
             self.Fstat = (self.r2 / self.df_r) / (
                 (1.0 - self.r2) / self.df_e
             )  # model F-statistic
-        except:
+        except Exception:
             self.Fstat = None
 
         try:
             # F-statistic p-value
             self.Fpv = 1.0 - scipy.stats.f.cdf(self.Fstat, self.df_r, self.df_e)
-        except:
+        except Exception:
             self.Fpv = None
 
         # Model log-likelihood, AIC, and BIC criterion values
-        # from http://stackoverflow.com/questions/7458391/python-multiple-linear-regression-using-ols-code-with-specific-data
+        # from http://stackoverflow.com/questions/7458391/
+        # python-multiple-linear-regression-using-ols-code-with-specific-data
         try:
             self.ll = -(self.nobs * 0.5) * (1.0 + numpy.log(2.0 * numpy.pi)) - (
                 self.nobs * 0.5
             ) * numpy.log(
                 numpy.dot(self.modelAbsoluteError, self.modelAbsoluteError) / self.nobs
             )
-        except:
+        except Exception:
             self.ll = None
 
         try:
             self.aic = -2.0 * self.ll / self.nobs + (2.0 * self.ncoef / self.nobs)
-        except:
+        except Exception:
             self.aic = None
 
         try:
@@ -358,7 +359,7 @@ class IModel(object):
                 -2.0 * self.ll / self.nobs
                 + (self.ncoef * numpy.log(self.nobs)) / self.nobs
             )
-        except:
+        except Exception:
             self.bic = None
 
         if self.splineFlag is True:  # not appicable to splines
@@ -369,17 +370,15 @@ class IModel(object):
             self.ci = None
             return
         else:
-            # see both scipy.odr.odrpack and http://www.scipy.org/Cookbook/OLS
+            # see both scipy.odr and http://www.scipy.org/Cookbook/OLS
             # this is inefficient but works for every possible case
-            model = scipy.odr.odrpack.Model(self.WrapperForODR)
+            model = scipy.odr.Model(self.WrapperForODR)
             self.dataCache.FindOrCreateAllDataCache(self)
             data = scipy.odr.odrpack.Data(
                 self.dataCache.allDataCacheDictionary["IndependentData"],
                 self.dataCache.allDataCacheDictionary["DependentData"],
             )
-            myodr = scipy.odr.odrpack.ODR(
-                data, model, beta0=self.solvedCoefficients, maxit=0
-            )
+            myodr = scipy.odr.ODR(data, model, beta0=self.solvedCoefficients, maxit=0)
             myodr.set_job(fit_type=2)
             parameterStatistics = myodr.run()
 
@@ -387,7 +386,7 @@ class IModel(object):
             self.cov_beta = parameterStatistics.cov_beta
             try:
                 self.sd_beta = parameterStatistics.sd_beta * parameterStatistics.sd_beta
-            except:
+            except Exception:
                 self.sd_beta = None
             self.ci = []
 
@@ -407,7 +406,7 @@ class IModel(object):
                 self.tstat_beta = (
                     self.solvedCoefficients / parameterStatistics.sd_beta
                 )  # coeff t-statistics
-            except:
+            except Exception:
                 self.tstat_beta = None
 
             try:
@@ -415,7 +414,7 @@ class IModel(object):
                 self.pstat_beta = (
                     1.0 - scipy.stats.t.cdf(numpy.abs(self.tstat_beta), self.df_e)
                 ) * 2.0
-            except:
+            except Exception:
                 self.pstat_beta = None
 
         # restore constraints, as users will not expect them to have changed
@@ -451,7 +450,7 @@ class IModel(object):
                     self.modelAbsoluteError / inDictionary["DependentData"]
                 )
                 self.modelPercentError = self.modelRelativeError * 100.0
-        except:
+        except Exception:
             # this is effectively true if this code is reached
             self.dataCache.DependentDataContainsZeroFlag = True
             self.modelRelativeError = []
@@ -475,7 +474,7 @@ class IModel(object):
                         if self.lowerCoefficientBounds[i] is not None:
                             if inCoeffs[i] < self.lowerCoefficientBounds[i]:
                                 inCoeffs[i] = self.lowerCoefficientBounds[i]
-            except:
+            except Exception:
                 pass
 
         # return SSQ as we are only using this method for guessing
@@ -495,7 +494,7 @@ class IModel(object):
                 - self.dataCache.reducedDataCacheDictionary["DependentData"]
             )
             ssq = numpy.sum(numpy.square(error))
-        except:
+        except Exception:
             return 1.0e300
         if numpy.isfinite(ssq):
             return ssq
@@ -520,7 +519,7 @@ class IModel(object):
                         if self.lowerCoefficientBounds[i] is not None:
                             if inCoeffs[i] < self.lowerCoefficientBounds[i]:
                                 inCoeffs[i] = self.lowerCoefficientBounds[i]
-            except:
+            except Exception:
                 pass
 
         try:
@@ -608,19 +607,19 @@ class IModel(object):
             if (
                 self.fittingTarget == "ODR"
             ):  # this is inefficient but works for every possible case
-                model = scipy.odr.odrpack.Model(self.WrapperForODR)
+                model = scipy.odr.Model(self.WrapperForODR)
                 if len(self.dataCache.allDataCacheDictionary["Weights"]):
-                    data = scipy.odr.odrpack.Data(
+                    data = scipy.odr.Data(
                         self.dataCache.allDataCacheDictionary["IndependentData"],
                         self.dataCache.allDataCacheDictionary["DependentData"],
                         we=self.dataCache.allDataCacheDictionary["Weights"],
                     )
                 else:
-                    data = scipy.odr.odrpack.Data(
+                    data = scipy.odr.Data(
                         self.dataCache.allDataCacheDictionary["IndependentData"],
                         self.dataCache.allDataCacheDictionary["DependentData"],
                     )
-                myodr = scipy.odr.odrpack.ODR(data, model, beta0=inCoeffs, maxit=0)
+                myodr = scipy.odr.ODR(data, model, beta0=inCoeffs, maxit=0)
                 myodr.set_job(fit_type=2)
                 out = myodr.run()
                 val = out.sum_square
@@ -649,7 +648,7 @@ class IModel(object):
                     return val
                 else:
                     return 1.0e300
-        except:
+        except Exception:
             return 1.0e300
 
     def Solve(self, inNonLinearSolverAlgorithmName="Levenberg-Marquardt"):
@@ -818,25 +817,43 @@ class IModel(object):
                 self.dataCache.DependentDataContainsZeroFlag
                 and self.fittingTarget[-3:] == "REL"
             ):
-                self.reasonWhyDataRejected = "The data contains at least one dependent data value of exactly 0.0, a relative fit cannot be performed as divide-by-zero errors would occur."
+                self.reasonWhyDataRejected = (
+                    "The data contains at least one dependent "
+                    "data value of exactly 0.0, a relative fit cannot "
+                    "be performed as divide-by-zero errors would occur."
+                )
 
             if (
                 self.independentData1CannotContainZeroFlag
                 and self.dataCache.independentData1ContainsZeroFlag
             ):
-                self.reasonWhyDataRejected = "This equation requires non-zero values for the first independent variable (X). At least one of the values was exactly equal to zero. Examples that would fail would be ln(x) and 1/x."
+                self.reasonWhyDataRejected = (
+                    "This equation requires non-zero values for the "
+                    "first independent variable (X). At least one of the "
+                    "values was exactly equal to zero. Examples that would "
+                    "fail would be ln(x) and 1/x."
+                )
 
             if (
                 self.independentData1CannotContainNegativeFlag
                 and self.dataCache.independentData1ContainsNegativeFlag
             ):
-                self.reasonWhyDataRejected = "This equation requires non-negative values for the first independent variable (X). At least one of the values was negative. One example that would fail is ln(x)."
+                self.reasonWhyDataRejected = (
+                    "This equation requires non-negative values for the "
+                    "first independent variable (X). At least one of the values "
+                    "was negative. One example that would fail is ln(x)."
+                )
 
             if (
                 self.independentData1CannotContainPositiveFlag
                 and self.dataCache.independentData1ContainsPositiveFlag
             ):
-                self.reasonWhyDataRejected = "This equation requires non-positive values for the first independent variable (X). At least one of the values was positive. One xample that would fail would be ln(-x), please check the data."
+                self.reasonWhyDataRejected = (
+                    "This equation requires non-positive values for the "
+                    "first independent variable (X). At least one of the values was "
+                    "positive. One example that would fail would be ln(-x), "
+                    "please check the data."
+                )
 
             if (
                 self.independentData1CannotContainBothPositiveAndNegativeFlag

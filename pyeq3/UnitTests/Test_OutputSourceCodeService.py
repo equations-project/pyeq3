@@ -21,13 +21,14 @@ class TestGenerationOfOutputSourceCodeForAllEquations(unittest.TestCase):
             if inspect.ismodule(submodule[1]):
                 for equationClass in inspect.getmembers(submodule[1]):
                     if inspect.isclass(equationClass[1]):
-                        try:  # not all equation classes have a fixed number of coefficient designators
+                        try:
+                            # not all equation classes have a fixed number of
+                            # coefficient designators
                             equation = equationClass[1]()
-                            coeffCount = len(equation.GetCoefficientDesignators())
                             equation.solvedCoefficients = [1.0] * len(
                                 equation.GetCoefficientDesignators()
                             )
-                        except:
+                        except Exception:
                             continue
                         generated = (
                             pyeq3.outputSourceCodeService().GetOutputSourceCodeCPP(
@@ -198,15 +199,15 @@ class TestGenerationOfOutputSourceCode(unittest.TestCase):
 
 double Polynomial_Linear_model(double x_in)
 {
-	double temp;
-	temp = 0.0;
+\tdouble temp;
+\ttemp = 0.0;
 
-	// coefficients
-	double a = -8.01913564075E+00;
-	double b = 1.52644729419E+00;
+\t// coefficients
+\tdouble a = -8.01913564075E+00;
+\tdouble b = 1.52644729419E+00;
 
-	temp += a + b * x_in;
-	return temp;
+\ttemp += a + b * x_in;
+\treturn temp;
 }
 """
         equation = pyeq3.Models_2D.Polynomial.Linear("SSQABS")

@@ -70,7 +70,7 @@ class JorgeRabinovichPopulationGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClas
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -86,7 +86,8 @@ class AphidPopulationGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = "http://www.iasri.res.in/ebook/EB_SMAR/e-book_pdf%20files/Manual%20IV/1-Nonlinear%20Regression.pdf"
+    webReferenceURL = "http://www.iasri.res.in/ebook/EB_SMAR/"
+    webReferenceURL += "e-book_pdf%20files/Manual%20IV/1-Nonlinear%20Regression.pdf"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -127,7 +128,7 @@ class AphidPopulationGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -182,7 +183,7 @@ class BertalanffyGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -237,7 +238,7 @@ class BevertonHoltA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -291,7 +292,7 @@ class BevertonHoltB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -353,7 +354,7 @@ class BioScienceA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -411,7 +412,7 @@ class BioScienceB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -496,7 +497,7 @@ class CellularConductance(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -552,7 +553,7 @@ class DerekDuncanCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -606,7 +607,7 @@ class DoseResponseA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -660,7 +661,7 @@ class DoseResponseB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -715,7 +716,7 @@ class DoseResponseC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -770,7 +771,7 @@ class DoseResponseD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -827,7 +828,7 @@ class DoseResponseE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -882,7 +883,7 @@ class GeneralizedNegativeExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -939,7 +940,7 @@ class GeneralizedProductAccumulation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -994,7 +995,7 @@ class GeneralizedSubstrateDepletion(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass)
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1050,7 +1051,7 @@ class HighLowAffinity(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1110,11 +1111,12 @@ class HighLowAffinityDouble(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = (a * b * x_in) / (1.0 + b * x_in) + (c * d * x_in) / (1.0 + d * x_in);\n"
+        s = "\ttemp = (a * b * x_in) / (1.0 + b * x_in) + (c * d * x_in) "
+        s += "/ (1.0 + d * x_in);\n"
         return s
 
 
@@ -1165,7 +1167,7 @@ class HighLowAffinityIsotopeDisplacement(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1223,7 +1225,7 @@ class HighLowAffinityIsotopeDisplacementDouble(
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1277,7 +1279,7 @@ class HyperbolicA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1332,7 +1334,7 @@ class HyperbolicB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1387,7 +1389,7 @@ class HyperbolicC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1442,7 +1444,7 @@ class HyperbolicD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1497,7 +1499,7 @@ class HyperbolicE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1552,7 +1554,7 @@ class HyperbolicF(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1608,7 +1610,7 @@ class HyperbolicG(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1665,7 +1667,7 @@ class HyperbolicH(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1720,7 +1722,7 @@ class HyperbolicI(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1774,7 +1776,7 @@ class HyperbolicJ(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1830,7 +1832,7 @@ class HyperbolicLogistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1894,7 +1896,7 @@ class MembraneTransport(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -1949,7 +1951,7 @@ class MichaelisMenten(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2005,7 +2007,7 @@ class MichaelisMentenDouble(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2063,7 +2065,7 @@ class MichaelisMentenDoubleIsotopeDisplacement(
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2118,7 +2120,7 @@ class MichaelisMentenIsotopeDisplacement(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2174,7 +2176,7 @@ class MichaelisMentenProductAccumulation(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2229,7 +2231,7 @@ class NegativeExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2284,7 +2286,7 @@ class NewZealandEcologyLogistic1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2350,11 +2352,12 @@ class NewZealandEcologyLogistic2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
-        s = "\ttemp = B0 + ((B1 - B0) / (1.0 + exp((B2 + x_in + (B4 * x_in * x_in)) * B3)));\n"
+        s = "\ttemp = B0 + ((B1 - B0) "
+        s += "/ (1.0 + exp((B2 + x_in + (B4 * x_in * x_in)) * B3)));\n"
         return s
 
 
@@ -2367,7 +2370,10 @@ class PlantDisease_Exponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _coefficientDesignators = ["y0", "r"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/"
+    webReferenceURL += (
+        "EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    )
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -2418,7 +2424,7 @@ class PlantDisease_Exponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2435,7 +2441,10 @@ class PlantDisease_Gompertz(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _coefficientDesignators = ["y0", "r"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/"
+    webReferenceURL += (
+        "EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    )
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2487,7 +2496,7 @@ class PlantDisease_Gompertz(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2504,7 +2513,10 @@ class PlantDisease_Logistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _coefficientDesignators = ["y0", "r"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/"
+    webReferenceURL += (
+        "EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    )
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2553,7 +2565,7 @@ class PlantDisease_Logistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2570,7 +2582,10 @@ class PlantDisease_Monomolecular(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _coefficientDesignators = ["y0", "r"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/"
+    webReferenceURL += (
+        "EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    )
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2620,7 +2635,7 @@ class PlantDisease_Monomolecular(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2636,7 +2651,10 @@ class PlantDisease_Weibull(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/"
+    webReferenceURL += (
+        "EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    )
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2688,7 +2706,7 @@ class PlantDisease_Weibull(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2704,7 +2722,10 @@ class PlantDisease_WeibullScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _coefficientDesignators = ["a", "b", "c", "Scale"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    webReferenceURL = "http://www.apsnet.org/edcenter/advanced/topics/"
+    webReferenceURL += (
+        "EcologyAndEpidemiologyInR/DiseaseProgress/Pages/GrowthModels.aspx"
+    )
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -2750,7 +2771,7 @@ class PlantDisease_WeibullScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2809,7 +2830,7 @@ class PreeceAndBaines(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2863,7 +2884,7 @@ class ScaledLog(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2918,7 +2939,7 @@ class ScaledLog_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -2972,7 +2993,7 @@ class ScaledPower(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -3028,7 +3049,7 @@ class ScaledPower_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -3086,7 +3107,7 @@ class StandardLogistic5Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -3143,7 +3164,7 @@ class StandardLogistic4Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -3197,7 +3218,7 @@ class StandardLogistic3Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -3253,7 +3274,7 @@ class Weibull(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
@@ -3314,7 +3335,7 @@ class XiaogangPengImmunoassay(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             return self.extendedVersionHandler.GetAdditionalModelPredictions(
                 temp, inCoeffs, inDataCacheDictionary, self
             )
-        except:
+        except ZeroDivisionError:
             return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):

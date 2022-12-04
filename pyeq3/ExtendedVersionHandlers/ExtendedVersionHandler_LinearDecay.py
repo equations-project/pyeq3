@@ -45,7 +45,7 @@ class ExtendedVersionHandler_LinearDecay(
                     + x_or_xy
                     + ")"
                 )
-            except:
+            except AttributeError:
                 return (
                     inModel._HTML
                     + "<br>"

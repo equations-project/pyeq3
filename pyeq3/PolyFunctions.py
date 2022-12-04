@@ -10,6 +10,9 @@
 
 import numpy
 
+# numpy warnings return nans,
+# which are converted to large numbers by the
+# function ConvertInfAndNanToLargeNumber below
 numpy.seterr(all="ignore")
 
 
@@ -62,7 +65,7 @@ class PowerTerm(object):
             else:
                 returnValue = numpy.power(x, self.power)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -100,7 +103,7 @@ class ArcTangent_Term(object):
         try:
             returnValue = numpy.arctan(x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -121,7 +124,7 @@ class HyperbolicCosine_Term(object):
         try:
             returnValue = numpy.cosh(x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -159,7 +162,7 @@ class HyperbolicSine_Term(object):
         try:
             returnValue = numpy.sinh(x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -180,7 +183,7 @@ class Exponential_VariableUnchanged_Term(object):
         try:
             returnValue = numpy.exp(x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -201,7 +204,7 @@ class Exponential_VariableTimesNegativeOne_Term(object):
         try:
             returnValue = numpy.exp(-x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -222,7 +225,7 @@ class Sine_Term(object):
         try:
             returnValue = numpy.sin(x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -243,7 +246,7 @@ class Cosine_Term(object):
         try:
             returnValue = numpy.cos(x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -265,7 +268,7 @@ class Tangent_Term(object):
         try:
             returnValue = numpy.tan(x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -287,7 +290,7 @@ class HyperbolicTangent_Term(object):
         try:
             returnValue = numpy.tanh(x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 
@@ -308,7 +311,7 @@ class Log_Term(object):
         try:
             returnValue = numpy.log(x)
             return ConvertInfAndNanToLargeNumber(returnValue)
-        except:
+        except Exception:
             return 1.0e300 * numpy.ones_like(x)
 
 

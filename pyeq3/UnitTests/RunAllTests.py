@@ -11,7 +11,8 @@ import Test_Equations
 import Test_NIST
 
 
-# see http://www.voidspace.org.uk/python/articles/introduction-to-unittest.shtml#loaders-runners-and-all-that-stuff
+# see http://www.voidspace.org.uk/python/articles/
+# introduction-to-unittest.shtml#loaders-runners-and-all-that-stuff
 
 loader = unittest.TestLoader()
 

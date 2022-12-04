@@ -46,7 +46,7 @@ class ExtendedVersionHandler_LinearDecayAndOffset(
                     + x_or_xy
                     + ") + Offset"
                 )
-            except:
+            except AttributeError:
                 return (
                     inModel._HTML
                     + "<br>"

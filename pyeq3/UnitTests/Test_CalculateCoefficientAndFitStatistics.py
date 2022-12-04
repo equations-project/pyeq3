@@ -9,7 +9,6 @@ if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
     sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import numpy
-import scipy.interpolate
 
 numpy.seterr(all="ignore")
 
@@ -120,11 +119,6 @@ class TestCalculateCoefficientAndFitStatistics(unittest.TestCase):
         model_ll_ShouldBe = 24.1054640542
         model_aic_ShouldBe = -3.83735710076
         model_bic_ShouldBe = -3.72884020818
-        model_cov_beta_ShouldBe = None
-        model_sd_beta_ShouldBe = None
-        model_tstat_beta_ShouldBe = None
-        model_pstat_beta_ShouldBe = None
-        model_ci_ShouldBe = None
 
         model = pyeq3.Models_2D.Spline.Spline(inSmoothingFactor=1.0, inXOrder=3)
         pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(

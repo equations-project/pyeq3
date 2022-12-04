@@ -26,7 +26,8 @@ class DataCache(object):
         self.allDataCacheDictionary = {}
 
     def GenerateReducedRawData(self, inModel):
-        # find the array indices for the max and min values of each data dimension in the full data set
+        # find the array indices for the max and min values of each data dimension
+        # in the full data set
         minXindex = 0
         maxXindex = 0
         minYindex = 0
@@ -96,7 +97,8 @@ class DataCache(object):
         indexList.sort()
 
         # now that we have all the locations (indices) of the data points in the reduced
-        # data set, draw those points from the full data set and make our reduced data cache
+        # data set, draw those points from the full data set and make our
+        # reduced data cache
         independentData = [[], []]
         dependentData = []
         for i in indexList:
@@ -121,7 +123,8 @@ class DataCache(object):
     def FindOrCreateCache_CommonCode(self, inCacheDictionary, inModel):
         returnCacheDataList = []
         for dataCacheFunction in inModel.GetDataCacheFunctions():
-            # if this item is not in the inCacheDictionary, create it and add it to the inCacheDictionary
+            # if this item is not in the inCacheDictionary, create it
+            # and add it to the inCacheDictionary
             if dataCacheFunction[0] not in inCacheDictionary:
                 # strip any numbers from the end of the string
                 # name, including any ending name info
@@ -151,8 +154,8 @@ class DataCache(object):
                 if not numpy.all(numpy.isfinite(cacheItem)):
                     raise Exception(
                         "Error creating data cache for cache function "
-                        + s
-                        + "(): could not calculate value. This is usually caused by taking the the exponent of a large number."
+                        f"{s}(): could not calculate value. This is usually "
+                        "caused by taking the the exponent of a large number."
                     )
                 inCacheDictionary[dataCacheFunction[0]] = cacheItem
             returnCacheDataList.append(inCacheDictionary[dataCacheFunction[0]])
@@ -171,8 +174,9 @@ class DataCache(object):
                 self.allDataCacheDictionary["DependentData"]
             )
 
-        # if the number of data points in the all data set is not ~1.5 times greater than the
-        # number of data points in the reduced data set, just use the all data set directly
+        # if the number of data points in the all data set is not ~1.5 times
+        # greater than the number of data points in the reduced data set,
+        # just use the all data set directly
         if (1.5 * inModel.numberOfReducedDataPoints) >= len(
             self.allDataCacheDictionary["DependentData"]
         ):
@@ -183,14 +187,16 @@ class DataCache(object):
     def FindOrCreateReducedDataCache(self, inModel):
         self.CalculateNumberOfReducedDataPoints(inModel)
 
-        # if the number of all data points and the number of reduced data points are equal, caches are equal
+        # if the number of all data points and the number of reduced
+        # data points are equal, caches are equal
         if (
             len(self.allDataCacheDictionary["DependentData"])
             == inModel.numberOfReducedDataPoints
         ):
             self.reducedDataCacheDictionary = self.allDataCacheDictionary
 
-        # if the reduced data cache does not yet have reduced raw data, generate it and add to the cache
+        # if the reduced data cache does not yet have reduced raw data,
+        # generate it and add to the cache
         if "DependentData" not in self.reducedDataCacheDictionary:
             self.GenerateReducedRawData(inModel)
 
