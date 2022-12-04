@@ -1,8 +1,5 @@
-import os
-import sys
 import inspect
 import scipy
-import numpy
 
 import pyeq3
 
@@ -10,7 +7,7 @@ simpleObject = pyeq3.IModel.IModel()
 simpleObject._dimensionality = 1
 
 # example data is generated from a Rayleigh distribution (5.0, 2.0)
-asciiTextData = '''
+asciiTextData = """
 6.80743717445
 5.73241246041
 8.4371492305
@@ -161,15 +158,16 @@ asciiTextData = '''
 7.66644773214
 7.60246282819
 7.23133792963
-'''
+"""
 
 pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
-    asciiTextData, simpleObject, False)
+    asciiTextData, simpleObject, False
+)
 
 resultList = []
 solver = pyeq3.solverService()
 # ['AIC', 'AICc_BA', 'nnlf'] from top of SolverService.SolveStatisticalDistribution()
-criteriaForUseInListSorting = 'AIC'
+criteriaForUseInListSorting = "AIC"
 
 # try to fit every distribution
 for distribution in inspect.getmembers(scipy.stats):
@@ -177,8 +175,11 @@ for distribution in inspect.getmembers(scipy.stats):
         print("Fitting", distribution[0])
         try:
             result = solver.SolveStatisticalDistribution(
-                distribution[0], simpleObject.dataCache.allDataCacheDictionary['IndependentData'][0], criteriaForUseInListSorting)
-        except:
+                distribution[0],
+                simpleObject.dataCache.allDataCacheDictionary["IndependentData"][0],
+                criteriaForUseInListSorting,
+            )
+        except AttributeError:
             continue
         if result:
             resultList.append(result)

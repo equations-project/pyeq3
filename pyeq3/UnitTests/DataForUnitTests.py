@@ -1,11 +1,11 @@
-asciiDataInFourColumns_small = '''
+asciiDataInFourColumns_small = """
  3.017  2.175   0.320  0.1
  2.822  2.624   2.753  0.2
  0.742  2.568   2.581  0.3
  0.607  2.571   0.629  0.4
-    '''
+    """
 
-asciiIntegerDataInColumns = '''
+asciiIntegerDataInColumns = """
 1 1
 2 2
 3 3
@@ -26,9 +26,9 @@ asciiIntegerDataInColumns = '''
 18 18
 19 19
 20 20
-'''
+"""
 
-asciiDataInFourColumns = '''
+asciiDataInFourColumns = """
 1.1 2.1 3.1 4.1
 1.2 2.2 3.2 4.2
 1.3 2.3 3.3 4.3
@@ -39,10 +39,10 @@ asciiDataInFourColumns = '''
 1.8 2.8 3.8 4.8
 1.9 2.9 3.9 4.9
 1.0 2.0 3.0 4.0
-'''
+"""
 
 
-asciiDataInColumns_2D = '''
+asciiDataInColumns_2D = """
  5.357    0.376
  5.457    0.489
  5.797    0.874
@@ -54,9 +54,9 @@ asciiDataInColumns_2D = '''
  8.442    4.744
  9.769    7.068
  9.861    7.104
- '''
+ """
 
-asciiDataInColumns_3D = '''
+asciiDataInColumns_3D = """
  3.017  2.175   0.320
  2.822  2.624   0.629
  2.632  2.839   0.950
@@ -84,23 +84,23 @@ asciiDataInColumns_3D = '''
  1.016  2.564   2.243
  0.742  2.568   2.581
  0.607  2.571   2.753
-'''
+"""
 
 
-asciiDataInColumns_2D_small = '''
+asciiDataInColumns_2D_small = """
  5.357    0.376
  6.775    2.138
  9.861    7.104
- '''
+ """
 
-asciiDataInColumns_3D_small = '''
+asciiDataInColumns_3D_small = """
  3.017  2.175   0.320
  1.712  3.153   2.721
  1.687  2.525   1.459
  1.408  2.547   1.775
-'''
+"""
 
-asciiDataForExponentialSensitivityTest = '''
+asciiDataForExponentialSensitivityTest = """
 0.9         -2997.81165143259
 1.5         -2997.67633151454
 13.8         -2992.05019674501
@@ -111,4 +111,4 @@ asciiDataForExponentialSensitivityTest = '''
 60.3         -2168.56994123603
 74.6          474.296114697706
 81.3          3789.59913028271
-'''
+"""

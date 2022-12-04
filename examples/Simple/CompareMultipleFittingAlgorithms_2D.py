@@ -19,7 +19,8 @@ for fittingAlgorithmName in pyeq3.solverService.ListOfNonLinearSolverAlgorithmNa
         and fittingTargetText == "SSQABS"
     ):
         raise Exception(
-            "The selected combination of equation and SSQABS fitting target does not use a non-linear solver"
+            "The selected combination of equation and SSQABS fitting target "
+            "does not use a non-linear solver"
         )
 
     if fittingTargetText == "ODR":

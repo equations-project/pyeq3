@@ -20,7 +20,8 @@ def UniqueCombinations(items, n):  # utility function
         yield []
     else:
         for i in range(len(items)):
-            for cc in UniqueCombinations(items[i + 1:], n - 1):
+            sidx = i + 1
+            for cc in UniqueCombinations(items[sidx:], n - 1):
                 yield [items[i]] + cc
 
 
@@ -29,7 +30,8 @@ def UniqueCombinations2(items2, n2):  # utility function
         yield []
     else:
         for i2 in range(len(items2)):
-            for cc2 in UniqueCombinations2(items2[i2 + 1:], n2 - 1):
+            sidx = i2 + 1
+            for cc2 in UniqueCombinations2(items2[sidx:], n2 - 1):
                 yield [items2[i2]] + cc2
 
 
@@ -54,8 +56,7 @@ def SetDataParametersAndFit(inRawData, inEquation, inPrintStatus):
         A dictionary containing the equation and fitting information
         required to instantiate a new pyeq3.IModel object.
     """
-    pyeq3.dataConvertorService().ProcessData(inRawData, inEquation,
-                                             False)
+    pyeq3.dataConvertorService().ProcessData(inRawData, inEquation, False)
     return SetParametersAndFit(inEquation, inPrintStatus)
 
 
@@ -100,14 +101,15 @@ def SetParametersAndFit(inEquation, inPrintStatus):
 
         inEquation.Solve()
 
-        target = inEquation.CalculateAllDataFittingTarget(
-            inEquation.solvedCoefficients)
+        target = inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)
         if target > 1.0e290:  # error too large
             return None
     except Exception:
-        print(f"Exception in {inEquation.__class__.__name__}\n"
-              f"{str(sys.exc_info()[0])}\n"
-              f"{str(sys.exc_info()[1])}\n")
+        print(
+            f"Exception in {inEquation.__class__.__name__}\n"
+            f"{str(sys.exc_info()[0])}\n"
+            f"{str(sys.exc_info()[1])}\n"
+        )
         return None
 
     eq = inEquation
@@ -116,18 +118,20 @@ def SetParametersAndFit(inEquation, inPrintStatus):
     elif eq.GetDimensionality() == 3:
         polyfunctionalnDFlags = copy.deepcopy(eq.polyfunctional3DFlags)
 
-    t = {"moduleName": copy.deepcopy(eq.__module__),
-         "className": copy.deepcopy(eq.__class__.__name__),
-         "extendedVersionHandlerName": copy.deepcopy(
-             eq.extendedVersionHandler.__class__.__name__.split("_")[1]),
-         "fittingTarget": copy.deepcopy(eq.fittingTarget),
-         "fittingTargetValue": copy.deepcopy(target),
-         "solvedCoefficients": copy.deepcopy(eq.solvedCoefficients),
-         "polyfunctionalnDFlags": copy.deepcopy(polyfunctionalnDFlags),
-         "polynomialOrderX": copy.deepcopy(eq.xPolynomialOrder),
-         "rationalNumeratorFlags": copy.deepcopy(eq.rationalNumeratorFlags),
-         "rationalDenominatorFlags": copy.deepcopy(eq.rationalDenominatorFlags)
-         }
+    t = {
+        "moduleName": copy.deepcopy(eq.__module__),
+        "className": copy.deepcopy(eq.__class__.__name__),
+        "extendedVersionHandlerName": copy.deepcopy(
+            eq.extendedVersionHandler.__class__.__name__.split("_")[1]
+        ),
+        "fittingTarget": copy.deepcopy(eq.fittingTarget),
+        "fittingTargetValue": copy.deepcopy(target),
+        "solvedCoefficients": copy.deepcopy(eq.solvedCoefficients),
+        "polyfunctionalnDFlags": copy.deepcopy(polyfunctionalnDFlags),
+        "polynomialOrderX": copy.deepcopy(eq.xPolynomialOrder),
+        "rationalNumeratorFlags": copy.deepcopy(eq.rationalNumeratorFlags),
+        "rationalDenominatorFlags": copy.deepcopy(eq.rationalDenominatorFlags),
+    }
 
     return t
 
@@ -181,21 +185,31 @@ def SubmitTasksToQueue(
                         ):
                             continue
 
-                        if (((inLinearTrueOrNonLinearFalseFlag is True) and
-                             (equationInstance.CanLinearSolverBeUsedForSSQABS()
-                              is False) or
-                             fittingTargetText != "SSQABS")):
+                        if (
+                            (inLinearTrueOrNonLinearFalseFlag is True)
+                            and (
+                                equationInstance.CanLinearSolverBeUsedForSSQABS()
+                                is False
+                            )
+                            or fittingTargetText != "SSQABS"
+                        ):
                             continue
 
-                        if (((inLinearTrueOrNonLinearFalseFlag is False) and
-                             (equationInstance.CanLinearSolverBeUsedForSSQABS()
-                              is True) and fittingTargetText == "SSQABS"
-                             )):
+                        if (
+                            (inLinearTrueOrNonLinearFalseFlag is False)
+                            and (
+                                equationInstance.CanLinearSolverBeUsedForSSQABS()
+                                is True
+                            )
+                            and fittingTargetText == "SSQABS"
+                        ):
                             continue
 
                         inTaskQueue.put(
-                            (SetDataParametersAndFit,
-                             (inRawData, equationInstance, False))
+                            (
+                                SetDataParametersAndFit,
+                                (inRawData, equationInstance, False),
+                            )
                         )
                         totalNumberOfTasksSubmitted += 1
 
@@ -216,18 +230,19 @@ def SubmitTasksToQueue(
     functionIndexList = list(range(len(polyfunctionalEquationList)))
 
     for coeffCount in range(1, maxPolyfunctionalCoefficients + 1):
-        functionCombinations = UniqueCombinations(
-            functionIndexList, coeffCount)
+        functionCombinations = UniqueCombinations(functionIndexList, coeffCount)
         for functionCombination in functionCombinations:
 
             if len(functionCombination) > smoothnessControl:
                 continue
 
             pfn = models.Polyfunctional.UserSelectablePolyfunctional
-            equationInstance = pfn(fittingTargetText,
-                                   "Default",
-                                   functionCombination,
-                                   polyfunctionalEquationList)
+            equationInstance = pfn(
+                fittingTargetText,
+                "Default",
+                functionCombination,
+                polyfunctionalEquationList,
+            )
 
             if inLinearTrueOrNonLinearFalseFlag is True and (
                 equationInstance.CanLinearSolverBeUsedForSSQABS() is False
@@ -242,8 +257,9 @@ def SubmitTasksToQueue(
             ):
                 continue
 
-            inTaskQueue.put((SetDataParametersAndFit,
-                             (inRawData, equationInstance, False)))
+            inTaskQueue.put(
+                (SetDataParametersAndFit, (inRawData, equationInstance, False))
+            )
             totalNumberOfTasksSubmitted += 1
 
     # fit user-selectable polynomials here
@@ -271,8 +287,7 @@ def SubmitTasksToQueue(
         ):
             continue
 
-        inTaskQueue.put(
-            (SetDataParametersAndFit, (inRawData, equationInstance, False)))
+        inTaskQueue.put((SetDataParametersAndFit, (inRawData, equationInstance, False)))
         totalNumberOfTasksSubmitted += 1
 
     # fit user-selectable rationals here
@@ -287,8 +302,7 @@ def SubmitTasksToQueue(
     functionIndexList = list(range(len(functionList)))
 
     for numeratorCoeffCount in range(1, maxCoeffs):
-        numeratorComboList = UniqueCombinations(
-            functionIndexList, numeratorCoeffCount)
+        numeratorComboList = UniqueCombinations(functionIndexList, numeratorCoeffCount)
         for numeratorCombo in numeratorComboList:
             for denominatorCoeffCount in range(1, maxCoeffs):
                 denominatorComboList = UniqueCombinations2(
@@ -303,33 +317,44 @@ def SubmitTasksToQueue(
                             extraCoeffs = 1
 
                         if (
-                            len(numeratorCombo) +
-                                len(denominatorCombo) + extraCoeffs
+                            len(numeratorCombo) + len(denominatorCombo) + extraCoeffs
                         ) > smoothnessControl:
                             continue
 
                         ratfn = models.Rational.UserSelectableRational
-                        equationInstance = ratfn(fittingTargetText,
-                                                 extendedVersion,
-                                                 numeratorCombo,
-                                                 denominatorCombo,
-                                                 functionList)
+                        equationInstance = ratfn(
+                            fittingTargetText,
+                            extendedVersion,
+                            numeratorCombo,
+                            denominatorCombo,
+                            functionList,
+                        )
 
-                        if (((inLinearTrueOrNonLinearFalseFlag is True) and
-                             (equationInstance.CanLinearSolverBeUsedForSSQABS()
-                              is False) or
-                             fittingTargetText != "SSQABS")):
+                        if (
+                            (inLinearTrueOrNonLinearFalseFlag is True)
+                            and (
+                                equationInstance.CanLinearSolverBeUsedForSSQABS()
+                                is False
+                            )
+                            or fittingTargetText != "SSQABS"
+                        ):
                             continue
 
-                        if (((inLinearTrueOrNonLinearFalseFlag is False) and
-                             (equationInstance.CanLinearSolverBeUsedForSSQABS()
-                              is True) and
-                             fittingTargetText == "SSQABS")):
+                        if (
+                            (inLinearTrueOrNonLinearFalseFlag is False)
+                            and (
+                                equationInstance.CanLinearSolverBeUsedForSSQABS()
+                                is True
+                            )
+                            and fittingTargetText == "SSQABS"
+                        ):
                             continue
 
                         inTaskQueue.put(
-                            (SetDataParametersAndFit,
-                             (inRawData, equationInstance, False))
+                            (
+                                SetDataParametersAndFit,
+                                (inRawData, equationInstance, False),
+                            )
                         )
                         totalNumberOfTasksSubmitted += 1
 
@@ -351,9 +376,9 @@ def serialWorker(inputQueue, outputQueue):
             break
 
 
-def FitModelsInParallel(inRawData, inDimension,
-                        fittingTargetText, smoothnessControl,
-                        number_of_cpus):
+def FitModelsInParallel(
+    inRawData, inDimension, fittingTargetText, smoothnessControl, number_of_cpus
+):
     """
     Takes some user-defined data and uses it to parameterise
     a set of models (IModel objects) that
@@ -402,8 +427,7 @@ def FitModelsInParallel(inRawData, inDimension,
         for i in range(numberOfSerialTasksSubmitted):
             allResults.append(fittingResultsQueue.get())
 
-    print(f"{numberOfSerialTasksSubmitted} total linear fits "
-          "performed in series")
+    print(f"{numberOfSerialTasksSubmitted} total linear fits " "performed in series")
     # Serial region ends
 
     # http://stackoverflow.com/questions/18204782/runtimeerror-on-windows-trying-python-multiprocessing
@@ -431,8 +455,7 @@ def FitModelsInParallel(inRawData, inDimension,
         try:
             for i in range(number_of_cpus):
                 p = multiprocessing.Process(
-                    target=parallelWorker, args=(
-                        fittingTasksQueue, fittingResultsQueue)
+                    target=parallelWorker, args=(fittingTasksQueue, fittingResultsQueue)
                 )
                 p.start()
                 processList.append(p)
@@ -454,8 +477,10 @@ def FitModelsInParallel(inRawData, inDimension,
                 except Exception:
                     pass
 
-    print(f"{numberOfParallelTasksSubmitted} total "
-          "non-linear fits performed in parallel")
+    print(
+        f"{numberOfParallelTasksSubmitted} total "
+        "non-linear fits performed in parallel"
+    )
 
     # Parallel region ends
     n_tasks = numberOfSerialTasksSubmitted + numberOfParallelTasksSubmitted
@@ -485,38 +510,46 @@ def InstantiateModel(result, data):
     # now instantiate the "best fit" equation based on the name stored in the
     # result list
     if result["polyfunctionalnDFlags"]:
-        equation = eval(f"{result['moduleName']}."
-                        f"{result['className']}"
-                        f"('{result['fittingTarget']}', "
-                        f"'{result['extendedVersionHandlerName']}', "
-                        f"{result['polyfunctionalnDFlags']})")
+        equation = eval(
+            f"{result['moduleName']}."
+            f"{result['className']}"
+            f"('{result['fittingTarget']}', "
+            f"'{result['extendedVersionHandlerName']}', "
+            f"{result['polyfunctionalnDFlags']})"
+        )
     elif result["polynomialOrderX"] is not None:
-        equation = eval(f"{result['moduleName']}."
-                        f"{result['className']}"
-                        f"('{result['fittingTarget']}', "
-                        f"'{result['extendedVersionHandlerName']}', "
-                        f"{result['polynomialOrderX']})")
-    elif ((result["rationalNumeratorFlags"]) and
-          (result["rationalDenominatorFlags"])):
-        equation = eval(f"{result['moduleName']}."
-                        f"{result['className']}"
-                        f"('{result['fittingTarget']}', "
-                        f"'{result['extendedVersionHandlerName']}', "
-                        f"{result['rationalNumeratorFlags']}, "
-                        f"{result['rationalDenominatorFlags']})")
+        equation = eval(
+            f"{result['moduleName']}."
+            f"{result['className']}"
+            f"('{result['fittingTarget']}', "
+            f"'{result['extendedVersionHandlerName']}', "
+            f"{result['polynomialOrderX']})"
+        )
+    elif (result["rationalNumeratorFlags"]) and (result["rationalDenominatorFlags"]):
+        equation = eval(
+            f"{result['moduleName']}."
+            f"{result['className']}"
+            f"('{result['fittingTarget']}', "
+            f"'{result['extendedVersionHandlerName']}', "
+            f"{result['rationalNumeratorFlags']}, "
+            f"{result['rationalDenominatorFlags']})"
+        )
     else:
-        equation = eval(f"{result['moduleName']}."
-                        f"{result['className']}"
-                        f"('{result['fittingTarget']}', "
-                        f"'{result['extendedVersionHandlerName']}')")
+        equation = eval(
+            f"{result['moduleName']}."
+            f"{result['className']}"
+            f"('{result['fittingTarget']}', "
+            f"'{result['extendedVersionHandlerName']}')"
+        )
 
     pyeq3.dataConvertorService().ProcessData(data, equation, False)
     equation.fittingTarget = result["fittingTarget"]
     equation.solvedCoefficients = result["solvedCoefficients"]
     equation.dataCache.FindOrCreateAllDataCache(equation)
     equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
-    equation.CalculateModelErrors(equation.solvedCoefficients,
-                                  equation.dataCache.allDataCacheDictionary)
+    equation.CalculateModelErrors(
+        equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary
+    )
     equation.GetCoefficientDesignators()
     equation.CalculateCoefficientAndFitStatistics()
 

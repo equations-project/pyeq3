@@ -4,12 +4,13 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
+#    https://github.com/equations-project/pyeq3
+#
 #    License: BSD-style (see license.txt in main source directory)
 
 cppOutputSourceCodeUpperComment = """// If there are any errors or problems with this
 // code output please raise an issue on GitHub:
 // github.com/equations-project/pyeq3
-
 """
 
 
@@ -155,7 +156,9 @@ class OutputSourceCodeService(object):
 
         s = cppOutputSourceCodeUpperComment
         s += "\n#include <math.h>\n\n"
-        s += f"// {note}\n"
+
+        if note != "":
+            s += f"// {note}\n"
         s += (
             "// Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -209,7 +212,8 @@ class OutputSourceCodeService(object):
 
         s = self.ConvertCppToCSHARP(cppOutputSourceCodeUpperComment)
         s += "\nusing System;\n\n"
-        s += f"// {note}\n"
+        if note != "":
+            s += f"// {note}\n"
         s += (
             "// Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -271,7 +275,8 @@ class OutputSourceCodeService(object):
             raise NotImplementedError("Not implemented for splines")
 
         s = self.ConvertCppToVBA(cppOutputSourceCodeUpperComment)
-        s += f"' {note}\n"
+        if note != "":
+            s += f"' {note}\n"
         s += (
             "' Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -336,7 +341,8 @@ class OutputSourceCodeService(object):
 
         s = self.ConvertCppToPYTHON(cppOutputSourceCodeUpperComment)
         s += "\nimport math\n\n"
-        s += f"# {note}\n"
+        if note != "":
+            s += f"# {note}\n"
         s += (
             "# Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -391,7 +397,8 @@ class OutputSourceCodeService(object):
 
         s = self.ConvertCppToJAVA(cppOutputSourceCodeUpperComment)
         s += "\nimport java.lang.Math;\n\n"
-        s += f"// {note}\n"
+        if note != "":
+            s += f"// {note}\n"
         s += (
             "// Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -459,7 +466,8 @@ class OutputSourceCodeService(object):
             cppOutputSourceCodeUpperComment
         )  # reuse existing code
         s += "\n"
-        s += f"// {note}\n"
+        if note != "":
+            s += f"// {note}\n"
         s += (
             "// Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -517,7 +525,8 @@ class OutputSourceCodeService(object):
 
         s = self.ConvertCppToSCILAB(cppOutputSourceCodeUpperComment)
         s += "\n"
-        s += f"// {note}\n"
+        if note != "":
+            s += f"// {note}\n"
         s += (
             "// Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -572,7 +581,8 @@ class OutputSourceCodeService(object):
 
         s = self.ConvertCppToMATLAB(cppOutputSourceCodeUpperComment)
         s += "\n"
-        s += f"% {note}\n"
+        if note != "":
+            s += f"% {note}\n"
         s += (
             "% Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -635,7 +645,8 @@ class OutputSourceCodeService(object):
             s += "pow(x,y) = x ^ y\n"
             s += "\n"
 
-        s += f"# {note}\n"
+        if note != "":
+            s += f"# {note}\n"
         s += (
             "# Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -698,7 +709,8 @@ class OutputSourceCodeService(object):
             s += "end function pow\n"
             s += "\n"
 
-        s += f"! {note}\n"
+        if note != "":
+            s += f"! {note}\n"
         s += (
             "! Fitting target: lowest "
             + inEquation.fittingTargetDictionary[inEquation.fittingTarget]
@@ -758,10 +770,9 @@ class OutputSourceCodeService(object):
     ####################################################################################
 
     def SplineCodePYTHON_2D(self, inEquation):
-        s = """# To the best of my knowledge this code is correct.
-# If you find any errors or problems please contact
-# me at zunzun@zunzun.com.
-#      James
+        s = """# If there are any errors or problems with this
+# code output please raise an issue on GitHub:
+# github.com/equations-project/pyeq3
 #
 # the code below was partially based on the fortran code at:
 # http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/splev.f
@@ -826,10 +837,9 @@ class OutputSourceCodeService(object):
         return s
 
     def SplineCodeCPP_2D(self, inEquation):
-        s = """// To the best of my knowledge this code is correct.
-// If you find any errors or problems please contact
-// me at zunzun@zunzun.com.
-//      James
+        s = """// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
 //
 // the code below was partially based on the fortran code at:
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/splev.f
@@ -914,10 +924,9 @@ class OutputSourceCodeService(object):
         return s
 
     def SplineCodeJAVASCRIPT_3D(self, inEquation):
-        s = """// To the best of my knowledge this code is correct.
-// If you find any errors or problems please contact
-// me at zunzun@zunzun.com.
-//      James
+        s = """// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
 //
 // the code below was partially based on the fortran code at:
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbisp.f
@@ -1078,10 +1087,9 @@ class OutputSourceCodeService(object):
         return s
 
     def SplineCodeJAVA_2D(self, inEquation):
-        s = """// To the best of my knowledge this code is correct.
-// If you find any errors or problems please contact
-// me at zunzun@zunzun.com.
-//      James
+        s = """// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
 //
 // the code below was partially based on the fortran code at:
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/splev.f
@@ -1171,10 +1179,9 @@ class OutputSourceCodeService(object):
         return s
 
     def SplineCodeJAVASCRIPT_2D(self, inEquation):
-        s = """// To the best of my knowledge this code is correct.
-// If you find any errors or problems please contact
-// me at zunzun@zunzun.com.
-//      James
+        s = """// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
 //
 // the code below was partially based on the fortran code at:
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/splev.f
@@ -1259,10 +1266,9 @@ class OutputSourceCodeService(object):
         return s
 
     def SplineCodePYTHON_3D(self, inEquation):
-        s = """# To the best of my knowledge this code is correct.
-# If you find any errors or problems please contact
-# me at zunzun@zunzun.com.
-#      James
+        s = """# If there are any errors or problems with this
+# code output please raise an issue on GitHub:
+# github.com/equations-project/pyeq3
 #
 # the code below was partially based on the fortran code at:
 # http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbisp.f
@@ -1372,10 +1378,9 @@ class OutputSourceCodeService(object):
         return s
 
     def SplineCodeCPP_3D(self, inEquation):
-        s = """// To the best of my knowledge this code is correct.
-// If you find any errors or problems please contact
-// me at zunzun@zunzun.com.
-//      James
+        s = """// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
 //
 // the code below was partially based on the fortran code at:
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbisp.f
@@ -1528,10 +1533,9 @@ class OutputSourceCodeService(object):
         return s
 
     def SplineCodeJAVA_3D(self, inEquation):
-        s = """// To the best of my knowledge this code is correct.
-// If you find any errors or problems please contact
-// me at zunzun@zunzun.com.
-//      James
+        s = """// If there are any errors or problems with this
+// code output please raise an issue on GitHub:
+// github.com/equations-project/pyeq3
 //
 // the code below was partially based on the fortran code at:
 // http://svn.scipy.org/svn/scipy/trunk/scipy/interpolate/fitpack/fpbisp.f

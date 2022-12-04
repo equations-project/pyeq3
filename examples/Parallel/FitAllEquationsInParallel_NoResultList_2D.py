@@ -1,7 +1,6 @@
 import os
 import inspect
 import multiprocessing
-import numpy as np
 
 import pyeq3
 from pyeq3.Utilities.Multifit import SetParametersAndFit
@@ -10,13 +9,13 @@ from pyeq3.Utilities.Multifit import InstantiateModel
 from pyeq3.Output import Print
 
 
-def ParallelFittingFunction(rawData, fittingTargetText,
-                            smoothnessControl, modulus,
-                            modulusRemainder):
+def ParallelFittingFunction(
+    rawData, fittingTargetText, smoothnessControl, modulus, modulusRemainder
+):
     processID = str(os.getpid())
 
     # this function yields a single item to inspect after completion
-    bestResult = {'fittingTargetValue': 1e300}
+    bestResult = {"fittingTargetValue": 1e300}
 
     # we are using the same data set repeatedly, so create a cache
     # external to the equations
@@ -79,17 +78,23 @@ def ParallelFittingFunction(rawData, fittingTargetText,
                         equationInstance.dataCache.CalculateNumberOfReducedDataPoints(
                             equationInstance
                         )
-                        if (equationInstance.numberOfReducedDataPoints
-                                in reducedDataCache):
+                        if (
+                            equationInstance.numberOfReducedDataPoints
+                            in reducedDataCache
+                        ):
                             equationInstance.dataCache.reducedDataCacheDictionary = (
-                                reducedDataCache[equationInstance.numberOfReducedDataPoints])
+                                reducedDataCache[
+                                    equationInstance.numberOfReducedDataPoints
+                                ]
+                            )
                         else:
                             equationInstance.dataCache.reducedDataCacheDictionary = {}
 
                         result = SetParametersAndFit(equationInstance, True)
-                        if (((result is not None) and
-                             (result['fittingTargetValue']
-                              < bestResult['fittingTargetValue']))):
+                        if (result is not None) and (
+                            result["fittingTargetValue"]
+                            < bestResult["fittingTargetValue"]
+                        ):
                             bestResult = result
 
                         if (
@@ -112,8 +117,7 @@ def ParallelFittingFunction(rawData, fittingTargetText,
     functionIndexList = list(range(len(polyfunctionalEquationList)))
 
     for coeffCount in range(1, maxPolyfunctionalCoefficients + 1):
-        functionCombinations = UniqueCombinations(
-            functionIndexList, coeffCount)
+        functionCombinations = UniqueCombinations(functionIndexList, coeffCount)
         for functionCombination in functionCombinations:
 
             if len(functionCombination) > smoothnessControl:
@@ -152,9 +156,9 @@ def ParallelFittingFunction(rawData, fittingTargetText,
                 equationInstance.dataCache.reducedDataCacheDictionary = {}
 
             result = SetParametersAndFit(equationInstance, True)
-            if (((result is not None) and
-                    (result['fittingTargetValue']
-                     < bestResult['fittingTargetValue']))):
+            if (result is not None) and (
+                result["fittingTargetValue"] < bestResult["fittingTargetValue"]
+            ):
                 bestResult = result
 
             if equationInstance.numberOfReducedDataPoints not in reducedDataCache:
@@ -197,18 +201,18 @@ def ParallelFittingFunction(rawData, fittingTargetText,
                 rawData, equationInstance, False
             )
 
-        equationInstance.dataCache.CalculateNumberOfReducedDataPoints(
-            equationInstance)
+        equationInstance.dataCache.CalculateNumberOfReducedDataPoints(equationInstance)
         if equationInstance.numberOfReducedDataPoints in reducedDataCache:
             equationInstance.dataCache.reducedDataCacheDictionary = reducedDataCache[
-                equationInstance.numberOfReducedDataPoints]
+                equationInstance.numberOfReducedDataPoints
+            ]
         else:
             equationInstance.dataCache.reducedDataCacheDictionary = {}
 
         result = SetParametersAndFit(equationInstance, True)
-        if (((result is not None) and
-                (result['fittingTargetValue']
-                 < bestResult['fittingTargetValue']))):
+        if (result is not None) and (
+            result["fittingTargetValue"] < bestResult["fittingTargetValue"]
+        ):
             bestResult = result
 
         if equationInstance.numberOfReducedDataPoints not in reducedDataCache:
@@ -228,8 +232,7 @@ def ParallelFittingFunction(rawData, fittingTargetText,
     functionIndexList = list(range(len(functionList)))
 
     for numeratorCoeffCount in range(1, maxCoeffs):
-        numeratorComboList = UniqueCombinations(
-            functionIndexList, numeratorCoeffCount)
+        numeratorComboList = UniqueCombinations(functionIndexList, numeratorCoeffCount)
         for numeratorCombo in numeratorComboList:
             for denominatorCoeffCount in range(1, maxCoeffs):
                 denominatorComboList = UniqueCombinations2(
@@ -244,8 +247,7 @@ def ParallelFittingFunction(rawData, fittingTargetText,
                             extraCoeffs = 1
 
                         if (
-                            len(numeratorCombo) +
-                                len(denominatorCombo) + extraCoeffs
+                            len(numeratorCombo) + len(denominatorCombo) + extraCoeffs
                         ) > smoothnessControl:
                             continue
 
@@ -289,13 +291,16 @@ def ParallelFittingFunction(rawData, fittingTargetText,
                             equationInstance.dataCache.reducedDataCacheDictionary = {}
 
                         result = SetParametersAndFit(equationInstance, True)
-                        if (((result is not None) and
-                             (result['fittingTargetValue']
-                              < bestResult['fittingTargetValue']))):
+                        if (result is not None) and (
+                            result["fittingTargetValue"]
+                            < bestResult["fittingTargetValue"]
+                        ):
                             bestResult = result
 
-                        if (equationInstance.numberOfReducedDataPoints
-                                not in reducedDataCache):
+                        if (
+                            equationInstance.numberOfReducedDataPoints
+                            not in reducedDataCache
+                        ):
                             reducedDataCache[
                                 equationInstance.numberOfReducedDataPoints
                             ] = equationInstance.dataCache.reducedDataCacheDictionary
@@ -365,8 +370,7 @@ if __name__ == "__main__":
         poolItems.append(
             pool.apply_async(
                 ParallelFittingFunction,
-                (rawData, fittingTargetText,
-                 smoothnessControl, number_of_cpu_cores, i),
+                (rawData, fittingTargetText, smoothnessControl, number_of_cpu_cores, i),
             )
         )  # modulus math divides the equations among the processes
 
@@ -384,17 +388,18 @@ if __name__ == "__main__":
     ##############################################
 
     # sort the parallel runs and select the best result
-    allResults = sorted(allResults, key=lambda x: x['fittingTargetValue'])
+    allResults = sorted(allResults, key=lambda x: x["fittingTargetValue"])
     bestResult = allResults[0]
 
-    print('\nAlthough the \"Best Fit\" function should have the '
-          'lowest fitting target value, it requires further evaluation '
-          'to determine if it is the best for your needs. '
-          'For example, it may interpolate badly.\n')
     print(
-        f'This inversion allowed a maximum of {smoothnessControl} parameters.')
+        '\nAlthough the "Best Fit" function should have the '
+        "lowest fitting target value, it requires further evaluation "
+        "to determine if it is the best for your needs. "
+        "For example, it may interpolate badly.\n"
+    )
+    print(f"This inversion allowed a maximum of {smoothnessControl} parameters.")
 
-    print('\nBest fit equation:')
+    print("\nBest fit equation:")
     equation = InstantiateModel(bestResult, rawData)
     print(equation)
 

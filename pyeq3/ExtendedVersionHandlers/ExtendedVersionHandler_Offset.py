@@ -4,16 +4,14 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import pyeq3
 from . import IExtendedVersionHandler
 
 
 class ExtendedVersionHandler_Offset(IExtendedVersionHandler.IExtendedVersionHandler):
-
     def AssembleDisplayHTML(self, inModel):
         return inModel._HTML + " + Offset"
 
@@ -21,10 +19,15 @@ class ExtendedVersionHandler_Offset(IExtendedVersionHandler.IExtendedVersionHand
         return inModel._baseName + " With Offset"
 
     def AssembleSourceCodeName(self, inModel):
-        return inModel.__module__.split('.')[-1] + '_' + inModel.__class__.__name__ + "_Offset"
+        return (
+            inModel.__module__.split(".")[-1]
+            + "_"
+            + inModel.__class__.__name__
+            + "_Offset"
+        )
 
     def AssembleCoefficientDesignators(self, inModel):
-        return inModel._coefficientDesignators + ['Offset']
+        return inModel._coefficientDesignators + ["Offset"]
 
     # overridden from abstract parent class
 
@@ -42,8 +45,12 @@ class ExtendedVersionHandler_Offset(IExtendedVersionHandler.IExtendedVersionHand
     def GetAdditionalDataCacheFunctions(self, inModel, inDataCacheFunctions):
         return inDataCacheFunctions
 
-    def GetAdditionalModelPredictions(self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel):
-        return self.ConvertInfAndNanToLargeNumber(inBaseModelCalculation + inCoeffs[len(inCoeffs)-1])
+    def GetAdditionalModelPredictions(
+        self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel
+    ):
+        return self.ConvertInfAndNanToLargeNumber(
+            inBaseModelCalculation + inCoeffs[len(inCoeffs) - 1]
+        )
 
     # overridden from abstract parent class
 

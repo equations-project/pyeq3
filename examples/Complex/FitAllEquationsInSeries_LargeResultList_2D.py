@@ -1,4 +1,3 @@
-import os
 import sys
 import inspect
 import copy
@@ -11,7 +10,8 @@ def UniqueCombinations(items, n):  # utility function
         yield []
     else:
         for i in range(len(items)):
-            for cc in UniqueCombinations(items[i + 1 :], n - 1):
+            sidx = i + 1
+            for cc in UniqueCombinations(items[sidx:], n - 1):
                 yield [items[i]] + cc
 
 
@@ -20,7 +20,8 @@ def UniqueCombinations2(items2, n2):  # utility function
         yield []
     else:
         for i2 in range(len(items2)):
-            for cc2 in UniqueCombinations2(items2[i2 + 1 :], n2 - 1):
+            sidx = i2 + 1
+            for cc2 in UniqueCombinations2(items2[sidx:], n2 - 1):
                 yield [items2[i2]] + cc2
 
 
@@ -48,7 +49,7 @@ def SetParametersAndFit(inEquation, resultList, inPrintStatus):  # utility funct
         target = inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)
         if target > 1.0e290:  # error too large
             return
-    except:
+    except AttributeError:
         print(
             "Exception in "
             + inEquation.__class__.__name__
@@ -92,7 +93,8 @@ rawData = """
 # this example yields a sorted output list to inspect after completion
 resultList = []
 
-# Standard lowest sum-of-squared errors in this example, see IModel.fittingTargetDictionary
+# Standard lowest sum-of-squared errors in this example,
+# see IModel.fittingTargetDictionary
 fittingTargetText = "SSQABS"
 
 # we are using the same data set repeatedly, so create a cache external to the equations
@@ -397,8 +399,6 @@ elif polynomialOrderX is not None:
         + extendedVersionHandlerName
         + "', "
         + str(polynomialOrderX)
-        + ", "
-        + str(polynomialOrderY)
         + ")"
     )
 elif rationalNumeratorFlags and rationalDenominatorFlags:

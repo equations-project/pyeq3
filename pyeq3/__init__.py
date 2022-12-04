@@ -4,6 +4,8 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
+#    https://github.com/equations-project/pyeq3
+#
 #    License: BSD-style (see license.txt in main source directory)
 """
 Introducing pyeq3 |version|
@@ -150,9 +152,10 @@ from . import Graphics
 from . import Output
 from .version import version as __version__
 import sys
+
 python_version = sys.version_info[0]
 if python_version < 3:
-    raise Exception('Python 3 is required to use pyeq3')
+    raise Exception("Python 3 is required to use pyeq3")
 
 
 dataConvertorService = Services.DataConverterService.DataConverterService

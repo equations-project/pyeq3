@@ -4,7 +4,8 @@ import pyeq3
 equation = pyeq3.Models_2D.Polynomial.Linear()
 
 pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
-    equation.exampleData, equation, False)
+    equation.exampleData, equation, False
+)
 
 ##########################################################
 
@@ -13,10 +14,15 @@ equation.Solve()
 
 print("Fitted Parameters With No Bounds:")
 for i in range(len(equation.solvedCoefficients)):
-    print("    %s = %-.16E" % (equation.GetCoefficientDesignators()
-          [i], equation.solvedCoefficients[i]))
-print(equation.fittingTargetDictionary[equation.fittingTarget], '=',
-      equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+    print(
+        "    %s = %-.16E"
+        % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i])
+    )
+print(
+    equation.fittingTargetDictionary[equation.fittingTarget],
+    "=",
+    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
+)
 print()
 
 ##########################################################
@@ -29,10 +35,15 @@ equation.Solve()
 
 print("Fitted Parameters With One Upper Bound:")
 for i in range(len(equation.solvedCoefficients)):
-    print("    %s = %-.16E" % (equation.GetCoefficientDesignators()
-          [i], equation.solvedCoefficients[i]))
-print(equation.fittingTargetDictionary[equation.fittingTarget], '=',
-      equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+    print(
+        "    %s = %-.16E"
+        % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i])
+    )
+print(
+    equation.fittingTargetDictionary[equation.fittingTarget],
+    "=",
+    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
+)
 ()
 
 ##########################################################
@@ -46,10 +57,15 @@ equation.Solve()
 
 print("Fitted Parameters With One Lower Bound:")
 for i in range(len(equation.solvedCoefficients)):
-    print("    %s = %-.16E" % (equation.GetCoefficientDesignators()
-          [i], equation.solvedCoefficients[i]))
-print(equation.fittingTargetDictionary[equation.fittingTarget], '=',
-      equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+    print(
+        "    %s = %-.16E"
+        % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i])
+    )
+print(
+    equation.fittingTargetDictionary[equation.fittingTarget],
+    "=",
+    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
+)
 print()
 
 ##########################################################
@@ -64,10 +80,17 @@ equation.lowerCoefficientBounds = []  # reset to have no lower bounds
 
 equation.Solve()
 
-print("Fitted Parameters With One Upper Bound And One Fixed Coefficient "
-      "(fixed coeffs override bounds):")
+print(
+    "Fitted Parameters With One Upper Bound And One Fixed Coefficient "
+    "(fixed coeffs override bounds):"
+)
 for i in range(len(equation.solvedCoefficients)):
-    print("    %s = %-.16E" % (equation.GetCoefficientDesignators()
-          [i], equation.solvedCoefficients[i]))
-print(equation.fittingTargetDictionary[equation.fittingTarget], '=',
-      equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+    print(
+        "    %s = %-.16E"
+        % (equation.GetCoefficientDesignators()[i], equation.solvedCoefficients[i])
+    )
+print(
+    equation.fittingTargetDictionary[equation.fittingTarget],
+    "=",
+    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
+)

@@ -1,13 +1,12 @@
-import os
-import sys
 import inspect
 import dispy
 
 import pyeq3
 
 
-# Standard lowest sum-of-squared errors in this example, see IModel.fittingTargetDictionary
-fittingTargetString = 'SSQABS'
+# Standard lowest sum-of-squared errors in this example,
+# see IModel.fittingTargetDictionary
+fittingTargetString = "SSQABS"
 
 #####################################################
 # this value is used to make the example run faster, you
@@ -15,7 +14,7 @@ fittingTargetString = 'SSQABS'
 #####################################################
 smoothnessControl = 2
 
-textData = '''
+textData = """
   X        Y
 5.357    0.376
 5.457    0.489
@@ -28,21 +27,35 @@ textData = '''
 8.442    4.744
 9.769    7.068
 9.861    7.104
-'''
+"""
 
 
 # this is the function to be run on the cluster
-def SetParametersAndFit(equationString, inFittingTargetString, inExtendedVersionString, inTextData):
+def SetParametersAndFit(
+    equationString, inFittingTargetString, inExtendedVersionString, inTextData
+):
 
     # individual cluster nodes must be able to import pyeq3
     import pyeq3
 
-    equation = eval('equationString +'("' + inFittingTargetString + '", "' + inExtendedVersionString + '")')
-    pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(inTextData, equation, False)
+    equation = eval(
+        equationString
+        + '("'
+        + inFittingTargetString
+        + '", "'
+        + inExtendedVersionString
+        + '")'
+    )
+
+    pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+        inTextData, equation, False
+    )
 
     try:
         # check for number of coefficients > number of data points to be fitted
-        if len(equation.GetCoefficientDesignators()) > len(equation.dataCache.allDataCacheDictionary['DependentData']):
+        if len(equation.GetCoefficientDesignators()) > len(
+            equation.dataCache.allDataCacheDictionary["DependentData"]
+        ):
             return None
 
         # check for functions requiring non-zero nor non-negative data such as 1/x, etc.
@@ -52,61 +65,84 @@ def SetParametersAndFit(equationString, inFittingTargetString, inExtendedVersion
         equation.Solve()
 
         fittedTarget = equation.CalculateAllDataFittingTarget(
-            equation.solvedCoefficients)
-        if fittedTarget > 1.0E290:  # error too large
+            equation.solvedCoefficients
+        )
+        if fittedTarget > 1.0e290:  # error too large
             return None
-    except:
+    except AttributeError:
         return None
 
-    return [fittedTarget, equation.GetDisplayName(), equation.solvedCoefficients, equationString, inExtendedVersionString]
+    return [
+        fittedTarget,
+        equation.GetDisplayName(),
+        equation.solvedCoefficients,
+        equationString,
+        inExtendedVersionString,
+    ]
 
 
 print()
-print('Creating dispy JobCluster')
+print("Creating dispy JobCluster")
 cluster = dispy.JobCluster(SetParametersAndFit)
 
 jobs = []
 
-# this example has named equations only, for simplicity it has no polyrationals or polyfunctions
+# this example has named equations only,
+# for simplicity it has no polyrationals or polyfunctions
 for submodule in inspect.getmembers(pyeq3.Models_2D):
     if inspect.ismodule(submodule[1]):
         for equationClass in inspect.getmembers(submodule[1]):
             if inspect.isclass(equationClass[1]):
 
                 # ignore these special classes for simplicity
-                if equationClass[1].splineFlag or \
-                   equationClass[1].userSelectablePolynomialFlag or \
-                   equationClass[1].userCustomizablePolynomialFlag or \
-                   equationClass[1].userSelectablePolyfunctionalFlag or \
-                   equationClass[1].userSelectableRationalFlag or \
-                   equationClass[1].userDefinedFunctionFlag:
+                if (
+                    equationClass[1].splineFlag
+                    or equationClass[1].userSelectablePolynomialFlag
+                    or equationClass[1].userCustomizablePolynomialFlag
+                    or equationClass[1].userSelectablePolyfunctionalFlag
+                    or equationClass[1].userSelectableRationalFlag
+                    or equationClass[1].userDefinedFunctionFlag
+                ):
                     continue
 
-                for extendedVersionString in ['Default', 'Offset']:
+                for extendedVersionString in ["Default", "Offset"]:
 
-                    if (extendedVersionString == 'Offset') and (equationClass[1].autoGenerateOffsetForm is False):
+                    if (extendedVersionString == "Offset") and (
+                        equationClass[1].autoGenerateOffsetForm is False
+                    ):
                         continue
 
                     equationInstance = equationClass[1](
-                        fittingTargetString, extendedVersionString)
+                        fittingTargetString, extendedVersionString
+                    )
 
-                    if len(equationInstance.GetCoefficientDesignators()) > smoothnessControl:
+                    if (
+                        len(equationInstance.GetCoefficientDesignators())
+                        > smoothnessControl
+                    ):
                         continue
 
-                    equationString = equationInstance.__module__ + \
-                        "." + equationInstance.__class__.__name__
+                    equationString = (
+                        equationInstance.__module__
+                        + "."
+                        + equationInstance.__class__.__name__
+                    )
 
                     job = cluster.submit(
-                        equationString, fittingTargetString, extendedVersionString, textData)
+                        equationString,
+                        fittingTargetString,
+                        extendedVersionString,
+                        textData,
+                    )
                     jobs.append(job)
 
 
-print('Waiting on jobs to complete  and collecting results')
+print("Waiting on jobs to complete  and collecting results")
 allResultList = []
 for job in jobs:
     results = job()
     if job.exception:  # can also use job.status
-        print('Remote Exception in one of the jobs\n', str(job.exception))
+        print("Remote Exception in one of the jobs\n", str(job.exception))
     else:
         if results:
             print("Remotely fitted", results[1])
@@ -114,7 +150,7 @@ for job in jobs:
 
 
 print()
-print('Done. Fitted named equations only.')
+print("Done. Fitted named equations only.")
 print()
 
 
@@ -127,8 +163,14 @@ equationSolvedCoefficients = topResult[2]
 equationString = topResult[3]
 extendedVersionString = topResult[4]
 
-equation = eval('equationString +'("' + fittingTargetString + '", "' + extendedVersionString + '")')
+equation = eval(
+    equationString + '("' + fittingTargetString + '", "' + extendedVersionString + '")'
+)
 
-print('Lowest fitting target result was ' +
-      fittingTargetString + " of " + str(fittedTargetValue))
+print(
+    "Lowest fitting target result was "
+    + fittingTargetString
+    + " of "
+    + str(fittedTargetValue)
+)
 print('for the equation "' + equationDisplayName + '"')

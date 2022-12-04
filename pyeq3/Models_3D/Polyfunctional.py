@@ -4,40 +4,52 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
 import sys
 import os
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.Model_3D_BaseClass
 import pyeq3.PolyFunctions
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class UserSelectablePolyfunctional(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     userSelectablePolyfunctionalFlag = True
     _baseName = "User-Selectable Polyfunctional"
-    _leftSideHTML = 'z'
+    _leftSideHTML = "z"
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
     # all extended version autoGenerate flags are False by default in IModel.py
 
-    def __init__(self, inFittingTarget=None, inExtendedVersionName='Default', inPolyfunctional3DFlags=[], inPolyfunctionalEquationList_X=[], inPolyfunctionalEquationList_Y=[]):
+    def __init__(
+        self,
+        inFittingTarget=None,
+        inExtendedVersionName="Default",
+        inPolyfunctional3DFlags=[],
+        inPolyfunctionalEquationList_X=[],
+        inPolyfunctionalEquationList_Y=[],
+    ):
         if not inPolyfunctionalEquationList_X:
-            self.polyfunctionalEquationList_X = pyeq3.PolyFunctions.GenerateListForPolyfunctionals_3D_X()
-            self.polyfunctionalEquationList_Y = pyeq3.PolyFunctions.GenerateListForPolyfunctionals_3D_Y()
+            self.polyfunctionalEquationList_X = (
+                pyeq3.PolyFunctions.GenerateListForPolyfunctionals_3D_X()
+            )
+            self.polyfunctionalEquationList_Y = (
+                pyeq3.PolyFunctions.GenerateListForPolyfunctionals_3D_Y()
+            )
         else:
             self.polyfunctionalEquationList_X = inPolyfunctionalEquationList_X
             self.polyfunctionalEquationList_Y = inPolyfunctionalEquationList_Y
@@ -50,7 +62,8 @@ class UserSelectablePolyfunctional(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         self.independentData2CannotContainNegativeFlag = False
 
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)  # call superclass
+            self, inFittingTarget, inExtendedVersionName
+        )  # call superclass
 
         self.polyfunctional3DFlags = inPolyfunctional3DFlags
 
@@ -58,7 +71,7 @@ class UserSelectablePolyfunctional(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         if not self.polyfunctional3DFlags:
             self._HTML = "z = user-selectable function"
         else:
-            self._HTML = 'z = '
+            self._HTML = "z = "
             coefficientDesignatorIndex = 0
             cd = self.GetCoefficientDesignators()
             for index in range(len(self.polyfunctional3DFlags)):
@@ -68,21 +81,45 @@ class UserSelectablePolyfunctional(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
                     continue
 
                 if self.polyfunctional3DFlags[index][0] == 0:  # no 'X'
-                    self._HTML += '<b>' + cd[coefficientDesignatorIndex] + \
-                        '(</b> ' + \
-                        self.polyfunctionalEquationList_Y[self.polyfunctional3DFlags[index]
-                                                          [1]].HTML + ' <b>)</b>'
+                    self._HTML += (
+                        "<b>"
+                        + cd[coefficientDesignatorIndex]
+                        + "(</b> "
+                        + self.polyfunctionalEquationList_Y[
+                            self.polyfunctional3DFlags[index][1]
+                        ].HTML
+                        + " <b>)</b>"
+                    )
                 elif self.polyfunctional3DFlags[index][1] == 0:  # no 'Y'
-                    self._HTML += '<b>' + cd[coefficientDesignatorIndex] + \
-                        '(</b> ' + \
-                        self.polyfunctionalEquationList_X[self.polyfunctional3DFlags[index]
-                                                          [0]].HTML + ' <b>)</b>'
+                    self._HTML += (
+                        "<b>"
+                        + cd[coefficientDesignatorIndex]
+                        + "(</b> "
+                        + self.polyfunctionalEquationList_X[
+                            self.polyfunctional3DFlags[index][0]
+                        ].HTML
+                        + " <b>)</b>"
+                    )
                 else:
-                    self._HTML += '<b>' + cd[coefficientDesignatorIndex] + '(</b> ' + self.polyfunctionalEquationList_X[self.polyfunctional3DFlags[index]
-                                                                                                                        [0]].HTML + ' * ' + self.polyfunctionalEquationList_Y[self.polyfunctional3DFlags[index][1]].HTML + ' <b>)</b>'
+                    self._HTML += (
+                        "<b>"
+                        + cd[coefficientDesignatorIndex]
+                        + "(</b> "
+                        + self.polyfunctionalEquationList_X[
+                            self.polyfunctional3DFlags[index][0]
+                        ].HTML
+                        + " * "
+                        + self.polyfunctionalEquationList_Y[
+                            self.polyfunctional3DFlags[index][1]
+                        ].HTML
+                        + " <b>)</b>"
+                    )
 
                 # not the last one
-                if (self.polyfunctional3DFlags[index] != self.polyfunctional3DFlags[len(self.polyfunctional3DFlags)-1]) or ([0, 0] in self.polyfunctional3DFlags):
+                if (
+                    self.polyfunctional3DFlags[index]
+                    != self.polyfunctional3DFlags[len(self.polyfunctional3DFlags) - 1]
+                ) or ([0, 0] in self.polyfunctional3DFlags):
                     self._HTML += " + "
                 coefficientDesignatorIndex += 1
 
@@ -95,38 +132,62 @@ class UserSelectablePolyfunctional(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         # put "offset" last
         if [0, 0] in self.polyfunctional3DFlags:
             self._coefficientDesignators = list(
-                self.listOfAdditionalCoefficientDesignators[:len(self.polyfunctional3DFlags)-1])
-            self._coefficientDesignators.append('Offset')
+                self.listOfAdditionalCoefficientDesignators[
+                    : len(self.polyfunctional3DFlags) - 1
+                ]
+            )
+            self._coefficientDesignators.append("Offset")
         else:
             self._coefficientDesignators = list(
-                self.listOfAdditionalCoefficientDesignators[:len(self.polyfunctional3DFlags)])
+                self.listOfAdditionalCoefficientDesignators[
+                    : len(self.polyfunctional3DFlags)
+                ]
+            )
         return self._coefficientDesignators
 
     def GetDataCacheFunctions(self):
         functionList = []
         for i in self.polyfunctional3DFlags:
             if i[0] > 0 or i[1] > 0:
-                functionList.append([pyeq3.DataCache.DataCacheFunctions.Polyfunctional3D(
-                    NameOrValueFlag=1, args=[i[0], i[1]]), [i[0], i[1]]])
+                functionList.append(
+                    [
+                        pyeq3.DataCache.DataCacheFunctions.Polyfunctional3D(
+                            NameOrValueFlag=1, args=[i[0], i[1]]
+                        ),
+                        [i[0], i[1]],
+                    ]
+                )
         if [0, 0] in self.polyfunctional3DFlags:
-            functionList.append([pyeq3.DataCache.DataCacheFunctions.Polyfunctional3D(
-                NameOrValueFlag=1, args=[0, 0]), [0, 0]])
+            functionList.append(
+                [
+                    pyeq3.DataCache.DataCacheFunctions.Polyfunctional3D(
+                        NameOrValueFlag=1, args=[0, 0]
+                    ),
+                    [0, 0],
+                ]
+            )
         return functionList
 
     def ShouldDataBeRejected(self, unused):
         for i in self.polyfunctional3DFlags:
-            self.independentData1CannotContainZeroFlag |= self.polyfunctionalEquationList_X[
-                i[0]].cannotAcceptDataWith_Zero
-            self.independentData1CannotContainPositiveFlag |= self.polyfunctionalEquationList_X[
-                i[0]].cannotAcceptDataWith_Positive
-            self.independentData1CannotContainNegativeFlag |= self.polyfunctionalEquationList_X[
-                i[0]].cannotAcceptDataWith_Negative
-            self.independentData2CannotContainZeroFlag |= self.polyfunctionalEquationList_Y[
-                i[1]].cannotAcceptDataWith_Zero
-            self.independentData2CannotContainPositiveFlag |= self.polyfunctionalEquationList_Y[
-                i[1]].cannotAcceptDataWith_Positive
-            self.independentData2CannotContainNegativeFlag |= self.polyfunctionalEquationList_Y[
-                i[1]].cannotAcceptDataWith_Negative
+            self.independentData1CannotContainZeroFlag |= (
+                self.polyfunctionalEquationList_X[i[0]].cannotAcceptDataWith_Zero
+            )
+            self.independentData1CannotContainPositiveFlag |= (
+                self.polyfunctionalEquationList_X[i[0]].cannotAcceptDataWith_Positive
+            )
+            self.independentData1CannotContainNegativeFlag |= (
+                self.polyfunctionalEquationList_X[i[0]].cannotAcceptDataWith_Negative
+            )
+            self.independentData2CannotContainZeroFlag |= (
+                self.polyfunctionalEquationList_Y[i[1]].cannotAcceptDataWith_Zero
+            )
+            self.independentData2CannotContainPositiveFlag |= (
+                self.polyfunctionalEquationList_Y[i[1]].cannotAcceptDataWith_Positive
+            )
+            self.independentData2CannotContainNegativeFlag |= (
+                self.polyfunctionalEquationList_Y[i[1]].cannotAcceptDataWith_Negative
+            )
         return pyeq3.IModel.IModel.ShouldDataBeRejected(self, unused)
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
@@ -137,15 +198,23 @@ class UserSelectablePolyfunctional(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
                 if i == [0, 0]:
                     continue
                 temp += inCoeffs[coeffCount] * eval(
-                    "inDataCacheDictionary['Polyfunctional3D_[" + str(i[0]) + ", " + str(i[1]) + "]']")
+                    "inDataCacheDictionary['Polyfunctional3D_["
+                    + str(i[0])
+                    + ", "
+                    + str(i[1])
+                    + "]']"
+                )
                 coeffCount += 1
 
             if [0, 0] in self.polyfunctional3DFlags:
-                temp += inCoeffs[coeffCount] * \
-                    eval("inDataCacheDictionary['Polyfunctional3D_[0, 0]']")
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
-        except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+                temp += inCoeffs[coeffCount] * eval(
+                    "inDataCacheDictionary['Polyfunctional3D_[0, 0]']"
+                )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
+        except Exception:
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = ""
@@ -154,16 +223,31 @@ class UserSelectablePolyfunctional(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         for i in self.polyfunctional3DFlags:
             if i != [0, 0]:
                 if i[0] > 0 and i[1] == 0:
-                    s += "\ttemp += " + \
-                        cd[count] + " * " + \
-                        self.polyfunctionalEquationList_X[i[0]].CPP + ";\n"
+                    s += (
+                        "\ttemp += "
+                        + cd[count]
+                        + " * "
+                        + self.polyfunctionalEquationList_X[i[0]].CPP
+                        + ";\n"
+                    )
                 elif i[0] == 0 and i[1] > 0:
-                    s += "\ttemp += " + \
-                        cd[count] + " * " + \
-                        self.polyfunctionalEquationList_Y[i[1]].CPP + ";\n"
+                    s += (
+                        "\ttemp += "
+                        + cd[count]
+                        + " * "
+                        + self.polyfunctionalEquationList_Y[i[1]].CPP
+                        + ";\n"
+                    )
                 else:
-                    s += "\ttemp += " + cd[count] + " * " + self.polyfunctionalEquationList_X[i[0]
-                                                                                              ].CPP + " * " + self.polyfunctionalEquationList_Y[i[1]].CPP + ";\n"
+                    s += (
+                        "\ttemp += "
+                        + cd[count]
+                        + " * "
+                        + self.polyfunctionalEquationList_X[i[0]].CPP
+                        + " * "
+                        + self.polyfunctionalEquationList_Y[i[1]].CPP
+                        + ";\n"
+                    )
                 count += 1
         if [0, 0] in self.polyfunctional3DFlags:
             s += "\ttemp += " + self._coefficientDesignators[count] + ";\n"

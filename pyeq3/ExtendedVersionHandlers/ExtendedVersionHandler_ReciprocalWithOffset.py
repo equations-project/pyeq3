@@ -4,27 +4,39 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import pyeq3
 from . import IExtendedVersionHandler
 
 
-class ExtendedVersionHandler_ReciprocalWithOffset(IExtendedVersionHandler.IExtendedVersionHandler):
-
+class ExtendedVersionHandler_ReciprocalWithOffset(
+    IExtendedVersionHandler.IExtendedVersionHandler
+):
     def AssembleDisplayHTML(self, inModel):
-        return inModel._HTML + '<br>' + inModel._leftSideHTML + ' = 1.0 / ' + inModel._leftSideHTML + ' + Offset'
+        return (
+            inModel._HTML
+            + "<br>"
+            + inModel._leftSideHTML
+            + " = 1.0 / "
+            + inModel._leftSideHTML
+            + " + Offset"
+        )
 
     def AssembleDisplayName(self, inModel):
-        return 'Reciprocal ' + inModel._baseName + ' With Offset'
+        return "Reciprocal " + inModel._baseName + " With Offset"
 
     def AssembleSourceCodeName(self, inModel):
-        return inModel.__module__.split('.')[-1] + '_' + inModel.__class__.__name__ + "_ReciprocalWithOffset"
+        return (
+            inModel.__module__.split(".")[-1]
+            + "_"
+            + inModel.__class__.__name__
+            + "_ReciprocalWithOffset"
+        )
 
     def AssembleCoefficientDesignators(self, inModel):
-        return inModel._coefficientDesignators + ['Offset']
+        return inModel._coefficientDesignators + ["Offset"]
 
     # overridden from abstract parent class
 
@@ -42,5 +54,9 @@ class ExtendedVersionHandler_ReciprocalWithOffset(IExtendedVersionHandler.IExten
     def GetAdditionalDataCacheFunctions(self, inModel, inDataCacheFunctions):
         return inDataCacheFunctions
 
-    def GetAdditionalModelPredictions(self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel):
-        return self.ConvertInfAndNanToLargeNumber(1.0 / inBaseModelCalculation + inCoeffs[len(inCoeffs)-1])
+    def GetAdditionalModelPredictions(
+        self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel
+    ):
+        return self.ConvertInfAndNanToLargeNumber(
+            1.0 / inBaseModelCalculation + inCoeffs[len(inCoeffs) - 1]
+        )

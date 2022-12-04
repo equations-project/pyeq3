@@ -3,25 +3,24 @@ import os
 import unittest
 
 # the pyeq3 directory is located up one level from here
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class TestPolyFunctions(unittest.TestCase):
-
     def test_Offset_Term(self):
-        term = pyeq3.PolyFunctions.Offset_Term('varName', 'codeName')
+        term = pyeq3.PolyFunctions.Offset_Term("varName", "codeName")
 
-        htmlShouldBe = 'Offset'
+        htmlShouldBe = "Offset"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'Offset'
+        cppShouldBe = "Offset"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.0])
@@ -29,12 +28,12 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
     def test_ArcTangent_Term(self):
-        term = pyeq3.PolyFunctions.ArcTangent_Term('varName', 'codeName')
+        term = pyeq3.PolyFunctions.ArcTangent_Term("varName", "codeName")
 
-        htmlShouldBe = 'atan(varName)'
+        htmlShouldBe = "atan(varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'atan(codeName)'
+        cppShouldBe = "atan(codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.0])
@@ -43,12 +42,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Power_NegativeOne_Term(self):
         term = pyeq3.PolyFunctions.PowerTerm(
-            'varName', 'codeName', powerString='-1.0', logFlag=False)
+            "varName", "codeName", powerString="-1.0", logFlag=False
+        )
 
-        htmlShouldBe = 'varName<sup>-1.0</sup>'
+        htmlShouldBe = "varName<sup>-1.0</sup>"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'pow(codeName, -1.0)'
+        cppShouldBe = "pow(codeName, -1.0)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -56,12 +56,12 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
     def test_HyperbolicCosine_Term(self):
-        term = pyeq3.PolyFunctions.HyperbolicCosine_Term('varName', 'codeName')
+        term = pyeq3.PolyFunctions.HyperbolicCosine_Term("varName", "codeName")
 
-        htmlShouldBe = 'cosh(varName)'
+        htmlShouldBe = "cosh(varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'cosh(codeName)'
+        cppShouldBe = "cosh(codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -70,12 +70,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Power_OnePointFive_Term(self):
         term = pyeq3.PolyFunctions.PowerTerm(
-            'varName', 'codeName', powerString='1.5', logFlag=False)
+            "varName", "codeName", powerString="1.5", logFlag=False
+        )
 
-        htmlShouldBe = 'varName<sup>1.5</sup>'
+        htmlShouldBe = "varName<sup>1.5</sup>"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'pow(codeName, 1.5)'
+        cppShouldBe = "pow(codeName, 1.5)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -84,12 +85,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Power_ZeroPointFive_Term(self):
         term = pyeq3.PolyFunctions.PowerTerm(
-            'varName', 'codeName', powerString='0.5', logFlag=False)
+            "varName", "codeName", powerString="0.5", logFlag=False
+        )
 
-        htmlShouldBe = 'varName<sup>0.5</sup>'
+        htmlShouldBe = "varName<sup>0.5</sup>"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'pow(codeName, 0.5)'
+        cppShouldBe = "pow(codeName, 0.5)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -97,13 +99,12 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
     def test_VariableUnchanged_Term(self):
-        term = pyeq3.PolyFunctions.VariableUnchanged_Term(
-            'varName', 'codeName')
+        term = pyeq3.PolyFunctions.VariableUnchanged_Term("varName", "codeName")
 
-        htmlShouldBe = 'varName'
+        htmlShouldBe = "varName"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'codeName'
+        cppShouldBe = "codeName"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -112,12 +113,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Power_Two_Term(self):
         term = pyeq3.PolyFunctions.PowerTerm(
-            'varName', 'codeName', powerString='2.0', logFlag=False)
+            "varName", "codeName", powerString="2.0", logFlag=False
+        )
 
-        htmlShouldBe = 'varName<sup>2.0</sup>'
+        htmlShouldBe = "varName<sup>2.0</sup>"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'pow(codeName, 2.0)'
+        cppShouldBe = "pow(codeName, 2.0)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -125,12 +127,12 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
     def test_HyperbolicSine_Term(self):
-        term = pyeq3.PolyFunctions.HyperbolicSine_Term('varName', 'codeName')
+        term = pyeq3.PolyFunctions.HyperbolicSine_Term("varName", "codeName")
 
-        htmlShouldBe = 'sinh(varName)'
+        htmlShouldBe = "sinh(varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'sinh(codeName)'
+        cppShouldBe = "sinh(codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -139,12 +141,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Exponential_VariableUnchanged_Term(self):
         term = pyeq3.PolyFunctions.Exponential_VariableUnchanged_Term(
-            'varName', 'codeName')
+            "varName", "codeName"
+        )
 
-        htmlShouldBe = 'exp(varName)'
+        htmlShouldBe = "exp(varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'exp(codeName)'
+        cppShouldBe = "exp(codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -153,12 +156,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Exponential_VariableTimesNegativeOne_Term(self):
         term = pyeq3.PolyFunctions.Exponential_VariableTimesNegativeOne_Term(
-            'varName', 'codeName')
+            "varName", "codeName"
+        )
 
-        htmlShouldBe = 'exp(-varName)'
+        htmlShouldBe = "exp(-varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'exp(-1.0 * codeName)'
+        cppShouldBe = "exp(-1.0 * codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -166,12 +170,12 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
     def test_Sine_Term(self):
-        term = pyeq3.PolyFunctions.Sine_Term('varName', 'codeName')
+        term = pyeq3.PolyFunctions.Sine_Term("varName", "codeName")
 
-        htmlShouldBe = 'sin(varName)'
+        htmlShouldBe = "sin(varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'sin(codeName)'
+        cppShouldBe = "sin(codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -179,12 +183,12 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
     def test_Cosine_Term(self):
-        term = pyeq3.PolyFunctions.Cosine_Term('varName', 'codeName')
+        term = pyeq3.PolyFunctions.Cosine_Term("varName", "codeName")
 
-        htmlShouldBe = 'cos(varName)'
+        htmlShouldBe = "cos(varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'cos(codeName)'
+        cppShouldBe = "cos(codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -192,12 +196,12 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
     def test_Tangent_Term(self):
-        term = pyeq3.PolyFunctions.Tangent_Term('varName', 'codeName')
+        term = pyeq3.PolyFunctions.Tangent_Term("varName", "codeName")
 
-        htmlShouldBe = 'tan(varName)'
+        htmlShouldBe = "tan(varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'tan(codeName)'
+        cppShouldBe = "tan(codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -205,13 +209,12 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
     def test_HyperbolicTangent_Term(self):
-        term = pyeq3.PolyFunctions.HyperbolicTangent_Term(
-            'varName', 'codeName')
+        term = pyeq3.PolyFunctions.HyperbolicTangent_Term("varName", "codeName")
 
-        htmlShouldBe = 'tanh(varName)'
+        htmlShouldBe = "tanh(varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'tanh(codeName)'
+        cppShouldBe = "tanh(codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -220,12 +223,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Power_NegativeZeroPointFive_Term(self):
         term = pyeq3.PolyFunctions.PowerTerm(
-            'varName', 'codeName', powerString='-0.5', logFlag=False)
+            "varName", "codeName", powerString="-0.5", logFlag=False
+        )
 
-        htmlShouldBe = 'varName<sup>-0.5</sup>'
+        htmlShouldBe = "varName<sup>-0.5</sup>"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'pow(codeName, -0.5)'
+        cppShouldBe = "pow(codeName, -0.5)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -234,12 +238,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Power_NegativeTwo_Term(self):
         term = pyeq3.PolyFunctions.PowerTerm(
-            'varName', 'codeName', powerString='-2', logFlag=False)
+            "varName", "codeName", powerString="-2", logFlag=False
+        )
 
-        htmlShouldBe = 'varName<sup>-2</sup>'
+        htmlShouldBe = "varName<sup>-2</sup>"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'pow(codeName, -2)'
+        cppShouldBe = "pow(codeName, -2)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -247,12 +252,12 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
     def test_Log_Term(self):
-        term = pyeq3.PolyFunctions.Log_Term('varName', 'codeName')
+        term = pyeq3.PolyFunctions.Log_Term("varName", "codeName")
 
-        htmlShouldBe = 'ln(varName)'
+        htmlShouldBe = "ln(varName)"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'log(codeName)'
+        cppShouldBe = "log(codeName)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -261,12 +266,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Power_NegativeOne_OfLog_Term(self):
         term = pyeq3.PolyFunctions.PowerTerm(
-            'varName', 'codeName', powerString='-1.0', logFlag=True)
+            "varName", "codeName", powerString="-1.0", logFlag=True
+        )
 
-        htmlShouldBe = 'ln(varName)<sup>-1.0</sup>'
+        htmlShouldBe = "ln(varName)<sup>-1.0</sup>"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'pow(log(codeName), -1.0)'
+        cppShouldBe = "pow(log(codeName), -1.0)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -275,12 +281,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Power_Two_OfLog_Term(self):
         term = pyeq3.PolyFunctions.PowerTerm(
-            'varName', 'codeName', powerString='2.0', logFlag=True)
+            "varName", "codeName", powerString="2.0", logFlag=True
+        )
 
-        htmlShouldBe = 'ln(varName)<sup>2.0</sup>'
+        htmlShouldBe = "ln(varName)<sup>2.0</sup>"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'pow(log(codeName), 2.0)'
+        cppShouldBe = "pow(log(codeName), 2.0)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -289,12 +296,13 @@ class TestPolyFunctions(unittest.TestCase):
 
     def test_Power_NegativeTwo_OfLog_Term(self):
         term = pyeq3.PolyFunctions.PowerTerm(
-            'varName', 'codeName', powerString='-2.0', logFlag=True)
+            "varName", "codeName", powerString="-2.0", logFlag=True
+        )
 
-        htmlShouldBe = 'ln(varName)<sup>-2.0</sup>'
+        htmlShouldBe = "ln(varName)<sup>-2.0</sup>"
         self.assertEqual(term.HTML, htmlShouldBe)
 
-        cppShouldBe = 'pow(log(codeName), -2.0)'
+        cppShouldBe = "pow(log(codeName), -2.0)"
         self.assertEqual(term.CPP, cppShouldBe)
 
         testArray = numpy.array([1.5])
@@ -302,5 +310,5 @@ class TestPolyFunctions(unittest.TestCase):
         self.assertEqual(term.value(testArray), valueShouldBe)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

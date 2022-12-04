@@ -4,7 +4,7 @@ from pyeq3.Output import Print
 from pyeq3.Graphics.Graphics2D import ModelScatterConfidenceGraph
 
 # text data section
-dataString = '''
+dataString = """
     X        Y  # lines of text that do not begin with a number are ignored
   5.357    0.376
   5.457    0.489
@@ -17,17 +17,15 @@ dataString = '''
   8.442    4.744
   9.769    7.068
   9.861    7.104
-'''
+"""
 
 # pyeq3 fitting section
 # this example is a straight line, default lowest sum-of-squared errors
-equation = pyeq3.Models_2D.Polynomial.Linear('SSQABS')
+equation = pyeq3.Models_2D.Polynomial.Linear("SSQABS")
 
 # note that True is passed here to indicate weighted data,
 # for unweighted pass False
-pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(dataString,
-                                                         equation,
-                                                         False)
+pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(dataString, equation, False)
 
 print("Fitting data...")
 equation.Solve()

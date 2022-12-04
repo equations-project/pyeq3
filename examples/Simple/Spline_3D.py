@@ -13,10 +13,13 @@ equation.Solve()
 ##########################################################
 
 
-print("Equation:", equation.GetDisplayName(),
-      str(equation.GetDimensionality()) + "D")
-print("Fitting target of", equation.fittingTargetDictionary[equation.fittingTarget],
-      '=', equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+print("Equation:", equation.GetDisplayName(), str(equation.GetDimensionality()) + "D")
+print(
+    "Fitting target of",
+    equation.fittingTargetDictionary[equation.fittingTarget],
+    "=",
+    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
+)
 
 print()
 

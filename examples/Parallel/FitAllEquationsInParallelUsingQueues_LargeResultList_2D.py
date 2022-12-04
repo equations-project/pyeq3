@@ -41,36 +41,39 @@ if __name__ == "__main__":
 
     number_of_cpus = multiprocessing.cpu_count()
 
-    allResults = FitModelsInParallel(data, dim, misfit_criterion,
-                                     max_params, number_of_cpus)
+    allResults = FitModelsInParallel(
+        data, dim, misfit_criterion, max_params, number_of_cpus
+    )
 
     # sort the parallel runs and select the best result
-    allResults = sorted(allResults, key=lambda x: x['fittingTargetValue'])
+    allResults = sorted(allResults, key=lambda x: x["fittingTargetValue"])
     bestResult = allResults[0]
 
-    print('\nAlthough the \"Best Fit\" function should have the '
-          'lowest fitting target value, it requires further evaluation '
-          'to determine if it is the best for your needs. '
-          'For example, it may interpolate badly.\n')
-    print(f'This inversion allowed a maximum of {max_params} parameters.')
+    print(
+        '\nAlthough the "Best Fit" function should have the '
+        "lowest fitting target value, it requires further evaluation "
+        "to determine if it is the best for your needs. "
+        "For example, it may interpolate badly.\n"
+    )
+    print(f"This inversion allowed a maximum of {max_params} parameters.")
 
-    print('\nBest fit equation:')
+    print("\nBest fit equation:")
     equation = InstantiateModel(bestResult, data)
     print(equation)
 
-    print('\nFit information on each datum:')
+    print("\nFit information on each datum:")
     Print.DatumInformation(equation)
 
-    print('\nSome predicted values:')
-    x = np.linspace(6., 10., 5)
+    print("\nSome predicted values:")
+    x = np.linspace(6.0, 10.0, 5)
     y = equation.CalculateModelPredictionsFromNewData(x)
-    print(f'x values: {x}')
-    print(f'y values: {y}')
+    print(f"x values: {x}")
+    print(f"y values: {y}")
 
-    print('\nPython code:')
+    print("\nPython code:")
     print(pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(equation))
 
-    print('\nFinally, we plot up the best-fitting function.')
+    print("\nFinally, we plot up the best-fitting function.")
     fig = plt.figure(figsize=(8, 6), dpi=100)
     axes = fig.add_subplot(111)
     ModelScatterConfidenceGraph(equation, axes)

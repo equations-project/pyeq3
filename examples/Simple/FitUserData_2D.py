@@ -2,9 +2,9 @@ import pyeq3
 
 
 # see IModel.fittingTargetDictionary
-equation = pyeq3.Models_2D.BioScience.HyperbolicLogistic('SSQABS')
+equation = pyeq3.Models_2D.BioScience.HyperbolicLogistic("SSQABS")
 
-data = '''
+data = """
   X        Y
 5.357    10.376
 5.457    10.489
@@ -17,7 +17,7 @@ data = '''
 8.442    14.744
 9.769    17.068
 9.861    17.104
-'''
+"""
 pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(data, equation, False)
 equation.Solve()
 
@@ -27,5 +27,5 @@ pyeq3.Output.Print.DatumInformation(equation)
 pyeq3.Output.Print.FitStatistics(equation)
 
 print()
-print('Java Source Code:')
+print("Java Source Code:")
 print(pyeq3.outputSourceCodeService().GetOutputSourceCodeJAVA(equation))

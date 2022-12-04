@@ -1,14 +1,10 @@
-import os
-import sys
-import inspect
-
 import pyeq3
 
 
 # see IModel.fittingTargetDictionary
-equation = pyeq3.Models_2D.Polynomial.Linear('SSQABS')
+equation = pyeq3.Models_2D.Polynomial.Linear("SSQABS")
 
-data = '''
+data = """
   X        Y      Weight
 5.357    10.376     0.1
 5.457    10.489     0.5
@@ -21,7 +17,7 @@ data = '''
 8.442    14.744     0.1
 9.769    17.068     0.1
 9.861    17.104     0.1
-'''
+"""
 
 # Note the True flag here, reads in weights
 pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(data, equation, True)

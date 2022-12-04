@@ -4,7 +4,7 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
@@ -13,21 +13,42 @@ from . import IExtendedVersionHandler
 
 
 class ExtendedVersionHandler_PlusPlane(IExtendedVersionHandler.IExtendedVersionHandler):
-
     def AssembleDisplayHTML(self, inModel):
         cd = inModel.GetCoefficientDesignators()
-        return inModel._HTML + '<br>' + inModel._leftSideHTML + ' = ' + inModel._leftSideHTML + ' + (' + cd[-3] + ' * x)  + (' + cd[-2] + ' * y) + ' + cd[-1]
+        return (
+            inModel._HTML
+            + "<br>"
+            + inModel._leftSideHTML
+            + " = "
+            + inModel._leftSideHTML
+            + " + ("
+            + cd[-3]
+            + " * x)  + ("
+            + cd[-2]
+            + " * y) + "
+            + cd[-1]
+        )
 
     def AssembleDisplayName(self, inModel):
-        return inModel._baseName + ' Plus Plane'
+        return inModel._baseName + " Plus Plane"
 
     def AssembleSourceCodeName(self, inModel):
-        return inModel.__module__.split('.')[-1] + '_' + inModel.__class__.__name__ + "_PlusPlane"
+        return (
+            inModel.__module__.split(".")[-1]
+            + "_"
+            + inModel.__class__.__name__
+            + "_PlusPlane"
+        )
 
     def AssembleCoefficientDesignators(self, inModel):
         # three additional coefficient designators
-        l = len(inModel._coefficientDesignators)
-        return inModel._coefficientDesignators + [inModel.listOfAdditionalCoefficientDesignators[l]] + [inModel.listOfAdditionalCoefficientDesignators[l+1]] + [inModel.listOfAdditionalCoefficientDesignators[l+2]]
+        i = len(inModel._coefficientDesignators)
+        return (
+            inModel._coefficientDesignators
+            + [inModel.listOfAdditionalCoefficientDesignators[i]]
+            + [inModel.listOfAdditionalCoefficientDesignators[i + 1]]
+            + [inModel.listOfAdditionalCoefficientDesignators[i + 2]]
+        )
 
     # overridden from abstract parent class
 
@@ -43,26 +64,46 @@ class ExtendedVersionHandler_PlusPlane(IExtendedVersionHandler.IExtendedVersionH
 
     def AssembleOutputSourceCodeCPP(self, inModel):
         cd = inModel.GetCoefficientDesignators()
-        return inModel.SpecificCodeCPP() + "\ttemp = temp + (" + cd[-3] + ' * x) + (' + cd[-2] + ' * y) + ' + cd[-1] + ';\n'
+        return (
+            inModel.SpecificCodeCPP()
+            + "\ttemp = temp + ("
+            + cd[-3]
+            + " * x_in) + ("
+            + cd[-2]
+            + " * y_in) + "
+            + cd[-1]
+            + ";\n"
+        )
 
     def GetAdditionalDataCacheFunctions(self, inModel, inDataCacheFunctions):
         foundX = False
         foundY = False
-        for i in inDataCacheFunctions:  # if these are already in the cache, we don't need to add them again
-            if i[0] == 'X' and inModel.GetDimensionality() == 2:
+        for (
+            i
+        ) in (
+            inDataCacheFunctions
+        ):  # if these are already in the cache, we don't need to add them again
+            if i[0] == "X" and inModel.GetDimensionality() == 2:
                 foundX = True
-            if i[0] == 'Y' and inModel.GetDimensionality() == 3:
+            if i[0] == "Y" and inModel.GetDimensionality() == 3:
                 foundY = True
 
             if not foundX:
-                inDataCacheFunctions = inDataCacheFunctions + \
-                    [[pyeq3.DataCache.DataCacheFunctions.X(
-                        NameOrValueFlag=1), []]]
+                inDataCacheFunctions = inDataCacheFunctions + [
+                    [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+                ]
             if not foundY:
-                inDataCacheFunctions = inDataCacheFunctions + \
-                    [[pyeq3.DataCache.DataCacheFunctions.Y(
-                        NameOrValueFlag=1), []]]
+                inDataCacheFunctions = inDataCacheFunctions + [
+                    [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+                ]
         return inDataCacheFunctions
 
-    def GetAdditionalModelPredictions(self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel):
-        return self.ConvertInfAndNanToLargeNumber(inBaseModelCalculation + inCoeffs[len(inCoeffs)-3] * inDataCacheDictionary['X'] + inCoeffs[len(inCoeffs)-2] * inDataCacheDictionary['Y'] + inCoeffs[len(inCoeffs)-1])
+    def GetAdditionalModelPredictions(
+        self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel
+    ):
+        return self.ConvertInfAndNanToLargeNumber(
+            inBaseModelCalculation
+            + inCoeffs[len(inCoeffs) - 3] * inDataCacheDictionary["X"]
+            + inCoeffs[len(inCoeffs) - 2] * inDataCacheDictionary["Y"]
+            + inCoeffs[len(inCoeffs) - 1]
+        )

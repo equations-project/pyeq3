@@ -4,7 +4,7 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
@@ -53,7 +53,8 @@ class DataConverterService(object):
         dataLists = [[], [], [], []]
         for line in rawData:
 
-            # split the line into string tokens using the default string split() delimiters
+            # split the line into string tokens using the default string split()
+            # delimiters
             tokenlist = line.split()
 
             # test this line for minimum required number of string tokens
@@ -64,7 +65,7 @@ class DataConverterService(object):
             if inModel.GetDimensionality() == 1:
                 try:
                     a = float(tokenlist[0])
-                except:
+                except Exception:
                     continue
                 if a > 1.0e300 or a < -1.0e300 or numpy.isnan(a) or numpy.isinf(a):
                     continue
@@ -90,7 +91,7 @@ class DataConverterService(object):
                         c = 1.0
                     d = 1.0
 
-                except:
+                except Exception:
                     continue
                 if a > 1.0e300 or a < -1.0e300 or numpy.isnan(a) or numpy.isinf(a):
                     continue
@@ -119,7 +120,7 @@ class DataConverterService(object):
                         d = float(tokenlist[3])
                     else:
                         d = 1.0
-                except:
+                except Exception:
                     continue
                 if a > 1.0e300 or a < -1.0e300 or numpy.isnan(a) or numpy.isinf(a):
                     continue
@@ -167,7 +168,8 @@ class DataConverterService(object):
         )
 
         if inModel.GetDimensionality() == 2:
-            # the second  _unused_  list is for a bug in scipy.odr, which is used to calculate standard errors on parameters
+            # the second  _unused_  list is for a bug in scipy.odr, which is used to
+            # calculate standard errors on parameters
             inModel.dataCache.allDataCacheDictionary["IndependentData"] = numpy.array(
                 [arrayLists[2][indices], numpy.ones(len(arrayLists[0]))]
             )
@@ -253,8 +255,6 @@ class DataConverterService(object):
 
     def ProcessData(self, inRawData, inModel, inUseWeightsFlag):
         if isinstance(inRawData, str):
-            self.ConvertAndSortColumnarASCII(inRawData, inModel,
-                                             inUseWeightsFlag)
+            self.ConvertAndSortColumnarASCII(inRawData, inModel, inUseWeightsFlag)
         else:
-            self.ProcessNumpyArray(inRawData, inModel,
-                                   inUseWeightsFlag)
+            self.ProcessNumpyArray(inRawData, inModel, inUseWeightsFlag)

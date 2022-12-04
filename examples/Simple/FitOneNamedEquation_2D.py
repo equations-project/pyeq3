@@ -13,5 +13,5 @@ pyeq3.Output.Print.DatumInformation(equation)
 pyeq3.Output.Print.FitStatistics(equation)
 
 print()
-print('Java Source Code:')
+print("Java Source Code:")
 print(pyeq3.outputSourceCodeService().GetOutputSourceCodeJAVA(equation))

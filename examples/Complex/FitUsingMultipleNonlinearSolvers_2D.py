@@ -1,4 +1,3 @@
-import os
 import sys
 import inspect
 import copy
@@ -19,7 +18,8 @@ def UniqueCombinations(items, n):  # utility function
         yield []
     else:
         for i in range(len(items)):
-            for cc in UniqueCombinations(items[i + 1 :], n - 1):
+            sidx = i + 1
+            for cc in UniqueCombinations(items[sidx:], n - 1):
                 yield [items[i]] + cc
 
 
@@ -28,7 +28,8 @@ def UniqueCombinations2(items2, n2):  # utility function
         yield []
     else:
         for i2 in range(len(items2)):
-            for cc2 in UniqueCombinations2(items2[i2 + 1 :], n2 - 1):
+            sidx = i2 + 1
+            for cc2 in UniqueCombinations2(items2[sidx:], n2 - 1):
                 yield [items2[i2]] + cc2
 
 
@@ -58,7 +59,7 @@ def SetParametersAndFit(
         target = inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)
         if target > 1.0e290:  # error too large
             return None
-    except:
+    except Exception:
         print(
             "Exception in "
             + inEquation.__class__.__name__
@@ -105,7 +106,8 @@ rawData = """
 # this example yields a single item to inspect after completion
 bestResult = []
 
-# Standard lowest sum-of-squared errors in this example, see IModel.fittingTargetDictionary
+# Standard lowest sum-of-squared errors in this example,
+# see IModel.fittingTargetDictionary
 fittingTargetText = "SSQABS"
 
 if fittingTargetText == "ODR":
@@ -160,7 +162,8 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
                             fittingTargetText, extendedVersion
                         )
 
-                        # reject equations that use linear solvers for this fitting target
+                        # reject equations that use linear solvers for this
+                        # fitting target
                         if (
                             equationInstance.CanLinearSolverBeUsedForSSQABS() is True
                             and fittingTargetText == "SSQABS"
@@ -213,10 +216,9 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
                             bestResult = result
                             if bestResult[9] != "Levenberg-Marquardt":
                                 print(
-                                    "The",
-                                    bestResult[9],
-                                    "algorithm yielded better results than Levenberg-Marquardt on this data set for a fitting target of",
-                                    fittingTargetText,
+                                    f"The {bestResult[9]} algorithm yielded better "
+                                    "results than Levenberg-Marquardt on this data "
+                                    f"set for a fitting target of {fittingTargetText}"
                                 )
                                 print()
 
@@ -301,10 +303,9 @@ for coeffCount in range(1, maxPolyfunctionalCoefficients + 1):
                 bestResult = result
                 if bestResult[9] != "Levenberg-Marquardt":
                     print(
-                        "The",
-                        bestResult[9],
-                        "algorithm yielded better results than Levenberg-Marquardt on this data set for a fitting target of",
-                        fittingTargetText,
+                        f"The {bestResult[9]} algorithm yielded better results "
+                        "than Levenberg-Marquardt on this data set "
+                        f"for a fitting target of {fittingTargetText}"
                     )
                     print()
 
@@ -322,8 +323,8 @@ for coeffCount in range(1, maxPolyfunctionalCoefficients + 1):
 # fit user-selectable polynomials here
 print()
 print(
-    "Fitting user-selectable polynomials that use non-linear solvers for a fitting target of",
-    fittingTargetText,
+    "Fitting user-selectable polynomials that use non-linear solvers for a "
+    f"fitting target of {fittingTargetText}"
 )
 maxPolynomialOrderX = 5  # this value was chosen to make this example more convenient
 
@@ -374,10 +375,9 @@ for polynomialOrderX in range(maxPolynomialOrderX + 1):
             bestResult = result
             if bestResult[9] != "Levenberg-Marquardt":
                 print(
-                    "The",
-                    bestResult[9],
-                    "algorithm yielded better results than Levenberg-Marquardt on this data set for a fitting target of",
-                    fittingTargetText,
+                    f"The {bestResult[9]} algorithm yielded better results "
+                    "than Levenberg-Marquardt on this data set "
+                    f"for a fitting target of {fittingTargetText}"
                 )
                 print()
 
@@ -391,8 +391,8 @@ for polynomialOrderX in range(maxPolynomialOrderX + 1):
 # fit user-selectable rationals here
 print()
 print(
-    "Fitting user-selectable rationals that use non-linear solvers for a fitting target of",
-    fittingTargetText,
+    "Fitting user-selectable rationals that use non-linear solvers for "
+    f"a fitting target of {fittingTargetText}"
 )
 equationCount = 0
 maxCoeffs = 3  # arbitrary choice of maximum total coefficients for this example
@@ -434,7 +434,8 @@ for numeratorCoeffCount in range(1, maxCoeffs):
                             )
                         )
 
-                        # reject equations that use linear solvers for this fitting target
+                        # reject equations that use linear solvers for
+                        # this fitting target
                         if (
                             equationInstance.CanLinearSolverBeUsedForSSQABS() is True
                             and fittingTargetText == "SSQABS"
@@ -481,10 +482,9 @@ for numeratorCoeffCount in range(1, maxCoeffs):
                             bestResult = result
                             if bestResult[9] != "Levenberg-Marquardt":
                                 print(
-                                    "The",
-                                    bestResult[9],
-                                    "algorithm yielded better results than Levenberg-Marquardt on this data set for a fitting target of",
-                                    fittingTargetText,
+                                    f"The {bestResult[9]} algorithm yielded better "
+                                    "results than Levenberg-Marquardt on this data set "
+                                    f"for a fitting target of {fittingTargetText}"
                                 )
                                 print()
 

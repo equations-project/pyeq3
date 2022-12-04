@@ -4,7 +4,7 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
@@ -46,7 +46,7 @@ class ExtendedVersionHandler_LinearDecayAndOffset(
                     + x_or_xy
                     + ") + Offset"
                 )
-            except:
+            except AttributeError:
                 return (
                     inModel._HTML
                     + "<br>"
