@@ -12,22 +12,44 @@ def DatumInformation(model):
 
     # calculate absolute, relative, and percent errors from the fit
     model.CalculateModelErrors(
-        model.solvedCoefficients, model.dataCache.allDataCacheDictionary)
+        model.solvedCoefficients, model.dataCache.allDataCacheDictionary
+    )
 
     cache_dict = model.dataCache.allDataCacheDictionary
     # this section prints information on each individual data point
-    for i in range(len(cache_dict['DependentData'])):
-        print('X:', cache_dict['IndependentData'][0][i],)
+    for i in range(len(cache_dict["DependentData"])):
+        print(
+            "X:",
+            cache_dict["IndependentData"][0][i],
+        )
         if model.GetDimensionality() == 2:
-            print('Y:', cache_dict['DependentData'][i],)
+            print(
+                "Y:",
+                cache_dict["DependentData"][i],
+            )
         else:
-            print('Y:', cache_dict['IndependentData'][1][i],)
-            print('Z:', cache_dict['DependentData'][i],)
-        print('Model:', model.modelPredictions[i],)
-        print('Abs. Error:', model.modelAbsoluteError[i],)
+            print(
+                "Y:",
+                cache_dict["IndependentData"][1][i],
+            )
+            print(
+                "Z:",
+                cache_dict["DependentData"][i],
+            )
+        print(
+            "Model:",
+            model.modelPredictions[i],
+        )
+        print(
+            "Abs. Error:",
+            model.modelAbsoluteError[i],
+        )
         if not model.dataCache.DependentDataContainsZeroFlag:
-            print('Rel. Error:', model.modelRelativeError[i],)
-            print('Percent Error:', model.modelPercentError[i])
+            print(
+                "Rel. Error:",
+                model.modelRelativeError[i],
+            )
+            print("Percent Error:", model.modelPercentError[i])
         else:
             print()
     print()
@@ -52,78 +74,84 @@ def FitStatistics(model):
     model.CalculateCoefficientAndFitStatistics()
 
     if model.upperCoefficientBounds or model.lowerCoefficientBounds:
-        print('You entered coefficient bounds. Parameter statistics may')
-        print('not be valid for parameter values at or near the bounds.')
+        print("You entered coefficient bounds. Parameter statistics may")
+        print("not be valid for parameter values at or near the bounds.")
         print()
 
-    print('Degrees of freedom error',  model.df_e)
-    print('Degrees of freedom regression',  model.df_r)
+    print("Degrees of freedom error", model.df_e)
+    print("Degrees of freedom regression", model.df_r)
 
     if model.rmse is None:
-        print('Root Mean Squared Error (RMSE): n/a')
+        print("Root Mean Squared Error (RMSE): n/a")
     else:
-        print('Root Mean Squared Error (RMSE):',  model.rmse)
+        print("Root Mean Squared Error (RMSE):", model.rmse)
 
     if model.r2 is None:
-        print('R-squared: n/a')
+        print("R-squared: n/a")
     else:
-        print('R-squared:',  model.r2)
+        print("R-squared:", model.r2)
 
     if model.r2adj is None:
-        print('R-squared adjusted: n/a')
+        print("R-squared adjusted: n/a")
     else:
-        print('R-squared adjusted:',  model.r2adj)
+        print("R-squared adjusted:", model.r2adj)
 
     if model.Fstat is None:
-        print('Model F-statistic: n/a')
+        print("Model F-statistic: n/a")
     else:
-        print('Model F-statistic:',  model.Fstat)
+        print("Model F-statistic:", model.Fstat)
 
     if model.Fpv is None:
-        print('Model F-statistic p-value: n/a')
+        print("Model F-statistic p-value: n/a")
     else:
-        print('Model F-statistic p-value:',  model.Fpv)
+        print("Model F-statistic p-value:", model.Fpv)
 
     if model.ll is None:
-        print('Model log-likelihood: n/a')
+        print("Model log-likelihood: n/a")
     else:
-        print('Model log-likelihood:',  model.ll)
+        print("Model log-likelihood:", model.ll)
 
     if model.aic is None:
-        print('Model AIC: n/a')
+        print("Model AIC: n/a")
     else:
-        print('Model AIC:',  model.aic)
+        print("Model AIC:", model.aic)
 
     if model.bic is None:
-        print('Model BIC: n/a')
+        print("Model BIC: n/a")
     else:
-        print('Model BIC:',  model.bic)
+        print("Model BIC:", model.bic)
 
     print()
     print("Individual Parameter Statistics:")
     for i in range(len(model.solvedCoefficients)):
         if model.tstat_beta is None:
-            tstat = 'n/a'
+            tstat = "n/a"
         else:
-            tstat = '%-.5E' % (model.tstat_beta[i])
+            tstat = "%-.5E" % (model.tstat_beta[i])
 
         if model.pstat_beta is None:
-            pstat = 'n/a'
+            pstat = "n/a"
         else:
-            pstat = '%-.5E' % (model.pstat_beta[i])
+            pstat = "%-.5E" % (model.pstat_beta[i])
 
         if model.sd_beta is not None:
-            print(f"Coefficient {model.GetCoefficientDesignators()} = "
-                  f"{model.solvedCoefficients[i]:.16E}, "
-                  f"std error: {model.sd_beta[i]:.5E}")
+            print(
+                f"Coefficient {model.GetCoefficientDesignators()} = "
+                f"{model.solvedCoefficients[i]:.16E}, "
+                f"std error: {model.sd_beta[i]:.5E}"
+            )
 
         else:
-            print(f"Coefficient {model.GetCoefficientDesignators()} = "
-                  f"{model.solvedCoefficients[i]:.16E}, "
-                  f"std error: n/a")
-        print(f"          t-stat: {tstat}, p-stat: {pstat}, "
-              "95 percent confidence intervals: "
-              f"[{model.ci[i][0]:.5E}, {model.ci[i][1]:.5E}]")
+            print(
+                f"Coefficient {model.GetCoefficientDesignators()} = "
+                f"{model.solvedCoefficients[i]:.16E}, "
+                f"std error: n/a"
+            )
+        print(
+            f"          t-stat: {tstat}, p-stat: {pstat}, "
+            "95 percent confidence intervals: "
+            f"[{model.ci[i][0]:.5E}, {model.ci[i][1]:.5E}]"
+        )
 
     print()
     print("Coefficient Covariance Matrix:")

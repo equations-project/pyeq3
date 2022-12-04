@@ -4,56 +4,83 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
 import sys
 import os
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.Model_2D_BaseClass
 
 import numpy  # implicitly required by compiling the userFunctionCodeObject in the method EvaluateCachedData() below
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     userDefinedFunctionFlag = True
 
     # based on http://lybniz2.sourceforge.net/safeeval.html
-    functionDictionary = {'Exponents And Logarithms': ['exp', 'log', 'log10', 'log2'],
-                          'Trigonometric Functions':  ['sin', 'cos', 'tan', 'arcsin', 'arccos', 'arctan', 'hypot', 'arctan2', 'deg2rad', 'rad2deg'],
-                          'Hyperbolic Trig Functions': ['arcsinh', 'arccosh', 'arctanh', 'sinh', 'cosh', 'tanh'],
-                          'Other Special Functions':  ['sinc'],
-                          'Miscellaneous':            ['sqrt', 'square', 'fabs', 'sign']
-                          }
+    functionDictionary = {
+        "Exponents And Logarithms": ["exp", "log", "log10", "log2"],
+        "Trigonometric Functions": [
+            "sin",
+            "cos",
+            "tan",
+            "arcsin",
+            "arccos",
+            "arctan",
+            "hypot",
+            "arctan2",
+            "deg2rad",
+            "rad2deg",
+        ],
+        "Hyperbolic Trig Functions": [
+            "arcsinh",
+            "arccosh",
+            "arctanh",
+            "sinh",
+            "cosh",
+            "tanh",
+        ],
+        "Other Special Functions": ["sinc"],
+        "Miscellaneous": ["sqrt", "square", "fabs", "sign"],
+    }
 
-    constantsDictionary = {'Constants': ['pi', 'e']}
+    constantsDictionary = {"Constants": ["pi", "e"]}
     _baseName = "User Defined Function"
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
     # all extended version autoGenerate flags are False by default in IModel.py
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default', inUserFunctionString=''):
+    def __init__(
+        self,
+        inFittingTarget="SSQABS",
+        inExtendedVersionName="Default",
+        inUserFunctionString="",
+    ):
         if inUserFunctionString:
             self.ParseAndCompileUserFunctionString(inUserFunctionString, dim=2)
         pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)  # call superclass
+            self, inFittingTarget, inExtendedVersionName
+        )  # call superclass
 
     def GetDisplayHTML(self):
-        return 'y = User Defined Function'
+        return "y = User Defined Function"
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         return functionList
 
     def ShouldDataBeRejected(self, inModel):
@@ -63,9 +90,9 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         return True  # User Defined Functions do not have coefficient bounds
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        self.safe_dict['X'] = inDataCacheDictionary['X']
+        self.safe_dict["X"] = inDataCacheDictionary["X"]
         if self.GetDimensionality() == 3:
-            self.safe_dict['Y'] = inDataCacheDictionary['Y']
+            self.safe_dict["Y"] = inDataCacheDictionary["Y"]
 
         # define coefficient values before calling eval
         for i in range(len(self._coefficientDesignators)):
@@ -75,9 +102,11 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         # based on http://lybniz2.sourceforge.net/safeeval._HTML
         try:
             temp = eval(self.userFunctionCodeObject, globals(), self.safe_dict)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['X'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["X"])) * 1.0e300
 
     def Solve(self, inUserFunctionString=None, inAlgorithmName="Levenberg-Marquardt"):
         if inUserFunctionString:
@@ -87,9 +116,10 @@ class UserDefinedFunction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         if len(self.estimatedCoefficients) == 0:
             self.estimatedCoefficients = pyeq3.solverService().SolveUsingDE(self)
 
-        if self.fittingTarget == 'ODR':
+        if self.fittingTarget == "ODR":
             return pyeq3.solverService().SolveUsingODR(self)
 
         self.estimatedCoefficients = pyeq3.solverService().SolveUsingSelectedAlgorithm(
-            self, inAlgorithmName=inAlgorithmName)
+            self, inAlgorithmName=inAlgorithmName
+        )
         return pyeq3.solverService().SolveUsingSimplex(self)

@@ -4,30 +4,47 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import pyeq3
 from . import IExtendedVersionHandler
 
 
 class ExtendedVersionHandler_PlusLine(IExtendedVersionHandler.IExtendedVersionHandler):
-
     def AssembleDisplayHTML(self, inModel):
         cd = inModel.GetCoefficientDesignators()
-        return inModel._HTML + '<br>' + inModel._leftSideHTML + ' = ' + inModel._leftSideHTML + ' + (' + cd[-2] + ' * x) + ' + cd[-1]
+        return (
+            inModel._HTML
+            + "<br>"
+            + inModel._leftSideHTML
+            + " = "
+            + inModel._leftSideHTML
+            + " + ("
+            + cd[-2]
+            + " * x) + "
+            + cd[-1]
+        )
 
     def AssembleDisplayName(self, inModel):
-        return inModel._baseName + ' Plus Line'
+        return inModel._baseName + " Plus Line"
 
     def AssembleSourceCodeName(self, inModel):
-        return inModel.__module__.split('.')[-1] + '_' + inModel.__class__.__name__ + "_PlusLine"
+        return (
+            inModel.__module__.split(".")[-1]
+            + "_"
+            + inModel.__class__.__name__
+            + "_PlusLine"
+        )
 
     def AssembleCoefficientDesignators(self, inModel):
         # two additional coefficient designators
-        l = len(inModel._coefficientDesignators)
-        return inModel._coefficientDesignators + [inModel.listOfAdditionalCoefficientDesignators[l]] + [inModel.listOfAdditionalCoefficientDesignators[l+1]]
+        i = len(inModel._coefficientDesignators)
+        return (
+            inModel._coefficientDesignators
+            + [inModel.listOfAdditionalCoefficientDesignators[i]]
+            + [inModel.listOfAdditionalCoefficientDesignators[i + 1]]
+        )
 
     # overridden from abstract parent class
 
@@ -41,7 +58,22 @@ class ExtendedVersionHandler_PlusLine(IExtendedVersionHandler.IExtendedVersionHa
 
     def AssembleOutputSourceCodeCPP(self, inModel):
         cd = inModel.GetCoefficientDesignators()
-        return inModel.SpecificCodeCPP() + "\ttemp = temp + (" + cd[-2] + ' * ' + 'x' + ") + " + cd[-1] + ";\n"
+        return (
+            inModel.SpecificCodeCPP()
+            + "\ttemp = temp + ("
+            + cd[-2]
+            + " * "
+            + "x"
+            + ") + "
+            + cd[-1]
+            + ";\n"
+        )
 
-    def GetAdditionalModelPredictions(self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel):
-        return self.ConvertInfAndNanToLargeNumber(inBaseModelCalculation + inCoeffs[len(inCoeffs)-2] * inDataCacheDictionary['X'] + inCoeffs[len(inCoeffs)-1])
+    def GetAdditionalModelPredictions(
+        self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel
+    ):
+        return self.ConvertInfAndNanToLargeNumber(
+            inBaseModelCalculation
+            + inCoeffs[len(inCoeffs) - 2] * inDataCacheDictionary["X"]
+            + inCoeffs[len(inCoeffs) - 1]
+        )

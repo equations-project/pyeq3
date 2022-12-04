@@ -4,16 +4,14 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
-import pyeq3
 from . import IExtendedVersionHandler
 
 
 class ExtendedVersionHandler_Default(IExtendedVersionHandler.IExtendedVersionHandler):
-
     def AssembleDisplayHTML(self, inModel):
         return inModel._HTML
 
@@ -21,7 +19,7 @@ class ExtendedVersionHandler_Default(IExtendedVersionHandler.IExtendedVersionHan
         return inModel._baseName
 
     def AssembleSourceCodeName(self, inModel):
-        return inModel.__module__.split('.')[-1] + '_' + inModel.__class__.__name__
+        return inModel.__module__.split(".")[-1] + "_" + inModel.__class__.__name__
 
     def AssembleCoefficientDesignators(self, inModel):
         return inModel._coefficientDesignators
@@ -39,7 +37,9 @@ class ExtendedVersionHandler_Default(IExtendedVersionHandler.IExtendedVersionHan
     def GetAdditionalDataCacheFunctions(self, inModel, inDataCacheFunctions):
         return inDataCacheFunctions
 
-    def GetAdditionalModelPredictions(self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel):
+    def GetAdditionalModelPredictions(
+        self, inBaseModelCalculation, inCoeffs, inDataCacheDictionary, inModel
+    ):
         return self.ConvertInfAndNanToLargeNumber(inBaseModelCalculation)
 
     # overridden from abstract parent class

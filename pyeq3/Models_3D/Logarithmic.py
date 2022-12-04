@@ -4,33 +4,33 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
 import sys
 import os
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.Model_3D_BaseClass
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class FullCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     _baseName = "Full Cubic Logarithmic"
-    _HTML = 'z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup> + g*ln(x)<sup>3</sup> + h*ln(y)<sup>3</sup> + i*ln(x)*ln(y) + j*ln(x)<sup>2</sup>*ln(y) + k*ln(x)*ln(y)<sup>2</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c',
-                               'd', 'f', 'g', 'h', 'i', 'j', 'k']
+    _HTML = "z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup> + g*ln(x)<sup>3</sup> + h*ln(y)<sup>3</sup> + i*ln(x)*ln(y) + j*ln(x)<sup>2</sup>*ln(y) + k*ln(x)*ln(y)<sup>2</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h", "i", "j", "k"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -49,46 +49,88 @@ class FullCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogY(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogX(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogY(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogX_PowLogY(
-            NameOrValueFlag=1, args=[2.0, 1.0]), [2.0, 1.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogX_PowLogY(
-            NameOrValueFlag=1, args=[1.0, 2.0]), [1.0, 2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogX(
+                    NameOrValueFlag=1, args=[2.0]
+                ),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogY(
+                    NameOrValueFlag=1, args=[2.0]
+                ),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogX(
+                    NameOrValueFlag=1, args=[3.0]
+                ),
+                [3.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogY(
+                    NameOrValueFlag=1, args=[3.0]
+                ),
+                [3.0],
+            ]
+        )
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogX_PowLogY(
+                    NameOrValueFlag=1, args=[2.0, 1.0]
+                ),
+                [2.0, 1.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogX_PowLogY(
+                    NameOrValueFlag=1, args=[1.0, 2.0]
+                ),
+                [1.0, 2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        PowLogX2 = inDataCacheDictionary['PowLogX_2.0']
+        PowLogX2 = inDataCacheDictionary["PowLogX_2.0"]
         # only need to perform this dictionary look-up once
-        PowLogY2 = inDataCacheDictionary['PowLogY_2.0']
+        PowLogY2 = inDataCacheDictionary["PowLogY_2.0"]
         # only need to perform this dictionary look-up once
-        PowLogX3 = inDataCacheDictionary['PowLogX_3.0']
+        PowLogX3 = inDataCacheDictionary["PowLogX_3.0"]
         # only need to perform this dictionary look-up once
-        PowLogY3 = inDataCacheDictionary['PowLogY_3.0']
+        PowLogY3 = inDataCacheDictionary["PowLogY_3.0"]
         # only need to perform this dictionary look-up once
-        LogX_LogY = inDataCacheDictionary['LogX_LogY']
+        LogX_LogY = inDataCacheDictionary["LogX_LogY"]
         # only need to perform this dictionary look-up once
-        PowLogXPowLogY21 = inDataCacheDictionary['PowLogX_PowLogY_2.01.0']
+        PowLogXPowLogY21 = inDataCacheDictionary["PowLogX_PowLogY_2.01.0"]
         # only need to perform this dictionary look-up once
-        PowLogXPowLogY12 = inDataCacheDictionary['PowLogX_PowLogY_1.02.0']
+        PowLogXPowLogY12 = inDataCacheDictionary["PowLogX_PowLogY_1.02.0"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -112,9 +154,11 @@ class FullCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
             temp += i * LogX_LogY
             temp += j * PowLogXPowLogY21
             temp += k * PowLogXPowLogY12
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -133,13 +177,27 @@ class FullCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 class FullCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     _baseName = "Transform Full Cubic Logarithmic"
-    _HTML = 'z = a + b*ln(m*x+n) + c*ln(o*y+p) + d*ln(m*x+n)<sup>2</sup> + f*ln(o*y+p)<sup>2</sup> + g*ln(m*x+n)<sup>3</sup> + h*ln(o*y+p)<sup>3</sup> + i*ln(m*x+n)*ln(o*y+p) + j*ln(m*x+n)<sup>2</sup>*ln(o*y+p) + k*ln(m*x+n)*ln(o*y+p)<sup>2</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd',
-                               'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'o', 'p']
+    _HTML = "z = a + b*ln(m*x+n) + c*ln(o*y+p) + d*ln(m*x+n)<sup>2</sup> + f*ln(o*y+p)<sup>2</sup> + g*ln(m*x+n)<sup>3</sup> + h*ln(o*y+p)<sup>3</sup> + i*ln(m*x+n)*ln(o*y+p) + j*ln(m*x+n)<sup>2</sup>*ln(o*y+p) + k*ln(m*x+n)*ln(o*y+p)<sup>2</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "m",
+        "n",
+        "o",
+        "p",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -158,16 +216,20 @@ class FullCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass)
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -193,13 +255,15 @@ class FullCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass)
             temp += g * numpy.power(numpy.log(m * x_in + n), 3.0)
             temp += h * numpy.power(numpy.log(o * y_in + p), 3.0)
             temp += i * numpy.log(m * x_in + n) * numpy.log(o * y_in + p)
-            temp += j * numpy.power(numpy.log(m * x_in + n),
-                                    2.0) * numpy.log(o * y_in + p)
-            temp += k * numpy.log(m * x_in + n) * \
-                numpy.square(numpy.log(o * y_in + p))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp += (
+                j * numpy.power(numpy.log(m * x_in + n), 2.0) * numpy.log(o * y_in + p)
+            )
+            temp += k * numpy.log(m * x_in + n) * numpy.square(numpy.log(o * y_in + p))
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -218,12 +282,12 @@ class FullCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass)
 class FullQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     _baseName = "Full Quadratic Logarithmic"
-    _HTML = 'z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup> + g*ln(x)*ln(y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g']
+    _HTML = "z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup> + g*ln(x)*ln(y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -242,30 +306,48 @@ class FullQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogY(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogX(
+                    NameOrValueFlag=1, args=[2.0]
+                ),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogY(
+                    NameOrValueFlag=1, args=[2.0]
+                ),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        PowLogX2 = inDataCacheDictionary['PowLogX_2.0']
+        PowLogX2 = inDataCacheDictionary["PowLogX_2.0"]
         # only need to perform this dictionary look-up once
-        PowLogY2 = inDataCacheDictionary['PowLogY_2.0']
+        PowLogY2 = inDataCacheDictionary["PowLogY_2.0"]
         # only need to perform this dictionary look-up once
-        LogX_LogY = inDataCacheDictionary['LogX_LogY']
+        LogX_LogY = inDataCacheDictionary["LogX_LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -281,9 +363,11 @@ class FullQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
             temp += d * PowLogX2
             temp += f * PowLogY2
             temp += g * LogX_LogY
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -298,13 +382,12 @@ class FullQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 class FullQuadraticLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     _baseName = "Transform Full Quadratic Logarithmic"
-    _HTML = 'z = a + b*ln(h*x+i) + c*ln(j*y+k) + d*ln(h*x+i)<sup>2</sup> + f*ln(j*y+k)<sup>2</sup> + g*ln(h*x+i)*ln(j*y+k)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c',
-                               'd', 'f', 'g', 'h', 'i', 'j', 'k']
+    _HTML = "z = a + b*ln(h*x+i) + c*ln(j*y+k) + d*ln(h*x+i)<sup>2</sup> + f*ln(j*y+k)<sup>2</sup> + g*ln(h*x+i)*ln(j*y+k)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h", "i", "j", "k"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -323,16 +406,20 @@ class FullQuadraticLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseCl
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -352,9 +439,11 @@ class FullQuadraticLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseCl
             temp += d * numpy.square(numpy.log(h * x_in + i))
             temp += f * numpy.square(numpy.log(j * y_in + k))
             temp += g * numpy.log(h * x_in + i) * numpy.log(j * y_in + k)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -369,12 +458,12 @@ class FullQuadraticLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseCl
 class LinearLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     _baseName = "Linear Logarithmic"
-    _HTML = 'z = a + b*ln(x) + c*ln(y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "z = a + b*ln(x) + c*ln(y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -393,18 +482,23 @@ class LinearLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -412,9 +506,11 @@ class LinearLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = a + b * LogX + c * LogY
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a + b * log(x_in) + c * log(y_in);\n"
@@ -424,12 +520,12 @@ class LinearLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 class LinearLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     _baseName = "Transform Linear Logarithmic"
-    _HTML = 'z = a + b*ln(d*x+f) + c*ln(g*y+h)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = a + b*ln(d*x+f) + c*ln(g*y+h)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -448,16 +544,20 @@ class LinearLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -468,11 +568,12 @@ class LinearLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = a + b * numpy.log(d * x_in + f) + \
-                c * numpy.log(g * y_in + h)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a + b * numpy.log(d * x_in + f) + c * numpy.log(g * y_in + h)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a + b * log(d * x_in + f) + c * log(g * y_in + h);\n"
@@ -482,12 +583,12 @@ class LinearLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 class SimplifiedCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     _baseName = "Simplified Cubic Logarithmic"
-    _HTML = 'z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup> + g*ln(x)<sup>3</sup> + h*ln(y)<sup>3</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup> + g*ln(x)<sup>3</sup> + h*ln(y)<sup>3</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -506,34 +607,63 @@ class SimplifiedCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogY(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogX(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogY(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogX(
+                    NameOrValueFlag=1, args=[2.0]
+                ),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogY(
+                    NameOrValueFlag=1, args=[2.0]
+                ),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogX(
+                    NameOrValueFlag=1, args=[3.0]
+                ),
+                [3.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogY(
+                    NameOrValueFlag=1, args=[3.0]
+                ),
+                [3.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        PowLogX2 = inDataCacheDictionary['PowLogX_2.0']
+        PowLogX2 = inDataCacheDictionary["PowLogX_2.0"]
         # only need to perform this dictionary look-up once
-        PowLogY2 = inDataCacheDictionary['PowLogY_2.0']
+        PowLogY2 = inDataCacheDictionary["PowLogY_2.0"]
         # only need to perform this dictionary look-up once
-        PowLogX3 = inDataCacheDictionary['PowLogX_3.0']
+        PowLogX3 = inDataCacheDictionary["PowLogX_3.0"]
         # only need to perform this dictionary look-up once
-        PowLogY3 = inDataCacheDictionary['PowLogY_3.0']
+        PowLogY3 = inDataCacheDictionary["PowLogY_3.0"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -551,9 +681,11 @@ class SimplifiedCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
             temp += f * PowLogY2
             temp += g * PowLogX3
             temp += h * PowLogY3
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -569,13 +701,12 @@ class SimplifiedCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 class SimplifiedCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     _baseName = "Transform Simplified Cubic Logarithmic"
-    _HTML = 'z = a + b*ln(i*x+j) + c*ln(k*y+m) + d*ln(i*x+j)<sup>2</sup> + f*ln(k*y+m)<sup>2</sup> + g*ln(i*x+j)<sup>3</sup> + h*ln(k*y+m)<sup>3</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c',
-                               'd', 'f', 'g', 'h', 'i', 'j', 'k', 'm']
+    _HTML = "z = a + b*ln(i*x+j) + c*ln(k*y+m) + d*ln(i*x+j)<sup>2</sup> + f*ln(k*y+m)<sup>2</sup> + g*ln(i*x+j)<sup>3</sup> + h*ln(k*y+m)<sup>3</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h", "i", "j", "k", "m"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -594,16 +725,20 @@ class SimplifiedCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_Base
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -625,9 +760,11 @@ class SimplifiedCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_Base
             temp += f * numpy.square(numpy.log(k * y_in + m))
             temp += g * numpy.power(numpy.log(i * x_in + j), 3.0)
             temp += h * numpy.power(numpy.log(k * y_in + m), 3.0)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -643,12 +780,12 @@ class SimplifiedCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_Base
 class SimplifiedQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
     _baseName = "Simplified Quadratic Logarithmic"
-    _HTML = 'z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -667,26 +804,43 @@ class SimplifiedQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowLogY(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogX(
+                    NameOrValueFlag=1, args=[2.0]
+                ),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowLogY(
+                    NameOrValueFlag=1, args=[2.0]
+                ),
+                [2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        PowLogX2 = inDataCacheDictionary['PowLogX_2.0']
+        PowLogX2 = inDataCacheDictionary["PowLogX_2.0"]
         # only need to perform this dictionary look-up once
-        PowLogY2 = inDataCacheDictionary['PowLogY_2.0']
+        PowLogY2 = inDataCacheDictionary["PowLogY_2.0"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -700,9 +854,11 @@ class SimplifiedQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass
             temp += c * LogY
             temp += d * PowLogX2
             temp += f * PowLogY2
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -713,15 +869,17 @@ class SimplifiedQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass
         return s
 
 
-class SimplifiedQuadraticLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
+class SimplifiedQuadraticLogarithmicTransform(
+    pyeq3.Model_3D_BaseClass.Model_3D_BaseClass
+):
 
     _baseName = "Transform Simplified Quadratic Logarithmic"
-    _HTML = 'z = a + b*ln(g*x+h) + c*ln(i*y+j) + d*ln(g*x+h)<sup>2</sup> + f*ln(i*y+j)<sup>2</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'j']
+    _HTML = "z = a + b*ln(g*x+h) + c*ln(i*y+j) + d*ln(g*x+h)<sup>2</sup> + f*ln(i*y+j)<sup>2</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h", "i", "j"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -740,16 +898,20 @@ class SimplifiedQuadraticLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -767,9 +929,11 @@ class SimplifiedQuadraticLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_
             temp += c * numpy.log(i * y_in + j)
             temp += d * numpy.square(numpy.log(g * x_in + h))
             temp += f * numpy.square(numpy.log(i * y_in + j))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"

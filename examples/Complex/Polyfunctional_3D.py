@@ -11,14 +11,16 @@ def UniqueCombinations(items, n):  # utility function
         yield []
     else:
         for i in range(len(items)):
-            for cc in UniqueCombinations(items[i+1:], n-1):
-                yield [items[i]]+cc
+            for cc in UniqueCombinations(items[i + 1 :], n - 1):
+                yield [items[i]] + cc
 
 
 def SetParametersAndFit(inEquation, resultList):  # utility function
     try:
         # check for number of coefficients > number of data points to be fitted
-        if len(inEquation.GetCoefficientDesignators()) > len(inEquation.dataCache.allDataCacheDictionary['DependentData']):
+        if len(inEquation.GetCoefficientDesignators()) > len(
+            inEquation.dataCache.allDataCacheDictionary["DependentData"]
+        ):
             return
 
         # check for functions requiring non-zero nor non-negative data such as 1/x, etc.
@@ -27,19 +29,24 @@ def SetParametersAndFit(inEquation, resultList):  # utility function
 
         inEquation.Solve()
 
-        target = inEquation.CalculateAllDataFittingTarget(
-            inEquation.solvedCoefficients)
-        if target > 1.0E290:  # error too large
+        target = inEquation.CalculateAllDataFittingTarget(inEquation.solvedCoefficients)
+        if target > 1.0e290:  # error too large
             return
     except:
-        print("Exception in " + inEquation.__class__.__name__ + '\n' +
-              str(sys.exc_info()[0]) + '\n' + str(sys.exc_info()[1]) + '\n')
+        print(
+            "Exception in "
+            + inEquation.__class__.__name__
+            + "\n"
+            + str(sys.exc_info()[0])
+            + "\n"
+            + str(sys.exc_info()[1])
+            + "\n"
+        )
         return
 
     t0 = copy.copy(inEquation.__module__)
     t1 = copy.copy(inEquation.__class__.__name__)
-    t2 = copy.copy(
-        inEquation.extendedVersionHandler.__class__.__name__.split('_')[1])
+    t2 = copy.copy(inEquation.extendedVersionHandler.__class__.__name__.split("_")[1])
     t3 = copy.copy(target)
     t4 = copy.copy(inEquation.solvedCoefficients)
     t5 = copy.copy(inEquation.polyfunctional3DFlags)
@@ -49,7 +56,7 @@ def SetParametersAndFit(inEquation, resultList):  # utility function
     resultList.append([t0, t1, t2, t3, t4, t5, t6, t7])
 
 
-rawData = '''
+rawData = """
 3.017  2.175   0.320
 2.822  2.624   0.629
 2.632  2.839   0.950
@@ -77,20 +84,21 @@ rawData = '''
 1.016  2.564   2.243
 0.742  2.568   2.581
 0.607  2.571   2.753
-'''
+"""
 
 
 # this example yields a sorted output list to inspect after completion
 resultList = []
 
-fittingTargetText = 'SSQABS'  # required for high-speed linear solver
+fittingTargetText = "SSQABS"  # required for high-speed linear solver
 
 # we are using the same data set repeatedly, so create a cache external to the equations
 externalDataCache = pyeq3.dataCache()
 
 
 equation = pyeq3.Models_3D.Polyfunctional.UserSelectablePolyfunctional(
-    fittingTargetText)
+    fittingTargetText
+)
 equation.dataCache = externalDataCache
 pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(rawData, equation, False)
 
@@ -109,7 +117,7 @@ maxCombinationCount = 2
 combinationGenerator = UniqueCombinations(functionList, maxCombinationCount)
 
 fitCount = 0
-print('Fitting polyfunctionals')
+print("Fitting polyfunctionals")
 for k in combinationGenerator:
     equation.__init__(fittingTargetText)
     equation.polyfunctional3DFlags = k
@@ -118,7 +126,7 @@ for k in combinationGenerator:
     # for display only
     fitCount += 1
     if fitCount % 250 == 0:
-        print('Fitted ' + str(fitCount))
+        print("Fitted " + str(fitCount))
 
     SetParametersAndFit(equation, resultList)
 
@@ -130,9 +138,9 @@ resultList.sort(key=lambda item: item[3])
 
 print()
 print()
-print('While \"Best Fit\" may be the lowest fitting target value,')
-print('it requires further evaluation to determine if it is the best')
-print('for your needs.  For example, it may interpolate badly.')
+print('While "Best Fit" may be the lowest fitting target value,')
+print("it requires further evaluation to determine if it is the best")
+print("for your needs.  For example, it may interpolate badly.")
 print()
 
 # in this example, only the top-sorted result list item is used
@@ -147,34 +155,52 @@ polyfunctional3DFlags = bestResult[5]
 
 
 # now instantiate the "best fit" equation based on the name stored in the result list
-equation = eval(moduleName + "." + className + "('" + fittingTargetText +
-                "', '" + extendedVersionHandlerName + "', " + str(polyfunctional3DFlags) + ")")
+equation = eval(
+    moduleName
+    + "."
+    + className
+    + "('"
+    + fittingTargetText
+    + "', '"
+    + extendedVersionHandlerName
+    + "', "
+    + str(polyfunctional3DFlags)
+    + ")"
+)
 
 pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(rawData, equation, False)
 equation.fittingTarget = fittingTargetText
 equation.solvedCoefficients = solvedCoefficients
 equation.dataCache.FindOrCreateAllDataCache(equation)
 equation.CalculateModelErrors(
-    equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary)
+    equation.solvedCoefficients, equation.dataCache.allDataCacheDictionary
+)
 
 
 print()
-print('\"Best fit\" was', moduleName + "." + className)
+print('"Best fit" was', moduleName + "." + className)
 
-print('Fitting target value', equation.fittingTarget + ":",
-      equation.CalculateAllDataFittingTarget(equation.solvedCoefficients))
+print(
+    "Fitting target value",
+    equation.fittingTarget + ":",
+    equation.CalculateAllDataFittingTarget(equation.solvedCoefficients),
+)
 
 print()
-print('Polyfunctional flags:', polyfunctional3DFlags)
+print("Polyfunctional flags:", polyfunctional3DFlags)
 print()
 for i in range(len(equation.solvedCoefficients)):
-    print("Coefficient " + equation.GetCoefficientDesignators()
-          [i] + ": " + str(equation.solvedCoefficients[i]))
+    print(
+        "Coefficient "
+        + equation.GetCoefficientDesignators()[i]
+        + ": "
+        + str(equation.solvedCoefficients[i])
+    )
 print()
 
 ##########################################################
 
-print('Generated source code section commented out')
+print("Generated source code section commented out")
 # print(pyeq3.outputSourceCodeService().GetOutputSourceCodeCPP(equation))
 # print(pyeq3.outputSourceCodeService().GetOutputSourceCodeCSHARP(equation))
 # print(pyeq3.outputSourceCodeService().GetOutputSourceCodeVBA(equation))

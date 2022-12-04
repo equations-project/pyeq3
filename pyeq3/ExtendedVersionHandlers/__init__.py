@@ -4,7 +4,7 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
@@ -27,6 +27,6 @@ from . import ExtendedVersionHandler_ExponentialDecayAndOffset
 
 extendedVersionHandlerNameList = []
 for i in dir():
-    splitted = i.split('_')
-    if splitted[0] == 'ExtendedVersionHandler':
+    splitted = i.split("_")
+    if splitted[0] == "ExtendedVersionHandler":
         extendedVersionHandlerNameList.append(splitted[1])

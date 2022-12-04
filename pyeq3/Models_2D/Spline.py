@@ -4,16 +4,16 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
 import sys
 import os
 import inspect
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.Model_2D_BaseClass
@@ -23,7 +23,7 @@ class Spline(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     splineFlag = True
     _baseName = "Spline"
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -31,18 +31,20 @@ class Spline(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     def __init__(self, inSmoothingFactor=None, inXOrder=None, inYOrder=None):
         pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
-            self, 'SSQABS')  # call superclass
+            self, "SSQABS"
+        )  # call superclass
         self.smoothingFactor = inSmoothingFactor
         self.xOrder = inXOrder
         self.yOrder = inYOrder
 
     def GetDisplayHTML(self):
-        return 'y = B-Spline Interpolation Curve'
+        return "y = B-Spline Interpolation Curve"
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         return functionList
 
     def ShouldDataBeRejected(self, inModel):
@@ -52,12 +54,13 @@ class Spline(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         return True  # splines do not have coefficient bounds
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        result = self.scipySpline(inDataCacheDictionary['X'])
+        result = self.scipySpline(inDataCacheDictionary["X"])
         return result
 
     def GetCoefficientDesignators(self):
         raise NotImplementedError(
-            'The Spline class does not implement ' + inspect.stack()[0][3])
+            "The Spline class does not implement " + inspect.stack()[0][3]
+        )
 
     def CalculateFittingTarget(self, in_coeffArray):
-        raise NotImplementedError('Not implemented for splines')
+        raise NotImplementedError("Not implemented for splines")

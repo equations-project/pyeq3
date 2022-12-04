@@ -1,62 +1,65 @@
-import os
-import sys
 import dispy
-
-import pyeq3
 
 
 # this is the function to be run on the cluster
-def fitEquationUsingDispyCluster(inEquationString, inFittingTargetString, inExtendedVersionString, inTextData):
+def fitEquationUsingDispyCluster(
+    inEquationString, inFittingTargetString, inExtendedVersionString, inTextData
+):
 
     # individual cluster nodes must be able to import pyeq3
     import pyeq3
 
-    equation = eval(inEquationString + '("' + inFittingTargetString +
-                    '", "' + inExtendedVersionString + '")')
-    pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(inTextData, equation, False)
+    equation = eval(
+        inEquationString
+        + '("'
+        + inFittingTargetString
+        + '", "'
+        + inExtendedVersionString
+        + '")'
+    )
+    pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+        inTextData, equation, False
+    )
     equation.Solve()
-    fittedTarget = equation.CalculateAllDataFittingTarget(
-        equation.solvedCoefficients)
+    fittedTarget = equation.CalculateAllDataFittingTarget(equation.solvedCoefficients)
 
     # this result list allows easy sorting of multiple results later
     return [fittedTarget, inEquationString, equation.solvedCoefficients]
 
 
-equationString = 'pyeq3.Models_2D.Polynomial.Linear'
+equationString = "pyeq3.Models_2D.Polynomial.Linear"
 
 # see the pyeq3.IModel.fittingTargetDictionary
-fittingTargetString = 'SSQABS'
+fittingTargetString = "SSQABS"
 
-textData = '''
+textData = """
 1.0   1.1
 2.0   2.2
 3.0   3.4159  # Raspberry Pi humor
-'''
+"""
 
 
 jobCount = 20
 print()
-print('Creating dispy JobCluster')
+print("Creating dispy JobCluster")
 cluster = dispy.JobCluster(fitEquationUsingDispyCluster)
 
-print('Submitting', jobCount, 'jobs to the cluster')
+print("Submitting", jobCount, "jobs to the cluster")
 jobs = []
 for i in range(jobCount):
-    job = cluster.submit(
-        equationString, fittingTargetString, 'Default', textData)
+    job = cluster.submit(equationString, fittingTargetString, "Default", textData)
     job.id = i  # associate an ID to identify jobs (if needed later)
     jobs.append(job)
 
-print('Waiting on jobs to complete  and collecting results')
+print("Waiting on jobs to complete  and collecting results")
 for job in jobs:
     print()
     results = job()
     if job.exception:  # can also use job.status
-        print('Remote Exception in job number',
-              job.id, '\n', str(job.exception))
+        print("Remote Exception in job number", job.id, "\n", str(job.exception))
     else:
         equation = eval(results[1] + '("' + fittingTargetString + '")')
-        print('Success from job number', job.id)
+        print("Success from job number", job.id)
 
 print()
-print('Done.')
+print("Done.")

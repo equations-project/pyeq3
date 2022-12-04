@@ -4,7 +4,7 @@
 #    2548 Vera Cruz Drive
 #    Birmingham, AL 35235 USA
 #
-#    email: zunzun@zunzun.com
+#    https://github.com/equations-project/pyeq3
 #
 #    License: BSD-style (see LICENSE.txt in main source directory)
 
@@ -110,8 +110,7 @@ class IModel(object):
         "BIC": "Bayesian Information Criterion",
     }
 
-    def __init__(self, inFittingTarget="SSQABS",
-                 inExtendedVersionName="Default"):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         if inExtendedVersionName == "":
             inExtendedVersionName = "Default"
 
@@ -248,8 +247,7 @@ class IModel(object):
 
         if len(self.solvedCoefficients) > 0:
             solvedCoefficients = self.solvedCoefficients
-            fittingTargetValue = self.CalculateAllDataFittingTarget(
-                solvedCoefficients)
+            fittingTargetValue = self.CalculateAllDataFittingTarget(solvedCoefficients)
         else:
             solvedCoefficients = "(not assigned until solved)"
             fittingTargetValue = "(not assigned until solved)"
@@ -320,41 +318,38 @@ class IModel(object):
 
         try:
             # adjusted R-square
-            self.r2adj = (1.0 - (1.0 - self.r2) *
-                          ((self.nobs - 1.0) /
-                           (self.nobs - self.ncoef)))
+            self.r2adj = 1.0 - (1.0 - self.r2) * (
+                (self.nobs - 1.0) / (self.nobs - self.ncoef)
+            )
         except:
             self.r2adj = None
 
         try:
-            self.Fstat = ((self.r2 / self.df_r) /
-                          ((1.0 - self.r2) / self.df_e))  # model F-statistic
+            self.Fstat = (self.r2 / self.df_r) / (
+                (1.0 - self.r2) / self.df_e
+            )  # model F-statistic
         except:
             self.Fstat = None
 
         try:
             # F-statistic p-value
-            self.Fpv = 1.0 - scipy.stats.f.cdf(self.Fstat,
-                                               self.df_r,
-                                               self.df_e)
+            self.Fpv = 1.0 - scipy.stats.f.cdf(self.Fstat, self.df_r, self.df_e)
         except:
             self.Fpv = None
 
         # Model log-likelihood, AIC, and BIC criterion values
         # from http://stackoverflow.com/questions/7458391/python-multiple-linear-regression-using-ols-code-with-specific-data
         try:
-            self.ll = (-(self.nobs * 0.5) *
-                       (1.0 + numpy.log(2.0 * numpy.pi)) -
-                       (self.nobs * 0.5) *
-                       numpy.log(numpy.dot(self.modelAbsoluteError,
-                                           self.modelAbsoluteError) /
-                                 self.nobs))
+            self.ll = -(self.nobs * 0.5) * (1.0 + numpy.log(2.0 * numpy.pi)) - (
+                self.nobs * 0.5
+            ) * numpy.log(
+                numpy.dot(self.modelAbsoluteError, self.modelAbsoluteError) / self.nobs
+            )
         except:
             self.ll = None
 
         try:
-            self.aic = -2.0 * self.ll / self.nobs + \
-                (2.0 * self.ncoef / self.nobs)
+            self.aic = -2.0 * self.ll / self.nobs + (2.0 * self.ncoef / self.nobs)
         except:
             self.aic = None
 
@@ -391,8 +386,7 @@ class IModel(object):
             # parameter covariance matrix
             self.cov_beta = parameterStatistics.cov_beta
             try:
-                self.sd_beta = (parameterStatistics.sd_beta *
-                                parameterStatistics.sd_beta)
+                self.sd_beta = parameterStatistics.sd_beta * parameterStatistics.sd_beta
             except:
                 self.sd_beta = None
             self.ci = []
@@ -419,8 +413,7 @@ class IModel(object):
             try:
                 # coef. p-values
                 self.pstat_beta = (
-                    1.0 -
-                    scipy.stats.t.cdf(numpy.abs(self.tstat_beta), self.df_e)
+                    1.0 - scipy.stats.t.cdf(numpy.abs(self.tstat_beta), self.df_e)
                 ) * 2.0
             except:
                 self.pstat_beta = None
@@ -450,10 +443,8 @@ class IModel(object):
                 # that are not fixed
                 if self.fixedCoefficients[i] is not None:
                     inCoeffs[i] = self.fixedCoefficients[i]
-        self.modelPredictions = self.CalculateModelPredictions(
-            inCoeffs, inDictionary)
-        self.modelAbsoluteError = self.modelPredictions - \
-            inDictionary["DependentData"]
+        self.modelPredictions = self.CalculateModelPredictions(inCoeffs, inDictionary)
+        self.modelAbsoluteError = self.modelPredictions - inDictionary["DependentData"]
         try:
             if self.dataCache.DependentDataContainsZeroFlag is False:
                 self.modelRelativeError = (
@@ -540,13 +531,11 @@ class IModel(object):
                     if self.fixedCoefficients[i] is not None:
                         inCoeffs[i] = self.fixedCoefficients[i]
 
-            self.CalculateModelErrors(
-                inCoeffs, self.dataCache.allDataCacheDictionary)
+            self.CalculateModelErrors(inCoeffs, self.dataCache.allDataCacheDictionary)
             error = self.modelAbsoluteError
 
             if len(self.dataCache.allDataCacheDictionary["Weights"]):
-                error = error * \
-                    self.dataCache.allDataCacheDictionary["Weights"]
+                error = error * self.dataCache.allDataCacheDictionary["Weights"]
 
             if self.fittingTarget == "SSQABS":
                 val = numpy.sum(numpy.square(error))
@@ -556,8 +545,7 @@ class IModel(object):
                     return 1.0e300
 
             if self.fittingTarget == "SSQREL":
-                error = error / \
-                    self.dataCache.allDataCacheDictionary["DependentData"]
+                error = error / self.dataCache.allDataCacheDictionary["DependentData"]
                 val = numpy.sum(numpy.square(error))
                 if numpy.isfinite(val):
                     return val
@@ -589,8 +577,7 @@ class IModel(object):
 
                 val = numpy.sum(
                     numpy.abs(
-                        error /
-                        self.dataCache.allDataCacheDictionary["DependentData"]
+                        error / self.dataCache.allDataCacheDictionary["DependentData"]
                     )
                 )
                 if numpy.isfinite(val):
@@ -608,8 +595,7 @@ class IModel(object):
             if self.fittingTarget == "PEAKREL":
                 val = numpy.max(
                     numpy.abs(
-                        error /
-                        self.dataCache.allDataCacheDictionary["DependentData"]
+                        error / self.dataCache.allDataCacheDictionary["DependentData"]
                     )
                 )
                 if numpy.isfinite(val):
@@ -634,8 +620,7 @@ class IModel(object):
                         self.dataCache.allDataCacheDictionary["IndependentData"],
                         self.dataCache.allDataCacheDictionary["DependentData"],
                     )
-                myodr = scipy.odr.odrpack.ODR(
-                    data, model, beta0=inCoeffs, maxit=0)
+                myodr = scipy.odr.odrpack.ODR(data, model, beta0=inCoeffs, maxit=0)
                 myodr.set_job(fit_type=2)
                 out = myodr.run()
                 val = out.sum_square
@@ -646,8 +631,7 @@ class IModel(object):
 
             # remaining targets require these
             ncoef = 1.0 * len(inCoeffs)
-            nobs = 1.0 * \
-                len(self.dataCache.allDataCacheDictionary["DependentData"])
+            nobs = 1.0 * len(self.dataCache.allDataCacheDictionary["DependentData"])
             ll = -(nobs * 0.5) * (1.0 + numpy.log(2.0 * numpy.pi)) - (
                 nobs * 0.5
             ) * numpy.log(numpy.dot(error, error) / nobs)
@@ -757,8 +741,7 @@ class IModel(object):
     def WrapperForODR(self, inCoeffs, data):
         if not numpy.all(numpy.isfinite(data)):
             return (
-                numpy.ones(
-                    len(self.dataCache.allDataCacheDictionary["DependentData"]))
+                numpy.ones(len(self.dataCache.allDataCacheDictionary["DependentData"]))
                 * 1.0e300
             )
 
@@ -860,19 +843,21 @@ class IModel(object):
                 and self.dataCache.independentData1ContainsPositiveFlag
                 and self.dataCache.independentData1ContainsNegativeFlag
             ):
-                self.reasonWhyDataRejected = ("This equation cannot have both "
-                                              "positive and negative values "
-                                              "for the first independent "
-                                              "variable (X)/")
+                self.reasonWhyDataRejected = (
+                    "This equation cannot have both "
+                    "positive and negative values "
+                    "for the first independent "
+                    "variable (X)/"
+                )
 
         return true_or_false
 
     def IsDigitOrPoint(self, character):
-        return (str.isdigit(character) or character == '.')
+        return str.isdigit(character) or character == "."
 
     def ConvertStringIntsToStringFloats(self, string):
-        res = [''.join(g) for _, g in groupby(string, self.IsDigitOrPoint)]
-        return ''.join([r+'.0' if r.isnumeric() else r for r in res])
+        res = ["".join(g) for _, g in groupby(string, self.IsDigitOrPoint)]
+        return "".join([r + ".0" if r.isnumeric() else r for r in res])
 
     def GetSortedCoefficientsFromString(self, string, dim):
 
@@ -885,28 +870,25 @@ class IModel(object):
         # some safe tokens have numbers. split these.
         new_list = []
         for t in numpySafeTokenList:
-            tsplit = [''.join(g)
-                      for _, g in groupby(t, str.isalpha)]
+            tsplit = ["".join(g) for _, g in groupby(t, str.isalpha)]
             tsplit = [g for g in tsplit if str.isalpha(g[0])]
             new_list.extend(tsplit)
         numpySafeTokenList = new_list
 
-        tokenNames = [''.join(g)
-                      for _, g in groupby(string, str.isalpha)]
-        tokenNames = [g for g in tokenNames
-                      if (g not in numpySafeTokenList and
-                          str.isalpha(g[0]))]
+        tokenNames = ["".join(g) for _, g in groupby(string, str.isalpha)]
+        tokenNames = [
+            g for g in tokenNames if (g not in numpySafeTokenList and str.isalpha(g[0]))
+        ]
         if dim == 2:
-            return sorted(list(set(tokenNames) - set(['X'])))
+            return sorted(list(set(tokenNames) - set(["X"])))
         else:
-            return sorted(list(set(tokenNames) - set(['X', 'Y'])))
+            return sorted(list(set(tokenNames) - set(["X", "Y"])))
 
     def RecursivelyConvertIntStringsToFloatStrings(self, inList):
         returnList = []
         for item in inList:
             if isinstance(item, list):  # is this item another list?
-                returnList.append(
-                    self.RecursivelyConvertIntStringsToFloatStrings(item))
+                returnList.append(self.RecursivelyConvertIntStringsToFloatStrings(item))
             elif isinstance(item, str):  # is this item a string?
                 if item.isdigit():
                     # convert the integer to its floating point representation
@@ -920,58 +902,72 @@ class IModel(object):
     def ProcessAndValidateFunctionString(self, inString, dim):
 
         # no blank lines of text, StringIO() allows using file methods on text
-        stringToConvert = ''
+        stringToConvert = ""
         rawData = io.StringIO(inString).readlines()
 
         for line in rawData:
             stripped = line.strip()
             if len(stripped) > 0:  # no empty strings
-                if stripped[0] != '#':  # no comment-only lines
-                    stringToConvert += stripped + '\n'
+                if stripped[0] != "#":  # no comment-only lines
+                    stringToConvert += stripped + "\n"
 
         # convert brackets to parentheses
-        stringToConvert = stringToConvert.replace('[', '(').replace(']', ')')
+        stringToConvert = stringToConvert.replace("[", "(").replace("]", ")")
 
-        if stringToConvert == '':
-            raise Exception('You must enter some function '
-                            'text for the software to use.')
+        if stringToConvert == "":
+            raise Exception(
+                "You must enter some function " "text for the software to use."
+            )
 
-        if -1 != stringToConvert.find('='):
-            raise Exception('Please do not use an equals '
-                            'sign "=" in your text.')
+        if -1 != stringToConvert.find("="):
+            raise Exception("Please do not use an equals " 'sign "=" in your text.')
 
-        if '^' in stringToConvert:
-            raise Exception('The caret symbol "^" is not recognized '
-                            'by the parser, please substitute double '
-                            'asterisks "**" for "^".')
+        if "^" in stringToConvert:
+            raise Exception(
+                'The caret symbol "^" is not recognized '
+                "by the parser, please substitute double "
+                'asterisks "**" for "^".'
+            )
 
-        if 'ln' in stringToConvert:
-            raise Exception("The parser uses log() for the natural "
-                            "log function, not ln(). "
-                            "Please use log() in your text.")
+        if "ln" in stringToConvert:
+            raise Exception(
+                "The parser uses log() for the natural "
+                "log function, not ln(). "
+                "Please use log() in your text."
+            )
 
-        if 'abs' in stringToConvert:
-            raise Exception("The parser uses fabs() for the absolute "
-                            "value, not abs(). Please use fabs() in "
-                            "your text.")
+        if "abs" in stringToConvert:
+            raise Exception(
+                "The parser uses fabs() for the absolute "
+                "value, not abs(). Please use fabs() in "
+                "your text."
+            )
 
-        if 'EXP' in stringToConvert:
-            raise Exception("The parser uses lower case exp(), "
-                            "not upper case EXP(). Please use "
-                            "lower case exp() in your text.")
+        if "EXP" in stringToConvert:
+            raise Exception(
+                "The parser uses lower case exp(), "
+                "not upper case EXP(). Please use "
+                "lower case exp() in your text."
+            )
 
-        if 'LOG' in stringToConvert:
-            raise Exception("The parser uses lower case log(), "
-                            "not upper case LOG(). Please use "
-                            "lower case log() in your text.")
+        if "LOG" in stringToConvert:
+            raise Exception(
+                "The parser uses lower case log(), "
+                "not upper case LOG(). Please use "
+                "lower case log() in your text."
+            )
 
-        if 'X' not in stringToConvert:
-            raise Exception('You must use a separate upper case "X" '
-                            'in your function to enter a valid function of X.')
+        if "X" not in stringToConvert:
+            raise Exception(
+                'You must use a separate upper case "X" '
+                "in your function to enter a valid function of X."
+            )
 
-        if dim == 3 and 'Y' not in stringToConvert:
-            raise Exception('You must use a separate upper case "Y" '
-                            'in your function to enter a valid function of Y.')
+        if dim == 3 and "Y" not in stringToConvert:
+            raise Exception(
+                'You must use a separate upper case "Y" '
+                "in your function to enter a valid function of Y."
+            )
 
         return stringToConvert
 
@@ -980,12 +976,15 @@ class IModel(object):
         stringToConvert = self.ProcessAndValidateFunctionString(inString, dim)
 
         self._coefficientDesignators = self.GetSortedCoefficientsFromString(
-            inString, dim)
+            inString, dim
+        )
 
         if len(self._coefficientDesignators) == 0:
-            raise Exception('I could not find any equation parameter '
-                            'or coefficient names, please check the '
-                            'function text')
+            raise Exception(
+                "I could not find any equation parameter "
+                "or coefficient names, please check the "
+                "function text"
+            )
 
         # now compile code object using safe tokens with integer conversion
         self.safe_dict = locals()
@@ -997,16 +996,14 @@ class IModel(object):
             numpySafeTokenList += self.constantsDictionary[key]
 
         for f in numpySafeTokenList:
-            self.safe_dict[f] = eval('numpy.' + f)
+            self.safe_dict[f] = eval("numpy." + f)
 
         # convert integer use such as (3/2) into floats such as (3.0/2.0)
         stringToConvert = self.ConvertStringIntsToStringFloats(stringToConvert)
 
         # later evals re-use this compiled code for improved performance
         # in EvaluateCachedData() methods
-        self.userFunctionCodeObject = compile(stringToConvert,
-                                              '<string>',
-                                              mode='eval')
+        self.userFunctionCodeObject = compile(stringToConvert, "<string>", mode="eval")
 
     def CalculateModelPredictionsFromNewData(self, independent_data):
         ModelCache = pyeq3.dataCache()
@@ -1014,14 +1011,17 @@ class IModel(object):
         dim = self.GetDimensionality()
         if len(independent_data.shape) == 1:
             if dim == 3:
-                raise Exception('The independent data for a 3D model '
-                                'must be provided as a 2D numpy array.')
-            d = numpy.array(
-                [independent_data, numpy.ones_like(independent_data)])
+                raise Exception(
+                    "The independent data for a 3D model "
+                    "must be provided as a 2D numpy array."
+                )
+            d = numpy.array([independent_data, numpy.ones_like(independent_data)])
         else:
             if dim == 2:
-                raise Exception('The independent data for a 2D model '
-                                'must be provided as a 1D numpy array.')
+                raise Exception(
+                    "The independent data for a 2D model "
+                    "must be provided as a 1D numpy array."
+                )
             d = independent_data
 
         ModelCache.allDataCacheDictionary["IndependentData"] = d
