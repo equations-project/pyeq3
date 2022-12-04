@@ -68,9 +68,9 @@ class ExtendedVersionHandler_PlusPlane(IExtendedVersionHandler.IExtendedVersionH
             inModel.SpecificCodeCPP()
             + "\ttemp = temp + ("
             + cd[-3]
-            + " * x) + ("
+            + " * x_in) + ("
             + cd[-2]
-            + " * y) + "
+            + " * y_in) + "
             + cd[-1]
             + ";\n"
         )

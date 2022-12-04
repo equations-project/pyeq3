@@ -63,7 +63,7 @@ class ExtendedVersionHandler_PlusLine(IExtendedVersionHandler.IExtendedVersionHa
             + "\ttemp = temp + ("
             + cd[-2]
             + " * "
-            + "x"
+            + "x_in"
             + ") + "
             + cd[-1]
             + ";\n"
