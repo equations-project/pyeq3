@@ -24,7 +24,6 @@ numpy.seterr(all="ignore")
 
 
 class Quintic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "5th Order (Quintic)"
     _HTML = (
         "y = a + bx + cx<sup>2</sup> + dx<sup>3</sup> + fx<sup>4</sup> + gx<sup>5</sup>"
@@ -117,7 +116,6 @@ class Quintic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Quartic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "4th Order (Quartic)"
     _HTML = "y = a + bx + cx<sup>2</sup> + dx<sup>3</sup> + fx<sup>4</sup>"
     _leftSideHTML = "y"
@@ -199,7 +197,6 @@ class Quartic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Cubic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "3rd Order (Cubic)"
     _HTML = "y = a + bx + cx<sup>2</sup> + dx<sup>3</sup>"
     _leftSideHTML = "y"
@@ -272,7 +269,6 @@ class Cubic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Linear(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "1st Order (Linear)"
     _HTML = "y = a + bx"
     _leftSideHTML = "y"
@@ -327,7 +323,6 @@ class Linear(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class MarcPlanteQuadratic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Marc Plante's Custom Quadratic"
     _HTML = "y = (-b + (b<sup>2</sup> - 4 a (c - x))<sup>0.5</sup>) / 2 / a "
     _leftSideHTML = "y"
@@ -381,7 +376,6 @@ class MarcPlanteQuadratic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Quadratic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "2nd Order (Quadratic)"
     _HTML = "y = a + bx + cx<sup>2</sup>"
     _leftSideHTML = "y"

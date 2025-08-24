@@ -5,7 +5,6 @@ import dispy
 def fitEquationUsingDispyCluster(
     inEquationString, inFittingTargetString, inExtendedVersionString, inTextData
 ):
-
     # individual cluster nodes must be able to import pyeq3
     import pyeq3
 

@@ -23,7 +23,6 @@ numpy.seterr(all="ignore")
 
 
 class Cauchy(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "CAUCHY"
     _HTML = "n = A + B/x<sup>2</sup> + C/x<sup>4</sup>"
     _leftSideHTML = "n"
@@ -90,7 +89,6 @@ class Cauchy(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Conrady1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "CONRADY1"
     _HTML = "n = A + B/x + C/x<sup>3.5</sup>"
     _leftSideHTML = "n"
@@ -154,7 +152,6 @@ class Conrady1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Conrady2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "CONRADY2"
     _HTML = "n = A + B/x<sup>2</sup> + C/x<sup>3.5</sup>"
     _leftSideHTML = "n"
@@ -221,7 +218,6 @@ class Conrady2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Hartmann1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HARTMANN1"
     _HTML = "n = A + B/(C - x)"
     _leftSideHTML = "n"
@@ -277,7 +273,6 @@ class Hartmann1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Hartmann2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HARTMANN2"
     _HTML = "n = A + B/(C - x)<sup>2</sup>"
     _leftSideHTML = "n"
@@ -333,7 +328,6 @@ class Hartmann2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Hartmann3a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HARTMANN3a"
     _HTML = "n = A + B/(C - x)<sup>1.2</sup>"
     _leftSideHTML = "n"
@@ -446,7 +440,6 @@ class Hartmann3b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Hartmann4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HARTMANN4"
     _HTML = "n = A + B/(C - x) + D/(E - x)"
     _leftSideHTML = "n"
@@ -504,7 +497,6 @@ class Hartmann4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Herzberger2X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HERZBRGR2X2"
     _HTML = "n = A + Bx<sup>2</sup> + C / (x<sup>2</sup> - 0.028) + D / (x<sup>2</sup> - 0.028)<sup>2</sup>"
     _leftSideHTML = "n"
@@ -569,7 +561,6 @@ class Herzberger2X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Herzberger3X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HERZBRGR3X2"
     _HTML = "n = A + Bx<sup>2</sup> + Cx<sup>4</sup> + D / (x<sup>2</sup> - 0.028) + E / (x<sup>2</sup> - 0.028)<sup>2</sup>"
     _leftSideHTML = "n"
@@ -644,7 +635,6 @@ class Herzberger3X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Herzberger3X3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HERZBRGR3X3"
     _HTML = "n = A + Bx<sup>2</sup> + Cx<sup>4</sup> + D / (x<sup>2</sup> - 0.028) + E / (x<sup>2</sup> - 0.028)<sup>2</sup> + F / (x<sup>2</sup> - 0.028)<sup>4</sup>"
     _leftSideHTML = "n"
@@ -721,7 +711,6 @@ class Herzberger3X3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Herzberger4X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HERZBRGR4X2"
     _HTML = "n = A + Bx<sup>2</sup> + Cx<sup>4</sup> + Dx<sup>6</sup> + E / (x<sup>2</sup> - 0.028) + F / (x<sup>2</sup> - 0.028)<sup>2</sup>"
     _leftSideHTML = "n"
@@ -806,7 +795,6 @@ class Herzberger4X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Herzberger5X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HERZBRGR5X2"
     _HTML = "n = A + Bx<sup>2</sup> + Cx<sup>4</sup> + Dx<sup>6</sup> + Ex<sup>8</sup> + F / (x<sup>2</sup> - 0.028) + G / (x<sup>2</sup> - 0.028)<sup>2</sup>"
     _leftSideHTML = "n"
@@ -901,7 +889,6 @@ class Herzberger5X2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HerzbergerJK(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HERZBRGRJK"
     _HTML = "n = A + Bx<sup>2</sup> + Cx<sup>4</sup> + Dx<sup>6</sup> + E / (x<sup>2</sup> - J) + F / (x<sup>2</sup> - K)<sup>2</sup>"
     _leftSideHTML = "n"
@@ -988,7 +975,6 @@ class HerzbergerJK(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HoO1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HoO1"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + C / (x<sup>2</sup> - D<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1048,7 +1034,6 @@ class HoO1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HoO2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "HoO2"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>2</sup> / (x<sup>2</sup> - D<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1108,7 +1093,6 @@ class HoO2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Kingslake1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "KINGSLAKE1"
     _HTML = "n<sup>2</sup> = A + B/(x<sup>2</sup>-C<sup>2</sup>) + D/(x<sup>2</sup>-E<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1169,7 +1153,6 @@ class Kingslake1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Kingslake2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "KINGSLAKE2"
     _HTML = "n<sup>2</sup> = A + B/(x<sup>2</sup>-C<sup>2</sup>) + D/(x<sup>2</sup>-E<sup>2</sup>) + F/(x<sup>2</sup>-G<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1237,7 +1220,6 @@ class Kingslake2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Misc01(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "MISC01"
     _HTML = "n<sup>2</sup> = A + B/(x<sup>2</sup>-C<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1296,7 +1278,6 @@ class Misc01(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Misc02(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "MISC02"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + C/(x<sup>2</sup>-D<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1356,7 +1337,6 @@ class Misc02(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Misc03(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "MISC03"
     _HTML = "n<sup>2</sup> = A + B/x<sup>2</sup> + Cx<sup>2</sup>/(x<sup>2</sup>-D<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1416,7 +1396,6 @@ class Misc03(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Misc04(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "MISC04"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>4</sup> + D/x<sup>2</sup> + Ex<sup>2</sup>/(x<sup>2</sup>-F+(Gx<sup>2</sup>/(x<sup>2</sup>-F)))"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1493,7 +1472,6 @@ class Misc04(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Schott2X3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SCHOTT2X3"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + C/x<sup>2</sup> + D/x<sup>4</sup> + E/x<sup>6</sup>"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1570,7 +1548,6 @@ class Schott2X3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Schott2X4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SCHOTT2X4"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + C/x<sup>2</sup> + D/x<sup>4</sup> + E/x<sup>6</sup> + F/x<sup>8</sup>"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1658,7 +1635,6 @@ class Schott2X4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Schott2X5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SCHOTT2X5"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + C/x<sup>2</sup> + D/x<sup>4</sup> + E/x<sup>6</sup> + F/x<sup>8</sup> + G/x<sup>10</sup>"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1761,7 +1737,6 @@ class Schott2X5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Schott2X6(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SCHOTT2X6"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + C/x<sup>2</sup> + D/x<sup>4</sup> + E/x<sup>6</sup> + F/x<sup>8</sup> + G/x<sup>10</sup> + H/x<sup>12</sup>"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1877,7 +1852,6 @@ class Schott2X6(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Schott3X3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SCHOTT3X3"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>4</sup> + D/x<sup>2</sup> + E/x<sup>4</sup> + F/x<sup>6</sup>"
     _leftSideHTML = "n<sup>2</sup>"
@@ -1960,7 +1934,6 @@ class Schott3X3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Schott3X4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SCHOTT3X4"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>4</sup> + D/x<sup>2</sup> + E/x<sup>4</sup> + F/x<sup>6</sup> + G/x<sup>8</sup>"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2055,7 +2028,6 @@ class Schott3X4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Schott3X5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SCHOTT3X5"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>4</sup> + D/x<sup>2</sup> + E/x<sup>4</sup> + F/x<sup>6</sup> + G/x<sup>8</sup> + H/x<sup>10</sup>"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2160,7 +2132,6 @@ class Schott3X5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Schott4X4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SCHOTT4X4"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>4</sup> + Dx<sup>6</sup> + E/x<sup>2</sup> + F/x<sup>4</sup> + G/x<sup>6</sup> + H/x<sup>8</sup>"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2257,7 +2228,6 @@ class Schott4X4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Schott5X5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SCHOTT5X5"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>4</sup> + Dx<sup>6</sup> + Ex<sup>8</sup> + F/x<sup>2</sup> + G/x<sup>4</sup> + H/x<sup>6</sup> + J/x<sup>8</sup> + K/x<sup>10</sup>"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2366,7 +2336,6 @@ class Schott5X5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell1TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL1TA"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> / (x<sup>2</sup> - C<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2425,7 +2394,6 @@ class Sell1TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell1T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL1T"
     _HTML = "n<sup>2</sup> = 1 + Ax<sup>2</sup> / (x<sup>2</sup> - B<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2483,7 +2451,6 @@ class Sell1T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell2TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL2TA"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup>/(x<sup>2</sup>-C<sup>2</sup>) + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2544,7 +2511,6 @@ class Sell2TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell2T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL2T"
     _HTML = "n<sup>2</sup> = 1 + Ax<sup>2</sup>/(x<sup>2</sup>-B<sup>2</sup>) + Cx<sup>2</sup>/(x<sup>2</sup>-D<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2606,7 +2572,6 @@ class Sell2T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell3TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL3TA"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup>/(x<sup>2</sup>-C<sup>2</sup>) + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>) + Fx<sup>2</sup>/(x<sup>2</sup>-G<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2674,7 +2639,6 @@ class Sell3TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell3T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL3T"
     _HTML = "n<sup>2</sup> = 1 + Ax<sup>2</sup>/(x<sup>2</sup>-B<sup>2</sup>) + Cx<sup>2</sup>/(x<sup>2</sup>-D<sup>2</sup>) + Ex<sup>2</sup>/(x<sup>2</sup>-F<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2741,7 +2705,6 @@ class Sell3T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell4TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL4TA"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup>/(x<sup>2</sup>-C<sup>2</sup>) + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>) + Fx<sup>2</sup>/(x<sup>2</sup>-G<sup>2</sup>) + Hx<sup>2</sup>/(x<sup>2</sup>-J<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2812,7 +2775,6 @@ class Sell4TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell4T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL4T"
     _HTML = "n<sup>2</sup> = 1 + Ax<sup>2</sup>/(x<sup>2</sup>-B<sup>2</sup>) + Cx<sup>2</sup>/(x<sup>2</sup>-D<sup>2</sup>) + Ex<sup>2</sup>/(x<sup>2</sup>-F<sup>2</sup>) + Gx<sup>2</sup>/(x<sup>2</sup>-H<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2882,7 +2844,6 @@ class Sell4T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell5TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL5TA"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup>/(x<sup>2</sup>-C<sup>2</sup>) + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>) + Fx<sup>2</sup>/(x<sup>2</sup>-G<sup>2</sup>) + Hx<sup>2</sup>/(x<sup>2</sup>-J<sup>2</sup>) + Kx<sup>2</sup>/(x<sup>2</sup>-M<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -2956,7 +2917,6 @@ class Sell5TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell5T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL5T"
     _HTML = "n<sup>2</sup> = 1 + Ax<sup>2</sup>/(x<sup>2</sup>-B<sup>2</sup>) + Cx<sup>2</sup>/(x<sup>2</sup>-D<sup>2</sup>) + Ex<sup>2</sup>/(x<sup>2</sup>-F<sup>2</sup>) + Gx<sup>2</sup>/(x<sup>2</sup>-H<sup>2</sup>) + Jx<sup>2</sup>/(x<sup>2</sup>-K<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3029,7 +2989,6 @@ class Sell5T(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell6TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL6TA"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup>/(x<sup>2</sup>-C<sup>2</sup>) + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>) + Fx<sup>2</sup>/(x<sup>2</sup>-G<sup>2</sup>) + Hx<sup>2</sup>/(x<sup>2</sup>-J<sup>2</sup>) + Kx<sup>2</sup>/(x<sup>2</sup>-M<sup>2</sup>) + Nx<sup>2</sup>/(x<sup>2</sup>-P<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3120,7 +3079,6 @@ class Sell6TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sell7TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELL7TA"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup>/(x<sup>2</sup>-C<sup>2</sup>) + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>) + Fx<sup>2</sup>/(x<sup>2</sup>-G<sup>2</sup>) + Hx<sup>2</sup>/(x<sup>2</sup>-J<sup>2</sup>) + Kx<sup>2</sup>/(x<sup>2</sup>-M<sup>2</sup>) + Nx<sup>2</sup>/(x<sup>2</sup>-P<sup>2</sup>) + Qx<sup>2</sup>/(x<sup>2</sup>-R<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3216,7 +3174,6 @@ class Sell7TA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod1A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD1A"
     _HTML = "n<sup>2</sup> = A + Bx + Cx<sup>2</sup> + D/(x<sup>2</sup>-E<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3282,7 +3239,6 @@ class Sellmod1A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD1"
     _HTML = "n<sup>2</sup> = A + Bx + Cx<sup>2</sup> + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3348,7 +3304,6 @@ class Sellmod1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod2A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD2A"
     _HTML = "n<sup>2</sup> = A + Bx + Cx<sup>4</sup> + D/(x<sup>2</sup>-E<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3417,7 +3372,6 @@ class Sellmod2A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD2"
     _HTML = "n<sup>2</sup> = A + Bx + Cx<sup>4</sup> + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3486,7 +3440,6 @@ class Sellmod2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD3"
     _HTML = "n<sup>2</sup> = (Ax<sup>2</sup>+B)/(x<sup>2</sup>-C<sup>2</sup>) + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3550,7 +3503,6 @@ class Sellmod3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod4A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD4A"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + C/x<sup>2</sup> + D/(x<sup>2</sup>-E<sup>2</sup>) + F/(x<sup>2</sup>-G<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3619,7 +3571,6 @@ class Sellmod4A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD4"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + C/x<sup>2</sup> + Dx<sup>2</sup>/(x<sup>2</sup>-E<sup>2</sup>) + Fx<sup>2</sup>/(x<sup>2</sup>-G<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3688,7 +3639,6 @@ class Sellmod4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD5"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>2</sup>/(x<sup>2</sup>-D<sup>2</sup>) + Ex<sup>2</sup>/(x<sup>2</sup>-F<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3755,7 +3705,6 @@ class Sellmod5(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod6(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD6"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup>/(x<sup>2</sup>-C<sup>2</sup>) + D/(x<sup>2</sup>-E<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3816,7 +3765,6 @@ class Sellmod6(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod7A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD7A"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>4</sup> + D/x<sup>6</sup> + E/(x<sup>2</sup>-F<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3894,7 +3842,6 @@ class Sellmod7A(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod7(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD7"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>4</sup> + D/x<sup>6</sup> + Ex<sup>2</sup>/(x<sup>2</sup>-F<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -3978,7 +3925,6 @@ class Sellmod7(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod8(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD8"
     _HTML = "n<sup>2</sup> = A + Bx<sup>2</sup> + Cx<sup>4</sup> + D/(x<sup>2</sup>-E<sup>2</sup>) + F/(x<sup>2</sup>-G<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"
@@ -4055,7 +4001,6 @@ class Sellmod8(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Sellmod9(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "SELLMOD9"
     _HTML = "n<sup>2</sup> = A + B/x<sup>2</sup> + C/x<sup>4</sup> + D/x<sup>6</sup> + Ex<sup>2</sup>/(x<sup>2</sup>-F<sup>2</sup>)"
     _leftSideHTML = "n<sup>2</sup>"

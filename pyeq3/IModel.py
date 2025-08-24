@@ -231,7 +231,6 @@ class IModel(object):
             pass
 
     def __str__(self):
-
         dim = self.GetDimensionality()
         if dim == 2:
             polyfunctionalnDFlags = self.polyfunctional2DFlags
@@ -560,7 +559,6 @@ class IModel(object):
 
             # see http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2635088
             if self.fittingTarget == "LNQREL":
-
                 Q = numpy.abs(
                     self.modelPredictions
                     / self.dataCache.allDataCacheDictionary["DependentData"]
@@ -573,7 +571,6 @@ class IModel(object):
                     return 1.0e300
 
             if self.fittingTarget == "ABSREL":
-
                 val = numpy.sum(
                     numpy.abs(
                         error / self.dataCache.allDataCacheDictionary["DependentData"]
@@ -652,7 +649,6 @@ class IModel(object):
             return 1.0e300
 
     def Solve(self, inNonLinearSolverAlgorithmName="Levenberg-Marquardt"):
-
         solver = pyeq3.solverService()
 
         # if any of these conditions exist, a linear solver cannot be used
@@ -799,7 +795,6 @@ class IModel(object):
         return self.extendedVersionHandler.AssembleCoefficientDesignators(self)
 
     def ShouldDataBeRejected(self, unused):
-
         # should data be rejected?
         true_or_false = self.extendedVersionHandler.ShouldDataBeRejected(self)
 
@@ -877,7 +872,6 @@ class IModel(object):
         return "".join([r + ".0" if r.isnumeric() else r for r in res])
 
     def GetSortedCoefficientsFromString(self, string, dim):
-
         numpySafeTokenList = []
         for key in list(self.functionDictionary.keys()):
             numpySafeTokenList += self.functionDictionary[key]
@@ -917,7 +911,6 @@ class IModel(object):
         return returnList
 
     def ProcessAndValidateFunctionString(self, inString, dim):
-
         # no blank lines of text, StringIO() allows using file methods on text
         stringToConvert = ""
         rawData = io.StringIO(inString).readlines()
@@ -989,7 +982,6 @@ class IModel(object):
         return stringToConvert
 
     def ParseAndCompileUserFunctionString(self, inString, dim):
-
         stringToConvert = self.ProcessAndValidateFunctionString(inString, dim)
 
         self._coefficientDesignators = self.GetSortedCoefficientsFromString(

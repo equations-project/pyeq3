@@ -7,7 +7,6 @@ for modelsTypeName in ["Models_2D", "Models_3D"]:
     models = eval("pyeq3." + modelsTypeName)
     for submodule in inspect.getmembers(models):
         if inspect.ismodule(submodule[1]):
-
             moduleName = submodule[0].split(".")[-1]
             modelsFile.write(
                 "\nexports."
@@ -19,7 +18,6 @@ for modelsTypeName in ["Models_2D", "Models_3D"]:
 
             for equationClass in inspect.getmembers(submodule[1]):
                 if inspect.isclass(equationClass[1]):
-
                     # ignore these special classes
                     if (
                         equationClass[1].splineFlag
@@ -32,7 +30,6 @@ for modelsTypeName in ["Models_2D", "Models_3D"]:
                         continue
 
                     for extendedVersionString in ["Default", "Offset"]:
-
                         if (extendedVersionString == "Offset") and (
                             equationClass[1].autoGenerateOffsetForm is False
                         ):

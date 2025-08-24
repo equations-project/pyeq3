@@ -121,7 +121,6 @@ class ExtendedVersionHandler_LinearDecayAndOffset(
     # overridden from abstract parent class
 
     def ShouldDataBeRejected(self, inModel):
-
         if (
             inModel.dataCache.independentData1ContainsZeroFlag is True
         ):  # cannot divide by zero

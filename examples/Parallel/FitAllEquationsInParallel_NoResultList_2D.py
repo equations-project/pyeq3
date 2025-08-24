@@ -32,7 +32,6 @@ def ParallelFittingFunction(
         if inspect.ismodule(submodule[1]):
             for equationClass in inspect.getmembers(submodule[1]):
                 if inspect.isclass(equationClass[1]):
-
                     # special classes
                     if (
                         equationClass[1].splineFlag
@@ -45,7 +44,6 @@ def ParallelFittingFunction(
                         continue
 
                     for extendedVersion in ["Default", "Offset"]:
-
                         if (extendedVersion == "Offset") and (
                             equationClass[1].autoGenerateOffsetForm is False
                         ):
@@ -119,7 +117,6 @@ def ParallelFittingFunction(
     for coeffCount in range(1, maxPolyfunctionalCoefficients + 1):
         functionCombinations = UniqueCombinations(functionIndexList, coeffCount)
         for functionCombination in functionCombinations:
-
             if len(functionCombination) > smoothnessControl:
                 continue
 
@@ -181,7 +178,6 @@ def ParallelFittingFunction(
     )
 
     for polynomialOrderX in range(maxPolynomialOrderX + 1):
-
         if (polynomialOrderX + 1) > smoothnessControl:
             continue
 
@@ -239,9 +235,7 @@ def ParallelFittingFunction(
                     functionIndexList, denominatorCoeffCount
                 )
                 for denominatorCombo in denominatorComboList:
-
                     for extendedVersion in ["Default", "Offset"]:
-
                         extraCoeffs = 0
                         if extendedVersion == "Offset":
                             extraCoeffs = 1
@@ -352,7 +346,6 @@ smoothnessControl = 3
 
 # http://stackoverflow.com/questions/18204782/runtimeerror-on-windows-trying-python-multiprocessing
 if __name__ == "__main__":
-
     ##############################################
     # Parallel region begins
     ##############################################

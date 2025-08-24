@@ -23,7 +23,6 @@ numpy.seterr(all="ignore")
 
 
 class Bleasdale(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Bleasdale"
     _HTML = "y = 1.0 / (a + bx)<sup>(-1.0/c)</sup>"
     _leftSideHTML = "y"
@@ -76,7 +75,6 @@ class Bleasdale(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ExtendedHolliday(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Extended Holliday"
     _HTML = "y = a / (a + bx + cx<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -137,7 +135,6 @@ class ExtendedHolliday(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Harris(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Harris"
     _HTML = "y = 1.0 / (a + bx<sup>c</sup>)"
     _leftSideHTML = "y"
@@ -190,7 +187,6 @@ class Harris(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Holliday(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Holliday"
     _HTML = "y = 1.0 / (a + bx + cx<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -251,7 +247,6 @@ class Holliday(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class InverseBleasdale(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Inverse Bleasdale"
     _HTML = "y = x / (a + bx)<sup>(-1.0/c)</sup>"
     _leftSideHTML = "y"
@@ -304,7 +299,6 @@ class InverseBleasdale(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class InverseHarris(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "InverseHarris"
     _HTML = "y = x / (a + bx<sup>c</sup>)"
     _leftSideHTML = "y"
@@ -357,7 +351,6 @@ class InverseHarris(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Nelder"
     _HTML = "y = (a + x) / (b + c(a + x) + d(a + x)<sup>2</sup>)"
     _leftSideHTML = "y"

@@ -78,7 +78,6 @@ class MaxwellWiechert_1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class MaxwellWiechert_2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Maxwell - Wiechert 2"
     _HTML = "y = a1*exp(-X/Tau1) + a2*exp(-X/Tau2)"
     _leftSideHTML = "y"
@@ -134,7 +133,6 @@ class MaxwellWiechert_2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class MaxwellWiechert_3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Maxwell - Wiechert 3"
     _HTML = "y = a1*exp(-X/Tau1) + a2*exp(-X/Tau2) + a3*exp(-X/Tau3)"
     _leftSideHTML = "y"
@@ -196,7 +194,6 @@ class MaxwellWiechert_3(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class MaxwellWiechert_4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Maxwell - Wiechert 4"
     _HTML = "y = a1*exp(-X/Tau1) + a2*exp(-X/Tau2) + a3*exp(-X/Tau3) + a4*exp(-X/Tau4)"
     _leftSideHTML = "y"
@@ -262,7 +259,6 @@ class MaxwellWiechert_4(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DispersionOptical(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Dispersion Optical"
     _HTML = (
         "n<sup>2</sup>(x) = A1 + A2*x<sup>2</sup> + A3/x<sup>2</sup> + A4/x<sup>4</sup>"
@@ -331,7 +327,6 @@ class DispersionOptical(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DispersionOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Dispersion Optical Square Root"
     _HTML = "n = (A1 + A2*x<sup>2</sup> + A3/x<sup>2</sup> "
     _HTML = "+ A4/x<sup>4</sup>)<sup>0.5</sup>"
@@ -399,7 +394,6 @@ class DispersionOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Extended_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Extended Steinhart-Hart"
     _HTML = "1/T = A + Bln(R) + C(ln(R))<sup>2</sup> + D(ln(R))<sup>3</sup>"
     _leftSideHTML = "1/T"
@@ -457,7 +451,6 @@ class Extended_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Ramberg_Osgood(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Ramberg-Osgood"
     _HTML = "y = (Stress / Youngs_Modulus) + (Stress/K)<sup>(1.0/n)</sup>"
     _leftSideHTML = "y"
@@ -514,7 +507,6 @@ class Ramberg_Osgood(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Reciprocal_Extended_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Reciprocal Extended Steinhart-Hart"
     _HTML = "T = 1.0 / (A + Bln(R) + C(ln(R))<sup>2</sup> + D(ln(R))<sup>3</sup>)"
     _leftSideHTML = "T"
@@ -570,7 +562,6 @@ class Reciprocal_Extended_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
 
 
 class Reciprocal_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Reciprocal Steinhart-Hart"
     _HTML = "T = 1.0 / (A + Bln(R) + C(ln(R))<sup>3</sup>)"
     _leftSideHTML = "T"
@@ -632,7 +623,6 @@ class Reciprocal_Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SellmeierOptical(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Sellmeier Optical"
     _HTML = "n<sup>2</sup>(x) = 1 + (B1 x<sup>2</sup>)/(x<sup>2</sup>-C1) "
     _HTML += "+ (B2 x<sup>2</sup>)/(x<sup>2</sup>-C2) "
@@ -702,7 +692,6 @@ class SellmeierOptical(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class SellmeierOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Sellmeier Optical Square Root"
     _HTML = "n = (1 + (B1 x<sup>2</sup>)/(x<sup>2</sup>-C1) "
     _HTML += "+ (B2 x<sup>2</sup>)/(x<sup>2</sup>-C2) "
@@ -772,7 +761,6 @@ class SellmeierOpticalSqrt(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Steinhart-Hart"
     _HTML = "1/T = A + Bln(R) + C(ln(R))<sup>3</sup>"
     _leftSideHTML = "1/T"
@@ -823,7 +811,6 @@ class Steinhart_Hart(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class VanDeemterChromatography(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "VanDeemter Chromatography"
     _HTML = "y = a + b/x + cx"
     _leftSideHTML = "y"
@@ -888,7 +875,6 @@ class VanDeemterChromatography(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ElectronBeamLithographyPointSpread(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Electron Beam Lithography Point Spread"
     _HTML = "y = a*exp(-b*x) + c*exp(-(x-d)<sup>2</sup> / f<sup>2</sup>) "
     _HTML += "+ g*exp(-(x-h)<sup>2</sup> / i<sup>2</sup>) + j*exp(-(x-k)<sup>2</sup> "
@@ -1016,7 +1002,6 @@ class KlimpelFlotationA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class GraemePatersonElectricMotor(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Graeme Paterson Electric Motor"
     _HTML = "y =  A*exp(-b*t)*cos(omega*t + phi) + A2*exp(-b2*t)"
     _leftSideHTML = "y"
@@ -1076,7 +1061,6 @@ class GraemePatersonElectricMotor(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ModifiedArpsWellProduction(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Modified Arps Well Production"
     _HTML = "y = (qi_x/((1.0-b_x)*Di_x)) * (1.0-((1.0+b_x*Di_x*x)**(1.0-1.0/b_x)))"
     _leftSideHTML = "y"

@@ -29,7 +29,6 @@ sqr_root_two_pi = numpy.sqrt(2.0 * numpy.pi)
 
 
 class LaplacePeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Laplace Peak"
     _HTML = "y = a * exp((-1.0 * pow(2.0, 0.5) * abs(x-b))/c)"
     _leftSideHTML = "y"
@@ -82,7 +81,6 @@ class LaplacePeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LaplaceArea(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Laplace Area"
     _HTML = "y = (a / (pow(2.0, 0.5) * c)) * exp((-1.0 * pow(2.0, 0.5) * abs(x-b))/c)"
     _leftSideHTML = "y"
@@ -138,7 +136,6 @@ class LaplaceArea(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Hamilton(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Hamilton"
     _HTML = "Vb = Gb * (I/mu)<sup>ln(mu/I)/(B*B)</sup> + (Vb<sub>max</sub> * I)/(I + sigma_b)"
     _leftSideHTML = "Vb"
@@ -202,7 +199,6 @@ class Hamilton(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ArnoldCohenLogNormalShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Arnold Cohen Log-Normal Peak Shifted"
     _HTML = "y = a * (exp(-0.5 * ((ln(x-f)-b)/c)<sup>2</sup>)) / (d * (x-g))"
     _leftSideHTML = "y"
@@ -262,7 +258,6 @@ class ArnoldCohenLogNormalShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class ArnoldCohenTwoParameterLogNormalShifted(
     pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
 ):
-
     _baseName = "Arnold Cohen Two-Parameter Log-Normal Peak Shifted"
     _HTML = "y = exp(-0.5 * ((ln(x-d)-b)/c)<sup>2</sup>) / (sqrt(2*pi) * c * (x-f))"
     _leftSideHTML = "y"
@@ -320,7 +315,6 @@ class ArnoldCohenTwoParameterLogNormalShifted(
 
 
 class BoxLucasA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Box Lucas A"
     autoGeneratePlusLineForm = True
     _HTML = "y = a * (1.0 - b<sup>x</sup>)"
@@ -380,7 +374,6 @@ class BoxLucasA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BoxLucasAShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Box Lucas A Shifted"
     _HTML = "y = a * (1.0 - b<sup>x-c</sup>)"
     _leftSideHTML = "y"
@@ -433,7 +426,6 @@ class BoxLucasAShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BoxLucasB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Box Lucas B"
     autoGeneratePlusLineForm = True
     _HTML = "y = a * (1.0 - exp(-bx))"
@@ -486,7 +478,6 @@ class BoxLucasB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BoxLucasBShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Box Lucas B Shifted"
     _HTML = "y = a * (1.0 - exp(-b(x-c)))"
     _leftSideHTML = "y"
@@ -594,7 +585,6 @@ class BoxLucasC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BoxLucasCShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Box Lucas C shifted"
     _HTML = "y = (a / (a-b)) * (exp(-b(x-c)) - exp(-a(x-c)))"
     _leftSideHTML = "y"
@@ -649,7 +639,6 @@ class BoxLucasCShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ExtremeValuePeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Extreme Value Peak"
     _HTML = "y = a * exp(-exp(-((x-b)/c))-((x-b)/c)+1.0)"
     _leftSideHTML = "y"
@@ -704,7 +693,6 @@ class ExtremeValuePeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ExtremeValueArea(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Extreme Value Area"
     _HTML = "y = (a/c) * exp(-exp(-((x-b)/c))-((x-b)/c))"
     _leftSideHTML = "y"
@@ -759,7 +747,6 @@ class ExtremeValueArea(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class GaussianPeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Gaussian Peak"
     _HTML = "y = a * exp(-0.5 * ((x-b)/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -812,7 +799,6 @@ class GaussianPeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class GaussianPeak_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Gaussian Peak Modified"
     _HTML = "y = a * exp(-0.5 * ((x-b)/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -866,7 +852,6 @@ class GaussianPeak_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class GaussianArea(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Gaussian Area"
     _HTML = "y = (a / (pow(2*pi, 0.5) * c)) * exp(-0.5 * ((x-b)/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -921,7 +906,6 @@ class GaussianArea(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogNormalA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Log-Normal Peak A"
     _HTML = "y = a * exp(-0.5 * ((ln(x)-b)/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -974,7 +958,6 @@ class LogNormalA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogNormalB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Log-Normal Peak B"
     _HTML = "y = a * exp(-0.5 * (ln(x/b)/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -1029,7 +1012,6 @@ class LogNormalB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogNormalAShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Log-Normal Peak A Shifted"
     _HTML = "y = a * exp(-0.5 * ((ln(x-d)-b)/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -1083,7 +1065,6 @@ class LogNormalAShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogNormalBShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Log-Normal Peak B Shifted"
     _HTML = "y = a * exp(-0.5 * (ln((x-d/b))/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -1137,7 +1118,6 @@ class LogNormalBShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogNormalA_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Log-Normal Peak A Modified"
     _HTML = "y = a * exp(-0.5 * ((ln(x)-b)/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -1191,7 +1171,6 @@ class LogNormalA_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogNormalB_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Log-Normal Peak B Modified"
     _HTML = "y = a * exp(-0.5 * (ln(x/b)/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -1247,7 +1226,6 @@ class LogNormalB_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogNormalA_ModifiedShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Log-Normal Peak A Modified Shifted"
     _HTML = "y = a * exp(-0.5 * ((ln(x-f)-b)/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -1302,7 +1280,6 @@ class LogNormalA_ModifiedShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogNormalB_ModifiedShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Log-Normal Peak B Modified Shifted"
     _HTML = "y = a * exp(-0.5 * (ln((x-f)/b)/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -1359,7 +1336,6 @@ class LogNormalB_ModifiedShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogisticPeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Logistic Peak"
     _HTML = "y = 4a * exp(-1.0 * (x-b) / c) / (1.0 + exp(-1.0 * (x-b) / c))<sup>2</sup>"
     _leftSideHTML = "y"
@@ -1417,7 +1393,6 @@ class LogisticPeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogisticArea(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Logistic Area"
     _HTML = "y = a * exp(-1.0 * (x-b) / c) / (c * (1.0 + exp(-1.0 * (x-b) / c))<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -1527,7 +1502,6 @@ class LorentzianModifiedPeakA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianModifiedPeakB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Modified Peak B"
     _HTML = "y = 1.0 / (a + (x-b)<sup>c</sup>)"
     _leftSideHTML = "y"
@@ -1580,7 +1554,6 @@ class LorentzianModifiedPeakB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianModifiedPeakC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Modified Peak C"
     _HTML = "y = a / (b + (x-c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -1634,7 +1607,6 @@ class LorentzianModifiedPeakC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianModifiedPeakD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Modified Peak D"
     _HTML = "y = 1.0 / (1.0 + ((x-a)/b)<sup>c</sup>)"
     _leftSideHTML = "y"
@@ -1687,7 +1659,6 @@ class LorentzianModifiedPeakD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianModifiedPeakE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Modified Peak E"
     _HTML = "y = 1.0 / (a + ((x-b)/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -1741,7 +1712,6 @@ class LorentzianModifiedPeakE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianModifiedPeakF(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Modified Peak F"
     _HTML = "y = a / (b + ((x-c)/d)<sup>f</sup>)"
     _leftSideHTML = "y"
@@ -1796,7 +1766,6 @@ class LorentzianModifiedPeakF(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianModifiedPeakG(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Modified Peak G"
     _HTML = "y = a / (1.0 + ((x-b)/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -1850,7 +1819,6 @@ class LorentzianModifiedPeakG(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianPeakA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Peak A"
     autoGeneratePlusLineForm = True
     _HTML = "y = 1.0 / (1.0 + (x-a)<sup>2</sup>)"
@@ -1955,7 +1923,6 @@ class LorentzianPeakB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianPeakC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Peak C"
     _HTML = "y = a / (b + (x-c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -2061,7 +2028,6 @@ class LorentzianPeakD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianPeakE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Peak E"
     _HTML = "y = 1.0 / (a + ((x-b)/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -2114,7 +2080,6 @@ class LorentzianPeakE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianPeakF(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Peak F"
     _HTML = "y = a / (b + ((x-c)/d)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -2168,7 +2133,6 @@ class LorentzianPeakF(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LorentzianPeakG(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Lorentzian Peak G"
     _HTML = "y = a / (1.0 + ((x-b)/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -2221,7 +2185,6 @@ class LorentzianPeakG(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PseudoVoight(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Pseudo-Voight Peak"
     _HTML = "y = a * (d * (1/(1+((x-b)/c)<sup>2</sup>)) + (1-d) * exp(-0.5 * ((x-b)/c)<sup>2</sup>))"
     _leftSideHTML = "y"
@@ -2277,7 +2240,6 @@ class PseudoVoight(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PseudoVoight_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Pseudo-Voight Peak Modified"
     _HTML = "y = a * (d * (1/(1+((x-b)/c)<sup>f</sup>)) + (1-d) * exp(-0.5 * ((x-b)/c)<sup>g</sup>))"
     _leftSideHTML = "y"
@@ -2336,7 +2298,6 @@ class PseudoVoight_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Pulse(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Pulse Peak"
     _HTML = "y = 4a * exp(-(x-b)/c) * (1.0 - exp(-(x-b)/c))"
     _leftSideHTML = "y"
@@ -2390,7 +2351,6 @@ class Pulse(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class WeibullPeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Weibull Peak"
     _HTML = "y = a * exp(-0.5 * (ln(x/b)/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -2445,7 +2405,6 @@ class WeibullPeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class WeibullPeakShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Weibull Peak Shifted"
     _HTML = "y = a * exp(-0.5 * (ln((x-d)/b)/c)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -2499,7 +2458,6 @@ class WeibullPeakShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class WeibullPeak_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Weibull Peak Modified"
     _HTML = "y = a * exp(-0.5 * (ln(x/b)/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -2555,7 +2513,6 @@ class WeibullPeak_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class WeibullPeak_ModifiedShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Weibull Peak Modified Shifted"
     _HTML = "y = a * exp(-0.5 * (ln((x-f)/b)/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -2610,7 +2567,6 @@ class WeibullPeak_ModifiedShifted(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class LogNormal4Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Log-Normal 4 Parameter"
     _HTML = "y = a * exp(-1.0 * (ln(2) * ln((((x-b) * (d<sup>2</sup>-1)) / (c*d)) + 1.0)<sup>2</sup>) / ln(d)<sup>2</sup>)"
     _leftSideHTML = "y"
@@ -2673,7 +2629,6 @@ class LogNormal4Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ExtremeValue4ParameterPeak(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Extreme Value 4 Parameter Peak"
     _HTML = "y = a * exp(-x + b + c - c*d*exp(-1.0 * ((x + c*ln(d) - b) / c)) / (c*d))"
     _leftSideHTML = "y"
@@ -2821,7 +2776,6 @@ class UVEDFruitGrowthRate(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class UVEDFruitGrowthRateB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "UVED Fruit Growth Rate B"
     _HTML = "y = c * ((t/5)<sup>(a-1)</sup>*(1-t/5)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)"
     _leftSideHTML = "y"
@@ -2886,7 +2840,6 @@ class UVEDFruitGrowthRateB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class UVEDFruitGrowthRateScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "UVED Fruit Growth Rate Scaled"
     _HTML = "y = (c*t)<sup>(a-1)</sup>*(1-(c*t)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)"
     _leftSideHTML = "y"
@@ -2946,7 +2899,6 @@ class UVEDFruitGrowthRateScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class UVEDFruitGrowthRateScaledB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "UVED Fruit Growth Rate Scaled B"
     _HTML = "y = d * (c*t)<sup>(a-1)</sup>*(1-(c*t)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)"
     _leftSideHTML = "y"
@@ -3012,7 +2964,6 @@ class UVEDFruitGrowthRateScaledB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class UVEDFruitGrowthRateTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "UVED Fruit Growth Rate Transform"
     _HTML = "y = (c*t+d)<sup>(a-1)</sup>*(1-(c*t+d)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)"
     _leftSideHTML = "y"
@@ -3074,7 +3025,6 @@ class UVEDFruitGrowthRateTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class UVEDFruitGrowthRateTransformB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "UVED Fruit Growth Rate Transform B"
     _HTML = "y = f * (c*t+d)<sup>(a-1)</sup>*(1-(c*t+d)<sup>(b-1)</sup>)/(((a-1)/(a+b-2))<sup>(a-1)</sup>*((b-1)/(a+b-2))<sup>(b-1)</sup>)"
     _leftSideHTML = "y"

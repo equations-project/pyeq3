@@ -12,7 +12,6 @@ import DataForUnitTests
 
 
 class TestGenerationOfOutputSourceCodeForAllEquations(unittest.TestCase):
-
     # ensure no coding errors in source code generation for any equation
     def test_GenerationOf_CPP_ForAllEquations(self):
         for submodule in inspect.getmembers(pyeq3.Models_2D) + inspect.getmembers(
@@ -42,7 +41,6 @@ class TestGenerationOfOutputSourceCodeForAllEquations(unittest.TestCase):
 
 
 class TestConversionsFromCPP(unittest.TestCase):
-
     cppStringForTestingLanguageConversions = """
 \t// comment
 \tdouble doubleVariable;

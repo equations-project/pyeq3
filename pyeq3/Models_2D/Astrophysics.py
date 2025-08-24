@@ -23,7 +23,6 @@ numpy.seterr(all="ignore")
 
 
 class King_14(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "King 14"
     _HTML = "f(x) = k * [1/sqrt(1 + (x/r_c) ** 2) - 1/sqrt(1 + (r_t/r_c) ** 2)] ** 2"
     _leftSideHTML = "f(x)"

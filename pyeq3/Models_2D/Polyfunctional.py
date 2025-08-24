@@ -69,7 +69,6 @@ class UserSelectablePolyfunctional(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             coefficientDesignatorIndex = 0
             cd = self.GetCoefficientDesignators()
             for index in range(len(self.polyfunctional2DFlags)):
-
                 # move "offset" to end of HTML
                 if self.polyfunctional2DFlags[index] == 0:
                     continue

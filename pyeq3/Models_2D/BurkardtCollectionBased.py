@@ -28,7 +28,6 @@ BurkhardtCollectionWebReference = (
 
 
 class arcsin_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Arcsin CDF Based"
     _HTML = "y = a * asin( (bx+c) / d)"
     _leftSideHTML = "y"
@@ -142,7 +141,6 @@ class arcsin_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class bradford_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Bradford CDF Based A"
     _HTML = "y = ln(1.0+c*(x-a)/(b-a)) / ln(c+1.0)"
     _leftSideHTML = "y"
@@ -197,7 +195,6 @@ class bradford_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class bradford_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Bradford CDF Based B"
     _HTML = "y = d * ln(1.0+c*(x-a)/(b-a)) / ln(c+1.0)"
     _leftSideHTML = "y"
@@ -253,7 +250,6 @@ class bradford_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class bradford_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Bradford PDF Based"
     _HTML = "y = c / (( c * (x-a) + b-a) * ln(c + 1.0))"
     _leftSideHTML = "y"
@@ -308,7 +304,6 @@ class bradford_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class burr_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Burr CDF Based A"
     _HTML = "y = 1.0 / ( 1.0 + ( b / ( x-a ))<sup>c</sup>)<sup>d</sup>"
     _leftSideHTML = "y"
@@ -362,7 +357,6 @@ class burr_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class burr_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Burr CDF Based B"
     _HTML = "y = f / ( 1.0 + ( b / ( x-a ))<sup>c</sup>)<sup>d</sup>"
     _leftSideHTML = "y"
@@ -417,7 +411,6 @@ class burr_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class burr_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Burr PDF Based"
     _HTML = "y = (c*d/b) * ((x-a)/b)^(-c-1.0) * (1.0+((x-a)/b)^(-c))^(-d-1.0)"
     _leftSideHTML = "y"
@@ -592,7 +585,6 @@ class exponential_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class exponential_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Exponential PDF Based Scaled"
     _HTML = "y = Scale * (1.0/b) * exp((a-x)/b)"
     _leftSideHTML = "y"
@@ -702,7 +694,6 @@ class extreme_values_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class extreme_values_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Extreme Values CDF Based B"
     _HTML = "y = c * exp(-exp(-((x-a)/b)))"
     _leftSideHTML = "y"
@@ -812,7 +803,6 @@ class extreme_values_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class fisk_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Fisk CDF Based A"
     _HTML = "y = 1.0 / (1.0+(b/(x-a))<sup>c</sup>)"
     _leftSideHTML = "y"
@@ -865,7 +855,6 @@ class fisk_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class fisk_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Fisk CDF Based B"
     _HTML = "y = d / (1.0+(b/(x-a))<sup>c</sup>)"
     _leftSideHTML = "y"
@@ -919,7 +908,6 @@ class fisk_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class fisk_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Fisk PDF Based"
     _HTML = "y = (c/b) * ((x-a)/b)<sup>(c-1.0)</sup> "
     _HTML += "/ (1.0 + ((x-a)/b)<sup>c</sup>)<sup>2</sup>"
@@ -978,7 +966,6 @@ class fisk_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class folded_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Folded Normal PDF Based"
     _HTML = "y = c * (1/b) * cosh(a*x/b<sup>2</sup>) * exp(-0.5 * (x<sup>2</sup> "
     _HTML += "+ a<sup>2</sup>)/b<sup>2</sup>)"
@@ -1261,7 +1248,6 @@ class frechet_pdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class genlogistic_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Genlogistic CDF Based A"
     _HTML = "y = (1.0/(1.0+exp(-(x-a)/b)))<sup>c</sup>"
     _leftSideHTML = "y"
@@ -1314,7 +1300,6 @@ class genlogistic_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class genlogistic_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Genlogistic CDF Based B"
     _HTML = "y = (d/(1.0+exp(-(x-a)/b)))<sup>c</sup>"
     _leftSideHTML = "y"
@@ -1368,7 +1353,6 @@ class genlogistic_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class genlogistic_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Genlogistic PDF Based"
     _HTML = "y = (c/b) * exp(-((x-a)/b)) / (1.0+exp(-((x-a)/b)))<sup>(c+1.0)</sup>"
     _leftSideHTML = "y"
@@ -1483,7 +1467,6 @@ class gompertz_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class gompertz_cdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Gompertz CDF Based Scaled"
     _HTML = "y = Scale * (1.0 - exp(-b * (a<sup>x</sup>-1.0) / ln(a)))"
     _leftSideHTML = "y"
@@ -1653,7 +1636,6 @@ class gumbel_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class half_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Half Normal PDF Based"
     _HTML = "y = c * ( 1.0/b) * exp(-0.5*((x-a)/b)*((x-a)/b))"
     _leftSideHTML = "y"
@@ -1708,7 +1690,6 @@ class half_normal_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class inverse_gaussian_pdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Inverse_gaussian PDF Based A"
     _HTML = "y = sqrt(b/(c*x<sup>3</sup>))*exp(-b*(x-a)<sup>2</sup> "
     _HTML += "/ (2.0*a<sup>2</sup>*x))"
@@ -1776,7 +1757,6 @@ class inverse_gaussian_pdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class inverse_gaussian_pdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Inverse_gaussian PDF Based B"
     _HTML = "y = sqrt(b/(c*x<sup>3</sup>))*exp(-b*(x-a)<sup>2</sup> "
     _HTML += "/ (2.0*a<sup>2</sup>*x))"
@@ -1912,7 +1892,6 @@ class levy_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class levy_pdf_scaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Levy PDF Based Scaled"
     _HTML = "y = Scale * b<sup>0.5</sup> * exp(-b/(2.0*(x-a)))/sqrt((x-a)<sup>3</sup>)"
     _leftSideHTML = "y"
@@ -2504,7 +2483,6 @@ class reciprocal_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class sech_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Sech CDF Based"
     _HTML = "y = c * atan(exp((x-a)/b))"
     _leftSideHTML = "y"
@@ -2559,7 +2537,6 @@ class sech_cdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class weibull_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Weibull CDF Based A"
     _HTML = "y = 1.0 / exp(((x-a)/b)<sup>c</sup>)"
     _leftSideHTML = "y"
@@ -2611,7 +2588,6 @@ class weibull_cdf_a(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class weibull_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Weibull CDF Based B"
     _HTML = "y = d / exp(((x-a)/b)<sup>c</sup>)"
     _leftSideHTML = "y"
@@ -2664,7 +2640,6 @@ class weibull_cdf_b(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class weibull_pdf(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Weibull PDF Based"
     _HTML = "y = (c/b) * ((x-a)/b)<sup>(c-1.0)</sup>  / exp(((x-a)/b)<sup>c</sup>)"
     _leftSideHTML = "y"

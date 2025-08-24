@@ -114,7 +114,6 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
     if inspect.ismodule(submodule[1]):
         for equationClass in inspect.getmembers(submodule[1]):
             if inspect.isclass(equationClass[1]):
-
                 # special classes
                 if (
                     equationClass[1].splineFlag
@@ -127,7 +126,6 @@ for submodule in inspect.getmembers(pyeq3.Models_2D):
                     continue
 
                 for extendedVersion in ["Default", "Offset"]:
-
                     if (extendedVersion == "Offset") and (
                         equationClass[1].autoGenerateOffsetForm is False
                     ):
@@ -187,7 +185,6 @@ functionIndexList = list(range(len(polyfunctionalEquationList)))
 for coeffCount in range(1, maxPolyfunctionalCoefficients + 1):
     functionCombinations = UniqueCombinations(functionIndexList, coeffCount)
     for functionCombination in functionCombinations:
-
         if len(functionCombination) > smoothnessControl:
             continue
 
@@ -232,7 +229,6 @@ print("Fitting user-selectable polynomials:")
 maxPolynomialOrderX = 5  # this value was chosen to make this example more convenient
 
 for polynomialOrderX in range(maxPolynomialOrderX + 1):
-
     if (polynomialOrderX + 1) > smoothnessControl:
         continue
 
@@ -281,9 +277,7 @@ for numeratorCoeffCount in range(1, maxCoeffs):
                 functionIndexList, denominatorCoeffCount
             )
             for denominatorCombo in denominatorComboList:
-
                 for extendedVersion in ["Default", "Offset"]:
-
                     extraCoeffs = 0
                     if extendedVersion == "Offset":
                         extraCoeffs = 1

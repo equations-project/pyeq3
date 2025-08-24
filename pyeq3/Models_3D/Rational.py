@@ -10,26 +10,26 @@
 
 import sys
 import os
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.Model_3D_BaseClass
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class RationalA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational A"
-    _HTML = 'z = (a + bx + cy)/(1 + dx + fy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + bx + cy)/(1 + dx + fy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -47,16 +47,20 @@ class RationalA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -65,10 +69,12 @@ class RationalA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*x_in + c*y_in) / (1.0 + d*x_in + f*y_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in) / (1.0 + d * x_in + f * y_in)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in) / (1.0 + d*x_in + f*y_in);\n"
@@ -76,14 +82,13 @@ class RationalA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational B"
-    _HTML = 'z = (a + b*ln(x) + c*ln(y))/(1 + dx + fy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + b*ln(x) + c*ln(y))/(1 + dx + fy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -101,24 +106,30 @@ class RationalB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -127,10 +138,12 @@ class RationalB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*LogX + c*LogY) / (1.0 + d*x_in + f*y_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * LogX + c * LogY) / (1.0 + d * x_in + f * y_in)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a + b*log(x_in) + c*log(y_in)) / (1.0 + d*x_in + f*y_in);\n"
@@ -138,14 +151,13 @@ class RationalB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational C"
-    _HTML = 'z = (a + b*exp(x) + c*ln(y))/(1 + dx + fy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + b*exp(x) + c*ln(y))/(1 + dx + fy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -163,24 +175,30 @@ class RationalC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -189,10 +207,12 @@ class RationalC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*ExpX + c*LogY) / (1.0 + d*x_in + f*y_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * ExpX + c * LogY) / (1.0 + d * x_in + f * y_in)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a + b*exp(x_in) + c*log(y_in)) / (1.0 + d*x_in + f*y_in);\n"
@@ -200,14 +220,13 @@ class RationalC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalD(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational D"
-    _HTML = 'z = (a + b*ln(x) + c*exp(y))/(1 + dx + fy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + b*ln(x) + c*exp(y))/(1 + dx + fy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -225,24 +244,30 @@ class RationalD(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -251,10 +276,12 @@ class RationalD(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*LogX + c*ExpY) / (1.0 + d*x_in + f*y_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * LogX + c * ExpY) / (1.0 + d * x_in + f * y_in)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a + b*log(x_in) + c*exp(y_in)) / (1.0 + d*x_in + f*y_in);\n"
@@ -262,14 +289,13 @@ class RationalD(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalE(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational E"
-    _HTML = 'z = (a + b*exp(x) + c*exp(y))/(1 + dx + fy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + b*exp(x) + c*exp(y))/(1 + dx + fy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -287,24 +313,30 @@ class RationalE(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -313,10 +345,12 @@ class RationalE(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*ExpX + c*ExpY) / (1.0 + d*x_in + f*y_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * ExpX + c * ExpY) / (1.0 + d * x_in + f * y_in)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a + b*exp(x_in) + c*exp(y_in)) / (1.0 + d*x_in + f*y_in);\n"
@@ -324,14 +358,13 @@ class RationalE(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalF(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational F"
-    _HTML = 'z = (a + bx + cy)/(1 + d*ln(x) + f*ln(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + bx + cy)/(1 + d*ln(x) + f*ln(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -349,24 +382,30 @@ class RationalF(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -375,10 +414,12 @@ class RationalF(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*x_in + c*y_in) / (1.0 + d*LogX + f*LogY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in) / (1.0 + d * LogX + f * LogY)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in) / (1.0 + d*log(x_in) + f*log(y_in));\n"
@@ -386,14 +427,13 @@ class RationalF(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalG(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational G"
-    _HTML = 'z = (a + bx + cy)/(1 + d*exp(x) + f*ln(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + bx + cy)/(1 + d*exp(x) + f*ln(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -411,24 +451,30 @@ class RationalG(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -437,10 +483,12 @@ class RationalG(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*x_in + c*y_in) / (1.0 + d*ExpX + f*LogY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in) / (1.0 + d * ExpX + f * LogY)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in) / (1.0 + d*exp(x_in) + f*log(y_in));\n"
@@ -448,14 +496,13 @@ class RationalG(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalH(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational H"
-    _HTML = 'z = (a + bx + cy)/(1 + d*ln(x) + f*exp(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + bx + cy)/(1 + d*ln(x) + f*exp(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -473,24 +520,30 @@ class RationalH(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -499,10 +552,12 @@ class RationalH(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*x_in + c*y_in) / (1.0 + d*LogX + f*ExpY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in) / (1.0 + d * LogX + f * ExpY)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in) / (1.0 + d*log(x_in) + f*exp(y_in));\n"
@@ -510,14 +565,13 @@ class RationalH(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalI(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational I"
-    _HTML = 'z = (a + bx + cy)/(1 + d*exp(x) + f*exp(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + bx + cy)/(1 + d*exp(x) + f*exp(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -535,24 +589,30 @@ class RationalI(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -561,10 +621,12 @@ class RationalI(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*x_in + c*y_in) / (1.0 + d*ExpX + f*ExpY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in) / (1.0 + d * ExpX + f * ExpY)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in) / (1.0 + d*exp(x_in) + f*exp(y_in));\n"
@@ -572,14 +634,13 @@ class RationalI(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalJ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational J"
-    _HTML = 'z = (a + b*ln(x) + c*ln(y))/(1 + d*ln(x) + f*ln(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + b*ln(x) + c*ln(y))/(1 + d*ln(x) + f*ln(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -597,16 +658,20 @@ class RationalJ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -615,10 +680,12 @@ class RationalJ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*LogX + c*LogY) / (1.0 + d*LogX + f*LogY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * LogX + c * LogY) / (1.0 + d * LogX + f * LogY)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*log(x_in) + c*log(y_in)) / (1.0 + d*log(x_in) + f*log(y_in));\n"
@@ -626,14 +693,13 @@ class RationalJ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalK(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational K"
-    _HTML = 'z = (a + b*exp(x) + c*ln(y))/(1 + d*exp(x) + f*ln(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + b*exp(x) + c*ln(y))/(1 + d*exp(x) + f*ln(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -651,16 +717,20 @@ class RationalK(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -669,10 +739,12 @@ class RationalK(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*ExpX + c*LogY) / (1.0 + d*ExpX + f*LogY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * ExpX + c * LogY) / (1.0 + d * ExpX + f * LogY)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*exp(x_in) + c*log(y_in)) / (1.0 + d*exp(x_in) + f*log(y_in));\n"
@@ -680,14 +752,13 @@ class RationalK(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalL(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational L"
-    _HTML = 'z = (a + b*ln(x) + c*exp(y))/(1 + d*ln(x) + f*exp(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + b*ln(x) + c*exp(y))/(1 + d*ln(x) + f*exp(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -705,16 +776,20 @@ class RationalL(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -723,10 +798,12 @@ class RationalL(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*LogX + c*ExpY) / (1.0 + d*LogX + f*ExpY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * LogX + c * ExpY) / (1.0 + d * LogX + f * ExpY)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*log(x_in) + c*exp(y_in)) / (1.0 + d*log(x_in) + f*exp(y_in));\n"
@@ -734,14 +811,13 @@ class RationalL(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalM(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational M"
-    _HTML = 'z = (a + b*exp(x) + c*exp(y))/(1 + d*exp(x) + f*exp(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = (a + b*exp(x) + c*exp(y))/(1 + d*exp(x) + f*exp(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -759,16 +835,20 @@ class RationalM(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -777,10 +857,12 @@ class RationalM(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a + b*ExpX + c*ExpY) / (1.0 + d*ExpX + f*ExpY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * ExpX + c * ExpY) / (1.0 + d * ExpX + f * ExpY)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*exp(x_in) + c*exp(y_in)) / (1.0 + d*exp(x_in) + f*exp(y_in));\n"
@@ -788,14 +870,13 @@ class RationalM(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalN(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational N"
-    _HTML = 'z = (a + bx + cy + dxy)/(1 + fx + gy + hxy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + bx + cy + dxy)/(1 + fx + gy + hxy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -813,20 +894,25 @@ class RationalN(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -837,11 +923,14 @@ class RationalN(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*x_in + c*y_in + d*XY) / \
-                (1.0 + f*x_in + g*y_in + h*XY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in + d * XY) / (
+                1.0 + f * x_in + g * y_in + h * XY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in + d*x_in*y_in) / (1.0 + f*x_in + g*y_in + h*x_in*y_in);\n"
@@ -849,14 +938,13 @@ class RationalN(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalO(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational O"
-    _HTML = 'z = (a + b*ln(x) + c*ln(y) + d*ln(x)ln(y))/(1 + fx + gy + hxy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + b*ln(x) + c*ln(y) + d*ln(x)ln(y))/(1 + fx + gy + hxy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -874,32 +962,40 @@ class RationalO(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
         # only need to perform this dictionary look-up once
-        LogX_LogY = inDataCacheDictionary['LogX_LogY']
+        LogX_LogY = inDataCacheDictionary["LogX_LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -910,11 +1006,14 @@ class RationalO(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*LogX + c*LogY + d*LogX_LogY) / \
-                (1.0 + f*x_in + g*y_in + h*XY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * LogX + c * LogY + d * LogX_LogY) / (
+                1.0 + f * x_in + g * y_in + h * XY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a + b*log(x_in) + c*log(y_in) + d*log(x_in)*log(y_in)) / (1.0 + f*x_in + g*y_in + h*x_in*y_in);\n"
@@ -922,14 +1021,13 @@ class RationalO(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalP(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational P"
-    _HTML = 'z = (a + b*exp(x) + c*ln(y) + d*exp(x)ln(y))/(1 + fx + gy + hxy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + b*exp(x) + c*ln(y) + d*exp(x)ln(y))/(1 + fx + gy + hxy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -947,32 +1045,40 @@ class RationalP(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX_LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpX_LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        ExpX_LogY = inDataCacheDictionary['ExpX_LogY']
+        ExpX_LogY = inDataCacheDictionary["ExpX_LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -983,11 +1089,14 @@ class RationalP(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*ExpX + c*LogY + d*ExpX_LogY) / \
-                (1.0 + f*x_in + g*y_in + h*XY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * ExpX + c * LogY + d * ExpX_LogY) / (
+                1.0 + f * x_in + g * y_in + h * XY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a + b*exp(x_in) + c*log(y_in) + d*exp(x_in)*log(y_in)) / (1.0 + f*x_in + g*y_in + h*x_in*y_in);\n"
@@ -995,14 +1104,13 @@ class RationalP(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalQ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational Q"
-    _HTML = 'z = (a + b*ln(x) + c*exp(y) + d*ln(x)exp(y))/(1 + fx + gy + hxy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + b*ln(x) + c*exp(y) + d*ln(x)exp(y))/(1 + fx + gy + hxy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1020,32 +1128,40 @@ class RationalQ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX_ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogX_ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogX_ExpY = inDataCacheDictionary['LogX_ExpY']
+        LogX_ExpY = inDataCacheDictionary["LogX_ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1056,11 +1172,14 @@ class RationalQ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*LogX + c*ExpY + d*LogX_ExpY) / \
-                (1.0 + f*x_in + g*y_in + h*XY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * LogX + c * ExpY + d * LogX_ExpY) / (
+                1.0 + f * x_in + g * y_in + h * XY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a + b*log(x_in) + c*exp(y_in) + d*log(x_in)*exp(y_in)) / (1.0 + f*x_in + g*y_in + h*x_in*y_in);\n"
@@ -1068,14 +1187,13 @@ class RationalQ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalR(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational R"
-    _HTML = 'z = (a + b*exp(x) + c*exp(y) + d*exp(x)exp(y))/(1 + fx + gy + hxy)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + b*exp(x) + c*exp(y) + d*exp(x)exp(y))/(1 + fx + gy + hxy)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1093,32 +1211,40 @@ class RationalR(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX_ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpX_ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        ExpX_ExpY = inDataCacheDictionary['ExpX_ExpY']
+        ExpX_ExpY = inDataCacheDictionary["ExpX_ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1129,11 +1255,14 @@ class RationalR(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*ExpX + c*ExpY + d*ExpX_ExpY) / \
-                (1.0 + f*x_in + g*y_in + h*XY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * ExpX + c * ExpY + d * ExpX_ExpY) / (
+                1.0 + f * x_in + g * y_in + h * XY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a + b*exp(x_in) + c*exp(y_in) + d*exp(x_in)*exp(y_in)) / (1.0 + f*x_in + g*y_in + h*x_in*y_in);\n"
@@ -1141,14 +1270,13 @@ class RationalR(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalS(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational S"
-    _HTML = 'z = (a + bx + cy + dxy)/(1 + f*ln(x) + g*ln(y) + h*ln(x)*ln(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + bx + cy + dxy)/(1 + f*ln(x) + g*ln(y) + h*ln(x)*ln(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1166,32 +1294,40 @@ class RationalS(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogX_LogY = inDataCacheDictionary['LogX_LogY']
+        LogX_LogY = inDataCacheDictionary["LogX_LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1202,11 +1338,14 @@ class RationalS(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*x_in + c*y_in + d*XY) / \
-                (1.0 + f*LogX + g*LogY + h*LogX_LogY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in + d * XY) / (
+                1.0 + f * LogX + g * LogY + h * LogX_LogY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in + d*x_in*y_in) / (1.0 + f*log(x_in) + g*log(y_in) + h*log(x_in)*log(y_in));\n"
@@ -1214,14 +1353,13 @@ class RationalS(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalT(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational T"
-    _HTML = 'z = (a + bx + cy + dxy)/(1 + f*exp(x) + g*ln(y) + h*exp(x)*ln(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + bx + cy + dxy)/(1 + f*exp(x) + g*ln(y) + h*exp(x)*ln(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1239,32 +1377,40 @@ class RationalT(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX_LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpX_LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        ExpX_LogY = inDataCacheDictionary['ExpX_LogY']
+        ExpX_LogY = inDataCacheDictionary["ExpX_LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1275,11 +1421,14 @@ class RationalT(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*x_in + c*y_in + d*XY) / \
-                (1.0 + f*ExpX + g*LogY + h*ExpX_LogY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in + d * XY) / (
+                1.0 + f * ExpX + g * LogY + h * ExpX_LogY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in + d*x_in*y_in) / (1.0 + f*exp(x_in) + g*log(y_in) + h*exp(x_in)*log(y_in));\n"
@@ -1287,14 +1436,13 @@ class RationalT(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalU(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational U"
-    _HTML = 'z = (a + bx + cy + dxy)/(1 + f*ln(x) + g*exp(y) + h*ln(x)*exp(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + bx + cy + dxy)/(1 + f*ln(x) + g*exp(y) + h*ln(x)*exp(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1312,32 +1460,40 @@ class RationalU(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX_ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogX_ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
         # only need to perform this dictionary look-up once
-        LogX_ExpY = inDataCacheDictionary['LogX_ExpY']
+        LogX_ExpY = inDataCacheDictionary["LogX_ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1348,11 +1504,14 @@ class RationalU(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*x_in + c*y_in + d*XY) / \
-                (1.0 + f*LogX + g*ExpY + h*LogX_ExpY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in + d * XY) / (
+                1.0 + f * LogX + g * ExpY + h * LogX_ExpY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in + d*x_in*y_in) / (1.0 + f*log(x_in) + g*exp(y_in) + h*log(x_in)*exp(y_in));\n"
@@ -1360,14 +1519,13 @@ class RationalU(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalV(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational V"
-    _HTML = 'z = (a + bx + cy + dxy)/(1 + f*exp(x) + g*exp(y) + h*exp(x)*exp(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + bx + cy + dxy)/(1 + f*exp(x) + g*exp(y) + h*exp(x)*exp(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1385,32 +1543,40 @@ class RationalV(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX_ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpX_ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
         # only need to perform this dictionary look-up once
-        ExpX_ExpY = inDataCacheDictionary['ExpX_ExpY']
+        ExpX_ExpY = inDataCacheDictionary["ExpX_ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1421,11 +1587,14 @@ class RationalV(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*x_in + c*y_in + d*XY) / \
-                (1.0 + f*ExpX + g*ExpY + h*ExpX_ExpY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * x_in + c * y_in + d * XY) / (
+                1.0 + f * ExpX + g * ExpY + h * ExpX_ExpY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*x_in + c*y_in + d*x_in*y_in) / (1.0 + f*exp(x_in) + g*exp(y_in) + h*exp(x_in)*exp(y_in));\n"
@@ -1433,14 +1602,13 @@ class RationalV(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalW(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational W"
-    _HTML = 'z = (a + b*ln(x) + c*ln(y) + d*ln(x)*ln(y))/(1 + f*ln(x) + g*ln(y) + h*ln(x)*ln(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + b*ln(x) + c*ln(y) + d*ln(x)*ln(y))/(1 + f*ln(x) + g*ln(y) + h*ln(x)*ln(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1458,20 +1626,25 @@ class RationalW(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogX_LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        LogX_LogY = inDataCacheDictionary['LogX_LogY']
+        LogX_LogY = inDataCacheDictionary["LogX_LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1482,11 +1655,14 @@ class RationalW(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*LogX + c*LogY + d*LogX_LogY) / \
-                (1.0 + f*LogX + g*LogY + h*LogX_LogY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * LogX + c * LogY + d * LogX_LogY) / (
+                1.0 + f * LogX + g * LogY + h * LogX_LogY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*log(x_in) + c*log(y_in) + d*log(x_in)*log(y_in)) / (1.0 + f*log(x_in) + g*log(y_in) + h*log(x_in)*log(y_in));\n"
@@ -1494,14 +1670,13 @@ class RationalW(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalX(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational X"
-    _HTML = 'z = (a + b*exp(x) + c*ln(y) + d*exp(x)*ln(y))/(1 + f*exp(x) + g*ln(y) + h*exp(x)*ln(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + b*exp(x) + c*ln(y) + d*exp(x)*ln(y))/(1 + f*exp(x) + g*ln(y) + h*exp(x)*ln(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1519,20 +1694,25 @@ class RationalX(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX_LogY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpX_LogY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        LogY = inDataCacheDictionary['LogY']
+        LogY = inDataCacheDictionary["LogY"]
         # only need to perform this dictionary look-up once
-        ExpX_LogY = inDataCacheDictionary['ExpX_LogY']
+        ExpX_LogY = inDataCacheDictionary["ExpX_LogY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1543,11 +1723,14 @@ class RationalX(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*ExpX + c*LogY + d*ExpX_LogY) / \
-                (1.0 + f*ExpX + g*LogY + h*ExpX_LogY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * ExpX + c * LogY + d * ExpX_LogY) / (
+                1.0 + f * ExpX + g * LogY + h * ExpX_LogY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*exp(x_in) + c*log(y_in) + d*exp(x_in)*log(y_in)) / (1.0 + f*exp(x_in) + g*log(y_in) + h*exp(x_in)*log(y_in));\n"
@@ -1555,14 +1738,13 @@ class RationalX(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational Y"
-    _HTML = 'z = (a + b*ln(x) + c*exp(y) + d*ln(x)*exp(y))/(1 + f*ln(x) + g*exp(y) + h*ln(x)*exp(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + b*ln(x) + c*exp(y) + d*ln(x)*exp(y))/(1 + f*ln(x) + g*exp(y) + h*ln(x)*exp(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1580,20 +1762,25 @@ class RationalY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX_ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.LogX_ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        LogX = inDataCacheDictionary['LogX']
+        LogX = inDataCacheDictionary["LogX"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
         # only need to perform this dictionary look-up once
-        LogX_ExpY = inDataCacheDictionary['LogX_ExpY']
+        LogX_ExpY = inDataCacheDictionary["LogX_ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1604,11 +1791,14 @@ class RationalY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*LogX + c*ExpY + d*LogX_ExpY) / \
-                (1.0 + f*LogX + g*ExpY + h*LogX_ExpY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * LogX + c * ExpY + d * LogX_ExpY) / (
+                1.0 + f * LogX + g * ExpY + h * LogX_ExpY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*log(x_in) + c*exp(y_in) + d*log(x_in)*exp(y_in)) / (1.0 + f*log(x_in) + g*exp(y_in) + h*log(x_in)*exp(y_in));\n"
@@ -1616,14 +1806,13 @@ class RationalY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RationalZ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Rational Z"
-    _HTML = 'z = (a + b*exp(x) + c*exp(y) + d*exp(x)*exp(y))/(1 + f*exp(x) + g*exp(y) + h*exp(x)*exp(y))'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = (a + b*exp(x) + c*exp(y) + d*exp(x)*exp(y))/(1 + f*exp(x) + g*exp(y) + h*exp(x)*exp(y))"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1641,20 +1830,25 @@ class RationalZ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.ExpY(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.ExpX_ExpY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.ExpX_ExpY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        ExpX = inDataCacheDictionary['ExpX']
+        ExpX = inDataCacheDictionary["ExpX"]
         # only need to perform this dictionary look-up once
-        ExpY = inDataCacheDictionary['ExpY']
+        ExpY = inDataCacheDictionary["ExpY"]
         # only need to perform this dictionary look-up once
-        ExpX_ExpY = inDataCacheDictionary['ExpX_ExpY']
+        ExpX_ExpY = inDataCacheDictionary["ExpX_ExpY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1665,11 +1859,14 @@ class RationalZ(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = (a + b*ExpX + c*ExpY + d*ExpX_ExpY) / \
-                (1.0 + f*ExpX + g*ExpY + h*ExpX_ExpY)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a + b * ExpX + c * ExpY + d * ExpX_ExpY) / (
+                1.0 + f * ExpX + g * ExpY + h * ExpX_ExpY
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp  = (a + b*exp(x_in) + c*exp(y_in) + d*exp(x_in)*exp(y_in)) / (1.0 + f*exp(x_in) + g*exp(y_in) + h*exp(x_in)*exp(y_in));\n"

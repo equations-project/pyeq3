@@ -120,7 +120,6 @@ for submodule in inspect.getmembers(pyeq3.Models_3D):
     if inspect.ismodule(submodule[1]):
         for equationClass in inspect.getmembers(submodule[1]):
             if inspect.isclass(equationClass[1]):
-
                 # special classes
                 if (
                     equationClass[1].splineFlag
@@ -133,7 +132,6 @@ for submodule in inspect.getmembers(pyeq3.Models_3D):
                     continue
 
                 for extendedVersion in ["Default", "Offset"]:
-
                     if (extendedVersion == "Offset") and (
                         equationClass[1].autoGenerateOffsetForm is False
                     ):
