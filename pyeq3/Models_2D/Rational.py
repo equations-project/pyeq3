@@ -10,16 +10,17 @@
 
 import sys
 import os
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.PolyFunctions
 import pyeq3.Model_2D_BaseClass
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
@@ -27,15 +28,21 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     _baseName = "User-Selectable Rational"
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
     # all extended version autoGenerate flags are False by default in IModel.py
     autoGenerateOffsetForm = True
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default', inRationalNumeratorFlags=[], inRationalDenominatorFlags=[], inRationalEquationList=[]):
-
+    def __init__(
+        self,
+        inFittingTarget="SSQABS",
+        inExtendedVersionName="Default",
+        inRationalNumeratorFlags=[],
+        inRationalDenominatorFlags=[],
+        inRationalEquationList=[],
+    ):
         self.independentData1CannotContainZeroFlag = False
         self.independentData1CannotContainPositiveFlag = False
         self.independentData1CannotContainNegativeFlag = False
@@ -44,7 +51,8 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         self.independentData2CannotContainNegativeFlag = False
 
         pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)  # call superclass
+            self, inFittingTarget, inExtendedVersionName
+        )  # call superclass
 
         self.rationalNumeratorFlags = inRationalNumeratorFlags
         self.rationalDenominatorFlags = inRationalDenominatorFlags
@@ -52,10 +60,12 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         if inRationalEquationList:
             self.rationalEquationList = inRationalEquationList
         else:
-            self.rationalEquationList = pyeq3.PolyFunctions.GenerateListForRationals_2D()
+            self.rationalEquationList = (
+                pyeq3.PolyFunctions.GenerateListForRationals_2D()
+            )
 
         self._HTML = "y = user-selectable rational"
-        self._leftSideHTML = 'y'
+        self._leftSideHTML = "y"
 
     def GetDisplayHTML(self):
         if 0 == (len(self.rationalNumeratorFlags) + len(self.rationalDenominatorFlags)):
@@ -66,11 +76,16 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             for xindex in range(len(self.rationalEquationList)):
                 if xindex in self.rationalNumeratorFlags:  # numerator
                     if xindex == 0:
-                        self._HTML += self.listOfAdditionalCoefficientDesignators[count] + " "
+                        self._HTML += (
+                            self.listOfAdditionalCoefficientDesignators[count] + " "
+                        )
                     else:
-                        self._HTML += self.listOfAdditionalCoefficientDesignators[count] + \
-                            "(&nbsp;" + \
-                            self.rationalEquationList[xindex].HTML + "&nbsp;) "
+                        self._HTML += (
+                            self.listOfAdditionalCoefficientDesignators[count]
+                            + "(&nbsp;"
+                            + self.rationalEquationList[xindex].HTML
+                            + "&nbsp;) "
+                        )
                     count += 1
                     if len(self.rationalNumeratorFlags) > count:
                         self._HTML += "+ "
@@ -79,49 +94,82 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
             for xindex in range(len(self.rationalEquationList)):
                 if xindex in self.rationalDenominatorFlags:  # denominator
                     if xindex == 0:
-                        self._HTML += self.listOfAdditionalCoefficientDesignators[count + len(
-                            self.rationalNumeratorFlags)] + " "
+                        self._HTML += (
+                            self.listOfAdditionalCoefficientDesignators[
+                                count + len(self.rationalNumeratorFlags)
+                            ]
+                            + " "
+                        )
                     else:
-                        self._HTML += self.listOfAdditionalCoefficientDesignators[count + len(
-                            self.rationalNumeratorFlags)] + "(&nbsp;" + self.rationalEquationList[xindex].HTML + "&nbsp;) "
+                        self._HTML += (
+                            self.listOfAdditionalCoefficientDesignators[
+                                count + len(self.rationalNumeratorFlags)
+                            ]
+                            + "(&nbsp;"
+                            + self.rationalEquationList[xindex].HTML
+                            + "&nbsp;) "
+                        )
                     count += 1
                     if len(self.rationalDenominatorFlags) > count:
                         self._HTML += "+ "
-            self._HTML += ')'
+            self._HTML += ")"
 
         return self.extendedVersionHandler.AssembleDisplayHTML(self)
 
     def GetCoefficientDesignators(self):
-        self._coefficientDesignators = list(self.listOfAdditionalCoefficientDesignators[:len(
-            self.rationalNumeratorFlags) + len(self.rationalDenominatorFlags)])
+        self._coefficientDesignators = list(
+            self.listOfAdditionalCoefficientDesignators[
+                : len(self.rationalNumeratorFlags) + len(self.rationalDenominatorFlags)
+            ]
+        )
         return self.extendedVersionHandler.AssembleCoefficientDesignators(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         for i in self.rationalNumeratorFlags:
             functionList.append(
-                [pyeq3.DataCache.DataCacheFunctions.Rational2D(NameOrValueFlag=1, args=i), i])
+                [
+                    pyeq3.DataCache.DataCacheFunctions.Rational2D(
+                        NameOrValueFlag=1, args=i
+                    ),
+                    i,
+                ]
+            )
         for i in self.rationalDenominatorFlags:
             functionList.append(
-                [pyeq3.DataCache.DataCacheFunctions.Rational2D(NameOrValueFlag=1, args=i), i])
+                [
+                    pyeq3.DataCache.DataCacheFunctions.Rational2D(
+                        NameOrValueFlag=1, args=i
+                    ),
+                    i,
+                ]
+            )
         return functionList
 
     def ShouldDataBeRejected(self, unused):
         for i in range(len(self.rationalNumeratorFlags)):
             self.independentData1CannotContainZeroFlag |= self.rationalEquationList[
-                i].cannotAcceptDataWith_Zero
+                i
+            ].cannotAcceptDataWith_Zero
             self.independentData1CannotContainPositiveFlag |= self.rationalEquationList[
-                i].cannotAcceptDataWith_Positive
+                i
+            ].cannotAcceptDataWith_Positive
             self.independentData1CannotContainNegativeFlag |= self.rationalEquationList[
-                i].cannotAcceptDataWith_Negative
+                i
+            ].cannotAcceptDataWith_Negative
         for i in range(len(self.rationalDenominatorFlags)):
             self.independentData1CannotContainZeroFlag |= self.rationalEquationList[
-                i].cannotAcceptDataWith_Zero
+                i
+            ].cannotAcceptDataWith_Zero
             self.independentData1CannotContainPositiveFlag |= self.rationalEquationList[
-                i].cannotAcceptDataWith_Positive
+                i
+            ].cannotAcceptDataWith_Positive
             self.independentData1CannotContainNegativeFlag |= self.rationalEquationList[
-                i].cannotAcceptDataWith_Negative
-        return pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.ShouldDataBeRejected(self, unused)
+                i
+            ].cannotAcceptDataWith_Negative
+        return pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.ShouldDataBeRejected(
+            self, unused
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         numerator = 0.0
@@ -129,22 +177,30 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         coeffCount = 0
         try:
             for i in self.rationalNumeratorFlags:
-                numerator += inCoeffs[coeffCount] * \
-                    eval("inDataCacheDictionary['Rational2D_" + str(i) + "']")
+                numerator += inCoeffs[coeffCount] * eval(
+                    "inDataCacheDictionary['Rational2D_" + str(i) + "']"
+                )
                 coeffCount += 1
             for i in self.rationalDenominatorFlags:
-                denominator += inCoeffs[coeffCount] * \
-                    eval("inDataCacheDictionary['Rational2D_" + str(i) + "']")
+                denominator += inCoeffs[coeffCount] * eval(
+                    "inDataCacheDictionary['Rational2D_" + str(i) + "']"
+                )
                 coeffCount += 1
             temp = numerator / (1.0 + denominator)
 
             # handle an old design error regarding offsets
-            if len(inCoeffs) > coeffCount and -1 == self.extendedVersionHandler.__class__.__name__.find('_Offset'):
+            if len(
+                inCoeffs
+            ) > coeffCount and -1 == self.extendedVersionHandler.__class__.__name__.find(
+                "_Offset"
+            ):
                 temp += inCoeffs[-1]
 
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         numeratorString = ""
@@ -157,29 +213,53 @@ class UserSelectableRational(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
                 if i == 0:
                     numeratorString += self._coefficientDesignators[coeffCount] + " + "
                 else:
-                    numeratorString += self._coefficientDesignators[coeffCount] + \
-                        " * " + EquationListForRationals[i].CPP + " + "
+                    numeratorString += (
+                        self._coefficientDesignators[coeffCount]
+                        + " * "
+                        + EquationListForRationals[i].CPP
+                        + " + "
+                    )
             else:
-                numeratorString += self._coefficientDesignators[coeffCount] + \
-                    " * " + EquationListForRationals[i].CPP
+                numeratorString += (
+                    self._coefficientDesignators[coeffCount]
+                    + " * "
+                    + EquationListForRationals[i].CPP
+                )
             coeffCount += 1
 
         for i in self.rationalDenominatorFlags:
-            if coeffCount < (len(self.rationalNumeratorFlags) + len(self.rationalDenominatorFlags) - 1):
+            if coeffCount < (
+                len(self.rationalNumeratorFlags)
+                + len(self.rationalDenominatorFlags)
+                - 1
+            ):
                 if i == 0:
-                    denominatorString += self._coefficientDesignators[coeffCount] + " + "
+                    denominatorString += (
+                        self._coefficientDesignators[coeffCount] + " + "
+                    )
                 else:
-                    denominatorString += self._coefficientDesignators[coeffCount] + \
-                        " * " + EquationListForRationals[i].CPP + " + "
+                    denominatorString += (
+                        self._coefficientDesignators[coeffCount]
+                        + " * "
+                        + EquationListForRationals[i].CPP
+                        + " + "
+                    )
             else:
-                denominatorString += self._coefficientDesignators[coeffCount] + \
-                    " * " + EquationListForRationals[i].CPP
+                denominatorString += (
+                    self._coefficientDesignators[coeffCount]
+                    + " * "
+                    + EquationListForRationals[i].CPP
+                )
             coeffCount += 1
 
         s = "\ttemp = (" + numeratorString + ")\n;"
         s += "\ttemp /= (1.0 + " + denominatorString + ")\n;"
 
         # handle an old design error regarding offsets
-        if len(self._coefficientDesignators) > coeffCount and -1 == self.extendedVersionHandler.__class__.__name__.find('_Offset'):
+        if len(
+            self._coefficientDesignators
+        ) > coeffCount and -1 == self.extendedVersionHandler.__class__.__name__.find(
+            "_Offset"
+        ):
             s += "\ttemp += Offset\n;"
         return s

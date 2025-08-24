@@ -35,7 +35,6 @@ class NistDataObject(object):
 # inTakeLogOfDependantDataFlag used for the Nelson 3D fit, where data and
 # fit statistics use log(y) but the data file contains y and not log(y)
 def LoadDataFileFromNIST(inFileName, inTakeLogOfDependantDataFlag=False):
-
     f = open(inFileName, "rt")
     fileLines = f.readlines()
     f.close()
@@ -85,7 +84,6 @@ def LoadDataFileFromNIST(inFileName, inTakeLogOfDependantDataFlag=False):
 def CalculateAndPrintResults(
     equation, nistDataObject, inStartValues, inStartValuesString, inPrintFlag
 ):
-
     if nistDataObject.RawDataIn_XY_Format != "":  # 2D data
         rawData = nistDataObject.RawDataIn_XY_Format
     else:  # 3D data

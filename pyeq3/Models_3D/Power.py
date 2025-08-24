@@ -10,27 +10,28 @@
 
 import sys
 import os
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.Model_3D_BaseClass
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class PowerA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGeneratePlusPlaneForm = True  # auto-added by script
 
     _baseName = "Power A"
-    _HTML = 'z = a * (x<sup>b</sup> + y<sup>c</sup>)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "z = a * (x<sup>b</sup> + y<sup>c</sup>)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -50,16 +51,20 @@ class PowerA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -67,9 +72,11 @@ class PowerA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = a * (numpy.power(x_in, b) + numpy.power(y_in, c))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * (pow(x_in, b) + pow(y_in, c));\n"
@@ -77,14 +84,13 @@ class PowerA(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PowerA_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Transform Power A"
-    _HTML = 'z = a * ((dx + f)<sup>b</sup> + (gy + h)<sup>c</sup>)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = a * ((dx + f)<sup>b</sup> + (gy + h)<sup>c</sup>)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -104,16 +110,20 @@ class PowerA_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -124,11 +134,12 @@ class PowerA_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = a * (numpy.power(d * x_in + f, b) +
-                        numpy.power(g * y_in + h, c))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a * (numpy.power(d * x_in + f, b) + numpy.power(g * y_in + h, c))
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * (pow(d * x_in + f, b) + pow(g * y_in + h, c));\n"
@@ -136,14 +147,13 @@ class PowerA_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PowerB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Power B"
-    _HTML = 'z = a + x<sup>b</sup> + y<sup>c</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "z = a + x<sup>b</sup> + y<sup>c</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -162,16 +172,20 @@ class PowerB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -179,9 +193,11 @@ class PowerB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = a + numpy.power(x_in, b) + numpy.power(y_in, c)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a + pow(x_in, b) + pow(y_in, c);\n"
@@ -189,14 +205,13 @@ class PowerB(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PowerB_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Transform Power B"
-    _HTML = 'z = a + (dx + f)<sup>b</sup> + (gy + h)<sup>c</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = a + (dx + f)<sup>b</sup> + (gy + h)<sup>c</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -215,16 +230,20 @@ class PowerB_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -235,11 +254,12 @@ class PowerB_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = a + numpy.power(d * x_in + f, b) + \
-                numpy.power(g * y_in + h, c)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a + numpy.power(d * x_in + f, b) + numpy.power(g * y_in + h, c)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a + pow(d * x_in + f, b) + pow(g * y_in + h, c);\n"
@@ -247,14 +267,13 @@ class PowerB_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PowerC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Power C"
-    _HTML = 'z = a + x<sup>b</sup> * y<sup>c</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "z = a + x<sup>b</sup> * y<sup>c</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -273,16 +292,20 @@ class PowerC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -290,9 +313,11 @@ class PowerC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = a + numpy.power(x_in, b) * numpy.power(y_in, c)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a + pow(x_in, b) * pow(y_in, c);\n"
@@ -300,14 +325,13 @@ class PowerC(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PowerC_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Transform Power C"
-    _HTML = 'z = a + (dx + f)<sup>b</sup> * (gy + h)<sup>c</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = a + (dx + f)<sup>b</sup> * (gy + h)<sup>c</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -326,16 +350,20 @@ class PowerC_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -346,11 +374,12 @@ class PowerC_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = a + numpy.power(d * x_in + f, b) * \
-                numpy.power(g * y_in + h, c)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a + numpy.power(d * x_in + f, b) * numpy.power(g * y_in + h, c)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a + pow(d * x_in + f, b) * pow(g * y_in + h, c);\n"
@@ -358,14 +387,13 @@ class PowerC_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PowerD(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Power D"
-    _HTML = 'z = ax<sup>b</sup> + cy<sup>d</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd']
+    _HTML = "z = ax<sup>b</sup> + cy<sup>d</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -385,16 +413,20 @@ class PowerD(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -403,9 +435,11 @@ class PowerD(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = a * numpy.power(x_in, b) + c * numpy.power(y_in, d)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(x_in, b) + c * pow(y_in, d);\n"
@@ -413,14 +447,13 @@ class PowerD(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PowerD_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Transform Power D"
-    _HTML = 'z = a(fx + g)<sup>b</sup> + c(hy + i)<sup>d</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h', 'i']
+    _HTML = "z = a(fx + g)<sup>b</sup> + c(hy + i)<sup>d</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h", "i"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -440,16 +473,20 @@ class PowerD_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -461,11 +498,12 @@ class PowerD_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         i = inCoeffs[7]
 
         try:
-            temp = a * numpy.power(f * x_in + g, b) + \
-                c * numpy.power(h * y_in + i, d)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a * numpy.power(f * x_in + g, b) + c * numpy.power(h * y_in + i, d)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(f * x_in + g, b) + c * pow(h * y_in + i, d);\n"
@@ -476,12 +514,12 @@ class PowerE(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGeneratePlusPlaneForm = True  # auto-added by script
 
     _baseName = "Power E"
-    _HTML = 'z = a * x<sup>b</sup> * y<sup>c</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "z = a * x<sup>b</sup> * y<sup>c</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -501,16 +539,20 @@ class PowerE(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -518,9 +560,11 @@ class PowerE(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = a * numpy.power(x_in, b) * numpy.power(y_in, c)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(x_in, b) * pow(y_in, c);\n"
@@ -528,14 +572,13 @@ class PowerE(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class PowerE_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Transform Power E"
-    _HTML = 'z = a * (dx + f)<sup>b</sup> * (gy + h)<sup>c</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = a * (dx + f)<sup>b</sup> * (gy + h)<sup>c</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -555,16 +598,20 @@ class PowerE_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -575,11 +622,12 @@ class PowerE_Transform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         h = inCoeffs[6]
 
         try:
-            temp = a * numpy.power(d * x_in + f, b) * \
-                numpy.power(g * y_in + h, c)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a * numpy.power(d * x_in + f, b) * numpy.power(g * y_in + h, c)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(d * x_in + f, b) * pow(g * y_in + h, c);\n"

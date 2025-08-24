@@ -163,7 +163,6 @@ class Test_Polynomials(unittest.TestCase):
 
 
 class Test_InstantiationOfAllEquations(unittest.TestCase):
-
     # The test is that no exceptions are raised
     def test_InstantiationOfAllNamedEquations(self):
         for submodule in inspect.getmembers(pyeq3.Models_2D) + inspect.getmembers(

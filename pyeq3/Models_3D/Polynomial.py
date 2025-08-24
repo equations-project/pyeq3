@@ -10,27 +10,26 @@
 
 import sys
 import os
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.Model_3D_BaseClass
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class FullCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Full Cubic"
-    _HTML = 'z = a + bx + cy + dx<sup>2</sup> + fy<sup>2</sup> + gx<sup>3</sup> + hy<sup>3</sup> + ixy + jx<sup>2</sup>y + kxy<sup>2</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c',
-                               'd', 'f', 'g', 'h', 'i', 'j', 'k']
+    _HTML = "z = a + bx + cy + dx<sup>2</sup> + fy<sup>2</sup> + gx<sup>3</sup> + hy<sup>3</sup> + ixy + jx<sup>2</sup>y + kxy<sup>2</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h", "i", "j", "k"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -48,46 +47,80 @@ class FullCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX_PowY(
-            NameOrValueFlag=1, args=[2.0, 1.0]), [2.0, 1.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX_PowY(
-            NameOrValueFlag=1, args=[1.0, 2.0]), [1.0, 2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[3.0]),
+                [3.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[3.0]),
+                [3.0],
+            ]
+        )
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX_PowY(
+                    NameOrValueFlag=1, args=[2.0, 1.0]
+                ),
+                [2.0, 1.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX_PowY(
+                    NameOrValueFlag=1, args=[1.0, 2.0]
+                ),
+                [1.0, 2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        PowX_2 = inDataCacheDictionary['PowX_2.0']
+        PowX_2 = inDataCacheDictionary["PowX_2.0"]
         # only need to perform this dictionary look-up once
-        PowY_2 = inDataCacheDictionary['PowY_2.0']
+        PowY_2 = inDataCacheDictionary["PowY_2.0"]
         # only need to perform this dictionary look-up once
-        PowX_3 = inDataCacheDictionary['PowX_3.0']
+        PowX_3 = inDataCacheDictionary["PowX_3.0"]
         # only need to perform this dictionary look-up once
-        Powy_3 = inDataCacheDictionary['PowY_3.0']
+        Powy_3 = inDataCacheDictionary["PowY_3.0"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
         # only need to perform this dictionary look-up once
-        PowX_PowY_21 = inDataCacheDictionary['PowX_PowY_2.01.0']
+        PowX_PowY_21 = inDataCacheDictionary["PowX_PowY_2.01.0"]
         # only need to perform this dictionary look-up once
-        PowX_PowY_12 = inDataCacheDictionary['PowX_PowY_1.02.0']
+        PowX_PowY_12 = inDataCacheDictionary["PowX_PowY_1.02.0"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -111,9 +144,11 @@ class FullCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
             temp += i * XY
             temp += j * PowX_PowY_21
             temp += k * PowX_PowY_12
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -130,14 +165,13 @@ class FullCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class FullQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Full Quadratic"
-    _HTML = 'z = a + bx + cy + dx<sup>2</sup> + fy<sup>2</sup> + gxy'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g']
+    _HTML = "z = a + bx + cy + dx<sup>2</sup> + fy<sup>2</sup> + gxy"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -155,30 +189,44 @@ class FullQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        PowX_2 = inDataCacheDictionary['PowX_2.0']
+        PowX_2 = inDataCacheDictionary["PowX_2.0"]
         # only need to perform this dictionary look-up once
-        PowY_2 = inDataCacheDictionary['PowY_2.0']
+        PowY_2 = inDataCacheDictionary["PowY_2.0"]
         # only need to perform this dictionary look-up once
-        XY = inDataCacheDictionary['XY']
+        XY = inDataCacheDictionary["XY"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -194,9 +242,11 @@ class FullQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
             temp += d * PowX_2
             temp += f * PowY_2
             temp += g * XY
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -209,14 +259,13 @@ class FullQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class Linear(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Linear"
-    _HTML = 'z = a + bx + cy'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "z = a + bx + cy"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -234,18 +283,23 @@ class Linear(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -253,9 +307,11 @@ class Linear(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = a + b * x_in + c * y_in
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a + b * x_in + c * y_in;\n"
@@ -263,14 +319,13 @@ class Linear(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimplifiedCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Simplified Cubic"
-    _HTML = 'z = a + bx + cy + dx<sup>2</sup> + fy<sup>2</sup> + gx<sup>3</sup> + hy<sup>3</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h']
+    _HTML = "z = a + bx + cy + dx<sup>2</sup> + fy<sup>2</sup> + gx<sup>3</sup> + hy<sup>3</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -288,34 +343,55 @@ class SimplifiedCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[3.0]),
+                [3.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[3.0]),
+                [3.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        PowX_2 = inDataCacheDictionary['PowX_2.0']
+        PowX_2 = inDataCacheDictionary["PowX_2.0"]
         # only need to perform this dictionary look-up once
-        PowY_2 = inDataCacheDictionary['PowY_2.0']
+        PowY_2 = inDataCacheDictionary["PowY_2.0"]
         # only need to perform this dictionary look-up once
-        PowX_3 = inDataCacheDictionary['PowX_3.0']
+        PowX_3 = inDataCacheDictionary["PowX_3.0"]
         # only need to perform this dictionary look-up once
-        Powy_3 = inDataCacheDictionary['PowY_3.0']
+        Powy_3 = inDataCacheDictionary["PowY_3.0"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -333,9 +409,11 @@ class SimplifiedCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
             temp += f * PowY_2
             temp += g * PowX_3
             temp += h * Powy_3
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -349,14 +427,13 @@ class SimplifiedCubic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimplifiedQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Simplified Quadratic"
-    _HTML = 'z = a + bx + cy + dx<sup>2</sup> + fy<sup>2</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "z = a + bx + cy + dx<sup>2</sup> + fy<sup>2</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -374,26 +451,39 @@ class SimplifiedQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.Ones(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowY(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowY(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
         # only need to perform this dictionary look-up once
-        PowX_2 = inDataCacheDictionary['PowX_2.0']
+        PowX_2 = inDataCacheDictionary["PowX_2.0"]
         # only need to perform this dictionary look-up once
-        PowY_2 = inDataCacheDictionary['PowY_2.0']
+        PowY_2 = inDataCacheDictionary["PowY_2.0"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -407,9 +497,11 @@ class SimplifiedQuadratic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
             temp += c * y_in
             temp += d * PowX_2
             temp += f * PowY_2
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a;\n"
@@ -425,7 +517,7 @@ class UserSelectablePolynomial(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     _baseName = "User-Selectable Polynomial"
     _canLinearSolverBeUsedForSSQABS = True
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -440,16 +532,26 @@ class UserSelectablePolynomial(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default', inXorder=None, inYorder=None):
+    def __init__(
+        self,
+        inFittingTarget="SSQABS",
+        inExtendedVersionName="Default",
+        inXorder=None,
+        inYorder=None,
+    ):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)  # call superclass
+            self, inFittingTarget, inExtendedVersionName
+        )  # call superclass
         self.xPolynomialOrder = inXorder
         self.yPolynomialOrder = inYorder
-        self._leftSideHTML = 'z'
+        self._leftSideHTML = "z"
 
     def GetCoefficientDesignators(self):
-        self._coefficientDesignators = list(self.listOfAdditionalCoefficientDesignators[:(
-            self.xPolynomialOrder+1) * (self.yPolynomialOrder+1)])
+        self._coefficientDesignators = list(
+            self.listOfAdditionalCoefficientDesignators[
+                : (self.xPolynomialOrder + 1) * (self.yPolynomialOrder + 1)
+            ]
+        )
         return self.extendedVersionHandler.AssembleCoefficientDesignators(self)
 
     def GetDisplayHTML(self):
@@ -458,74 +560,116 @@ class UserSelectablePolynomial(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         else:
             self._HTML = "z = "
             cd = self.GetCoefficientDesignators()
-            indexmax = (self.xPolynomialOrder+1) * (self.yPolynomialOrder+1)
-            for i in range(self.xPolynomialOrder+1):  # 0 - xOrder
-                for j in range(self.yPolynomialOrder+1):  # 0 - yOrder
-                    index = (i*(self.yPolynomialOrder+1))+j
+            indexmax = (self.xPolynomialOrder + 1) * (self.yPolynomialOrder + 1)
+            for i in range(self.xPolynomialOrder + 1):  # 0 - xOrder
+                for j in range(self.yPolynomialOrder + 1):  # 0 - yOrder
+                    index = (i * (self.yPolynomialOrder + 1)) + j
                     if index == 0:
                         self._HTML += cd[index]
                     else:
-                        self._HTML += cd[index] + 'x<SUP>' + \
-                            str(i) + '</SUP>y<SUP>' + str(j) + '</SUP>'
-                    if (i+1)*(j+1) != indexmax:
-                        self._HTML += ' + '
+                        self._HTML += (
+                            cd[index]
+                            + "x<SUP>"
+                            + str(i)
+                            + "</SUP>y<SUP>"
+                            + str(j)
+                            + "</SUP>"
+                        )
+                    if (i + 1) * (j + 1) != indexmax:
+                        self._HTML += " + "
         return self.extendedVersionHandler.AssembleDisplayHTML(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
-        for i in range(self.xPolynomialOrder+1):  # 0 to xPolynomialOrder
-            for j in range(self.yPolynomialOrder+1):  # from 0 to yPolynomialOrder
-                functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX_PowY(
-                    NameOrValueFlag=1, args=[float(i), float(j)]), [float(i), float(j)]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+        for i in range(self.xPolynomialOrder + 1):  # 0 to xPolynomialOrder
+            for j in range(self.yPolynomialOrder + 1):  # from 0 to yPolynomialOrder
+                functionList.append(
+                    [
+                        pyeq3.DataCache.DataCacheFunctions.PowX_PowY(
+                            NameOrValueFlag=1, args=[float(i), float(j)]
+                        ),
+                        [float(i), float(j)],
+                    ]
+                )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         temp = 0.0
         coeffCount = 0
         try:
-            for i in range(self.xPolynomialOrder+1):  # 0 to xPolynomialOrder
-                for j in range(self.yPolynomialOrder+1):  # 0 to xPolynomialOrder
+            for i in range(self.xPolynomialOrder + 1):  # 0 to xPolynomialOrder
+                for j in range(self.yPolynomialOrder + 1):  # 0 to xPolynomialOrder
                     temp += inCoeffs[coeffCount] * eval(
-                        "inDataCacheDictionary['PowX_PowY_" + str(i) + ".0" + str(j) + ".0']")
+                        "inDataCacheDictionary['PowX_PowY_"
+                        + str(i)
+                        + ".0"
+                        + str(j)
+                        + ".0']"
+                    )
                     coeffCount += 1
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         coeffDesignators = self.GetCoefficientDesignators()
         s = ""
 
-        for i in range(self.xPolynomialOrder+1):  # 0 - xOrder
-            for j in range(self.yPolynomialOrder+1):  # 0 - yOrder
-                index = (i*(self.yPolynomialOrder+1))+j
+        for i in range(self.xPolynomialOrder + 1):  # 0 - xOrder
+            for j in range(self.yPolynomialOrder + 1):  # 0 - yOrder
+                index = (i * (self.yPolynomialOrder + 1)) + j
                 if i == 0 and j == 0:
                     s += "\ttemp += " + coeffDesignators[index] + ";\n"
                 elif i == 1 and j == 0:
                     s += "\ttemp += " + coeffDesignators[index] + " * x_in;\n"
                 elif i > 1 and j == 0:
-                    s += "\ttemp += " + \
-                        coeffDesignators[index] + \
-                        " * pow(x_in, " + str(i) + ".0);\n"
+                    s += (
+                        "\ttemp += "
+                        + coeffDesignators[index]
+                        + " * pow(x_in, "
+                        + str(i)
+                        + ".0);\n"
+                    )
                 elif i > 1 and j == 1:
-                    s += "\ttemp += " + \
-                        coeffDesignators[index] + \
-                        " * pow(x_in, " + str(i) + ".0) * y_in;\n"
+                    s += (
+                        "\ttemp += "
+                        + coeffDesignators[index]
+                        + " * pow(x_in, "
+                        + str(i)
+                        + ".0) * y_in;\n"
+                    )
                 elif i == 0 and j == 1:
                     s += "\ttemp += " + coeffDesignators[index] + " * y_in;\n"
                 elif i == 0 and j > 1:
-                    s += "\ttemp += " + \
-                        coeffDesignators[index] + \
-                        " * pow(y_in, " + str(j) + ".0);\n"
+                    s += (
+                        "\ttemp += "
+                        + coeffDesignators[index]
+                        + " * pow(y_in, "
+                        + str(j)
+                        + ".0);\n"
+                    )
                 elif i == 1 and j > 1:
-                    s += "\ttemp += " + \
-                        coeffDesignators[index] + \
-                        " * x_in * pow(y_in, " + str(j) + ".0);\n"
+                    s += (
+                        "\ttemp += "
+                        + coeffDesignators[index]
+                        + " * x_in * pow(y_in, "
+                        + str(j)
+                        + ".0);\n"
+                    )
                 elif i == 1 and j == 1:
-                    s += "\ttemp += " + \
-                        coeffDesignators[index] + " * x_in * y_in;\n"
+                    s += "\ttemp += " + coeffDesignators[index] + " * x_in * y_in;\n"
                 else:
-                    s += "\ttemp += " + \
-                        coeffDesignators[index] + " * pow(x_in, " + str(
-                            i) + ".0) * pow(y_in, " + str(j) + ".0);\n"
+                    s += (
+                        "\ttemp += "
+                        + coeffDesignators[index]
+                        + " * pow(x_in, "
+                        + str(i)
+                        + ".0) * pow(y_in, "
+                        + str(j)
+                        + ".0);\n"
+                    )
         return s

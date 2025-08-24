@@ -10,27 +10,28 @@
 
 import sys
 import os
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.Model_2D_BaseClass
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class PhysicistPeterPendulumTraversal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Physicist Peter's Pendulum Traversal"
-    _HTML = 'y = a*(x + b)<sup>1/2</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = a*(x + b)<sup>1/2</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -50,21 +51,26 @@ class PhysicistPeterPendulumTraversal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClas
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
-            temp = a*numpy.sqrt(x_in+b)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a * numpy.sqrt(x_in + b)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a*pow(x_in+b, 0.5);\n"
@@ -72,14 +78,13 @@ class PhysicistPeterPendulumTraversal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClas
 
 
 class PhysicistPeterCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Physicist Peter's Custom Equation"
-    _HTML = 'y = A + B*(X-C) + 0.5*G*(X-C)**2'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['A', 'B', 'C', 'G']
+    _HTML = "y = A + B*(X-C) + 0.5*G*(X-C)**2"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["A", "B", "C", "G"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -98,12 +103,15 @@ class PhysicistPeterCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         A = inCoeffs[0]
         B = inCoeffs[1]
@@ -111,10 +119,12 @@ class PhysicistPeterCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         G = inCoeffs[3]
 
         try:
-            temp = A + B*(x_in-C) + 0.5*G*numpy.square(x_in-C)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = A + B * (x_in - C) + 0.5 * G * numpy.square(x_in - C)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = A + B*(x_in-C) + 0.5*G*pow(x_in-C, 2.0);\n"
@@ -122,14 +132,13 @@ class PhysicistPeterCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class TimothyStrobelCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Timothy Strobel's Custom Equation"
-    _HTML = 'y = (A-B*X**C)*(1-(0.5+(arctan((X-D)/E))/pi))+(F-G*X**H)*(0.5+(arctan((X-D)/E))/pi)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+    _HTML = "y = (A-B*X**C)*(1-(0.5+(arctan((X-D)/E))/pi))+(F-G*X**H)*(0.5+(arctan((X-D)/E))/pi)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["A", "B", "C", "D", "E", "F", "G", "H"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'https://www.gl.ciw.edu/bios/tstrobel'
+    webReferenceURL = "https://www.gl.ciw.edu/bios/tstrobel"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -149,12 +158,15 @@ class TimothyStrobelCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         A = inCoeffs[0]
         B = inCoeffs[1]
@@ -166,11 +178,16 @@ class TimothyStrobelCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         H = inCoeffs[7]
 
         try:
-            temp = (A-B*numpy.power(x_in, C))*(1-(0.5+(numpy.arctan((x_in-D)/E))/numpy.pi)
-                                               )+(F-G*numpy.power(x_in, H))*(0.5+(numpy.arctan((x_in-D)/E))/numpy.pi)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (A - B * numpy.power(x_in, C)) * (
+                1 - (0.5 + (numpy.arctan((x_in - D) / E)) / numpy.pi)
+            ) + (F - G * numpy.power(x_in, H)) * (
+                0.5 + (numpy.arctan((x_in - D) / E)) / numpy.pi
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (A-B*pow(x_in,C))*(1-(0.5+(atan((x_in-D)/E))/3.14159265358979323846))+(F-G*pow(x_in,H))*(0.5+(atan((x_in-D)/E))/3.14159265358979323846);\n"
@@ -181,65 +198,12 @@ class FigureEight(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Figure Eight Curve"
-    _HTML = 'y = a(x<sup>2</sup> - (x<sup>4</sup>/b<sup>2</sup>))<sup>0.5</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = a(x<sup>2</sup> - (x<sup>4</sup>/b<sup>2</sup>))<sup>0.5</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Eight.html'
-
-    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
-
-    # all extended version autoGenerate flags are False by default in IModel.py
-    autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
-
-    independentData1CannotContainZeroFlag = False
-    independentData1CannotContainPositiveFlag = False
-    independentData1CannotContainNegativeFlag = False
-    independentData2CannotContainZeroFlag = False
-    independentData2CannotContainPositiveFlag = False
-    independentData2CannotContainNegativeFlag = False
-
-    def GetDataCacheFunctions(self):
-        functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[4.0]), [4.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
-
-    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        # only need to perform this dictionary look-up once
-        x_PowX2 = inDataCacheDictionary['PowX_2.0']
-        # only need to perform this dictionary look-up once
-        x_PowX4 = inDataCacheDictionary['PowX_4.0']
-
-        a = inCoeffs[0]
-        b = inCoeffs[1]
-
-        try:
-            temp = a * numpy.sqrt(x_PowX2 - (x_PowX4/numpy.square(b)))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
-        except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
-    def SpecificCodeCPP(self):
-        s = "\ttemp = a * pow(pow(x_in, 2.0) - (pow(x_in, 4.0)/pow(b, 2.0)), 0.5);\n"
-        return s
-
-
-class FigureEightTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
-    _baseName = "Figure Eight Curve Transform"
-    _HTML = 'y = a((cx+d)<sup>2</sup> - ((cx+d)<sup>4</sup>/b<sup>2</sup>))<sup>0.5</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c', 'd']
-    _canLinearSolverBeUsedForSSQABS = False
-
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Eight.html'
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Eight.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -259,12 +223,81 @@ class FigureEightTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[4.0]),
+                [4.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_PowX2 = inDataCacheDictionary["PowX_2.0"]
+        # only need to perform this dictionary look-up once
+        x_PowX4 = inDataCacheDictionary["PowX_4.0"]
+
+        a = inCoeffs[0]
+        b = inCoeffs[1]
+
+        try:
+            temp = a * numpy.sqrt(x_PowX2 - (x_PowX4 / numpy.square(b)))
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
+        except:
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = a * pow(pow(x_in, 2.0) - (pow(x_in, 4.0)/pow(b, 2.0)), 0.5);\n"
+        return s
+
+
+class FigureEightTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    _baseName = "Figure Eight Curve Transform"
+    _HTML = (
+        "y = a((cx+d)<sup>2</sup> - ((cx+d)<sup>4</sup>/b<sup>2</sup>))<sup>0.5</sup>"
+    )
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c", "d"]
+    _canLinearSolverBeUsedForSSQABS = False
+
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Eight.html"
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
+
+    # all extended version autoGenerate flags are False by default in IModel.py
+    autoGenerateOffsetForm = True
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -272,11 +305,15 @@ class FigureEightTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         d = inCoeffs[3]
 
         try:
-            temp = a * numpy.sqrt(numpy.square(c*x_in+d) -
-                                  (numpy.power(c*x_in+d, 4.0)-numpy.square(b)))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a * numpy.sqrt(
+                numpy.square(c * x_in + d)
+                - (numpy.power(c * x_in + d, 4.0) - numpy.square(b))
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(pow(c*x_in+d, 2.0) - (pow(c*x_in+d, 4.0)-pow(b, 2.0)), 0.5);\n"
@@ -287,12 +324,12 @@ class NielesSemicubicalParabola(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Niele's Semi-cubical Parabola"
-    _HTML = 'y = (ax<sup>2</sup>)<sup>1.0/3.0</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
+    _HTML = "y = (ax<sup>2</sup>)<sup>1.0/3.0</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Neiles.html'
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Neiles.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -311,21 +348,29 @@ class NielesSemicubicalParabola(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_PowX2 = inDataCacheDictionary['PowX_2.0']
+        x_PowX2 = inDataCacheDictionary["PowX_2.0"]
 
         a = inCoeffs[0]
 
         try:
-            temp = numpy.power(a * x_PowX2, 1.0/3.0)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = numpy.power(a * x_PowX2, 1.0 / 3.0)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = pow(a * pow(x_in, 2.0), 1.0/3.0);\n"
@@ -333,14 +378,13 @@ class NielesSemicubicalParabola(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NielesSemicubicalParabolaTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Niele's Semi-cubical Parabola Transform"
-    _HTML = 'y = (a(b*x+c)<sup>2</sup>)<sup>1.0/3.0</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = (a(b*x+c)<sup>2</sup>)<sup>1.0/3.0</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Neiles.html'
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Neiles.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -360,22 +404,27 @@ class NielesSemicubicalParabolaTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = numpy.power(a * numpy.square(b*x_in+c), 1.0/3.0)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = numpy.power(a * numpy.square(b * x_in + c), 1.0 / 3.0)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = pow(a * pow(b*x_in+c, 2.0), 1.0/3.0);\n"
@@ -383,14 +432,13 @@ class NielesSemicubicalParabolaTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
 
 
 class PearShapedQuartic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Pear-shaped Quartic"
-    _HTML = 'y = a(x<sup>3</sup>(b-x) / c<sup>2</sup>)<sup>0.5</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = a(x<sup>3</sup>(b-x) / c<sup>2</sup>)<sup>0.5</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Pearshaped.html'
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Pearshaped.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -410,16 +458,23 @@ class PearShapedQuartic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[3.0]),
+                [3.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        x_PowX3 = inDataCacheDictionary['PowX_3.0']
+        x_PowX3 = inDataCacheDictionary["PowX_3.0"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -427,9 +482,11 @@ class PearShapedQuartic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = a * numpy.sqrt(x_PowX3 * (b - x_in) / numpy.square(c))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(pow(x_in, 3.0) * (b - x_in) / pow(c, 2.0), 0.5);\n"
@@ -437,14 +494,13 @@ class PearShapedQuartic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PearShapedQuarticTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Pear-shaped Quartic Transform"
-    _HTML = 'y = a((dx+f)<sup>3</sup>(b-(dx+f)) / c<sup>2</sup>)<sup>0.5</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "y = a((dx+f)<sup>3</sup>(b-(dx+f)) / c<sup>2</sup>)<sup>0.5</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Pearshaped.html'
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Pearshaped.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -464,12 +520,15 @@ class PearShapedQuarticTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -478,11 +537,14 @@ class PearShapedQuarticTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = a * numpy.sqrt(numpy.power(d*x_in+f, 3.0)
-                                  * (b - (d*x_in+f)) / numpy.square(c))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a * numpy.sqrt(
+                numpy.power(d * x_in + f, 3.0) * (b - (d * x_in + f)) / numpy.square(c)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(pow((d*x_in+f), 3.0) * (b - (d*x_in+f)) / pow(c, 2.0), 0.5);\n"
@@ -493,12 +555,12 @@ class TrisectrixOfMaclaurin(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Trisectrix Of Maclaurin"
-    _HTML = 'y = a(x<sup>2</sup>(3b-x) / (b+x))<sup>0.5</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = a(x<sup>2</sup>(3b-x) / (b+x))<sup>0.5</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Trisectrix.html'
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Trisectrix.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -518,25 +580,34 @@ class TrisectrixOfMaclaurin(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        x_PowX2 = inDataCacheDictionary['PowX_2.0']
+        x_PowX2 = inDataCacheDictionary["PowX_2.0"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = a * numpy.sqrt(x_PowX2 * (3.0 * b - x_in) / (b + x_in))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(pow(x_in, 2.0) * (3.0 * b - x_in) / (b + x_in), 0.5);\n"
@@ -544,14 +615,13 @@ class TrisectrixOfMaclaurin(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class TrisectrixOfMaclaurinTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Trisectrix Of Maclaurin Transform"
-    _HTML = 'y = a((cx+d)<sup>2</sup>(3b-(cx+d)) / (b+(cx+d)))<sup>0.5</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c', 'd']
+    _HTML = "y = a((cx+d)<sup>2</sup>(3b-(cx+d)) / (b+(cx+d)))<sup>0.5</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c", "d"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Trisectrix.html'
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Trisectrix.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -571,12 +641,15 @@ class TrisectrixOfMaclaurinTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -584,11 +657,16 @@ class TrisectrixOfMaclaurinTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
         d = inCoeffs[3]
 
         try:
-            temp = a * numpy.sqrt(numpy.square(c*x_in+d)
-                                  * (3.0 * b - (c*x_in+d)) / (b + (c*x_in+d)))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a * numpy.sqrt(
+                numpy.square(c * x_in + d)
+                * (3.0 * b - (c * x_in + d))
+                / (b + (c * x_in + d))
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(pow(c*x_in+d, 2.0) * (3.0 * b - (c*x_in+d)) / (b + (c*x_in+d)), 0.5);\n"
@@ -599,12 +677,12 @@ class CissoidOfDiocles(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Cissoid Of Diocles"
-    _HTML = 'y = a(x<sup>3</sup> / (2b-x))<sup>0.5</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = a(x<sup>3</sup> / (2b-x))<sup>0.5</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Cissoid.html'
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Cissoid.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -624,25 +702,34 @@ class CissoidOfDiocles(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[3.0]),
+                [3.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        x_PowX3 = inDataCacheDictionary['PowX_3.0']
+        x_PowX3 = inDataCacheDictionary["PowX_3.0"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = a * numpy.sqrt(x_PowX3 / (2.0 * b - x_in))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(pow(x_in, 3.0) / (2.0 * b - x_in), 0.5);\n"
@@ -650,14 +737,13 @@ class CissoidOfDiocles(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class CissoidOfDioclesTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Cissoid Of Diocles Transform"
-    _HTML = 'y = a((x*c-d)<sup>3</sup> / (2b-(x*c-d)))<sup>0.5</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c', 'd']
+    _HTML = "y = a((x*c-d)<sup>3</sup> / (2b-(x*c-d)))<sup>0.5</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c", "d"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://www-history.mcs.st-and.ac.uk/Curves/Cissoid.html'
+    webReferenceURL = "http://www-history.mcs.st-and.ac.uk/Curves/Cissoid.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -677,12 +763,15 @@ class CissoidOfDioclesTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -690,11 +779,14 @@ class CissoidOfDioclesTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         d = inCoeffs[3]
 
         try:
-            temp = a * numpy.sqrt(numpy.power(x_in*c-d,
-                                  3.0) / (2.0 * b - (x_in*c-d)))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a * numpy.sqrt(
+                numpy.power(x_in * c - d, 3.0) / (2.0 * b - (x_in * c - d))
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(pow(x_in*c-d, 3.0) / (2.0 * b - (x_in*c-d)), 0.5);\n"
@@ -702,14 +794,13 @@ class CissoidOfDioclesTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class KarplusNMRSpectroscopy(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Karplus NMR Spectroscopy"
-    _HTML = 'J(da) = Acos<sup>2</sup>(da) + Bcos(da) + C'
-    _leftSideHTML = 'J(da)'
-    _coefficientDesignators = ['A', 'B', 'C']
+    _HTML = "J(da) = Acos<sup>2</sup>(da) + Bcos(da) + C"
+    _leftSideHTML = "J(da)"
+    _coefficientDesignators = ["A", "B", "C"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://pubs.acs.org/cen/science/8151/8151karplus.html'
+    webReferenceURL = "http://pubs.acs.org/cen/science/8151/8151karplus.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -728,16 +819,20 @@ class KarplusNMRSpectroscopy(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.CosX(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.CosX(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Pow2CosX(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Pow2CosX(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_cosx = inDataCacheDictionary['CosX']
+        x_cosx = inDataCacheDictionary["CosX"]
         # only need to perform this dictionary look-up once
-        x_Pow2CosX = inDataCacheDictionary['Pow2CosX']
+        x_Pow2CosX = inDataCacheDictionary["Pow2CosX"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -745,9 +840,11 @@ class KarplusNMRSpectroscopy(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = a * x_Pow2CosX + b * x_cosx + c
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = A * pow(cos(x_in), 2.0) + B * cos(x_in) + C;\n"
@@ -755,14 +852,13 @@ class KarplusNMRSpectroscopy(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class KarplusNMRSpectroscopyScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Karplus NMR Spectroscopy Scaled"
-    _HTML = 'J(da) = Acos<sup>2</sup>(s * da) + Bcos(s * da) + C'
-    _leftSideHTML = 'J(da)'
-    _coefficientDesignators = ['A', 'B', 'C', 's']
+    _HTML = "J(da) = Acos<sup>2</sup>(s * da) + Bcos(s * da) + C"
+    _leftSideHTML = "J(da)"
+    _coefficientDesignators = ["A", "B", "C", "s"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://pubs.acs.org/cen/science/8151/8151karplus.html'
+    webReferenceURL = "http://pubs.acs.org/cen/science/8151/8151karplus.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -781,12 +877,15 @@ class KarplusNMRSpectroscopyScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x = inDataCacheDictionary['X']
+        x = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -794,11 +893,12 @@ class KarplusNMRSpectroscopyScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         s = inCoeffs[3]
 
         try:
-            temp = a * numpy.square(numpy.cos(s * x)) + \
-                b * numpy.cos(s * x) + c
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = a * numpy.square(numpy.cos(s * x)) + b * numpy.cos(s * x) + c
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = A * pow(cos(s * x_in), 2.0) + B * cos(s * x_in) + C;\n"
@@ -809,12 +909,12 @@ class ArrheniusRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Arrhenius Rate Constant Law"
-    _HTML = 'y = a * exp(-b/x)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = a * exp(-b/x)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -834,21 +934,26 @@ class ArrheniusRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = a * numpy.exp(-1.0 * b / x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * exp(-1.0 * b / x_in);\n"
@@ -856,14 +961,13 @@ class ArrheniusRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ArrheniusRateConstantLawStretched(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Arrhenius Rate Constant Law Stretched"
-    _HTML = 'y = a * exp(-pow(b/x, c))'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = a * exp(-pow(b/x, c))"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -885,12 +989,15 @@ class ArrheniusRateConstantLawStretched(pyeq3.Model_2D_BaseClass.Model_2D_BaseCl
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -898,9 +1005,11 @@ class ArrheniusRateConstantLawStretched(pyeq3.Model_2D_BaseClass.Model_2D_BaseCl
 
         try:
             temp = a * numpy.exp(-1.0 * numpy.power(b / x_in, c))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * exp(-1.0 * pow(b / x_in, c));\n"
@@ -908,14 +1017,13 @@ class ArrheniusRateConstantLawStretched(pyeq3.Model_2D_BaseClass.Model_2D_BaseCl
 
 
 class Bleasdale_Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Bleasdale-Nelder"
-    _HTML = 'y = (a + bx)<sup>-c</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = (a + bx)<sup>-c</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -935,12 +1043,15 @@ class Bleasdale_Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -948,9 +1059,11 @@ class Bleasdale_Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = numpy.power(a + b * x_in, -c)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = pow(a + b * x_in, -1.0 * c);\n"
@@ -958,15 +1071,14 @@ class Bleasdale_Nelder(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Catenary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Catenary"
     autoGeneratePlusLineForm = True
-    _HTML = 'y = a * cosh(x / a)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
+    _HTML = "y = a * cosh(x / a)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://planetmath.org/encyclopedia/Catenary.html'
+    webReferenceURL = "http://planetmath.org/encyclopedia/Catenary.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -986,20 +1098,25 @@ class Catenary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
 
         try:
             temp = a * numpy.cosh(x_in / a)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * cosh(x_in / a);\n"
@@ -1007,14 +1124,13 @@ class Catenary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class CatenaryTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Catenary Transform"
-    _HTML = 'y = a * cosh((bx + c) / a)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = a * cosh((bx + c) / a)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://planetmath.org/encyclopedia/Catenary.html'
+    webReferenceURL = "http://planetmath.org/encyclopedia/Catenary.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -1034,12 +1150,15 @@ class CatenaryTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1047,9 +1166,11 @@ class CatenaryTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = a * numpy.cosh((b * x_in + c) / a)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * cosh((b * x_in + c) / a);\n"
@@ -1057,14 +1178,13 @@ class CatenaryTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class CombinedPowerAndExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Combined Power And Exponential"
-    _HTML = 'y = ax<sup>b</sup> * exp(cx)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = ax<sup>b</sup> * exp(cx)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -1083,12 +1203,15 @@ class CombinedPowerAndExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1096,9 +1219,11 @@ class CombinedPowerAndExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = a * numpy.power(x_in, b) * numpy.exp(c * x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(x_in, b) * exp(c * x_in);\n"
@@ -1106,14 +1231,13 @@ class CombinedPowerAndExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DavidRodbardNIH(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "David Rodbard NIH"
-    _HTML = 'y = d + (a - d) / (1.0 + (x/c)<sup>b</sup>)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c', 'd']
+    _HTML = "y = d + (a - d) / (1.0 + (x/c)<sup>b</sup>)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c", "d"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://rsbweb.nih.gov/ij/docs/menus/analyze.html'
+    webReferenceURL = "http://rsbweb.nih.gov/ij/docs/menus/analyze.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1134,12 +1258,15 @@ class DavidRodbardNIH(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1147,10 +1274,12 @@ class DavidRodbardNIH(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         d = inCoeffs[3]
 
         try:
-            temp = d + (a - d) / (1.0 + numpy.power(x_in/c, b))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = d + (a - d) / (1.0 + numpy.power(x_in / c, b))
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = d + (a - d) / (1.0 + pow(x_in/c, b));\n"
@@ -1158,14 +1287,13 @@ class DavidRodbardNIH(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DoubleLangmuirProbeCharacteristic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Double Langmuir Probe Characteristic"
-    _HTML = 'y = a * tanh(bx+c)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = a * tanh(bx+c)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -1185,12 +1313,15 @@ class DoubleLangmuirProbeCharacteristic(pyeq3.Model_2D_BaseClass.Model_2D_BaseCl
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1198,9 +1329,11 @@ class DoubleLangmuirProbeCharacteristic(pyeq3.Model_2D_BaseClass.Model_2D_BaseCl
 
         try:
             temp = a * numpy.tanh(b * x_in + c)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * tanh(b * x_in + c);\n"
@@ -1208,14 +1341,13 @@ class DoubleLangmuirProbeCharacteristic(pyeq3.Model_2D_BaseClass.Model_2D_BaseCl
 
 
 class DoubleRectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Double Rectangular Hyperbola A"
-    _HTML = 'y = ax/(b+x) + cx/(d+x)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c', 'd']
+    _HTML = "y = ax/(b+x) + cx/(d+x)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c", "d"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1235,12 +1367,15 @@ class DoubleRectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1249,9 +1384,11 @@ class DoubleRectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = (a * x_in / (b + x_in)) + (c * x_in / (d + x_in))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a * x_in / (b + x_in)) + (c * x_in / (d + x_in));\n"
@@ -1259,14 +1396,13 @@ class DoubleRectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DoubleRectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Double Rectangular Hyperbola B"
-    _HTML = 'y = ax/(b+x) + cx/(d+x) + fx'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f']
+    _HTML = "y = ax/(b+x) + cx/(d+x) + fx"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c", "d", "f"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1286,12 +1422,15 @@ class DoubleRectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1300,11 +1439,12 @@ class DoubleRectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         f = inCoeffs[4]
 
         try:
-            temp = (a * x_in / (b + x_in)) + \
-                (c * x_in / (d + x_in)) + (f * x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (a * x_in / (b + x_in)) + (c * x_in / (d + x_in)) + (f * x_in)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a * x_in / (b + x_in)) + (c * x_in / (d + x_in)) + (f * x_in);\n"
@@ -1312,14 +1452,13 @@ class DoubleRectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Gunary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Gunary"
-    _HTML = 'y = x / (a + bx + cx<sup>0.5</sup>)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = x / (a + bx + cx<sup>0.5</sup>)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1338,16 +1477,23 @@ class Gunary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[0.5]), [0.5]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[0.5]),
+                [0.5],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        x_PowX_half = inDataCacheDictionary['PowX_0.5']
+        x_PowX_half = inDataCacheDictionary["PowX_0.5"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1355,9 +1501,11 @@ class Gunary(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = x_in / (a + b * x_in + c * x_PowX_half)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = x_in / (a + b * x_in + c * pow(x_in, 0.5));\n"
@@ -1368,12 +1516,12 @@ class HyperbolaA_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Hyperbola A Modified"
-    _HTML = 'y = ax/(1+bx)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = ax/(1+bx)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -1392,21 +1540,26 @@ class HyperbolaA_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = a * x_in / (1.0 + b * x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * x_in / (1.0 + b * x_in);\n"
@@ -1417,12 +1570,12 @@ class HyperbolaB_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Hyperbola B Modified"
-    _HTML = 'y = x/(a+bx)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = x/(a+bx)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1441,21 +1594,26 @@ class HyperbolaB_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = x_in / (a + b * x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = x_in / (a + b * x_in);\n"
@@ -1466,12 +1624,12 @@ class HyperbolicDecay(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Hyperbolic Decay"
-    _HTML = 'y = ab/(b+x)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = ab/(b+x)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -1491,21 +1649,26 @@ class HyperbolicDecay(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = a * b / (b + x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * b / (b + x_in);\n"
@@ -1516,60 +1679,12 @@ class LamesCubic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Lame's Cubic"
-    _HTML = 'y = (a<sup>3</sup> - x<sup>3</sup>)<sup>1/3</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
+    _HTML = "y = (a<sup>3</sup> - x<sup>3</sup>)<sup>1/3</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://planetmath.org/encyclopedia/AsymptoteOfLamesCubic.html'
-
-    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-
-    # all extended version autoGenerate flags are False by default in IModel.py
-    autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
-
-    independentData1CannotContainZeroFlag = False
-    independentData1CannotContainPositiveFlag = False
-    independentData1CannotContainNegativeFlag = False
-    independentData2CannotContainZeroFlag = False
-    independentData2CannotContainPositiveFlag = False
-    independentData2CannotContainNegativeFlag = False
-
-    def GetDataCacheFunctions(self):
-        functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[3.0]), [3.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
-
-    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        # only need to perform this dictionary look-up once
-        x_PowX3 = inDataCacheDictionary['PowX_3.0']
-
-        a = inCoeffs[0]
-
-        try:
-            temp = numpy.power(numpy.power(a, 3.0) - x_PowX3, 1.0 / 3.0)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
-        except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
-    def SpecificCodeCPP(self):
-        s = "\ttemp = pow(pow(a, 3.0) - pow(x_in, 3.0), 1.0 / 3.0);\n"
-        return s
-
-
-class LamesCubicTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
-    _baseName = "Lame's Cubic Transform"
-    _HTML = 'y = (a<sup>3</sup> - (bx + c)<sup>3</sup>)<sup>1/3</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
-    _canLinearSolverBeUsedForSSQABS = False
-
-    webReferenceURL = 'http://planetmath.org/encyclopedia/AsymptoteOfLamesCubic.html'
+    webReferenceURL = "http://planetmath.org/encyclopedia/AsymptoteOfLamesCubic.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1589,23 +1704,84 @@ class LamesCubicTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[3.0]),
+                [3.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_PowX3 = inDataCacheDictionary["PowX_3.0"]
+
+        a = inCoeffs[0]
+
+        try:
+            temp = numpy.power(numpy.power(a, 3.0) - x_PowX3, 1.0 / 3.0)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
+        except:
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = pow(pow(a, 3.0) - pow(x_in, 3.0), 1.0 / 3.0);\n"
+        return s
+
+
+class LamesCubicTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    _baseName = "Lame's Cubic Transform"
+    _HTML = "y = (a<sup>3</sup> - (bx + c)<sup>3</sup>)<sup>1/3</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
+    _canLinearSolverBeUsedForSSQABS = False
+
+    webReferenceURL = "http://planetmath.org/encyclopedia/AsymptoteOfLamesCubic.html"
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
+    autoGenerateOffsetForm = True
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
         c = inCoeffs[2]
 
         try:
-            temp = numpy.power(numpy.power(a, 3.0) -
-                               numpy.power(b * x_in + c, 3.0), 1.0 / 3.0)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = numpy.power(
+                numpy.power(a, 3.0) - numpy.power(b * x_in + c, 3.0), 1.0 / 3.0
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = pow(pow(a, 3.0) - pow(b * x_in + c, 3.0), 1.0 / 3.0);\n"
@@ -1616,12 +1792,12 @@ class Misc1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Miscellaneous 1"
-    _HTML = 'y = 1.0 + a(1.0 - exp(bx))'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = 1.0 + a(1.0 - exp(bx))"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1641,21 +1817,26 @@ class Misc1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = 1.0 + a * (1.0 - numpy.exp(b * x_in))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = 1.0 + a * (1.0 - exp(b * x_in));\n"
@@ -1666,12 +1847,12 @@ class ParetoA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Pareto A"
-    _HTML = 'y = 1 - x<sup>-a</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
+    _HTML = "y = 1 - x<sup>-a</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1691,20 +1872,25 @@ class ParetoA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
 
         try:
             temp = 1.0 - numpy.power(x_in, -1.0 * a)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = 1.0 - pow(x_in, -1.0 * a);\n"
@@ -1715,12 +1901,12 @@ class ParetoB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Pareto B"
-    _HTML = 'y = a(1 - x<sup>-b</sup>)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = a(1 - x<sup>-b</sup>)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -1740,21 +1926,26 @@ class ParetoB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = a * (1.0 - numpy.power(x_in, -1.0 * b))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * (1.0 - pow(x_in, -1.0 * b));\n"
@@ -1765,12 +1956,12 @@ class ParetoC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Pareto C"
-    _HTML = 'y = 1.0 - (1.0 / (1 + ax)<sup>b</sup>)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = 1.0 - (1.0 / (1 + ax)<sup>b</sup>)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1790,21 +1981,26 @@ class ParetoC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = 1.0 - (1.0 / numpy.power(1.0 + a * x_in, b))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = 1.0 - (1.0 / pow(1.0 + a * x_in, b));\n"
@@ -1815,12 +2011,12 @@ class ParetoD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Pareto D"
-    _HTML = 'y = 1.0 - (1.0 / x<sup>a</sup>)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
+    _HTML = "y = 1.0 - (1.0 / x<sup>a</sup>)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1840,20 +2036,25 @@ class ParetoD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
 
         try:
             temp = 1.0 - (1.0 / (numpy.power(x_in, a)))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = 1.0 - (1.0 / (pow(x_in, a)));\n"
@@ -1861,15 +2062,14 @@ class ParetoD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Polytrope(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Polytrope"
     autoGeneratePlusLineForm = True
-    _HTML = 'y = a / x<sup>b</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = a / x<sup>b</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://planetmath.org/encyclopedia/Polytrope.html'
+    webReferenceURL = "http://planetmath.org/encyclopedia/Polytrope.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -1888,21 +2088,26 @@ class Polytrope(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = a / numpy.power(x_in, b)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a / pow(x_in, b);\n"
@@ -1910,14 +2115,13 @@ class Polytrope(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PolytropeTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Polytrope Transform"
-    _HTML = 'y = a / (cx + d)<sup>b</sup>'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c', 'd']
+    _HTML = "y = a / (cx + d)<sup>b</sup>"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c", "d"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://planetmath.org/encyclopedia/Polytrope.html'
+    webReferenceURL = "http://planetmath.org/encyclopedia/Polytrope.html"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -1937,12 +2141,15 @@ class PolytropeTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -1951,9 +2158,11 @@ class PolytropeTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = a / numpy.power(c * x_in + d, b)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a / pow(c * x_in + d, b);\n"
@@ -1961,15 +2170,14 @@ class PolytropeTransform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PursuitCurve(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Pursuit Curve"
     autoGeneratePlusLineForm = True
-    _HTML = 'y = ax<sup>2</sup> - log(x)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
+    _HTML = "y = ax<sup>2</sup> - log(x)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -1988,25 +2196,34 @@ class PursuitCurve(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
     def GetDataCacheFunctions(self):
         functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.LogX(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_PowX2 = inDataCacheDictionary['PowX_2.0']
+        x_PowX2 = inDataCacheDictionary["PowX_2.0"]
         # only need to perform this dictionary look-up once
-        x_LogX = inDataCacheDictionary['LogX']
+        x_LogX = inDataCacheDictionary["LogX"]
 
         a = inCoeffs[0]
 
         try:
             temp = a * x_PowX2 - x_LogX
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(x_in, 2.0) - log(x_in);\n"
@@ -2014,14 +2231,13 @@ class PursuitCurve(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PursuitCurve_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Pursuit Curve Transform"
-    _HTML = 'y = a(bx + c)<sup>2</sup> - log(bx + c)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = a(bx + c)<sup>2</sup> - log(bx + c)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2041,12 +2257,15 @@ class PursuitCurve_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -2054,9 +2273,11 @@ class PursuitCurve_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = (a * numpy.square(b * x_in + c)) - numpy.log(b * x_in + c)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (a * pow(b * x_in + c, 2.0)) - log(b * x_in + c);\n"
@@ -2067,12 +2288,12 @@ class RectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Rectangular Hyperbola A"
-    _HTML = 'y = ax/(b+x)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = ax/(b+x)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -2091,21 +2312,26 @@ class RectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = a * x_in / (b + x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * x_in / (b + x_in);\n"
@@ -2113,14 +2339,13 @@ class RectangularHyperbolaA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class RectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Rectangular Hyperbola B"
-    _HTML = 'y = ax/(b+x) + cx'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = ax/(b+x) + cx"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2140,12 +2365,15 @@ class RectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -2153,9 +2381,11 @@ class RectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = a * x_in / (b + x_in) + c * x_in
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * x_in / (b + x_in) + c * x_in;\n"
@@ -2163,15 +2393,14 @@ class RectangularHyperbolaB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Serpentine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Serpentine"
     autoGeneratePlusLineForm = True
-    _HTML = 'y = ax / (1.0 + bx<sup>2</sup>)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b']
+    _HTML = "y = ax / (1.0 + bx<sup>2</sup>)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -2190,23 +2419,32 @@ class Serpentine(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
 
         try:
             temp = a * x_in / (1.0 + b * x_in * x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * x_in / (1.0 + b * x_in * x_in);\n"
@@ -2217,12 +2455,12 @@ class ShiftedReciprocal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Shifted Reciprocal"
-    _HTML = 'y = 1.0 / (a - x)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
+    _HTML = "y = 1.0 / (a - x)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2241,20 +2479,25 @@ class ShiftedReciprocal(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
 
         try:
             temp = 1.0 / (a - x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = 1.0 / (a - x_in);\n"
@@ -2265,12 +2508,12 @@ class Square_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     autoGeneratePlusLineForm = True  # auto-added by script
 
     _baseName = "Square Modified"
-    _HTML = 'y = x<sup>2</sup> - ax'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
+    _HTML = "y = x<sup>2</sup> - ax"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2290,24 +2533,33 @@ class Square_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        x_PowX2 = inDataCacheDictionary['PowX_2.0']
+        x_PowX2 = inDataCacheDictionary["PowX_2.0"]
 
         a = inCoeffs[0]
 
         try:
             temp = x_PowX2 - (a * x_in)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = (x_in * x_in) - (a * x_in);\n"
@@ -2315,14 +2567,13 @@ class Square_Modified(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Square_Modified_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Square Modified Transform"
-    _HTML = 'y = (bx + c)<sup>2</sup> - a(bx + c)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = (bx + c)<sup>2</sup> - a(bx + c)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2342,12 +2593,15 @@ class Square_Modified_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -2355,9 +2609,11 @@ class Square_Modified_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
         try:
             temp = numpy.square(b * x_in + c) - (a * (b * x_in + c))
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = pow(b * x_in + c, 2.0) - (a * (b * x_in + c));\n"
@@ -2365,14 +2621,13 @@ class Square_Modified_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class TransitionStateRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Transition State Rate Constant Law"
-    _HTML = 'y = ax<sup>b</sup> * exp(-c/x)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
+    _HTML = "y = ax<sup>b</sup> * exp(-c/x)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -2392,16 +2647,20 @@ class TransitionStateRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.NegX(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.NegX(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        x_NegX = inDataCacheDictionary['NegX']
+        x_NegX = inDataCacheDictionary["NegX"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -2409,9 +2668,11 @@ class TransitionStateRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
 
         try:
             temp = a * numpy.power(x_in, b) * numpy.exp(c / x_NegX)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * pow(x_in, b) * exp(-1.0 * c / x_in);\n"
@@ -2419,114 +2680,14 @@ class TransitionStateRateConstantLaw(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
 
 
 class WitchOfAgnesiA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Witch Of Maria Agnesi A"
     autoGeneratePlusLineForm = True
-    _HTML = 'y = 8a<sup>3</sup> / (x<sup>2</sup> + 4a<sup>2</sup>)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
+    _HTML = "y = 8a<sup>3</sup> / (x<sup>2</sup> + 4a<sup>2</sup>)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
-
-    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-
-    # all extended version autoGenerate flags are False by default in IModel.py
-    autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
-
-    independentData1CannotContainZeroFlag = False
-    independentData1CannotContainPositiveFlag = False
-    independentData1CannotContainNegativeFlag = False
-    independentData2CannotContainZeroFlag = False
-    independentData2CannotContainPositiveFlag = False
-    independentData2CannotContainNegativeFlag = False
-
-    def GetDataCacheFunctions(self):
-        functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
-
-    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        # only need to perform this dictionary look-up once
-        x_PowX2 = inDataCacheDictionary['PowX_2.0']
-
-        a = inCoeffs[0]
-
-        try:
-            a2 = a * a
-            temp = 8.0 * a2 * a / (x_PowX2 + 4.0 * a2)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
-        except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
-    def SpecificCodeCPP(self):
-        s = "\ttemp = 8.0 * a * a * a / (x_in * x_in + 4.0 * a * a);\n"
-        return s
-
-
-class WitchOfAgnesiB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
-    _baseName = "Witch Of Maria Agnesi B"
-    autoGeneratePlusLineForm = True
-    _HTML = 'y = a<sup>3</sup> / (x<sup>2</sup> + a<sup>2</sup>)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a']
-    _canLinearSolverBeUsedForSSQABS = False
-
-    webReferenceURL = ''
-
-    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
-
-    # all extended version autoGenerate flags are False by default in IModel.py
-    autoGenerateOffsetForm = True
-    autoGenerateReciprocalForm = True
-    autoGenerateInverseForms = True
-    autoGenerateGrowthAndDecayForms = True
-
-    independentData1CannotContainZeroFlag = False
-    independentData1CannotContainPositiveFlag = False
-    independentData1CannotContainNegativeFlag = False
-    independentData2CannotContainZeroFlag = False
-    independentData2CannotContainPositiveFlag = False
-    independentData2CannotContainNegativeFlag = False
-
-    def GetDataCacheFunctions(self):
-        functionList = []
-        functionList.append([pyeq3.DataCache.DataCacheFunctions.PowX(
-            NameOrValueFlag=1, args=[2.0]), [2.0]])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
-
-    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
-        # only need to perform this dictionary look-up once
-        x_PowX2 = inDataCacheDictionary['PowX_2.0']
-
-        a = inCoeffs[0]
-
-        try:
-            a2 = a * a
-            temp = a2 * a / (x_PowX2 + a2)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
-        except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
-
-    def SpecificCodeCPP(self):
-        s = "\ttemp = a * a * a / (x_in * x_in + a * a);\n"
-        return s
-
-
-class WitchOfAgnesiC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
-    _baseName = "Witch Of Maria Agnesi C"
-    _HTML = 'y = a<sup>3</sup> / ((x * b + c)<sup>2</sup> + a<sup>2</sup>)'
-    _leftSideHTML = 'y'
-    _coefficientDesignators = ['a', 'b', 'c']
-    _canLinearSolverBeUsedForSSQABS = False
-
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2546,12 +2707,128 @@ class WitchOfAgnesiC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_PowX2 = inDataCacheDictionary["PowX_2.0"]
+
+        a = inCoeffs[0]
+
+        try:
+            a2 = a * a
+            temp = 8.0 * a2 * a / (x_PowX2 + 4.0 * a2)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
+        except:
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = 8.0 * a * a * a / (x_in * x_in + 4.0 * a * a);\n"
+        return s
+
+
+class WitchOfAgnesiB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    _baseName = "Witch Of Maria Agnesi B"
+    autoGeneratePlusLineForm = True
+    _HTML = "y = a<sup>3</sup> / (x<sup>2</sup> + a<sup>2</sup>)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a"]
+    _canLinearSolverBeUsedForSSQABS = False
+
+    webReferenceURL = ""
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
+    autoGenerateOffsetForm = True
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append(
+            [
+                pyeq3.DataCache.DataCacheFunctions.PowX(NameOrValueFlag=1, args=[2.0]),
+                [2.0],
+            ]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        # only need to perform this dictionary look-up once
+        x_PowX2 = inDataCacheDictionary["PowX_2.0"]
+
+        a = inCoeffs[0]
+
+        try:
+            a2 = a * a
+            temp = a2 * a / (x_PowX2 + a2)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
+        except:
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
+
+    def SpecificCodeCPP(self):
+        s = "\ttemp = a * a * a / (x_in * x_in + a * a);\n"
+        return s
+
+
+class WitchOfAgnesiC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
+    _baseName = "Witch Of Maria Agnesi C"
+    _HTML = "y = a<sup>3</sup> / ((x * b + c)<sup>2</sup> + a<sup>2</sup>)"
+    _leftSideHTML = "y"
+    _coefficientDesignators = ["a", "b", "c"]
+    _canLinearSolverBeUsedForSSQABS = False
+
+    webReferenceURL = ""
+
+    baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
+
+    # all extended version autoGenerate flags are False by default in IModel.py
+    autoGenerateOffsetForm = True
+    autoGenerateReciprocalForm = True
+    autoGenerateInverseForms = True
+    autoGenerateGrowthAndDecayForms = True
+
+    independentData1CannotContainZeroFlag = False
+    independentData1CannotContainPositiveFlag = False
+    independentData1CannotContainNegativeFlag = False
+    independentData2CannotContainZeroFlag = False
+    independentData2CannotContainPositiveFlag = False
+    independentData2CannotContainNegativeFlag = False
+
+    def GetDataCacheFunctions(self):
+        functionList = []
+        functionList.append(
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
+
+    def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
+        # only need to perform this dictionary look-up once
+        x_in = inDataCacheDictionary["X"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -2560,9 +2837,11 @@ class WitchOfAgnesiC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         try:
             a2 = a * a
             temp = a2 * a / ((x_in * b + c) * (x_in * b + c) + a2)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = a * a * a / ((x_in * b + c) * (x_in * b + c) + a * a);\n"
@@ -2570,14 +2849,13 @@ class WitchOfAgnesiC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class MorsePotential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Morse Potential"
-    _HTML = 'V = D*(exp(-2*m*(x-u)) - 2*exp(-m*(x-u))) + offset'
-    _leftSideHTML = 'V'
-    _coefficientDesignators = ['D', 'm', 'u', 'offset']
+    _HTML = "V = D*(exp(-2*m*(x-u)) - 2*exp(-m*(x-u))) + offset"
+    _leftSideHTML = "V"
+    _coefficientDesignators = ["D", "m", "u", "offset"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'http://stackoverflow.com/questions/36312303/morse-potential-fit-using-python-and-curve-fit-from-scipy'
+    webReferenceURL = "http://stackoverflow.com/questions/36312303/morse-potential-fit-using-python-and-curve-fit-from-scipy"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = True
 
@@ -2593,10 +2871,11 @@ class MorsePotential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_2D_BaseClass.Model_2D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
-        self.exampleData = '''
+            self, inFittingTarget, inExtendedVersionName
+        )
+        self.exampleData = """
   x         V
 1.0     -1360.121815
 1.1     -1368.532641
@@ -2648,17 +2927,20 @@ class MorsePotential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 5.7     -1378.715015
 5.8     -1378.768915
 5.9     -1378.831593
-'''
+"""
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         D = inCoeffs[0]
         m = inCoeffs[1]
@@ -2666,11 +2948,16 @@ class MorsePotential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         offset = inCoeffs[3]
 
         try:
-            temp = D*(numpy.exp(-2.0*m*(x_in-u)) - 2.0 *
-                      numpy.exp(-m*(x_in-u))) + offset
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                D
+                * (numpy.exp(-2.0 * m * (x_in - u)) - 2.0 * numpy.exp(-m * (x_in - u)))
+                + offset
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = D*(exp(-2*m*(x-u)) - 2*exp(-m*(x-u))) + offset;\n"
@@ -2678,14 +2965,15 @@ class MorsePotential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NelsonSiegel(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Nelson-Siegel"
-    _HTML = 'y(m) = B0 + B1*((1-exp(-m/t))/(m/t)) + B2*(((1-exp(-m/t))/(m/t)) - exp(-m/t))'
-    _leftSideHTML = 'y(m)'
-    _coefficientDesignators = ['B0', 'B1', 'B2', 't']
+    _HTML = (
+        "y(m) = B0 + B1*((1-exp(-m/t))/(m/t)) + B2*(((1-exp(-m/t))/(m/t)) - exp(-m/t))"
+    )
+    _leftSideHTML = "y(m)"
+    _coefficientDesignators = ["B0", "B1", "B2", "t"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'https://en.wikipedia.org/wiki/Fixed-income_attribution#Modeling_the_yield_curve'
+    webReferenceURL = "https://en.wikipedia.org/wiki/Fixed-income_attribution#Modeling_the_yield_curve"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2704,12 +2992,15 @@ class NelsonSiegel(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         B0 = inCoeffs[0]
         B1 = inCoeffs[1]
@@ -2717,13 +3008,18 @@ class NelsonSiegel(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         t = inCoeffs[3]
 
         try:
-            MoT = x_in/t
+            MoT = x_in / t
             expNegMoT = numpy.exp(-MoT)
-            temp = B0 + B1*((1.0-expNegMoT)/MoT) + B2 * \
-                (((1.0-expNegMoT)/MoT) - expNegMoT)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                B0
+                + B1 * ((1.0 - expNegMoT) / MoT)
+                + B2 * (((1.0 - expNegMoT) / MoT) - expNegMoT)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = B0 + B1*((1.0-exp(-x_in/t))/(x_in/t)) + B2*(((1.0-exp(-x_in/t))/(x_in/t)) - exp(-x_in/t));\n"
@@ -2731,14 +3027,13 @@ class NelsonSiegel(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NelsonSiegelSvensson(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Nelson-Siegel-Svensson"
-    _HTML = 'y(m) = B0 + B1*((1-exp(-m/t))/(m/t)) + B2*(((1-exp(-m/t))/(m/t)) - exp(-m/t)) + B3*(((1-exp(-m/t2))/(m/t2)) - exp(-m/t2))'
-    _leftSideHTML = 'y(m)'
-    _coefficientDesignators = ['B0', 'B1', 'B2', 'B3', 't', 't2']
+    _HTML = "y(m) = B0 + B1*((1-exp(-m/t))/(m/t)) + B2*(((1-exp(-m/t))/(m/t)) - exp(-m/t)) + B3*(((1-exp(-m/t2))/(m/t2)) - exp(-m/t2))"
+    _leftSideHTML = "y(m)"
+    _coefficientDesignators = ["B0", "B1", "B2", "B3", "t", "t2"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = 'https://en.wikipedia.org/wiki/Fixed-income_attribution#Modeling_the_yield_curve'
+    webReferenceURL = "https://en.wikipedia.org/wiki/Fixed-income_attribution#Modeling_the_yield_curve"
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
 
@@ -2757,12 +3052,15 @@ class NelsonSiegelSvensson(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
 
         B0 = inCoeffs[0]
         B1 = inCoeffs[1]
@@ -2772,15 +3070,21 @@ class NelsonSiegelSvensson(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
         t2 = inCoeffs[5]
 
         try:
-            MoT = x_in/t
+            MoT = x_in / t
             expNegMoT = numpy.exp(-MoT)
-            MoT2 = x_in/t2
+            MoT2 = x_in / t2
             expNegMoT2 = numpy.exp(-MoT2)
-            temp = B0 + B1*((1.0-expNegMoT)/MoT) + B2*(((1.0-expNegMoT)/MoT) -
-                                                       expNegMoT) + B3*(((1.0-expNegMoT2)/MoT2) - expNegMoT2)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                B0
+                + B1 * ((1.0 - expNegMoT) / MoT)
+                + B2 * (((1.0 - expNegMoT) / MoT) - expNegMoT)
+                + B3 * (((1.0 - expNegMoT2) / MoT2) - expNegMoT2)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = B0 + B1*((1.0-exp(-x_in/t))/(x_in/t)) + B2*(((1.0-exp(-x_in/t))/(x_in/t)) - exp(-x_in/t)) + B3*(((1-exp(-x_in/t2))/(x_in/t2)) - exp(-x_in/t2));\n"

@@ -48,7 +48,6 @@ rawData[0][1] = numpy.ones(len(rawData[0][0]))  # for bug in odr
 
 # common function to create a single plot file
 def SaveModelScatterConfidence(in_fileName, in_equation, in_Ymax, in_Ymin):
-
     # raw data
     x_data = in_equation.dataCache.allDataCacheDictionary["IndependentData"][0]
     y_data = in_equation.dataCache.allDataCacheDictionary["DependentData"]

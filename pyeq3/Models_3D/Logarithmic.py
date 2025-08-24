@@ -23,7 +23,6 @@ numpy.seterr(all="ignore")
 
 
 class FullCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Full Cubic Logarithmic"
     _HTML = "z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup> + g*ln(x)<sup>3</sup> + h*ln(y)<sup>3</sup> + i*ln(x)*ln(y) + j*ln(x)<sup>2</sup>*ln(y) + k*ln(x)*ln(y)<sup>2</sup>"
     _leftSideHTML = "z"
@@ -175,7 +174,6 @@ class FullCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class FullCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Transform Full Cubic Logarithmic"
     _HTML = "z = a + b*ln(m*x+n) + c*ln(o*y+p) + d*ln(m*x+n)<sup>2</sup> + f*ln(o*y+p)<sup>2</sup> + g*ln(m*x+n)<sup>3</sup> + h*ln(o*y+p)<sup>3</sup> + i*ln(m*x+n)*ln(o*y+p) + j*ln(m*x+n)<sup>2</sup>*ln(o*y+p) + k*ln(m*x+n)*ln(o*y+p)<sup>2</sup>"
     _leftSideHTML = "z"
@@ -280,7 +278,6 @@ class FullCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass)
 
 
 class FullQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Full Quadratic Logarithmic"
     _HTML = "z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup> + g*ln(x)*ln(y)"
     _leftSideHTML = "z"
@@ -380,7 +377,6 @@ class FullQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class FullQuadraticLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Transform Full Quadratic Logarithmic"
     _HTML = "z = a + b*ln(h*x+i) + c*ln(j*y+k) + d*ln(h*x+i)<sup>2</sup> + f*ln(j*y+k)<sup>2</sup> + g*ln(h*x+i)*ln(j*y+k)"
     _leftSideHTML = "z"
@@ -456,7 +452,6 @@ class FullQuadraticLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseCl
 
 
 class LinearLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Linear Logarithmic"
     _HTML = "z = a + b*ln(x) + c*ln(y)"
     _leftSideHTML = "z"
@@ -518,7 +513,6 @@ class LinearLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class LinearLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Transform Linear Logarithmic"
     _HTML = "z = a + b*ln(d*x+f) + c*ln(g*y+h)"
     _leftSideHTML = "z"
@@ -581,7 +575,6 @@ class LinearLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimplifiedCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Simplified Cubic Logarithmic"
     _HTML = "z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup> + g*ln(x)<sup>3</sup> + h*ln(y)<sup>3</sup>"
     _leftSideHTML = "z"
@@ -699,7 +692,6 @@ class SimplifiedCubicLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SimplifiedCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Transform Simplified Cubic Logarithmic"
     _HTML = "z = a + b*ln(i*x+j) + c*ln(k*y+m) + d*ln(i*x+j)<sup>2</sup> + f*ln(k*y+m)<sup>2</sup> + g*ln(i*x+j)<sup>3</sup> + h*ln(k*y+m)<sup>3</sup>"
     _leftSideHTML = "z"
@@ -778,7 +770,6 @@ class SimplifiedCubicLogarithmicTransform(pyeq3.Model_3D_BaseClass.Model_3D_Base
 
 
 class SimplifiedQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Simplified Quadratic Logarithmic"
     _HTML = "z = a + b*ln(x) + c*ln(y) + d*ln(x)<sup>2</sup> + f*ln(y)<sup>2</sup>"
     _leftSideHTML = "z"
@@ -872,7 +863,6 @@ class SimplifiedQuadraticLogarithmic(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass
 class SimplifiedQuadraticLogarithmicTransform(
     pyeq3.Model_3D_BaseClass.Model_3D_BaseClass
 ):
-
     _baseName = "Transform Simplified Quadratic Logarithmic"
     _HTML = "z = a + b*ln(g*x+h) + c*ln(i*y+j) + d*ln(g*x+h)<sup>2</sup> + f*ln(i*y+j)<sup>2</sup>"
     _leftSideHTML = "z"

@@ -9,7 +9,6 @@ from pyeq3.Output import Print
 from pyeq3.Graphics.Graphics2D import ModelScatterConfidenceGraph
 
 if __name__ == "__main__":
-
     data = np.array(
         [
             [5.357, 0.376],

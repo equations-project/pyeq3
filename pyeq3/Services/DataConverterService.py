@@ -52,7 +52,6 @@ class DataConverterService(object):
         # OK, now load in the data
         dataLists = [[], [], [], []]
         for line in rawData:
-
             # split the line into string tokens using the default string split()
             # delimiters
             tokenlist = line.split()

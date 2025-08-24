@@ -23,7 +23,6 @@ numpy.seterr(all="ignore")
 
 
 class JorgeRabinovichPopulationGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Jorge Rabinovich Population Growth"
     _HTML = "Y = (P1*CC) / (P1 + (CC-P1)*exp(-R*X))"
     _leftSideHTML = "Y"
@@ -79,7 +78,6 @@ class JorgeRabinovichPopulationGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClas
 
 
 class AphidPopulationGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Aphid Population Growth"
     _HTML = "N(t) = a * exp(bt) * (1 + c * exp(bt))<sup>-2</sup>"
     _leftSideHTML = "N(t)"
@@ -137,7 +135,6 @@ class AphidPopulationGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BertalanffyGrowth(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "von Bertalanffy Growth"
     _HTML = "L(t) = L<sub>inf</sub> * (1.0 - exp(-K * (t-t<sub>zero</sub>)))"
     _leftSideHTML = "L(t)"
@@ -301,7 +298,6 @@ class BevertonHoltB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BioScienceA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "BioScience A"
     _HTML = "y = a * (1.0 - (b * c<sup>x</sup>))"
     _leftSideHTML = "y"
@@ -363,7 +359,6 @@ class BioScienceA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class BioScienceB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "BioScience B"
     _HTML = "y = a * (1.0 -(1.0 + (x/b)<sup>c</sup>)<sup>-1.0 * d</sup>)"
     _leftSideHTML = "y"
@@ -421,7 +416,6 @@ class BioScienceB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class CellularConductance(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Cellular Conductance"
     _HTML = "g = p3/(1+exp((v-p1)/p2)) + p4*exp((v-45)/p5)"
     _leftSideHTML = "g"
@@ -506,7 +500,6 @@ class CellularConductance(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DerekDuncanCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Derek Duncan Custom Equation"
     _HTML = "y = a / (1 + exp(-1/b*(x-c)))<sup>d</sup>"
     _leftSideHTML = "y"
@@ -562,7 +555,6 @@ class DerekDuncanCustomEquation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DoseResponseA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Dose-Response A"
     _HTML = "y = b + (a-b) / (1 + 10<sup>x-c</sup>)"
     _leftSideHTML = "y"
@@ -616,7 +608,6 @@ class DoseResponseA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DoseResponseB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Dose-Response B"
     _HTML = "y = b + (a-b) / (1 + 10<sup>c-x</sup>)"
     _leftSideHTML = "y"
@@ -670,7 +661,6 @@ class DoseResponseB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DoseResponseC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Dose-Response C"
     _HTML = "y = b + (a-b) / (1 + 10<sup>d*(x-c)</sup>)"
     _leftSideHTML = "y"
@@ -725,7 +715,6 @@ class DoseResponseC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DoseResponseD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Dose-Response D"
     _HTML = "y = b + (a-b) / (1 + 10<sup>d*(c-x)</sup>)"
     _leftSideHTML = "y"
@@ -780,7 +769,6 @@ class DoseResponseD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class DoseResponseE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Dose-Response E"
     _HTML = "y = b + (a-b) / (1 + (x/c)<sup>d</sup>)"
     _leftSideHTML = "y"
@@ -837,7 +825,6 @@ class DoseResponseE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class GeneralizedNegativeExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Generalized Negative Exponential"
     _HTML = "y = a * (1.0 - exp(-bx))<sup>c</sup>"
     _leftSideHTML = "y"
@@ -892,7 +879,6 @@ class GeneralizedNegativeExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
 
 
 class GeneralizedProductAccumulation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Generalized Product Accumulation"
     _HTML = "y = a(b-x) / (c + (b-x)) + d(b-x) + f"
     _leftSideHTML = "y"
@@ -949,7 +935,6 @@ class GeneralizedProductAccumulation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
 
 
 class GeneralizedSubstrateDepletion(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Generalized Substrate Depletion"
     _HTML = "y = ax / (b + x) - cx - d"
     _leftSideHTML = "y"
@@ -1060,7 +1045,6 @@ class HighLowAffinity(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HighLowAffinityDouble(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "High-Low Affinity Double"
     _HTML = "y = abx / (1+bx) + cdx / (1+dx)"
     _leftSideHTML = "y"
@@ -1178,7 +1162,6 @@ class HighLowAffinityIsotopeDisplacement(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
 class HighLowAffinityIsotopeDisplacementDouble(
     pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
 ):
-
     _baseName = "High-Low Affinity Double Isotope Displacement ([Hot] subsumed)"
     _HTML = "y = ab / (1+bx) + cd / (1+dx)"
     _leftSideHTML = "y"
@@ -1288,7 +1271,6 @@ class HyperbolicA(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Hyperbolic B"
     _HTML = "y = (a + bx) / (c + x)"
     _leftSideHTML = "y"
@@ -1343,7 +1325,6 @@ class HyperbolicB(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Hyperbolic C"
     _HTML = "y = (a + x) / (b + cx)"
     _leftSideHTML = "y"
@@ -1398,7 +1379,6 @@ class HyperbolicC(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicD(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Hyperbolic D"
     _HTML = "y = (a + bx) / (c + dx)"
     _leftSideHTML = "y"
@@ -1508,7 +1488,6 @@ class HyperbolicE(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicF(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Hyperbolic F"
     _HTML = "y = ax / (b + x) + cx"
     _leftSideHTML = "y"
@@ -1563,7 +1542,6 @@ class HyperbolicF(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicG(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Hyperbolic G"
     _HTML = "y = ax / (b + x) + cx / (d + x)"
     _leftSideHTML = "y"
@@ -1619,7 +1597,6 @@ class HyperbolicG(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicH(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Hyperbolic H"
     _HTML = "y = ax / (b + x) + cx / (d + x) + fx"
     _leftSideHTML = "y"
@@ -1785,7 +1762,6 @@ class HyperbolicJ(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class HyperbolicLogistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Hyperbolic Logistic"
     _HTML = "y = ax<sup>b</sup> / (c + x<sup>b</sup>)"
     _leftSideHTML = "y"
@@ -1841,7 +1817,6 @@ class HyperbolicLogistic(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class MembraneTransport(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Membrane Transport"
     _HTML = "y = a(x-b) / (x<sup>2</sup> + cx + d)"
     _leftSideHTML = "y"
@@ -1960,7 +1935,6 @@ class MichaelisMenten(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class MichaelisMentenDouble(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Michaelis-Menten Double"
     _HTML = "y = ax / (b + x) + cx / (d + x)"
     _leftSideHTML = "y"
@@ -2018,7 +1992,6 @@ class MichaelisMentenDouble(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 class MichaelisMentenDoubleIsotopeDisplacement(
     pyeq3.Model_2D_BaseClass.Model_2D_BaseClass
 ):
-
     _baseName = "Michaelis-Menten Isotope Displacement Double ([Hot] subsumed)"
     _HTML = "y = a / (b + x) + c / (d + x)"
     _leftSideHTML = "y"
@@ -2129,7 +2102,6 @@ class MichaelisMentenIsotopeDisplacement(pyeq3.Model_2D_BaseClass.Model_2D_BaseC
 
 
 class MichaelisMentenProductAccumulation(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Michaelis-Menten Product Accumulation"
     _HTML = "y = a(b-x) / (c + (b-x))"
     _leftSideHTML = "y"
@@ -2240,7 +2212,6 @@ class NegativeExponential(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NewZealandEcologyLogistic1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "New Zealand Ecology Logistic 1"
     _HTML = "n = B0 + ((B1 - B0) / (1.0 + exp((B2 + D) * B3)))"
     _leftSideHTML = "n"
@@ -2295,7 +2266,6 @@ class NewZealandEcologyLogistic1(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class NewZealandEcologyLogistic2(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "New Zealand Ecology Logistic 2"
     _HTML = "n = B0 + ((B1 - B0) / (1.0 + exp((B2 + D + (B4*D<sup>2</sup>)) * B3)))"
     _leftSideHTML = "n"
@@ -2644,7 +2614,6 @@ class PlantDisease_Monomolecular(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PlantDisease_Weibull(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Plant Disease Weibull Model"
     _HTML = "Incidence = 1 - exp(-1.0 * ((time - a) / b)<sup>c</sup>)"
     _leftSideHTML = "Incidence"
@@ -2715,7 +2684,6 @@ class PlantDisease_Weibull(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PlantDisease_WeibullScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Plant Disease Weibull Model Scaled"
     _HTML = "y = Scale * (1 - exp(-1.0 * ((time - a) / b)<sup>c</sup>))"
     _leftSideHTML = "y"
@@ -2780,7 +2748,6 @@ class PlantDisease_WeibullScaled(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class PreeceAndBaines(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Preece And Baines Growth"
     _HTML = "y = a - 2(a-b) / (exp(c(x-d)) + exp(f(x-d)))"
     _leftSideHTML = "y"
@@ -2893,7 +2860,6 @@ class ScaledLog(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ScaledLog_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Scaled Log Transform"
     _HTML = "y = a * log(bx + c)"
     _leftSideHTML = "y"
@@ -3002,7 +2968,6 @@ class ScaledPower(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class ScaledPower_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Scaled Power Transform"
     _HTML = "y = a * (cx + d)<sup>b</sup>"
     _leftSideHTML = "y"
@@ -3058,7 +3023,6 @@ class ScaledPower_Transform(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class StandardLogistic5Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Standard 5-Parameter Logistic Equation"
     _HTML = "y = d + (a - d) / (1 + (x / c)<sup>b</sup> )<sup>f</sup>"
     _leftSideHTML = "y"
@@ -3116,7 +3080,6 @@ class StandardLogistic5Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class StandardLogistic4Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Standard 4-Parameter Logistic Equation"
     _HTML = "y = d + (a - d) / (1 + (x / c)<sup>b</sup>)"
     _leftSideHTML = "y"
@@ -3173,7 +3136,6 @@ class StandardLogistic4Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class StandardLogistic3Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Standard 3-Parameter Logistic Equation"
     _HTML = "y = d + (a - d) / (1 + (x / c))"
     _leftSideHTML = "y"
@@ -3227,7 +3189,6 @@ class StandardLogistic3Parameter(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class Weibull(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Weibull"
     _HTML = "y = a * (1.0 - exp(-b * (x - c)<sup>d</sup>))"
     _leftSideHTML = "y"
@@ -3283,7 +3244,6 @@ class Weibull(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
 
 
 class XiaogangPengImmunoassay(pyeq3.Model_2D_BaseClass.Model_2D_BaseClass):
-
     _baseName = "Xiaogang Peng Immunoassay"
     _HTML = "y = K / (1.0 + exp(-1.0 * (a + blog(x) + cx)))"
     _leftSideHTML = "y"

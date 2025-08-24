@@ -60,7 +60,6 @@ class DiffEvolver(object):
     # heavily edited from original code
 
     def solve(self, sufficientSolution, newgens=100):
-
         # Did generation zero already reach a sufficient solution?
         if self.best_value <= sufficientSolution:
             gen = 0

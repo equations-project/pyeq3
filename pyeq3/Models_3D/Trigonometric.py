@@ -10,27 +10,33 @@
 
 import sys
 import os
-if os.path.join(sys.path[0][:sys.path[0].rfind(os.sep)], '..') not in sys.path:
-    sys.path.append(os.path.join(
-        sys.path[0][:sys.path[0].rfind(os.sep)], '..'))
+
+if os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], "..") not in sys.path:
+    sys.path.append(os.path.join(sys.path[0][: sys.path[0].rfind(os.sep)], ".."))
 
 import pyeq3
 import pyeq3.Model_3D_BaseClass
 
 import numpy
-numpy.seterr(all='ignore')
+
+numpy.seterr(all="ignore")
 
 
 class SineX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Sine X Plus Sine Y [radians]"
-    _HTML = 'z = amplitude_x * sin(pi * (x - center_x) / width_x) + amplitude_y * sin(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude_x', 'center_x',
-                               'width_x', 'amplitude_y', 'center_y', 'width_y']
+    _HTML = "z = amplitude_x * sin(pi * (x - center_x) / width_x) + amplitude_y * sin(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude_x",
+        "center_x",
+        "width_x",
+        "amplitude_y",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -45,25 +51,30 @@ class SineX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude_x = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -73,11 +84,14 @@ class SineX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[5]
 
         try:
-            temp = amplitude_x * numpy.sin(numpy.pi * (x_in - center_x) / width_x) + \
-                amplitude_y * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = amplitude_x * numpy.sin(
+                numpy.pi * (x_in - center_x) / width_x
+            ) + amplitude_y * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude_x * sin(3.14159265358979323846 * (x_in - center_x) / width_x) + amplitude_y * sin(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -85,15 +99,19 @@ class SineX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SineX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Sine X Times Sine Y [radians]"
-    _HTML = 'z = amplitude * sin(pi * (x - center_x) / width_x) * sin(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude',
-                               'center_x', 'width_x', 'center_y', 'width_y']
+    _HTML = "z = amplitude * sin(pi * (x - center_x) / width_x) * sin(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude",
+        "center_x",
+        "width_x",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -108,25 +126,30 @@ class SineX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -135,11 +158,16 @@ class SineX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[4]
 
         try:
-            temp = amplitude * numpy.sin(numpy.pi * (x_in - center_x) /
-                                         width_x) * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                amplitude
+                * numpy.sin(numpy.pi * (x_in - center_x) / width_x)
+                * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * (x_in - center_x) / width_x) * sin(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -150,12 +178,12 @@ class SineXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGeneratePlusPlaneForm = True  # auto-added by script
 
     _baseName = "Sine XY [radians]"
-    _HTML = 'z = amplitude * sin(pi * (xy - center) / width)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude', 'center', 'width']
+    _HTML = "z = amplitude * sin(pi * (xy - center) / width)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["amplitude", "center", "width"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -170,21 +198,25 @@ class SineXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        xy = inDataCacheDictionary['XY']
+        xy = inDataCacheDictionary["XY"]
 
         amplitude = inCoeffs[0]
         center = inCoeffs[1]
@@ -192,9 +224,11 @@ class SineXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = amplitude * numpy.sin(numpy.pi * (xy - center) / width)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * ((x_in * y_in) - center) / width);\n"
@@ -202,15 +236,20 @@ class SineXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class TangentX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Tangent X Plus Tangent Y [radians]"
-    _HTML = 'z = amplitude_x * tan(pi * (x - center_x) / width_x) + amplitude_y * tan(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude_x', 'center_x',
-                               'width_x', 'amplitude_y', 'center_y', 'width_y']
+    _HTML = "z = amplitude_x * tan(pi * (x - center_x) / width_x) + amplitude_y * tan(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude_x",
+        "center_x",
+        "width_x",
+        "amplitude_y",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -225,25 +264,30 @@ class TangentX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude_x = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -253,11 +297,14 @@ class TangentX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[5]
 
         try:
-            temp = amplitude_x * numpy.tan(numpy.pi * (x_in - center_x) / width_x) + \
-                amplitude_y * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = amplitude_x * numpy.tan(
+                numpy.pi * (x_in - center_x) / width_x
+            ) + amplitude_y * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude_x * tan(3.14159265358979323846 * (x_in - center_x) / width_x) + amplitude_y * tan(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -265,15 +312,19 @@ class TangentX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class TangentX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Tangent X Times Tangent Y [radians]"
-    _HTML = 'z = amplitude * tan(pi * (x - center_x) / width_x) * tan(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude',
-                               'center_x', 'width_x', 'center_y', 'width_y']
+    _HTML = "z = amplitude * tan(pi * (x - center_x) / width_x) * tan(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude",
+        "center_x",
+        "width_x",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -288,25 +339,30 @@ class TangentX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -315,11 +371,16 @@ class TangentX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[4]
 
         try:
-            temp = amplitude * numpy.tan(numpy.pi * (x_in - center_x) /
-                                         width_x) * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                amplitude
+                * numpy.tan(numpy.pi * (x_in - center_x) / width_x)
+                * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * tan(3.14159265358979323846 * (x_in - center_x) / width_x) * tan(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -330,12 +391,12 @@ class TangentXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGeneratePlusPlaneForm = True  # auto-added by script
 
     _baseName = "Tangent XY [radians]"
-    _HTML = 'z = amplitude * tan(pi * (xy - center) / width)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude', 'center', 'width']
+    _HTML = "z = amplitude * tan(pi * (xy - center) / width)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["amplitude", "center", "width"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -350,21 +411,25 @@ class TangentXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        xy = inDataCacheDictionary['XY']
+        xy = inDataCacheDictionary["XY"]
 
         amplitude = inCoeffs[0]
         center = inCoeffs[1]
@@ -372,9 +437,11 @@ class TangentXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = amplitude * numpy.tan(numpy.pi * (xy - center) / width)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * tan(3.14159265358979323846 * ((x_in * y_in) - center) / width);\n"
@@ -382,15 +449,20 @@ class TangentXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class CoshX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Cosh X Plus Cosh Y [radians]"
-    _HTML = 'z = amplitude_x * cosh(pi * (x - center_x) / width_x) + amplitude_y * cosh(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude_x', 'center_x',
-                               'width_x', 'amplitude_y', 'center_y', 'width_y']
+    _HTML = "z = amplitude_x * cosh(pi * (x - center_x) / width_x) + amplitude_y * cosh(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude_x",
+        "center_x",
+        "width_x",
+        "amplitude_y",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -405,25 +477,30 @@ class CoshX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude_x = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -433,12 +510,14 @@ class CoshX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[5]
 
         try:
-            temp = amplitude_x * numpy.cosh(numpy.pi * (x_in - center_x) / width_x) + \
-                amplitude_y * numpy.cosh(numpy.pi *
-                                         (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = amplitude_x * numpy.cosh(
+                numpy.pi * (x_in - center_x) / width_x
+            ) + amplitude_y * numpy.cosh(numpy.pi * (y_in - center_y) / width_y)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude_x * cosh(3.14159265358979323846 * (x_in - center_x) / width_x) + amplitude_y * cosh(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -446,15 +525,19 @@ class CoshX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class CoshX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Cosh X Times Cosh Y[radians]"
-    _HTML = 'z = amplitude * cosh(pi * (x - center_x) / width_x) * cosh(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude',
-                               'center_x', 'width_x', 'center_y', 'width_y']
+    _HTML = "z = amplitude * cosh(pi * (x - center_x) / width_x) * cosh(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude",
+        "center_x",
+        "width_x",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -469,25 +552,30 @@ class CoshX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -496,11 +584,16 @@ class CoshX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[4]
 
         try:
-            temp = amplitude * numpy.cosh(numpy.pi * (x_in - center_x) /
-                                          width_x) * numpy.cosh(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                amplitude
+                * numpy.cosh(numpy.pi * (x_in - center_x) / width_x)
+                * numpy.cosh(numpy.pi * (y_in - center_y) / width_y)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * cosh(3.14159265358979323846 * (x_in - center_x) / width_x) * cosh(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -511,12 +604,12 @@ class CoshXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     autoGeneratePlusPlaneForm = True  # auto-added by script
 
     _baseName = "Cosh XY [radians]"
-    _HTML = 'z = amplitude * cosh(pi * (xy - center) / width)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude', 'center', 'width']
+    _HTML = "z = amplitude * cosh(pi * (xy - center) / width)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["amplitude", "center", "width"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -531,21 +624,25 @@ class CoshXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.XY(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        xy = inDataCacheDictionary['XY']
+        xy = inDataCacheDictionary["XY"]
 
         amplitude = inCoeffs[0]
         center = inCoeffs[1]
@@ -553,9 +650,11 @@ class CoshXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
         try:
             temp = amplitude * numpy.cosh(numpy.pi * (xy - center) / width)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * cosh(3.14159265358979323846 * ((x_in * y_in) - center) / width);\n"
@@ -563,14 +662,13 @@ class CoshXY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RezaCustomOne(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Reza's Custom Equation One [radians]"
-    _HTML = 'z = (cos(a*x - b*y) + sin(c*x - d*y))<sup>n</sup> - (cos(f*x - g*y) + sin(h*x- i*y))<sup>n</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'n']
+    _HTML = "z = (cos(a*x - b*y) + sin(c*x - d*y))<sup>n</sup> - (cos(f*x - g*y) + sin(h*x- i*y))<sup>n</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["a", "b", "c", "d", "f", "g", "h", "i", "n"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -588,16 +686,20 @@ class RezaCustomOne(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         a = inCoeffs[0]
         b = inCoeffs[1]
@@ -610,13 +712,17 @@ class RezaCustomOne(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         n = inCoeffs[8]
 
         try:
-            temp = numpy.power(numpy.cos(a*x_in - b*y_in) +
-                               numpy.sin(c*x_in - d*y_in), n)
-            temp -= numpy.power(numpy.cos(f*x_in - g*y_in) +
-                                numpy.sin(h*x_in - i*y_in), n)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = numpy.power(
+                numpy.cos(a * x_in - b * y_in) + numpy.sin(c * x_in - d * y_in), n
+            )
+            temp -= numpy.power(
+                numpy.cos(f * x_in - g * y_in) + numpy.sin(h * x_in - i * y_in), n
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = pow(cos(a*x_in - b*y_in) + sin(c*x_in - d*y_in), n);\n"
@@ -625,14 +731,13 @@ class RezaCustomOne(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class RezaCustomTwo(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Reza's Custom Equation Two [radians]"
-    _HTML = 'z = abs(cos((A*(x+B)) + C*(y+D))) + abs(cos((A*(x+B)) - C*(y+D))) - (sin(E*x+F))<sup>2</sup> - (sin(E*y+G))<sup>2</sup>'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    _HTML = "z = abs(cos((A*(x+B)) + C*(y+D))) + abs(cos((A*(x+B)) - C*(y+D))) - (sin(E*x+F))<sup>2</sup> - (sin(E*y+G))<sup>2</sup>"
+    _leftSideHTML = "z"
+    _coefficientDesignators = ["A", "B", "C", "D", "E", "F", "G"]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -650,16 +755,20 @@ class RezaCustomTwo(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         A = inCoeffs[0]
         B = inCoeffs[1]
@@ -670,11 +779,17 @@ class RezaCustomTwo(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         G = inCoeffs[6]
 
         try:
-            temp = abs(numpy.cos((A*(x_in+B)) + C*(y_in+D))) + abs(numpy.cos((A*(x_in+B)) - C*(y_in+D))
-                                                                   ) - numpy.power(numpy.sin(E*x_in+F), 2.0) - numpy.power(numpy.sin(E*y_in+G), 2.0)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                abs(numpy.cos((A * (x_in + B)) + C * (y_in + D)))
+                + abs(numpy.cos((A * (x_in + B)) - C * (y_in + D)))
+                - numpy.power(numpy.sin(E * x_in + F), 2.0)
+                - numpy.power(numpy.sin(E * y_in + G), 2.0)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = abs(cos((A*(x_in+B)) + C*(y_in+D))) + abs(cos((A*(x_in+B)) - C*(y_in+D))) - pow(sin(E*x_in+F), 2.0) - pow(sin(E*y_in+G), 2.0);\n"
@@ -682,15 +797,20 @@ class RezaCustomTwo(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SineX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Sine X Plus Tangent Y [radians]"
-    _HTML = 'z = amplitude_x * sin(pi * (x - center_x) / width_x) + amplitude_y * tan(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude_x', 'center_x',
-                               'width_x', 'amplitude_y', 'center_y', 'width_y']
+    _HTML = "z = amplitude_x * sin(pi * (x - center_x) / width_x) + amplitude_y * tan(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude_x",
+        "center_x",
+        "width_x",
+        "amplitude_y",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -705,25 +825,30 @@ class SineX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude_x = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -733,11 +858,14 @@ class SineX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[5]
 
         try:
-            temp = amplitude_x * numpy.sin(numpy.pi * (x_in - center_x) / width_x) + \
-                amplitude_y * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = amplitude_x * numpy.sin(
+                numpy.pi * (x_in - center_x) / width_x
+            ) + amplitude_y * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude_x * sin(3.14159265358979323846 * (x_in - center_x) / width_x) + amplitude_y * tan(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -745,15 +873,19 @@ class SineX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SineX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Sine X Times Tangent Y [radians]"
-    _HTML = 'z = amplitude * sin(pi * (x - center_x) / width_x) * tan(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude',
-                               'center_x', 'width_x', 'center_y', 'width_y']
+    _HTML = "z = amplitude * sin(pi * (x - center_x) / width_x) * tan(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude",
+        "center_x",
+        "width_x",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -768,25 +900,30 @@ class SineX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -795,11 +932,16 @@ class SineX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[4]
 
         try:
-            temp = amplitude * numpy.sin(numpy.pi * (x_in - center_x) /
-                                         width_x) * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                amplitude
+                * numpy.sin(numpy.pi * (x_in - center_x) / width_x)
+                * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * (x_in - center_x) / width_x) * tan(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -807,15 +949,20 @@ class SineX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class TangentX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Tangent X Plus Sine Y [radians]"
-    _HTML = 'z = amplitude_x * tan(pi * (x - center_x) / width_x) + amplitude_y * sin(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude_x', 'center_x',
-                               'width_x', 'amplitude_y', 'center_y', 'width_y']
+    _HTML = "z = amplitude_x * tan(pi * (x - center_x) / width_x) + amplitude_y * sin(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude_x",
+        "center_x",
+        "width_x",
+        "amplitude_y",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -830,25 +977,30 @@ class TangentX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude_x = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -858,11 +1010,14 @@ class TangentX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[5]
 
         try:
-            temp = amplitude_x * numpy.tan(numpy.pi * (x_in - center_x) / width_x) + \
-                amplitude_y * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = amplitude_x * numpy.tan(
+                numpy.pi * (x_in - center_x) / width_x
+            ) + amplitude_y * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude_x * tan(3.14159265358979323846 * (x_in - center_x) / width_x) + amplitude_y * sin(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -870,15 +1025,19 @@ class TangentX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class TangentX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Tangent X Times Sine Y [radians]"
-    _HTML = 'z = amplitude * tan(pi * (x - center_x) / width_x) * sin(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude',
-                               'center_x', 'width_x', 'center_y', 'width_y']
+    _HTML = "z = amplitude * tan(pi * (x - center_x) / width_x) * sin(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude",
+        "center_x",
+        "width_x",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -893,25 +1052,30 @@ class TangentX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -920,11 +1084,16 @@ class TangentX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[4]
 
         try:
-            temp = amplitude * numpy.tan(numpy.pi * (x_in - center_x) /
-                                         width_x) * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                amplitude
+                * numpy.tan(numpy.pi * (x_in - center_x) / width_x)
+                * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * tan(3.14159265358979323846 * (x_in - center_x) / width_x) * sin(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -932,15 +1101,20 @@ class TangentX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class CoshX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Cosh X Plus Sine Y [radians]"
-    _HTML = 'z = amplitude_x * cosh(pi * (x - center_x) / width_x) + amplitude_y * sin(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude_x', 'center_x',
-                               'width_x', 'amplitude_y', 'center_y', 'width_y']
+    _HTML = "z = amplitude_x * cosh(pi * (x - center_x) / width_x) + amplitude_y * sin(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude_x",
+        "center_x",
+        "width_x",
+        "amplitude_y",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -955,25 +1129,30 @@ class CoshX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude_x = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -983,11 +1162,14 @@ class CoshX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[5]
 
         try:
-            temp = amplitude_x * numpy.cosh(numpy.pi * (x_in - center_x) / width_x) + \
-                amplitude_y * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = amplitude_x * numpy.cosh(
+                numpy.pi * (x_in - center_x) / width_x
+            ) + amplitude_y * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude_x * cosh(3.14159265358979323846 * (x_in - center_x) / width_x) + amplitude_y * sin(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -995,15 +1177,19 @@ class CoshX_Plus_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class CoshX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Cosh X Times Sine Y [radians]"
-    _HTML = 'z = amplitude * cosh(pi * (x - center_x) / width_x) * sin(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude',
-                               'center_x', 'width_x', 'center_y', 'width_y']
+    _HTML = "z = amplitude * cosh(pi * (x - center_x) / width_x) * sin(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude",
+        "center_x",
+        "width_x",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1018,25 +1204,30 @@ class CoshX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -1045,11 +1236,16 @@ class CoshX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[4]
 
         try:
-            temp = amplitude * numpy.cosh(numpy.pi * (x_in - center_x) /
-                                          width_x) * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                amplitude
+                * numpy.cosh(numpy.pi * (x_in - center_x) / width_x)
+                * numpy.sin(numpy.pi * (y_in - center_y) / width_y)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * cosh(3.14159265358979323846 * (x_in - center_x) / width_x) * sin(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -1057,15 +1253,20 @@ class CoshX_Times_SineY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SineX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Sine X Plus Cosh Y [radians]"
-    _HTML = 'z = amplitude_x * sin(pi * (x - center_x) / width_x) + amplitude_y * cosh(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude_x', 'center_x',
-                               'width_x', 'amplitude_y', 'center_y', 'width_y']
+    _HTML = "z = amplitude_x * sin(pi * (x - center_x) / width_x) + amplitude_y * cosh(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude_x",
+        "center_x",
+        "width_x",
+        "amplitude_y",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1080,25 +1281,30 @@ class SineX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude_x = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -1108,12 +1314,14 @@ class SineX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[5]
 
         try:
-            temp = amplitude_x * numpy.sin(numpy.pi * (x_in - center_x) / width_x) + \
-                amplitude_y * numpy.cosh(numpy.pi *
-                                         (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = amplitude_x * numpy.sin(
+                numpy.pi * (x_in - center_x) / width_x
+            ) + amplitude_y * numpy.cosh(numpy.pi * (y_in - center_y) / width_y)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude_x * sin(3.14159265358979323846 * (x_in - center_x) / width_x) + amplitude_y * cosh(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -1121,15 +1329,19 @@ class SineX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class SineX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Sine X Times Cosh Y [radians]"
-    _HTML = 'z = amplitude * sine(pi * (x - center_x) / width_x) * cosh(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude',
-                               'center_x', 'width_x', 'center_y', 'width_y']
+    _HTML = "z = amplitude * sine(pi * (x - center_x) / width_x) * cosh(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude",
+        "center_x",
+        "width_x",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1144,25 +1356,30 @@ class SineX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -1171,11 +1388,16 @@ class SineX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[4]
 
         try:
-            temp = amplitude * numpy.sin(numpy.pi * (x_in - center_x) /
-                                         width_x) * numpy.cosh(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                amplitude
+                * numpy.sin(numpy.pi * (x_in - center_x) / width_x)
+                * numpy.cosh(numpy.pi * (y_in - center_y) / width_y)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * sin(3.14159265358979323846 * (x_in - center_x) / width_x) * cosh(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -1183,15 +1405,20 @@ class SineX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class CoshX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Cosh X Plus Tangent Y [radians]"
-    _HTML = 'z = amplitude_x * cosh(pi * (x - center_x) / width_x) + amplitude_y * tan(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude_x', 'center_x',
-                               'width_x', 'amplitude_y', 'center_y', 'width_y']
+    _HTML = "z = amplitude_x * cosh(pi * (x - center_x) / width_x) + amplitude_y * tan(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude_x",
+        "center_x",
+        "width_x",
+        "amplitude_y",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1206,25 +1433,30 @@ class CoshX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude_x = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -1234,11 +1466,14 @@ class CoshX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[5]
 
         try:
-            temp = amplitude_x * numpy.cosh(numpy.pi * (x_in - center_x) / width_x) + \
-                amplitude_y * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = amplitude_x * numpy.cosh(
+                numpy.pi * (x_in - center_x) / width_x
+            ) + amplitude_y * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude_x * cosh(3.14159265358979323846 * (x_in - center_x) / width_x) + amplitude_y * tan(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -1246,15 +1481,19 @@ class CoshX_Plus_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class CoshX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Cosh X Times Tangent Y [radians]"
-    _HTML = 'z = amplitude * cosh(pi * (x - center_x) / width_x) * tan(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude',
-                               'center_x', 'width_x', 'center_y', 'width_y']
+    _HTML = "z = amplitude * cosh(pi * (x - center_x) / width_x) * tan(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude",
+        "center_x",
+        "width_x",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1269,25 +1508,30 @@ class CoshX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -1296,11 +1540,16 @@ class CoshX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[4]
 
         try:
-            temp = amplitude * numpy.cosh(numpy.pi * (x_in - center_x) /
-                                          width_x) * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                amplitude
+                * numpy.cosh(numpy.pi * (x_in - center_x) / width_x)
+                * numpy.tan(numpy.pi * (y_in - center_y) / width_y)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * cosh(3.14159265358979323846 * (x_in - center_x) / width_x) * tan(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -1308,15 +1557,20 @@ class CoshX_Times_TangentY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class TangentX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Tangent X Plus Cosh Y [radians]"
-    _HTML = 'z = amplitude_x * tan(pi * (x - center_x) / width_x) + amplitude_y * cosh(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude_x', 'center_x',
-                               'width_x', 'amplitude_y', 'center_y', 'width_y']
+    _HTML = "z = amplitude_x * tan(pi * (x - center_x) / width_x) + amplitude_y * cosh(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude_x",
+        "center_x",
+        "width_x",
+        "amplitude_y",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1331,25 +1585,30 @@ class TangentX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude_x = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -1359,12 +1618,14 @@ class TangentX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[5]
 
         try:
-            temp = amplitude_x * numpy.tan(numpy.pi * (x_in - center_x) / width_x) + \
-                amplitude_y * numpy.cosh(numpy.pi *
-                                         (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = amplitude_x * numpy.tan(
+                numpy.pi * (x_in - center_x) / width_x
+            ) + amplitude_y * numpy.cosh(numpy.pi * (y_in - center_y) / width_y)
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude_x * tan(3.14159265358979323846 * (x_in - center_x) / width_x) + amplitude_y * cosh(3.14159265358979323846 * (y_in - center_y) / width_y);\n"
@@ -1372,15 +1633,19 @@ class TangentX_Plus_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
 
 
 class TangentX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
-
     _baseName = "Tangent X Times Cosh Y [radians]"
-    _HTML = 'z = amplitude * tan(pi * (x - center_x) / width_x) * cosh(pi * (y - center_y) / width_y)'
-    _leftSideHTML = 'z'
-    _coefficientDesignators = ['amplitude',
-                               'center_x', 'width_x', 'center_y', 'width_y']
+    _HTML = "z = amplitude * tan(pi * (x - center_x) / width_x) * cosh(pi * (y - center_y) / width_y)"
+    _leftSideHTML = "z"
+    _coefficientDesignators = [
+        "amplitude",
+        "center_x",
+        "width_x",
+        "center_y",
+        "width_y",
+    ]
     _canLinearSolverBeUsedForSSQABS = False
 
-    webReferenceURL = ''
+    webReferenceURL = ""
 
     baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions = False
     autoGenerateOffsetForm = True
@@ -1395,25 +1660,30 @@ class TangentX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
     independentData2CannotContainPositiveFlag = False
     independentData2CannotContainNegativeFlag = False
 
-    def __init__(self, inFittingTarget='SSQABS', inExtendedVersionName='Default'):
+    def __init__(self, inFittingTarget="SSQABS", inExtendedVersionName="Default"):
         pyeq3.Model_3D_BaseClass.Model_3D_BaseClass.__init__(
-            self, inFittingTarget, inExtendedVersionName)
+            self, inFittingTarget, inExtendedVersionName
+        )
         self.lowerCoefficientBounds = [None, None, 0.0, None, 0.0]
         self.extendedVersionHandler.AppendAdditionalCoefficientBounds(self)
 
     def GetDataCacheFunctions(self):
         functionList = []
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []])
+            [pyeq3.DataCache.DataCacheFunctions.X(NameOrValueFlag=1), []]
+        )
         functionList.append(
-            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []])
-        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(self, functionList)
+            [pyeq3.DataCache.DataCacheFunctions.Y(NameOrValueFlag=1), []]
+        )
+        return self.extendedVersionHandler.GetAdditionalDataCacheFunctions(
+            self, functionList
+        )
 
     def CalculateModelPredictions(self, inCoeffs, inDataCacheDictionary):
         # only need to perform this dictionary look-up once
-        x_in = inDataCacheDictionary['X']
+        x_in = inDataCacheDictionary["X"]
         # only need to perform this dictionary look-up once
-        y_in = inDataCacheDictionary['Y']
+        y_in = inDataCacheDictionary["Y"]
 
         amplitude = inCoeffs[0]
         center_x = inCoeffs[1]
@@ -1422,11 +1692,16 @@ class TangentX_Times_CoshY(pyeq3.Model_3D_BaseClass.Model_3D_BaseClass):
         width_y = inCoeffs[4]
 
         try:
-            temp = amplitude * numpy.tan(numpy.pi * (x_in - center_x) /
-                                         width_x) * numpy.cosh(numpy.pi * (y_in - center_y) / width_y)
-            return self.extendedVersionHandler.GetAdditionalModelPredictions(temp, inCoeffs, inDataCacheDictionary, self)
+            temp = (
+                amplitude
+                * numpy.tan(numpy.pi * (x_in - center_x) / width_x)
+                * numpy.cosh(numpy.pi * (y_in - center_y) / width_y)
+            )
+            return self.extendedVersionHandler.GetAdditionalModelPredictions(
+                temp, inCoeffs, inDataCacheDictionary, self
+            )
         except:
-            return numpy.ones(len(inDataCacheDictionary['DependentData'])) * 1.0E300
+            return numpy.ones(len(inDataCacheDictionary["DependentData"])) * 1.0e300
 
     def SpecificCodeCPP(self):
         s = "\ttemp = amplitude * tan(3.14159265358979323846 * (x_in - center_x) / width_x) * cosh(3.14159265358979323846 * (y_in - center_y) / width_y);\n"

@@ -36,7 +36,6 @@ textData = """
 def SetParametersAndFit(
     equationString, inFittingTargetString, inExtendedVersionString, inTextData
 ):
-
     # individual cluster nodes must be able to import pyeq3
     import pyeq3
 
@@ -94,7 +93,6 @@ for submodule in inspect.getmembers(pyeq3.Models_3D):
     if inspect.ismodule(submodule[1]):
         for equationClass in inspect.getmembers(submodule[1]):
             if inspect.isclass(equationClass[1]):
-
                 # ignore these special classes for simplicity
                 if (
                     equationClass[1].splineFlag
@@ -107,7 +105,6 @@ for submodule in inspect.getmembers(pyeq3.Models_3D):
                     continue
 
                 for extendedVersionString in ["Default", "Offset"]:
-
                     if (extendedVersionString == "Offset") and (
                         equationClass[1].autoGenerateOffsetForm is False
                     ):
