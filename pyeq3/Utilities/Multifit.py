@@ -5,6 +5,11 @@ import copy
 import multiprocessing
 import queue
 import pyeq3
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+import numpy as np
+from datetime import datetime
+import pypandoc
 
 
 def ResultListSortFunction(a, b):  # utility function
@@ -156,7 +161,6 @@ def SubmitTasksToQueue(
         if inspect.ismodule(submodule[1]):
             for equationClass in inspect.getmembers(submodule[1]):
                 if inspect.isclass(equationClass[1]):
-
                     # special classes
                     if (
                         equationClass[1].splineFlag
@@ -169,7 +173,6 @@ def SubmitTasksToQueue(
                         continue
 
                     for extendedVersion in ["Default", "Offset"]:
-
                         if (extendedVersion == "Offset") and (
                             equationClass[1].autoGenerateOffsetForm is False
                         ):
@@ -232,7 +235,6 @@ def SubmitTasksToQueue(
     for coeffCount in range(1, maxPolyfunctionalCoefficients + 1):
         functionCombinations = UniqueCombinations(functionIndexList, coeffCount)
         for functionCombination in functionCombinations:
-
             if len(functionCombination) > smoothnessControl:
                 continue
 
@@ -266,7 +268,6 @@ def SubmitTasksToQueue(
     maxPolynomialOrderX = smoothnessControl
 
     for polynomialOrderX in range(maxPolynomialOrderX + 1):
-
         if (polynomialOrderX + 1) > smoothnessControl:
             continue
 
@@ -309,9 +310,7 @@ def SubmitTasksToQueue(
                     functionIndexList, denominatorCoeffCount
                 )
                 for denominatorCombo in denominatorComboList:
-
                     for extendedVersion in ["Default", "Offset"]:
-
                         extraCoeffs = 0
                         if extendedVersion == "Offset":
                             extraCoeffs = 1
@@ -554,3 +553,98 @@ def InstantiateModel(result, data):
     equation.CalculateCoefficientAndFitStatistics()
 
     return equation
+
+
+def FitDataToAllModelsAndOutput(
+    datafile,
+    misfit_criterion,
+    max_params,
+    pdf_outfile,
+    txt_outfile,
+    max_n_functions,
+    number_of_cpus,
+):
+    # The data to fit
+    data = np.loadtxt(datafile)
+
+    # Determine the dimensionality of the data
+    if data.shape[1] == 2:
+        dim = 2
+    elif data.shape[1] == 3:
+        dim = 3
+    else:
+        raise ValueError("Unsupported data dimensionality")
+
+    max_number_of_cpus = multiprocessing.cpu_count()  # use all CPUs
+    number_of_cpus = min(number_of_cpus, max_number_of_cpus)
+    if number_of_cpus > 1:
+        number_of_cpus -= 1
+
+    allResults = FitModelsInParallel(
+        data, dim, misfit_criterion, max_params, number_of_cpus
+    )
+
+    # sort the parallel runs and select the best result
+    allResults = sorted(allResults, key=lambda x: x["fittingTargetValue"])
+    bestResult = allResults[0]
+
+    equations = [InstantiateModel(result, data) for result in allResults]
+
+    print(
+        '\nAlthough the "Best Fit" function should have the lowest fitting target value,'
+    )
+    print("it requires further evaluation to determine if it is the best")
+    print("for your needs.  For example, it may interpolate badly.\n")
+    print(f"This inversion allowed a maximum of {max_params} parameters.")
+
+    print("\nBest fit function:")
+    equation = InstantiateModel(bestResult, data)
+    print(equation)
+
+    max_n_functions = min(len(equations), max_n_functions)
+    print(
+        f"\nFinally, we plot up the best {max_n_functions} functions and output the corresponding code"
+    )
+    print(f"(see {pdf_outfile} and {txt_outfile}).")
+
+    with PdfPages(pdf_outfile) as pdf, open(txt_outfile, "w") as outfile:
+        for i in range(max_n_functions):
+            equation = equations[i]
+            outfile.write(
+                pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(
+                    equation, note=f"Equation {i}"
+                )
+            )
+
+            fig = plt.figure(figsize=(8, 6), dpi=100)
+            axes = fig.add_subplot(111)
+            pyeq3.Graphics.Graphics2D.ModelScatterConfidenceGraph(equation, axes)
+            axes.set_title(
+                f"{i}) {equation.__module__}.{equation.__class__.__name__} "
+                f"({equation.CalculateAllDataFittingTarget(equation.solvedCoefficients):.6e})"
+            )
+
+            text = f"{pypandoc.convert_text(equation.GetDisplayHTML(), 'tex', format='html')}"
+            text = text.replace("*", "$\cdot$")
+            axes.annotate(
+                f"{text}{equation.GetCoefficientDesignators()}\n{equation.solvedCoefficients}",
+                xy=(1.0, -0.2),
+                xycoords="axes fraction",
+                ha="right",
+                va="center",
+                linespacing=1.5,
+                fontsize=10,
+            )
+            fig.set_tight_layout(True)
+
+            pdf.savefig(fig)
+            plt.close()
+
+        # metadata via the PdfPages object:
+        d = pdf.infodict()
+        d["Title"] = "pyeq3 output"
+        d["Author"] = "pyeq3"
+        d["Subject"] = "plots from multifit"
+        d["Keywords"] = "plot multifit"
+        d["CreationDate"] = datetime(2009, 11, 13)
+        d["ModDate"] = datetime.today()
