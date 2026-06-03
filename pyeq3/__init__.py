@@ -39,9 +39,9 @@ Citing pyeq3
 ------------
 
 If you use pyeq3 in your work, we ask that you cite the following publications:
-  - Phillips, J. R. and Myhill, R. (2022):
-    pyeq3 v12.6 [Software]. Zenodo.
-    `(https://doi.org/10.5281/zenodo.6528718) <https://doi.org/10.5281/zenodo.6528718>`_
+  - Phillips, J. R. and Myhill, R. (2026):
+    pyeq3 v12.7 [Software]. Zenodo.
+    `(https://doi.org/10.5281/zenodo.20533850) <https://doi.org/10.5281/zenodo.20533850>`_
 
 
 Contributing to pyeq3
