@@ -185,6 +185,53 @@ class TestModelSolveMethods(unittest.TestCase):
         sourceCode = pyeq3.outputSourceCodeService().GetOutputSourceCodePYTHON(reloaded)
         self.assertTrue(len(sourceCode) > 0)
 
+    def test_Solve_emptyNumpyArrayCoefficientConstraints_doesNotRaise(self):
+        # Regression for issue #34: assigning EMPTY numpy arrays to the
+        # coefficient-constraint attributes used to crash Solve(). The checks
+        # `if self.fixedCoefficients != []` (and the bounds equivalents)
+        # evaluated `numpy.array([]) != []`, which is an empty bool array,
+        # and `if` on it raises "The truth value of an empty array is
+        # ambiguous". Empty constraints must behave exactly like the default
+        # empty lists, including keeping the linear solver path usable.
+        coefficientsShouldBe = numpy.array(
+            [-8.0191356407516956e00, 1.5264472941853220e00]
+        )
+        model = pyeq3.Models_2D.Polynomial.Linear("SSQABS")
+        model.upperCoefficientBounds = numpy.array([])
+        model.lowerCoefficientBounds = numpy.array([])
+        model.fixedCoefficients = numpy.array([])
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, model, False
+        )
+        coefficients = model.Solve()
+        self.assertTrue(model.CanLinearSolverBeUsedForSSQABS())
+        self.assertTrue(
+            numpy.allclose(
+                coefficients, coefficientsShouldBe, rtol=1.0e-10, atol=1.0e-300
+            )
+        )
+
+    def test_Solve_numpyArrayCoefficientBounds_doesNotRaise(self):
+        # Regression for issue #34, non-empty case: on numpy 2.x,
+        # `numpy.array([20.0, 10.0]) != []` raises "operands could not be
+        # broadcast together" instead of returning a truth value, so
+        # assigning numpy arrays as coefficient bounds crashed Solve().
+        # These bounds do not bind, so the fit must match the unbounded
+        # non-linear result.
+        coefficientsShouldBe = numpy.array([-8.01913562, 1.52644729])
+        model = pyeq3.Models_2D.Polynomial.Linear("SSQABS")
+        model.upperCoefficientBounds = numpy.array([20.0, 10.0])
+        model.lowerCoefficientBounds = numpy.array([-20.0, -10.0])
+        pyeq3.dataConvertorService().ConvertAndSortColumnarASCII(
+            DataForUnitTests.asciiDataInColumns_2D, model, False
+        )
+        coefficients = model.Solve()
+        self.assertTrue(
+            numpy.allclose(
+                coefficients, coefficientsShouldBe, rtol=1.0e-03, atol=1.0e-300
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

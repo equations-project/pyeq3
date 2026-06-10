@@ -469,20 +469,20 @@ class IModel(object):
         self.fixedCoefficients = fixedCoefficients
 
     def CalculateModelErrors(self, inCoeffs, inDictionary):
-        if self.upperCoefficientBounds != []:
+        if len(self.upperCoefficientBounds) > 0:
             for i in range(len(inCoeffs)):
                 # use None as a flag for coefficients that are not fixed
                 if self.upperCoefficientBounds[i] is not None:
                     if inCoeffs[i] > self.upperCoefficientBounds[i]:
                         inCoeffs[i] = self.upperCoefficientBounds[i]
-        if self.lowerCoefficientBounds != []:
+        if len(self.lowerCoefficientBounds) > 0:
             for i in range(len(inCoeffs)):
                 # use None as a flag for coefficients
                 # that are not fixed
                 if self.lowerCoefficientBounds[i] is not None:
                     if inCoeffs[i] < self.lowerCoefficientBounds[i]:
                         inCoeffs[i] = self.lowerCoefficientBounds[i]
-        if self.fixedCoefficients != []:
+        if len(self.fixedCoefficients) > 0:
             for i in range(len(inCoeffs)):
                 # use None as a flag for coefficients
                 # that are not fixed
@@ -506,14 +506,14 @@ class IModel(object):
         # save time by checking constraints and bounds first
         if not self.AreCoefficientsWithinBounds(inCoeffs):
             try:  # set any bounds
-                if self.upperCoefficientBounds != []:
+                if len(self.upperCoefficientBounds) > 0:
                     for i in range(len(inCoeffs)):
                         # use None as a flag for coefficients
                         # that are not fixed
                         if self.upperCoefficientBounds[i] is not None:
                             if inCoeffs[i] > self.upperCoefficientBounds[i]:
                                 inCoeffs[i] = self.upperCoefficientBounds[i]
-                if self.lowerCoefficientBounds != []:
+                if len(self.lowerCoefficientBounds) > 0:
                     for i in range(len(inCoeffs)):
                         # use None as a flag for coefficients
                         # that are not fixed
@@ -527,7 +527,7 @@ class IModel(object):
         # initial coefficients
         try:
             # set any fixed coefficients
-            if self.fixedCoefficients != []:
+            if len(self.fixedCoefficients) > 0:
                 for i in range(len(inCoeffs)):
                     # use None as a flag for coefficients that are not fixed
                     if self.fixedCoefficients[i] is not None:
@@ -551,14 +551,14 @@ class IModel(object):
         # save time by checking bounds first
         if not self.AreCoefficientsWithinBounds(inCoeffs):
             try:  # set to bounds
-                if self.upperCoefficientBounds != []:
+                if len(self.upperCoefficientBounds) > 0:
                     for i in range(len(inCoeffs)):
                         # use None as a flag for coefficients
                         # that are not fixed
                         if self.upperCoefficientBounds[i] is not None:
                             if inCoeffs[i] > self.upperCoefficientBounds[i]:
                                 inCoeffs[i] = self.upperCoefficientBounds[i]
-                if self.lowerCoefficientBounds != []:
+                if len(self.lowerCoefficientBounds) > 0:
                     for i in range(len(inCoeffs)):
                         # use None as a flag for coefficients
                         # that are not fixed
@@ -570,7 +570,7 @@ class IModel(object):
 
         try:
             # set any fixed coefficients
-            if self.fixedCoefficients != []:
+            if len(self.fixedCoefficients) > 0:
                 for i in range(len(inCoeffs)):
                     # use None as a flag for coefficients that are not fixed
                     if self.fixedCoefficients[i] is not None:
@@ -704,9 +704,9 @@ class IModel(object):
 
         # if any of these conditions exist, a linear solver cannot be used
         if (
-            self.fixedCoefficients != []
-            or self.upperCoefficientBounds != []
-            or self.lowerCoefficientBounds != []
+            len(self.fixedCoefficients) > 0
+            or len(self.upperCoefficientBounds) > 0
+            or len(self.lowerCoefficientBounds) > 0
             or len(self.dataCache.allDataCacheDictionary["Weights"])
         ):
             self._canLinearSolverBeUsedForSSQABS = False
@@ -732,13 +732,13 @@ class IModel(object):
             return solver.SolveUsingSimplex(self)
 
     def AreCoefficientsWithinBounds(self, inCoeffs):
-        if self.upperCoefficientBounds != []:
+        if len(self.upperCoefficientBounds) > 0:
             for index in range(len(inCoeffs)):
                 if (self.upperCoefficientBounds[index] is not None) and (
                     inCoeffs[index] > self.upperCoefficientBounds[index]
                 ):
                     return False
-        if self.lowerCoefficientBounds != []:
+        if len(self.lowerCoefficientBounds) > 0:
             for index in range(len(inCoeffs)):
                 if (self.lowerCoefficientBounds[index] is not None) and (
                     inCoeffs[index] < self.lowerCoefficientBounds[index]
@@ -763,19 +763,19 @@ class IModel(object):
     def WrapperForScipyCurveFit(self, data, *inCoeffs):
         # so coefficient assigment can be made
         inCoeffs = numpy.array(inCoeffs)
-        if self.upperCoefficientBounds != []:
+        if len(self.upperCoefficientBounds) > 0:
             for i in range(len(inCoeffs)):
                 # use None as a flag for coefficients that are not fixed
                 if self.upperCoefficientBounds[i] is not None:
                     if inCoeffs[i] > self.upperCoefficientBounds[i]:
                         inCoeffs[i] = self.upperCoefficientBounds[i]
-        if self.lowerCoefficientBounds != []:
+        if len(self.lowerCoefficientBounds) > 0:
             for i in range(len(inCoeffs)):
                 # use None as a flag for coefficients that are not fixed
                 if self.lowerCoefficientBounds[i] is not None:
                     if inCoeffs[i] < self.lowerCoefficientBounds[i]:
                         inCoeffs[i] = self.lowerCoefficientBounds[i]
-        if self.fixedCoefficients != []:
+        if len(self.fixedCoefficients) > 0:
             for i in range(len(inCoeffs)):
                 # use None as a flag for coefficients that are not fixed
                 if self.fixedCoefficients[i] is not None:
@@ -794,19 +794,19 @@ class IModel(object):
         if numpy.array_equal(
             data, self.dataCache.allDataCacheDictionary["IndependentData"]
         ):
-            if self.upperCoefficientBounds != []:
+            if len(self.upperCoefficientBounds) > 0:
                 for i in range(len(inCoeffs)):
                     # use None as a flag for coefficients that are not fixed
                     if self.upperCoefficientBounds[i] is not None:
                         if inCoeffs[i] > self.upperCoefficientBounds[i]:
                             inCoeffs[i] = self.upperCoefficientBounds[i]
-            if self.lowerCoefficientBounds != []:
+            if len(self.lowerCoefficientBounds) > 0:
                 for i in range(len(inCoeffs)):
                     # use None as a flag for coefficients that are not fixed
                     if self.lowerCoefficientBounds[i] is not None:
                         if inCoeffs[i] < self.lowerCoefficientBounds[i]:
                             inCoeffs[i] = self.lowerCoefficientBounds[i]
-            if self.fixedCoefficients != []:
+            if len(self.fixedCoefficients) > 0:
                 for i in range(len(inCoeffs)):
                     # use None as a flag for coefficients that are not fixed
                     if self.fixedCoefficients[i] is not None:
@@ -819,19 +819,19 @@ class IModel(object):
             self.dataCache.allDataCacheDictionary = {}
             self.dataCache.allDataCacheDictionary["IndependentData"] = data
             self.dataCache.FindOrCreateAllDataCache(self)
-            if self.upperCoefficientBounds != []:
+            if len(self.upperCoefficientBounds) > 0:
                 for i in range(len(inCoeffs)):
                     # use None as a flag for coefficients that are not fixed
                     if self.upperCoefficientBounds[i] is not None:
                         if inCoeffs[i] > self.upperCoefficientBounds[i]:
                             inCoeffs[i] = self.upperCoefficientBounds[i]
-            if self.lowerCoefficientBounds != []:
+            if len(self.lowerCoefficientBounds) > 0:
                 for i in range(len(inCoeffs)):
                     # use None as a flag for coefficients that are not fixed
                     if self.lowerCoefficientBounds[i] is not None:
                         if inCoeffs[i] < self.lowerCoefficientBounds[i]:
                             inCoeffs[i] = self.lowerCoefficientBounds[i]
-            if self.fixedCoefficients != []:
+            if len(self.fixedCoefficients) > 0:
                 for i in range(len(inCoeffs)):
                     # use None as a flag for coefficients that are not fixed
                     if self.fixedCoefficients[i] is not None:

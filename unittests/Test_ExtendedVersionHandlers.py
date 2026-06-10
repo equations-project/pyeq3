@@ -356,6 +356,21 @@ class TestExtendedVersionHandlers(unittest.TestCase):
         )
         self.assertTrue(fittingTarget <= 0.017)
 
+    def test_AppendAdditionalCoefficientBounds_emptyNumpyArrays_doesNotRaise(self):
+        # Regression for issue #34: the handlers check
+        # `if inModel.upperCoefficientBounds != []` before appending a None
+        # bound for their extra coefficient. With an EMPTY numpy array
+        # assigned, that comparison is an empty bool array and `if` on it
+        # raises "The truth value of an empty array is ambiguous". Empty
+        # bounds must be treated like the default empty lists: nothing to
+        # append to, nothing appended.
+        equation = pyeq3.Models_2D.Exponential.Exponential("SSQABS", "Offset")
+        equation.upperCoefficientBounds = numpy.array([])
+        equation.lowerCoefficientBounds = numpy.array([])
+        equation.extendedVersionHandler.AppendAdditionalCoefficientBounds(equation)
+        self.assertEqual(len(equation.upperCoefficientBounds), 0)
+        self.assertEqual(len(equation.lowerCoefficientBounds), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

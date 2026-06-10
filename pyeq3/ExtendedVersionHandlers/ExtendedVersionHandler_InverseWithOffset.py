@@ -52,9 +52,9 @@ class ExtendedVersionHandler_InverseWithOffset(
     # overridden from abstract parent class
 
     def AppendAdditionalCoefficientBounds(self, inModel):
-        if inModel.upperCoefficientBounds != []:
+        if len(inModel.upperCoefficientBounds) > 0:
             inModel.upperCoefficientBounds.append(None)
-        if inModel.lowerCoefficientBounds != []:
+        if len(inModel.lowerCoefficientBounds) > 0:
             inModel.lowerCoefficientBounds.append(None)
 
     def AssembleOutputSourceCodeCPP(self, inModel):

@@ -83,9 +83,9 @@ class ExtendedVersionHandler_LinearGrowth(
         if inModel.baseEquationHasGlobalMultiplierOrDivisor_UsedInExtendedVersions:
             return
         else:
-            if inModel.upperCoefficientBounds != []:
+            if len(inModel.upperCoefficientBounds) > 0:
                 inModel.upperCoefficientBounds.append(None)
-            if inModel.lowerCoefficientBounds != []:
+            if len(inModel.lowerCoefficientBounds) > 0:
                 inModel.lowerCoefficientBounds.append(None)
 
     def AssembleOutputSourceCodeCPP(self, inModel):
