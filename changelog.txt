@@ -2,6 +2,13 @@ Changelog
 ---------
 
 
+Release v12.7.0 (June 3, 2026)
+  - replace setup.py with toml file
+  - Add driver functions and reformat
+  - Replace scipy.odr with odrpack
+  - Make pyeq3 installable on numpy 2.x and declare the pypandoc dependency
+
+
 Release v12.6.1 (December 4, 2022)
   - Fixed code output with line and plane extended version handlers
   - Reformatting with black
